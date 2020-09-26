@@ -1,0 +1,27 @@
+{
+  "name": "xtal-editor",
+  "version": "0.0.0",
+  "description": "TBD",
+  "main": "index.js",
+  "dependencies": {
+    "xtal-element": "0.0.298",
+    "trans-render": "0.0.259"
+  },
+  "devDependencies": {
+    "es-dev-server": "1.57.5"
+  },
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "es-dev-server --app-index demo/baseEditor.html --node-resolve --watch --open"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/bahrus/xtal-editor.git"
+  },
+  "author": "",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/bahrus/xtal-editor/issues"
+  },
+  "homepage": "https://github.com/bahrus/xtal-editor#readme"
+}
