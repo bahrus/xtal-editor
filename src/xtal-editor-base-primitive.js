@@ -88,6 +88,18 @@ const linkType = ({ value, self }) => {
     }
     self.parsedObject = parsedObject;
 };
+function toString(item) {
+    switch (typeof item) {
+        case 'string':
+            return item;
+        case 'number':
+        case 'boolean':
+            return item.toString();
+            break;
+        case 'object':
+            return JSON.stringify(item);
+    }
+}
 const linkChildValues = ({ parsedObject, type, self }) => {
     if (parsedObject === undefined) {
         self.childValues = undefined;
@@ -95,9 +107,14 @@ const linkChildValues = ({ parsedObject, type, self }) => {
     }
     switch (type) {
         case 'array':
-        case 'number':
-        case 'string':
-            self.childValues = undefined;
+            self.childValues = parsedObject.map(item => toString(item));
+            break;
+        case 'object':
+            const childValues = {};
+            for (var key in parsedObject) {
+                childValues[key] = toString(parsedObject[key]);
+            }
+            self.childValues = childValues;
             return;
     }
 };

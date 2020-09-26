@@ -89,6 +89,19 @@ const linkType = ({value, self}: XtalEditorBasePrimitive) => {
     self.parsedObject = parsedObject;
 };
 
+function toString(item: any){
+    switch(typeof item){
+        case 'string':
+            return item;
+        case 'number':
+        case 'boolean':
+            return item.toString();
+            break;
+        case 'object':
+            return JSON.stringify(item);
+    }
+}
+
 const linkChildValues = ({parsedObject, type, self}: XtalEditorBasePrimitive) => {
     if(parsedObject === undefined) {
         self.childValues = undefined;
@@ -96,9 +109,14 @@ const linkChildValues = ({parsedObject, type, self}: XtalEditorBasePrimitive) =>
     }
     switch(type){
         case 'array':
-        case 'number':
-        case 'string':
-            self.childValues = undefined;
+            self.childValues = (parsedObject as any[]).map(item => toString(item)) as string[];
+            break;
+        case 'object':
+            const childValues: any = {};
+            for(var key in parsedObject){
+                childValues[key] = toString(parsedObject[key]);
+            }
+            self.childValues = childValues;
             return;
     }
 
@@ -138,7 +156,7 @@ export class XtalEditorBasePrimitive extends XtalElement{
 
     parsedObject: any;
 
-    childValues: string[] | undefined;
+    childValues: string[] | undefined | {[key: string]: string};
 
 }
 define(XtalEditorBasePrimitive);
