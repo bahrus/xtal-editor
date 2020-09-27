@@ -1,4 +1,4 @@
-import {XtalElement, define, TransformValueOptions, AttributeProps} from 'xtal-element/XtalElement.js';
+import {XtalElement, define, TransformValueOptions, AttributeProps, RenderContext} from 'xtal-element/XtalElement.js';
 import {createTemplate} from 'trans-render/createTemplate.js';
 import {templStampSym} from 'trans-render/standardPlugins.js';
 
@@ -46,7 +46,7 @@ const mainTemplate = createTemplate(/* html */`
 
     </style>
 `);
-const refs = {key: Symbol(), value: Symbol(), editor: Symbol()};
+const refs = {key: Symbol(), value: Symbol(), editor: Symbol(), childEditors: Symbol()};
 
 const initTransform = ({self}: XtalEditorBasePrimitive) => ({
     ':host': [templStampSym, refs],
@@ -63,6 +63,14 @@ const updateTransforms = [
     } as TransformValueOptions),
     ({key}: XtalEditorBasePrimitive) => ({
         [refs.key]: [{value: key}]
+    } as TransformValueOptions),
+    ({childValues, type}: XtalEditorBasePrimitive) => ({
+        [refs.childEditors]: (context: RenderContext<XtalEditorBasePrimitive>) => {
+            console.log(context, childValues);
+            return [childValues, XtalEditorBasePrimitive.is,, (context: RenderContext<XtalEditorBasePrimitive>) => {
+                console.log(context);
+            }]
+        }
     } as TransformValueOptions)
 ] 
 
@@ -112,9 +120,12 @@ const linkChildValues = ({parsedObject, type, self}: XtalEditorBasePrimitive) =>
             self.childValues = (parsedObject as any[]).map(item => toString(item)) as string[];
             break;
         case 'object':
-            const childValues: any = {};
+            const childValues: NameValue[] = [];
             for(var key in parsedObject){
-                childValues[key] = toString(parsedObject[key]);
+                childValues.push({
+                    key: key,
+                    value: toString(parsedObject[key]),
+                } as NameValue);
             }
             self.childValues = childValues;
             return;
@@ -125,12 +136,17 @@ const linkChildValues = ({parsedObject, type, self}: XtalEditorBasePrimitive) =>
 
 const propActions = [linkType, linkChildValues];
 
+interface NameValue {
+    key: string, 
+    value: string,
+}
+
 export class XtalEditorBasePrimitive extends XtalElement{
     static is = 'xtal-editor-base-primitive';
-    static attributeProps = ({value, type, parsedObject, key}: XtalEditorBasePrimitive) => ({
+    static attributeProps = ({value, type, parsedObject, key, childValues}: XtalEditorBasePrimitive) => ({
         str: [value, type, key],
         jsonProp: [value],
-        obj: [parsedObject],
+        obj: [parsedObject, childValues],
     } as AttributeProps)
     readyToInit = true;
     readyToRender = true;
@@ -156,7 +172,7 @@ export class XtalEditorBasePrimitive extends XtalElement{
 
     parsedObject: any;
 
-    childValues: string[] | undefined | {[key: string]: string};
+    childValues: string[] | undefined | NameValue[];
 
 }
 define(XtalEditorBasePrimitive);

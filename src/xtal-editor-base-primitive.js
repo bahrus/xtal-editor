@@ -45,7 +45,7 @@ const mainTemplate = createTemplate(/* html */ `
 
     </style>
 `);
-const refs = { key: Symbol(), value: Symbol(), editor: Symbol() };
+const refs = { key: Symbol(), value: Symbol(), editor: Symbol(), childEditors: Symbol() };
 const initTransform = ({ self }) => ({
     ':host': [templStampSym, refs],
     [refs.key]: [{}, { change: [self.handleKeyChange, 'value'] }],
@@ -60,6 +60,14 @@ const updateTransforms = [
     }),
     ({ key }) => ({
         [refs.key]: [{ value: key }]
+    }),
+    ({ childValues, type }) => ({
+        [refs.childEditors]: (context) => {
+            console.log(context, childValues);
+            return [childValues, XtalEditorBasePrimitive.is, , (context) => {
+                    console.log(context);
+                }];
+        }
     })
 ];
 const linkType = ({ value, self }) => {
@@ -110,9 +118,12 @@ const linkChildValues = ({ parsedObject, type, self }) => {
             self.childValues = parsedObject.map(item => toString(item));
             break;
         case 'object':
-            const childValues = {};
+            const childValues = [];
             for (var key in parsedObject) {
-                childValues[key] = toString(parsedObject[key]);
+                childValues.push({
+                    key: key,
+                    value: toString(parsedObject[key]),
+                });
             }
             self.childValues = childValues;
             return;
@@ -140,9 +151,9 @@ export class XtalEditorBasePrimitive extends XtalElement {
     }
 }
 XtalEditorBasePrimitive.is = 'xtal-editor-base-primitive';
-XtalEditorBasePrimitive.attributeProps = ({ value, type, parsedObject, key }) => ({
+XtalEditorBasePrimitive.attributeProps = ({ value, type, parsedObject, key, childValues }) => ({
     str: [value, type, key],
     jsonProp: [value],
-    obj: [parsedObject],
+    obj: [parsedObject, childValues],
 });
 define(XtalEditorBasePrimitive);
