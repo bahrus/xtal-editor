@@ -4,8 +4,8 @@
   "description": "TBD",
   "main": "index.js",
   "dependencies": {
-    "xtal-element": "0.0.300",
-    "trans-render": "0.0.260"
+    "xtal-element": "0.0.305",
+    "trans-render": "0.0.265"
   },
   "devDependencies": {
     "es-dev-server": "1.57.5"

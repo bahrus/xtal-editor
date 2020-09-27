@@ -63,6 +63,7 @@ const updateTransforms = [
     }),
     ({ childValues, type }) => ({
         [refs.childEditors]: [childValues, XtalEditorBasePrimitive.is, , ({ target, item }) => {
+                console.log('iah');
                 target.key = item.key;
                 target.value = item.value;
             }]

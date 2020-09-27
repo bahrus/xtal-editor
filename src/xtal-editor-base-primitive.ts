@@ -1,4 +1,4 @@
-import {XtalElement, define, TransformValueOptions, AttributeProps, RenderContext} from 'xtal-element/XtalElement.js';
+import {XtalElement, define, TransformValueOptions, AttributeProps, RenderContext, SelectiveUpdate} from 'xtal-element/XtalElement.js';
 import {createTemplate} from 'trans-render/createTemplate.js';
 import {templStampSym} from 'trans-render/standardPlugins.js';
 
@@ -57,20 +57,21 @@ const initTransform = ({self}: XtalEditorBasePrimitive) => ({
 const updateTransforms = [
     ({type}: XtalEditorBasePrimitive) => ({
         [refs.editor]: [{dataset: {type: type}}],
-    } as TransformValueOptions),
+    }),
     ({value}: XtalEditorBasePrimitive) => ({
         [refs.value]: [{value: value}]
-    } as TransformValueOptions),
+    }),
     ({key}: XtalEditorBasePrimitive) => ({
         [refs.key]: [{value: key}]
-    } as TransformValueOptions),
+    }),
     ({childValues, type}: XtalEditorBasePrimitive) => ({
         [refs.childEditors]: [childValues, XtalEditorBasePrimitive.is,, ({target, item}: RenderContext<XtalEditorBasePrimitive>) => {
+            console.log('iah');
             target!.key = item.key;
             target!.value = item.value;
         }]
-    } as TransformValueOptions)
-] 
+    })
+] as SelectiveUpdate<any>[]
 
 const linkType = ({value, self}: XtalEditorBasePrimitive) => {
     let parsedObject = undefined;
