@@ -62,8 +62,9 @@ const updateTransforms = [
         [refs.key]: [{ value: key }]
     }),
     ({ childValues, type }) => ({
-        [refs.childEditors]: [childValues, XtalEditorBasePrimitive.is, , (context) => {
-                console.log(context);
+        [refs.childEditors]: [childValues, XtalEditorBasePrimitive.is, , ({ target, item }) => {
+                target.key = item.key;
+                target.value = item.value;
             }]
     })
 ];
