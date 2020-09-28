@@ -1,12 +1,21 @@
-import { XtalElement, define } from 'xtal-element/XtalElement.js';
+import { XtalElement, define, p, symbolize } from 'xtal-element/XtalElement.js';
 import { createTemplate } from 'trans-render/createTemplate.js';
 import { templStampSym } from 'trans-render/standardPlugins.js';
 const mainTemplate = createTemplate(/* html */ `
     <div data-type=string part=editor>
-        <button part=expander class="nonPrimitive">Expand</button><input part=key><input part=value>
+        <div part=field>
+            <button part=expander class=nonPrimitive>+</button><input part=key><input part=value>
+        </div>
         <div part=childEditors class="nonPrimitive"></div>
     </div>
     <style>
+        [part="field"]{
+            display:flex;
+            flex-direction:row;
+        }
+        [part="childEditors"]{
+            margin-left: 30px;
+        }
         [part="editor"][data-type="object"] .nonPrimitive{
             display: inline;
         }
@@ -45,9 +54,11 @@ const mainTemplate = createTemplate(/* html */ `
 
     </style>
 `);
-const refs = { key: Symbol(), value: Symbol(), editor: Symbol(), childEditors: Symbol() };
+const refs = { key: p, value: p, editor: p, childEditors: p, expander: p };
+symbolize(refs);
 const initTransform = ({ self }) => ({
     ':host': [templStampSym, refs],
+    [refs.expander]: [{}, { click: self.toggle }],
     [refs.key]: [{}, { change: [self.handleKeyChange, 'value'] }],
     [refs.value]: [{}, { change: [self.handleValueChange, 'value'] }]
 });
@@ -72,6 +83,10 @@ const updateTransforms = [
                     self.upwardDataFlowInProgress = true;
                 });
             }]
+    }),
+    ({ open }) => ({
+        [refs.expander]: open ? '-' : '+',
+        [refs.childEditors]: [{ dataset: { open: (!!open).toString() } }]
     })
 ];
 const linkType = ({ value, self }) => {
@@ -171,10 +186,13 @@ export class XtalEditorBasePrimitive extends XtalElement {
     incrementUpdateCount() {
         this.internalUpdateCount = this.internalUpdateCount === undefined ? 0 : this.internalUpdateCount + 1;
     }
+    toggle() {
+        this.open = !this.open;
+    }
 }
 XtalEditorBasePrimitive.is = 'xtal-editor-base-primitive';
-XtalEditorBasePrimitive.attributeProps = ({ value, type, parsedObject, key, childValues, upwardDataFlowInProgress, internalUpdateCount }) => ({
-    bool: [upwardDataFlowInProgress],
+XtalEditorBasePrimitive.attributeProps = ({ value, type, parsedObject, key, childValues, upwardDataFlowInProgress, internalUpdateCount, open }) => ({
+    bool: [upwardDataFlowInProgress, open],
     num: [internalUpdateCount],
     str: [value, type, key],
     jsonProp: [value],

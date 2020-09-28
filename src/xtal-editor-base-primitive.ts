@@ -1,13 +1,22 @@
-import {XtalElement, define, TransformValueOptions, AttributeProps, RenderContext, SelectiveUpdate} from 'xtal-element/XtalElement.js';
+import {XtalElement, define, TransformValueOptions, AttributeProps, RenderContext, SelectiveUpdate, p, symbolize} from 'xtal-element/XtalElement.js';
 import {createTemplate} from 'trans-render/createTemplate.js';
 import {templStampSym} from 'trans-render/standardPlugins.js';
 
 const mainTemplate = createTemplate(/* html */`
     <div data-type=string part=editor>
-        <button part=expander class="nonPrimitive">Expand</button><input part=key><input part=value>
+        <div part=field>
+            <button part=expander class=nonPrimitive>+</button><input part=key><input part=value>
+        </div>
         <div part=childEditors class="nonPrimitive"></div>
     </div>
     <style>
+        [part="field"]{
+            display:flex;
+            flex-direction:row;
+        }
+        [part="childEditors"]{
+            margin-left: 30px;
+        }
         [part="editor"][data-type="object"] .nonPrimitive{
             display: inline;
         }
@@ -46,10 +55,12 @@ const mainTemplate = createTemplate(/* html */`
 
     </style>
 `);
-const refs = {key: Symbol(), value: Symbol(), editor: Symbol(), childEditors: Symbol()};
+const refs = {key: p, value: p, editor: p, childEditors: p, expander: p};
+symbolize(refs);
 
 const initTransform = ({self}: XtalEditorBasePrimitive) => ({
     ':host': [templStampSym, refs],
+    [refs.expander]: [{}, {click: self.toggle}],
     [refs.key]: [{},{change: [self.handleKeyChange, 'value']}],
     [refs.value]: [{}, {change: [self.handleValueChange, 'value']}]
 } as TransformValueOptions);
@@ -74,6 +85,10 @@ const updateTransforms = [
                 self.upwardDataFlowInProgress = true;
             })
         }]
+    }),
+    ({open}: XtalEditorBasePrimitive) => ({
+        [refs.expander]: open ? '-' : '+',
+        [refs.childEditors] : [{dataset:{open: (!!open).toString()}}]
     })
 ] as SelectiveUpdate<any>[]
 
@@ -160,8 +175,8 @@ interface NameValue {
 
 export class XtalEditorBasePrimitive extends XtalElement{
     static is = 'xtal-editor-base-primitive';
-    static attributeProps = ({value, type, parsedObject, key, childValues, upwardDataFlowInProgress, internalUpdateCount}: XtalEditorBasePrimitive) => ({
-        bool: [upwardDataFlowInProgress],
+    static attributeProps = ({value, type, parsedObject, key, childValues, upwardDataFlowInProgress, internalUpdateCount, open}: XtalEditorBasePrimitive) => ({
+        bool: [upwardDataFlowInProgress, open],
         num: [internalUpdateCount],
         str: [value, type, key],
         jsonProp: [value],
@@ -188,6 +203,11 @@ export class XtalEditorBasePrimitive extends XtalElement{
         this.internalUpdateCount = this.internalUpdateCount === undefined ? 0 : this.internalUpdateCount + 1;
     }
 
+    toggle(){
+        this.open = !this.open;
+    }
+
+
     key: string | undefined;
 
     value: string | undefined;
@@ -197,6 +217,8 @@ export class XtalEditorBasePrimitive extends XtalElement{
     parsedObject: any;
 
     childValues: string[] | undefined | NameValue[];
+
+    open: boolean | undefined;
 
     /**
      * @private
