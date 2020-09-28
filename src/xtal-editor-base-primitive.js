@@ -6,39 +6,56 @@ const mainTemplate = createTemplate(/* html */ `
         <div part=field>
             <button part=expander class=nonPrimitive>+</button><input part=key><input part=value>
         </div>
-        <div part=childEditors class="nonPrimitive"></div>
+        <div part=childEditors class=nonPrimitive data-open=false></div>
     </div>
     <style>
+        :host{
+            display:block;
+        }
         [part="field"]{
             display:flex;
             flex-direction:row;
         }
         [part="childEditors"]{
-            margin-left: 30px;
+            margin-left: 25px;
         }
-        [part="editor"][data-type="object"] .nonPrimitive{
+        div[part="childEditors"][data-open="false"]{
+            display: none;
+        }
+        [data-type="object"] button.nonPrimitive{
             display: inline;
         }
-        [part="editor"][data-type="array"] .nonPrimitive{
+        [data-type="object"] div.nonPrimitive[data-open="true"]{
+            display: block;
+        }
+        [data-type="array"] button.nonPrimitive{
             display: inline;
         }
-        [part="editor"][data-type="string"] .nonPrimitive{
+        [data-type="array"] div.nonPrimitive[data-open="true"]{
+            display: block;
+        }
+        [data-type="string"] .nonPrimitive{
             display: none;
         }
-        [part="editor"][data-type="number"] .nonPrimitive{
+        [data-type="number"] .nonPrimitive{
             display: none;
         }
-        [part="editor"][data-type="boolean"] .nonPrimitive{
+        [data-type="boolean"] .nonPrimitive{
             display: none;
         }
-        [part="editor"][data-type="string"] [part="key"]{
-            background-color: #B1C639;;
+        [data-type="string"] [part="key"]{
+            background-color: rgb(0, 148, 8);
         }
-        [part="editor"][data-type="object"] [part="key"]{
-            background-color: #E17000;
+        [data-type="object"] [part="key"]{
+            background-color: rgb(225, 112, 0);
         }
-
-        [part="editor"] [part="value"]{
+        [data-type="number"] [part="key"]{
+            background-color: rgb(73, 123, 141);
+        }
+        [data-type="array"] [part="key"]{
+            background-color: rgb(45, 91, 137);
+        }
+        [part="value"]{
             background-color: #ECF3C3;
             width: 600px;
         }
@@ -77,6 +94,7 @@ const updateTransforms = [
                 if (!target)
                     return;
                 //TODO:  enhance(?) TR to make this declarative
+                console.log(target, item);
                 target.key = item.key;
                 target.value = item.value;
                 target.addEventListener('internal-update-count-changed', e => {
