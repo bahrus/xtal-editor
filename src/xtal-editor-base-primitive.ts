@@ -66,9 +66,13 @@ const updateTransforms = [
     }),
     ({childValues, type}: XtalEditorBasePrimitive) => ({
         [refs.childEditors]: [childValues, XtalEditorBasePrimitive.is,, ({target, item}: RenderContext<XtalEditorBasePrimitive>) => {
-            console.log('iah');
-            target!.key = item.key;
-            target!.value = item.value;
+            if(!target) return;
+            //TODO:  enhance(?) TR to make this declarative
+            target.key = item.key;
+            target.value = item.value;
+            target.addEventListener('internal-update-count-changed', e =>{
+                console.log(e);
+            })
         }]
     })
 ] as SelectiveUpdate<any>[]
@@ -109,7 +113,8 @@ function toString(item: any){
     }
 }
 
-const linkChildValues = ({parsedObject, type, self}: XtalEditorBasePrimitive) => {
+const linkChildValues = ({parsedObject, type, self, upwardDataFlowInProgress}: XtalEditorBasePrimitive) => {
+    if(upwardDataFlowInProgress) return;
     if(parsedObject === undefined) {
         self.childValues = undefined;
         return;
@@ -132,8 +137,12 @@ const linkChildValues = ({parsedObject, type, self}: XtalEditorBasePrimitive) =>
 
 };
 
+const linkValueFromChildren = ({upwardDataFlowInProgress}: XtalEditorBasePrimitive) => {
+    if(!upwardDataFlowInProgress) return;
+}
 
-const propActions = [linkType, linkChildValues];
+
+const propActions = [linkType, linkChildValues, linkValueFromChildren];
 
 interface NameValue {
     key: string, 
@@ -142,10 +151,13 @@ interface NameValue {
 
 export class XtalEditorBasePrimitive extends XtalElement{
     static is = 'xtal-editor-base-primitive';
-    static attributeProps = ({value, type, parsedObject, key, childValues}: XtalEditorBasePrimitive) => ({
+    static attributeProps = ({value, type, parsedObject, key, childValues, upwardDataFlowInProgress, internalUpdateCount}: XtalEditorBasePrimitive) => ({
+        bool: [upwardDataFlowInProgress],
+        num: [internalUpdateCount],
         str: [value, type, key],
         jsonProp: [value],
         obj: [parsedObject, childValues],
+        notify: [internalUpdateCount],
     } as AttributeProps)
     readyToInit = true;
     readyToRender = true;
@@ -161,6 +173,7 @@ export class XtalEditorBasePrimitive extends XtalElement{
     }
     handleValueChange(val: string){
         this.value = val;
+        this.internalUpdateCount++;
     }
 
     key: string | undefined;
@@ -172,6 +185,13 @@ export class XtalEditorBasePrimitive extends XtalElement{
     parsedObject: any;
 
     childValues: string[] | undefined | NameValue[];
+
+    /**
+     * @private
+     */
+    upwardDataFlowInProgress: boolean | undefined;
+
+    internalUpdateCount: number = 0;
 
 }
 define(XtalEditorBasePrimitive);

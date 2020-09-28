@@ -63,9 +63,14 @@ const updateTransforms = [
     }),
     ({ childValues, type }) => ({
         [refs.childEditors]: [childValues, XtalEditorBasePrimitive.is, , ({ target, item }) => {
-                console.log('iah');
+                if (!target)
+                    return;
+                //TODO:  enhance(?) TR to make this declarative
                 target.key = item.key;
                 target.value = item.value;
+                target.addEventListener('internal-update-count-changed', e => {
+                    console.log(e);
+                });
             }]
     })
 ];
@@ -107,7 +112,9 @@ function toString(item) {
             return JSON.stringify(item);
     }
 }
-const linkChildValues = ({ parsedObject, type, self }) => {
+const linkChildValues = ({ parsedObject, type, self, upwardDataFlowInProgress }) => {
+    if (upwardDataFlowInProgress)
+        return;
     if (parsedObject === undefined) {
         self.childValues = undefined;
         return;
@@ -128,7 +135,11 @@ const linkChildValues = ({ parsedObject, type, self }) => {
             return;
     }
 };
-const propActions = [linkType, linkChildValues];
+const linkValueFromChildren = ({ upwardDataFlowInProgress }) => {
+    if (!upwardDataFlowInProgress)
+        return;
+};
+const propActions = [linkType, linkChildValues, linkValueFromChildren];
 export class XtalEditorBasePrimitive extends XtalElement {
     constructor() {
         super(...arguments);
@@ -138,6 +149,7 @@ export class XtalEditorBasePrimitive extends XtalElement {
         this.initTransform = initTransform;
         this.updateTransforms = updateTransforms;
         this.propActions = propActions;
+        this.internalUpdateCount = 0;
     }
     handleKeyChange(key) {
         if (key === '') {
@@ -147,12 +159,16 @@ export class XtalEditorBasePrimitive extends XtalElement {
     }
     handleValueChange(val) {
         this.value = val;
+        this.internalUpdateCount++;
     }
 }
 XtalEditorBasePrimitive.is = 'xtal-editor-base-primitive';
-XtalEditorBasePrimitive.attributeProps = ({ value, type, parsedObject, key, childValues }) => ({
+XtalEditorBasePrimitive.attributeProps = ({ value, type, parsedObject, key, childValues, upwardDataFlowInProgress, internalUpdateCount }) => ({
+    bool: [upwardDataFlowInProgress],
+    num: [internalUpdateCount],
     str: [value, type, key],
     jsonProp: [value],
     obj: [parsedObject, childValues],
+    notify: [internalUpdateCount],
 });
 define(XtalEditorBasePrimitive);
