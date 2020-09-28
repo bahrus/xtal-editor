@@ -61,7 +61,7 @@ const updateTransforms = [
     ({ key }) => ({
         [refs.key]: [{ value: key }]
     }),
-    ({ childValues, type }) => ({
+    ({ childValues, type, self }) => ({
         [refs.childEditors]: [childValues, XtalEditorBasePrimitive.is, , ({ target, item }) => {
                 if (!target)
                     return;
@@ -69,7 +69,7 @@ const updateTransforms = [
                 target.key = item.key;
                 target.value = item.value;
                 target.addEventListener('internal-update-count-changed', e => {
-                    console.log(e);
+                    self.upwardDataFlowInProgress = true;
                 });
             }]
     })
@@ -99,6 +99,7 @@ const linkType = ({ value, self }) => {
         }
     }
     self.parsedObject = parsedObject;
+    self.upwardDataFlowInProgress = false;
 };
 function toString(item) {
     switch (typeof item) {
@@ -135,9 +136,16 @@ const linkChildValues = ({ parsedObject, type, self, upwardDataFlowInProgress })
             return;
     }
 };
-const linkValueFromChildren = ({ upwardDataFlowInProgress }) => {
+const linkValueFromChildren = ({ upwardDataFlowInProgress, self }) => {
     if (!upwardDataFlowInProgress)
         return;
+    const children = Array.from(self.shadowRoot.querySelectorAll(XtalEditorBasePrimitive.is));
+    const newVal = {}; //TODO: support array type
+    children.forEach(child => {
+        newVal[child.key] = child.value; //TODO: support for none primitive
+    });
+    self.value = JSON.stringify(newVal);
+    self.incrementUpdateCount();
 };
 const propActions = [linkType, linkChildValues, linkValueFromChildren];
 export class XtalEditorBasePrimitive extends XtalElement {
@@ -149,7 +157,6 @@ export class XtalEditorBasePrimitive extends XtalElement {
         this.initTransform = initTransform;
         this.updateTransforms = updateTransforms;
         this.propActions = propActions;
-        this.internalUpdateCount = 0;
     }
     handleKeyChange(key) {
         if (key === '') {
@@ -159,7 +166,10 @@ export class XtalEditorBasePrimitive extends XtalElement {
     }
     handleValueChange(val) {
         this.value = val;
-        this.internalUpdateCount++;
+        this.incrementUpdateCount();
+    }
+    incrementUpdateCount() {
+        this.internalUpdateCount = this.internalUpdateCount === undefined ? 0 : this.internalUpdateCount + 1;
     }
 }
 XtalEditorBasePrimitive.is = 'xtal-editor-base-primitive';

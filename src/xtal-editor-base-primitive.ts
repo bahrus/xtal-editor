@@ -64,14 +64,14 @@ const updateTransforms = [
     ({key}: XtalEditorBasePrimitive) => ({
         [refs.key]: [{value: key}]
     }),
-    ({childValues, type}: XtalEditorBasePrimitive) => ({
+    ({childValues, type, self}: XtalEditorBasePrimitive) => ({
         [refs.childEditors]: [childValues, XtalEditorBasePrimitive.is,, ({target, item}: RenderContext<XtalEditorBasePrimitive>) => {
             if(!target) return;
             //TODO:  enhance(?) TR to make this declarative
             target.key = item.key;
             target.value = item.value;
             target.addEventListener('internal-update-count-changed', e =>{
-                console.log(e);
+                self.upwardDataFlowInProgress = true;
             })
         }]
     })
@@ -98,6 +98,7 @@ const linkType = ({value, self}: XtalEditorBasePrimitive) => {
         }
     }
     self.parsedObject = parsedObject;
+    self.upwardDataFlowInProgress = false;
 };
 
 function toString(item: any){
@@ -137,8 +138,16 @@ const linkChildValues = ({parsedObject, type, self, upwardDataFlowInProgress}: X
 
 };
 
-const linkValueFromChildren = ({upwardDataFlowInProgress}: XtalEditorBasePrimitive) => {
+const linkValueFromChildren = ({upwardDataFlowInProgress, self}: XtalEditorBasePrimitive) => {
     if(!upwardDataFlowInProgress) return;
+    const children = Array.from(self.shadowRoot!.querySelectorAll(XtalEditorBasePrimitive.is)) as XtalEditorBasePrimitive[];
+    const newVal: any = {}; //TODO: support array type
+    children.forEach(child =>{
+        newVal[child.key!] = child.value!;//TODO: support for none primitive
+    });
+    self.value = JSON.stringify(newVal);
+    self.incrementUpdateCount();
+    
 }
 
 
@@ -173,7 +182,10 @@ export class XtalEditorBasePrimitive extends XtalElement{
     }
     handleValueChange(val: string){
         this.value = val;
-        this.internalUpdateCount++;
+        this.incrementUpdateCount();
+    }
+    incrementUpdateCount(){
+        this.internalUpdateCount = this.internalUpdateCount === undefined ? 0 : this.internalUpdateCount + 1;
     }
 
     key: string | undefined;
@@ -191,7 +203,7 @@ export class XtalEditorBasePrimitive extends XtalElement{
      */
     upwardDataFlowInProgress: boolean | undefined;
 
-    internalUpdateCount: number = 0;
+    internalUpdateCount: number | undefined;
 
 }
 define(XtalEditorBasePrimitive);
