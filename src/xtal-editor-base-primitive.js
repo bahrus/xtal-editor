@@ -7,6 +7,9 @@ const mainTemplate = createTemplate(/* html */ `
             <button part=expander class=nonPrimitive>+</button><input part=key><input part=value>
         </div>
         <div part=childEditors class=nonPrimitive data-open=false></div>
+        <div part=childInserters class=nonPrimitive data-open=false>
+            <button part=objectAdder>object</button>
+        </div>
     </div>
     <style>
         :host{
@@ -73,13 +76,14 @@ const mainTemplate = createTemplate(/* html */ `
 
     </style>
 `);
-const refs = { key: p, value: p, editor: p, childEditors: p, expander: p };
+const refs = { key: p, value: p, editor: p, childEditors: p, expander: p, objectAdder: p };
 symbolize(refs);
-const initTransform = ({ self }) => ({
+const initTransform = ({ self, type }) => ({
     ':host': [templStampSym, refs],
     [refs.expander]: [{}, { click: self.toggle }],
     [refs.key]: [{}, { change: [self.handleKeyChange, 'value'] }],
-    [refs.value]: [{}, { change: [self.handleValueChange, 'value'] }]
+    [refs.value]: [{}, { change: [self.handleValueChange, 'value'] }],
+    [refs.objectAdder]: [{}, { click: self.addObject }]
 });
 const updateTransforms = [
     ({ type }) => ({
@@ -171,7 +175,7 @@ const linkChildValues = ({ parsedObject, type, self, upwardDataFlowInProgress })
             return;
     }
 };
-const linkValueFromChildren = ({ upwardDataFlowInProgress, self }) => {
+const linkValueFromChildren = ({ upwardDataFlowInProgress, self, type }) => {
     if (!upwardDataFlowInProgress)
         return;
     const children = Array.from(self.shadowRoot.querySelectorAll(XtalEditorBasePrimitive.is));
@@ -182,7 +186,14 @@ const linkValueFromChildren = ({ upwardDataFlowInProgress, self }) => {
     self.value = JSON.stringify(newVal);
     self.incrementUpdateCount();
 };
-const propActions = [linkType, linkChildValues, linkValueFromChildren];
+const addObject = ({ objCounter, self }) => {
+    if (objCounter === undefined)
+        return;
+    const newObj = { ...self.parsedObject };
+    newObj['object' + objCounter] = {};
+    self.value = JSON.stringify(newObj);
+};
+const propActions = [linkType, linkChildValues, linkValueFromChildren, addObject];
 export class XtalEditorBasePrimitive extends XtalElement {
     constructor() {
         super(...arguments);
@@ -209,11 +220,14 @@ export class XtalEditorBasePrimitive extends XtalElement {
     toggle() {
         this.open = !this.open;
     }
+    addObject() {
+        this.objCounter = this.objCounter === undefined ? 0 : this.objCounter + 1;
+    }
 }
 XtalEditorBasePrimitive.is = 'xtal-editor-base-primitive';
-XtalEditorBasePrimitive.attributeProps = ({ value, type, parsedObject, key, childValues, upwardDataFlowInProgress, internalUpdateCount, open }) => ({
+XtalEditorBasePrimitive.attributeProps = ({ value, type, parsedObject, key, childValues, upwardDataFlowInProgress, internalUpdateCount, open, objCounter }) => ({
     bool: [upwardDataFlowInProgress, open],
-    num: [internalUpdateCount],
+    num: [internalUpdateCount, objCounter],
     str: [value, type, key],
     jsonProp: [value],
     obj: [parsedObject, childValues],
