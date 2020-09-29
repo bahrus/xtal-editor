@@ -15,6 +15,8 @@ const mainTemplate = createTemplate(/* html */ `
         [part="field"]{
             display:flex;
             flex-direction:row;
+            line-height: 20px;
+            margin-top: 2px;
         }
         [part="childEditors"]{
             margin-left: 25px;
