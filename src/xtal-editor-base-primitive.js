@@ -2,6 +2,7 @@ import { XtalElement, define, p, symbolize } from 'xtal-element/XtalElement.js';
 import { createTemplate } from 'trans-render/createTemplate.js';
 import { templStampSym } from 'trans-render/standardPlugins.js';
 const mainTemplate = createTemplate(/* html */ `
+    <div class="remove" part=remove>Remove item by deleting a property name.</div>
     <div data-type=string part=editor>
         <div part=field>
             <button part=expander class="expander nonPrimitive">+</button><input part=key><input part=value>
@@ -36,6 +37,17 @@ const mainTemplate = createTemplate(/* html */ `
             padding: 2;
             border: none;
         }
+        .remove{
+            padding: 2px 4px;
+            -webkit-border-radius: 5px;
+            -moz-border-radius: 5px;
+            border-radius: 5px;
+            color: white;
+            font-weight: bold;
+            text-shadow: 1px 1px 1px black;
+            background-color: black;
+        }
+
         [part="field"]{
             display:flex;
             flex-direction:row;
@@ -101,14 +113,15 @@ const mainTemplate = createTemplate(/* html */ `
 
     </style>
 `);
-const refs = { key: p, value: p, editor: p, childEditors: p, expander: p, objectAdder: p, stringAdder: p };
+const refs = { key: p, value: p, editor: p, childEditors: p, expander: p, objectAdder: p, stringAdder: p, remove: p };
 symbolize(refs);
-const initTransform = ({ self, type }) => ({
+const initTransform = ({ self, type, hasParent }) => ({
     ':host': [templStampSym, refs],
     [refs.expander]: [{}, { click: self.toggle }],
     [refs.key]: [{}, { change: [self.handleKeyChange, 'value'] }],
     [refs.value]: [{}, { change: [self.handleValueChange, 'value'] }],
-    [refs.objectAdder]: [{}, { click: self.addObject }]
+    [refs.objectAdder]: [{}, { click: self.addObject }],
+    [refs.remove]: !hasParent
 });
 const updateTransforms = [
     ({ type }) => ({
@@ -121,6 +134,7 @@ const updateTransforms = [
         [refs.key]: [{ value: key }]
     }),
     ({ childValues, type, self }) => ({
+        //insert child editor elements
         [refs.childEditors]: [childValues, XtalEditorBasePrimitive.is, , ({ target, item }) => {
                 if (!target)
                     return;
@@ -128,6 +142,7 @@ const updateTransforms = [
                 console.log(target, item);
                 target.key = item.key;
                 target.value = item.value;
+                target.hasParent = true;
                 target.addEventListener('internal-update-count-changed', e => {
                     self.upwardDataFlowInProgress = true;
                 });
@@ -136,6 +151,9 @@ const updateTransforms = [
     ({ open }) => ({
         [refs.expander]: open ? '-' : '+',
         [refs.childEditors]: [{ dataset: { open: (!!open).toString() } }]
+    }),
+    ({ hasParent }) => ({
+        [refs.remove]: !hasParent
     })
 ];
 const linkType = ({ value, self }) => {
@@ -262,8 +280,8 @@ export class XtalEditorBasePrimitive extends XtalElement {
     }
 }
 XtalEditorBasePrimitive.is = 'xtal-editor-base-primitive';
-XtalEditorBasePrimitive.attributeProps = ({ value, type, parsedObject, key, childValues, upwardDataFlowInProgress, internalUpdateCount, open, objCounter, strCounter }) => ({
-    bool: [upwardDataFlowInProgress, open],
+XtalEditorBasePrimitive.attributeProps = ({ value, type, parsedObject, key, childValues, upwardDataFlowInProgress, internalUpdateCount, open, objCounter, strCounter, hasParent }) => ({
+    bool: [upwardDataFlowInProgress, open, hasParent],
     num: [internalUpdateCount, objCounter, strCounter],
     str: [value, type, key],
     jsonProp: [value],
