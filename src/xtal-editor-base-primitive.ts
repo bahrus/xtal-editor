@@ -6,14 +6,14 @@ import {templStampSym} from 'trans-render/standardPlugins.js';
 const mainTemplate = createTemplate(/* html */`
     <div class="remove" part=remove>Remove item by deleting a property name.</div>
     <div data-type=string part=editor>
-        <div part=field>
+        <div part=field class=field>
             <button part=expander class="expander nonPrimitive">+</button><input part=key><input part=value>
             <div part=childInserters class="nonPrimitive childInserters" data-open=false>
                 <button part=objectAdder class="objectAdder">add object</button>
                 <button part=stringAdder class="stringAdder">add string</button>
             </div>
         </div>
-        <div part=childEditors class=nonPrimitive data-open=false></div>
+        <div part=childEditors class="nonPrimitive childEditors" data-open=false></div>
         
     </div>
     <style>
@@ -51,7 +51,7 @@ const mainTemplate = createTemplate(/* html */`
             background-color: black;
         }
 
-        [part="field"]{
+        .field{
             display:flex;
             flex-direction:row;
             line-height: 20px;
@@ -61,7 +61,7 @@ const mainTemplate = createTemplate(/* html */`
             display: flex;
             justify-content: center;
         }
-        [part="childEditors"]{
+        .childEditors{
             margin-left: 25px;
         }
         div[part="childEditors"][data-open="false"]{
@@ -125,6 +125,7 @@ const initTransform = ({self, type, hasParent}: XtalEditorBasePrimitive) => ({
     [refs.key]: [{},{change: [self.handleKeyChange, 'value']}],
     [refs.value]: [{}, {change: [self.handleValueChange, 'value']}],
     [refs.objectAdder]: [{}, {click: self.addObject}],
+    [refs.stringAdder]: [{}, {click: self.addString}],
     [refs.remove]: !hasParent
 
 } as TransformValueOptions);
@@ -144,7 +145,6 @@ const updateTransforms = [
         [refs.childEditors]: [childValues, XtalEditorBasePrimitive.is,, ({target, item}: RenderContext<XtalEditorBasePrimitive>) => {
             if(!target) return;
             //TODO:  enhance(?) TR to make this declarative
-            console.log(target, item);
             target.key = item.key;
             target.value = item.value;
             target.hasParent = true;
