@@ -6,22 +6,47 @@ import {templStampSym} from 'trans-render/standardPlugins.js';
 const mainTemplate = createTemplate(/* html */`
     <div data-type=string part=editor>
         <div part=field>
-            <button part=expander class=nonPrimitive>+</button><input part=key><input part=value>
+            <button part=expander class="expander nonPrimitive">+</button><input part=key><input part=value>
         </div>
         <div part=childEditors class=nonPrimitive data-open=false></div>
-        <div part=childInserters class=nonPrimitive data-open=false>
-            <button part=objectAdder>object</button>
+        <div part=childInserters class="nonPrimitive childInserters" data-open=false>
+            <button part=objectAdder class="objectAdder">add object</button>
+            <button part=stringAdder class="stringAdder">add string</button>
         </div>
     </div>
     <style>
         :host{
             display:block;
         }
+        .expander{
+            width: fit-content;
+            height: fit-content;
+            padding-left: 0px;
+            padding-right: 0px;
+            width:20px;
+        }
+        .objectAdder{
+            background-color: #E17000;
+        }
+        .stringAdder{
+            background-color: #009408;
+        }
+        .childInserters button{
+            color: white;
+            text-shadow:1px 1px 1px black;
+            border-radius: 5px;
+            padding: 2;
+            border: none;
+        }
         [part="field"]{
             display:flex;
             flex-direction:row;
             line-height: 20px;
             margin-top: 2px;
+        }
+        .childInserters{
+            display: flex;
+            justify-content: center;
         }
         [part="childEditors"]{
             margin-left: 25px;
@@ -78,7 +103,7 @@ const mainTemplate = createTemplate(/* html */`
 
     </style>
 `);
-const refs = {key: p, value: p, editor: p, childEditors: p, expander: p, objectAdder: p};
+const refs = {key: p, value: p, editor: p, childEditors: p, expander: p, objectAdder: p, stringAdder: p};
 symbolize(refs);
 
 const initTransform = ({self, type}: XtalEditorBasePrimitive) => ({
@@ -197,10 +222,19 @@ const addObject = ({objCounter, self}: XtalEditorBasePrimitive) => {
     const newObj = {...self.parsedObject};
     newObj['object' + objCounter] = {};
     self.value = JSON.stringify(newObj);
+    self.open = true;
+}
+
+const addString = ({strCounter, self}: XtalEditorBasePrimitive) => {
+    if(strCounter === undefined) return;
+    const newObj = {...self.parsedObject};
+    newObj['string' + strCounter] = 'val' + strCounter;
+    self.value = JSON.stringify(newObj);
+    self.open = true;
 }
 
 
-const propActions = [linkType, linkChildValues, linkValueFromChildren, addObject];
+const propActions = [linkType, linkChildValues, linkValueFromChildren, addObject, addString];
 
 interface NameValue {
     key: string, 
@@ -209,9 +243,9 @@ interface NameValue {
 
 export class XtalEditorBasePrimitive extends XtalElement{
     static is = 'xtal-editor-base-primitive';
-    static attributeProps = ({value, type, parsedObject, key, childValues, upwardDataFlowInProgress, internalUpdateCount, open, objCounter}: XtalEditorBasePrimitive) => ({
+    static attributeProps = ({value, type, parsedObject, key, childValues, upwardDataFlowInProgress, internalUpdateCount, open, objCounter, strCounter}: XtalEditorBasePrimitive) => ({
         bool: [upwardDataFlowInProgress, open],
-        num: [internalUpdateCount, objCounter],
+        num: [internalUpdateCount, objCounter, strCounter],
         str: [value, type, key],
         jsonProp: [value],
         obj: [parsedObject, childValues],
@@ -242,7 +276,11 @@ export class XtalEditorBasePrimitive extends XtalElement{
     }
 
     addObject(){
-        this.objCounter = this.objCounter === undefined ? 0 : this.objCounter + 1;
+        this.objCounter = this.objCounter === undefined ? 1 : this.objCounter + 1;
+    }
+
+    addString(){
+        this.strCounter = this.strCounter === undefined ? 1 : this.strCounter + 1
     }
 
 
@@ -266,6 +304,7 @@ export class XtalEditorBasePrimitive extends XtalElement{
     internalUpdateCount: number | undefined;
 
     objCounter: number | undefined;
+    strCounter: number | undefined;
 
 }
 define(XtalEditorBasePrimitive);
