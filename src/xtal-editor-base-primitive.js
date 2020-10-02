@@ -6,12 +6,13 @@ const mainTemplate = createTemplate(/* html */ `
     <div data-type=string part=editor>
         <div part=field>
             <button part=expander class="expander nonPrimitive">+</button><input part=key><input part=value>
+            <div part=childInserters class="nonPrimitive childInserters" data-open=false>
+                <button part=objectAdder class="objectAdder">add object</button>
+                <button part=stringAdder class="stringAdder">add string</button>
+            </div>
         </div>
         <div part=childEditors class=nonPrimitive data-open=false></div>
-        <div part=childInserters class="nonPrimitive childInserters" data-open=false>
-            <button part=objectAdder class="objectAdder">add object</button>
-            <button part=stringAdder class="stringAdder">add string</button>
-        </div>
+        
     </div>
     <style>
         :host{
@@ -151,9 +152,6 @@ const updateTransforms = [
     ({ open }) => ({
         [refs.expander]: open ? '-' : '+',
         [refs.childEditors]: [{ dataset: { open: (!!open).toString() } }]
-    }),
-    ({ hasParent }) => ({
-        [refs.remove]: !hasParent
     })
 ];
 const linkType = ({ value, self }) => {
