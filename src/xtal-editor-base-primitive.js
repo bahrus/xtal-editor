@@ -145,7 +145,7 @@ const updateTransforms = [
     }),
     ({ childValues, type, self }) => ({
         //insert child editor elements
-        [refs.childEditors]: [childValues, XtalEditorBasePrimitive.is, , ({ target, item }) => {
+        [refs.childEditors]: [childValues, XtalEditorBasePrimitive.is, , ({ target, item, idx }) => {
                 if (!target)
                     return;
                 //TODO:  enhance(?) TR to make this declarative
@@ -156,6 +156,7 @@ const updateTransforms = [
                         break;
                     default:
                         target.value = item;
+                        target.key = idx.toString();
                 }
                 target.hasParent = true;
                 target.addEventListener('internal-update-count-changed', e => {

@@ -150,7 +150,7 @@ const updateTransforms = [
     }),
     ({childValues, type, self}: XtalEditorBasePrimitive) => ({
         //insert child editor elements
-        [refs.childEditors]: [childValues, XtalEditorBasePrimitive.is,, ({target, item}: RenderContext<XtalEditorBasePrimitive>) => {
+        [refs.childEditors]: [childValues, XtalEditorBasePrimitive.is,, ({target, item, idx}: RenderContext<XtalEditorBasePrimitive>) => {
             if(!target) return;
             //TODO:  enhance(?) TR to make this declarative
             switch(typeof item){
@@ -160,6 +160,7 @@ const updateTransforms = [
                     break;
                 default:
                     target.value = item;
+                    target.key = idx!.toString();
             }
             
             target.hasParent = true;
