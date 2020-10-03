@@ -9,8 +9,9 @@ const mainTemplate = createTemplate(/* html */`
         <div part=field class=field>
             <button part=expander class="expander nonPrimitive">+</button><input part=key><input part=value>
             <div part=childInserters class="nonPrimitive childInserters" data-open=false>
-                <button part=objectAdder class="objectAdder">add object</button>
-                <button part=stringAdder class="stringAdder">add string</button>
+                <button part=objectAdder class=objectAdder>add object</button>
+                <button part=stringAdder class=stringAdder>add string</button>
+                <button part=boolAdder class=boolAdder>add bool</button>
             </div>
         </div>
         <div part=childEditors class="nonPrimitive childEditors" data-open=false></div>
@@ -116,7 +117,7 @@ const mainTemplate = createTemplate(/* html */`
 
     </style>
 `);
-const refs = {key: p, value: p, editor: p, childEditors: p, expander: p, objectAdder: p, stringAdder: p, remove: p};
+const refs = {key: p, value: p, editor: p, childEditors: p, expander: p, objectAdder: p, stringAdder: p, boolAdder: p, remove: p};
 symbolize(refs);
 
 const initTransform = ({self, type, hasParent}: XtalEditorBasePrimitive) => ({
@@ -126,6 +127,7 @@ const initTransform = ({self, type, hasParent}: XtalEditorBasePrimitive) => ({
     [refs.value]: [{}, {change: [self.handleValueChange, 'value']}],
     [refs.objectAdder]: [{}, {click: self.addObject}],
     [refs.stringAdder]: [{}, {click: self.addString}],
+    [refs.boolAdder]: [{}, {click: self.addBool}],
     [refs.remove]: !hasParent
 
 } as TransformValueOptions);
@@ -249,8 +251,16 @@ const addString = ({strCounter, self}: XtalEditorBasePrimitive) => {
     self.open = true;
 }
 
+const addBool = ({boolCounter, self}: XtalEditorBasePrimitive) => {
+    if(boolCounter === undefined) return;
+    const newObj = {...self.parsedObject};
+    newObj['bool' + boolCounter] = 'val' + boolCounter;
+    self.value = JSON.stringify(newObj);
+    self.open = true;
+}
 
-const propActions = [linkType, linkChildValues, linkValueFromChildren, addObject, addString];
+
+const propActions = [linkType, linkChildValues, linkValueFromChildren, addObject, addString, addBool];
 
 interface NameValue {
     key: string, 
@@ -259,9 +269,10 @@ interface NameValue {
 
 export class XtalEditorBasePrimitive extends XtalElement{
     static is = 'xtal-editor-base-primitive';
-    static attributeProps = ({value, type, parsedObject, key, childValues, upwardDataFlowInProgress, internalUpdateCount, open, objCounter, strCounter, hasParent}: XtalEditorBasePrimitive) => ({
+    static attributeProps = ({value, type, parsedObject, key, childValues, upwardDataFlowInProgress, 
+        internalUpdateCount, open, objCounter, strCounter, boolCounter, hasParent}: XtalEditorBasePrimitive) => ({
         bool: [upwardDataFlowInProgress, open, hasParent],
-        num: [internalUpdateCount, objCounter, strCounter],
+        num: [internalUpdateCount, objCounter, strCounter, boolCounter],
         str: [value, type, key],
         jsonProp: [value],
         obj: [parsedObject, childValues],
@@ -296,7 +307,10 @@ export class XtalEditorBasePrimitive extends XtalElement{
     }
 
     addString(){
-        this.strCounter = this.strCounter === undefined ? 1 : this.strCounter + 1
+        this.strCounter = this.strCounter === undefined ? 1 : this.strCounter + 1;
+    }
+    addBool(){
+        this.boolCounter = this.boolCounter === undefined ? 1: this.boolCounter + 1;
     }
 
 
@@ -321,6 +335,7 @@ export class XtalEditorBasePrimitive extends XtalElement{
 
     objCounter: number | undefined;
     strCounter: number | undefined;
+    boolCounter: number | undefined;
     hasParent: boolean | undefined;
 
 }
