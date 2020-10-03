@@ -153,8 +153,15 @@ const updateTransforms = [
         [refs.childEditors]: [childValues, XtalEditorBasePrimitive.is,, ({target, item}: RenderContext<XtalEditorBasePrimitive>) => {
             if(!target) return;
             //TODO:  enhance(?) TR to make this declarative
-            target.key = item.key;
-            target.value = item.value;
+            switch(typeof item){
+                case 'object':
+                    target.key = item.key;
+                    target.value = item.value;
+                    break;
+                default:
+                    target.value = item;
+            }
+            
             target.hasParent = true;
             target.addEventListener('internal-update-count-changed', e =>{
                 self.upwardDataFlowInProgress = true;
