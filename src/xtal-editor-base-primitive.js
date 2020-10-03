@@ -32,6 +32,9 @@ const mainTemplate = createTemplate(/* html */ `
         .stringAdder{
             background-color: #009408;
         }
+        .boolAdder{
+            background-color: #B1C639;
+        }
         .childInserters button{
             color: white;
             text-shadow:1px 1px 1px black;
@@ -89,6 +92,9 @@ const mainTemplate = createTemplate(/* html */ `
         }
         [data-type="string"] [part="key"]{
             background-color: rgb(0, 148, 8);
+        }
+        [data-type="boolean"] [part="key"]{
+            background-color: #B1C639;
         }
         [data-type="object"] [part="key"]{
             background-color: rgb(225, 112, 0);
@@ -249,7 +255,7 @@ const addBool = ({ boolCounter, self }) => {
     if (boolCounter === undefined)
         return;
     const newObj = { ...self.parsedObject };
-    newObj['bool' + boolCounter] = 'val' + boolCounter;
+    newObj['bool' + boolCounter] = 'false';
     self.value = JSON.stringify(newObj);
     self.open = true;
 };
