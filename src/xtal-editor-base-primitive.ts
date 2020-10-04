@@ -178,7 +178,7 @@ const updateTransforms = [
     })
 ] as SelectiveUpdate<any>[]
 
-const linkType = ({value, self}: XtalEditorBasePrimitive) => {
+const linkTypeAndParsedObject = ({value, self}: XtalEditorBasePrimitive) => {
     let parsedObject = undefined;
     if(value !==  undefined){
         if(value === 'true' || value === 'false'){
@@ -199,35 +199,16 @@ const linkType = ({value, self}: XtalEditorBasePrimitive) => {
         }
     }
     self.parsedObject = parsedObject;
-    //self.upwardDataFlowInProgress = false;
 };
 
-const linkTypeLightly = ({uiValue, self}: XtalEditorBasePrimitive) => {
+const link_ParsedObject = ({uiValue, self}: XtalEditorBasePrimitive) => {
     if(uiValue === undefined) return;
     switch(self.type){
         case 'object':
         case 'array':
             (<any>self)._parsedObject = JSON.parse(uiValue);
+
     }
-    // if(uiValue !==  undefined){
-    //     if(uiValue === 'true' || uiValue === 'false'){
-    //         self.type = 'boolean';
-    //     }else if(!isNaN(uiValue as any as number)){
-    //         self.type = 'number';
-    //     }else{
-    //         try{
-    //             parsedObject = JSON.parse(uiValue);
-    //             if(Array.isArray(parsedObject)){
-    //                 self.type = 'array';
-    //             }else{
-    //                 self.type = 'object';
-    //             }
-    //         }catch(e){
-    //             self.type = 'string';
-    //         }
-    //     }
-    // }
-    // (<any>self)._parsedObject = parsedObject;
 }
 
 
@@ -245,7 +226,6 @@ function toString(item: any){
 }
 
 const linkChildValues = ({parsedObject, type, self}: XtalEditorBasePrimitive) => {
-    //if(upwardDataFlowInProgress) return;
     if(parsedObject === undefined) {
         self.childValues = undefined;
         return;
@@ -306,7 +286,7 @@ const addBool = ({boolCounter, self}: XtalEditorBasePrimitive) => {
 }
 
 
-const propActions = [linkType, linkChildValues, linkValueFromChildren, addObject, addString, addBool, linkTypeLightly];
+const propActions = [linkTypeAndParsedObject, linkChildValues, linkValueFromChildren, addObject, addString, addBool, link_ParsedObject];
 
 interface NameValue {
     key: string, 
