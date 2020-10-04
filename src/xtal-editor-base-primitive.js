@@ -140,6 +140,9 @@ const updateTransforms = [
     ({ value }) => ({
         [refs.value]: [{ value: value }]
     }),
+    ({ uiValue }) => ({
+        [refs.value]: [{ value: uiValue }]
+    }),
     ({ key }) => ({
         [refs.key]: [{ value: key }]
     }),
@@ -194,7 +197,35 @@ const linkType = ({ value, self }) => {
         }
     }
     self.parsedObject = parsedObject;
-    self.upwardDataFlowInProgress = false;
+    //self.upwardDataFlowInProgress = false;
+};
+const linkTypeLightly = ({ uiValue, self }) => {
+    if (uiValue === undefined)
+        return;
+    switch (self.type) {
+        case 'object':
+        case 'array':
+            self._parsedObject = JSON.parse(uiValue);
+    }
+    // if(uiValue !==  undefined){
+    //     if(uiValue === 'true' || uiValue === 'false'){
+    //         self.type = 'boolean';
+    //     }else if(!isNaN(uiValue as any as number)){
+    //         self.type = 'number';
+    //     }else{
+    //         try{
+    //             parsedObject = JSON.parse(uiValue);
+    //             if(Array.isArray(parsedObject)){
+    //                 self.type = 'array';
+    //             }else{
+    //                 self.type = 'object';
+    //             }
+    //         }catch(e){
+    //             self.type = 'string';
+    //         }
+    //     }
+    // }
+    // (<any>self)._parsedObject = parsedObject;
 };
 function toString(item) {
     switch (typeof item) {
@@ -208,9 +239,8 @@ function toString(item) {
             return JSON.stringify(item);
     }
 }
-const linkChildValues = ({ parsedObject, type, self, upwardDataFlowInProgress }) => {
-    if (upwardDataFlowInProgress)
-        return;
+const linkChildValues = ({ parsedObject, type, self }) => {
+    //if(upwardDataFlowInProgress) return;
     if (parsedObject === undefined) {
         self.childValues = undefined;
         return;
@@ -239,8 +269,9 @@ const linkValueFromChildren = ({ upwardDataFlowInProgress, self, type }) => {
     children.forEach(child => {
         newVal[child.key] = child.value; //TODO: support for none primitive
     });
-    self.value = JSON.stringify(newVal);
+    self.uiValue = JSON.stringify(newVal);
     self.incrementUpdateCount();
+    self.upwardDataFlowInProgress = false;
 };
 const addObject = ({ objCounter, self }) => {
     if (objCounter === undefined)
@@ -266,7 +297,7 @@ const addBool = ({ boolCounter, self }) => {
     self.value = JSON.stringify(newObj);
     self.open = true;
 };
-const propActions = [linkType, linkChildValues, linkValueFromChildren, addObject, addString, addBool];
+const propActions = [linkType, linkChildValues, linkValueFromChildren, addObject, addString, addBool, linkTypeLightly];
 export class XtalEditorBasePrimitive extends XtalElement {
     constructor() {
         super(...arguments);
@@ -304,10 +335,11 @@ export class XtalEditorBasePrimitive extends XtalElement {
     }
 }
 XtalEditorBasePrimitive.is = 'xtal-editor-base-primitive';
-XtalEditorBasePrimitive.attributeProps = ({ value, type, parsedObject, key, childValues, upwardDataFlowInProgress, internalUpdateCount, open, objCounter, strCounter, boolCounter, hasParent }) => ({
+XtalEditorBasePrimitive.attributeProps = ({ value, uiValue, type, parsedObject, key, childValues, upwardDataFlowInProgress, internalUpdateCount, open, objCounter, strCounter, boolCounter, hasParent }) => ({
     bool: [upwardDataFlowInProgress, open, hasParent],
+    dry: [type],
     num: [internalUpdateCount, objCounter, strCounter, boolCounter],
-    str: [value, type, key],
+    str: [value, type, key, uiValue],
     jsonProp: [value],
     obj: [parsedObject, childValues],
     notify: [internalUpdateCount],

@@ -145,6 +145,9 @@ const updateTransforms = [
     ({value}: XtalEditorBasePrimitive) => ({
         [refs.value]: [{value: value}]
     }),
+    ({uiValue}: XtalEditorBasePrimitive) => ({
+        [refs.value]: [{value: uiValue}]
+    }),
     ({key}: XtalEditorBasePrimitive) => ({
         [refs.key]: [{value: key}]
     }),
@@ -196,8 +199,37 @@ const linkType = ({value, self}: XtalEditorBasePrimitive) => {
         }
     }
     self.parsedObject = parsedObject;
-    self.upwardDataFlowInProgress = false;
+    //self.upwardDataFlowInProgress = false;
 };
+
+const linkTypeLightly = ({uiValue, self}: XtalEditorBasePrimitive) => {
+    if(uiValue === undefined) return;
+    switch(self.type){
+        case 'object':
+        case 'array':
+            (<any>self)._parsedObject = JSON.parse(uiValue);
+    }
+    // if(uiValue !==  undefined){
+    //     if(uiValue === 'true' || uiValue === 'false'){
+    //         self.type = 'boolean';
+    //     }else if(!isNaN(uiValue as any as number)){
+    //         self.type = 'number';
+    //     }else{
+    //         try{
+    //             parsedObject = JSON.parse(uiValue);
+    //             if(Array.isArray(parsedObject)){
+    //                 self.type = 'array';
+    //             }else{
+    //                 self.type = 'object';
+    //             }
+    //         }catch(e){
+    //             self.type = 'string';
+    //         }
+    //     }
+    // }
+    // (<any>self)._parsedObject = parsedObject;
+}
+
 
 function toString(item: any){
     switch(typeof item){
@@ -212,8 +244,8 @@ function toString(item: any){
     }
 }
 
-const linkChildValues = ({parsedObject, type, self, upwardDataFlowInProgress}: XtalEditorBasePrimitive) => {
-    if(upwardDataFlowInProgress) return;
+const linkChildValues = ({parsedObject, type, self}: XtalEditorBasePrimitive) => {
+    //if(upwardDataFlowInProgress) return;
     if(parsedObject === undefined) {
         self.childValues = undefined;
         return;
@@ -239,13 +271,13 @@ const linkChildValues = ({parsedObject, type, self, upwardDataFlowInProgress}: X
 const linkValueFromChildren = ({upwardDataFlowInProgress, self, type}: XtalEditorBasePrimitive) => {
     if(!upwardDataFlowInProgress) return;
     const children = Array.from(self.shadowRoot!.querySelectorAll(XtalEditorBasePrimitive.is)) as XtalEditorBasePrimitive[];
-
     const newVal: any = {}; //TODO: support array type
     children.forEach(child =>{
         newVal[child.key!] = child.value!;//TODO: support for none primitive
     });
-    self.value = JSON.stringify(newVal);
+    self.uiValue = JSON.stringify(newVal);
     self.incrementUpdateCount();
+    self.upwardDataFlowInProgress = false;
     
 }
 
@@ -274,7 +306,7 @@ const addBool = ({boolCounter, self}: XtalEditorBasePrimitive) => {
 }
 
 
-const propActions = [linkType, linkChildValues, linkValueFromChildren, addObject, addString, addBool];
+const propActions = [linkType, linkChildValues, linkValueFromChildren, addObject, addString, addBool, linkTypeLightly];
 
 interface NameValue {
     key: string, 
@@ -283,11 +315,12 @@ interface NameValue {
 
 export class XtalEditorBasePrimitive extends XtalElement{
     static is = 'xtal-editor-base-primitive';
-    static attributeProps = ({value, type, parsedObject, key, childValues, upwardDataFlowInProgress, 
+    static attributeProps = ({value, uiValue, type, parsedObject, key, childValues, upwardDataFlowInProgress, 
         internalUpdateCount, open, objCounter, strCounter, boolCounter, hasParent}: XtalEditorBasePrimitive) => ({
         bool: [upwardDataFlowInProgress, open, hasParent],
+        dry: [type],
         num: [internalUpdateCount, objCounter, strCounter, boolCounter],
-        str: [value, type, key],
+        str: [value, type, key, uiValue],
         jsonProp: [value],
         obj: [parsedObject, childValues],
         notify: [internalUpdateCount],
@@ -331,6 +364,7 @@ export class XtalEditorBasePrimitive extends XtalElement{
     key: string | undefined;
 
     value: string | undefined;
+    uiValue: string | undefined;
 
     type: 'string' | 'number' | 'boolean' | 'object' | 'array' | undefined;
 
