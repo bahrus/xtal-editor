@@ -60,6 +60,7 @@ const mainTemplate = createTemplate(/* html */`
             flex-direction:row;
             line-height: 20px;
             margin-top: 2px;
+            align-items: center;
         }
         .childInserters{
             display: flex;
@@ -327,6 +328,9 @@ export class XtalEditorBasePrimitive extends XtalElement{
 
     toggle(){
         this.open = !this.open;
+    }
+    propActionsHub(propAction: any){
+        //console.log(propAction);
     }
 
     addObject(){

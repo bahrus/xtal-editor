@@ -58,6 +58,7 @@ const mainTemplate = createTemplate(/* html */ `
             flex-direction:row;
             line-height: 20px;
             margin-top: 2px;
+            align-items: center;
         }
         .childInserters{
             display: flex;
@@ -302,6 +303,9 @@ export class XtalEditorBasePrimitive extends XtalElement {
     }
     toggle() {
         this.open = !this.open;
+    }
+    propActionsHub(propAction) {
+        //console.log(propAction);
     }
     addObject() {
         this.objCounter = this.objCounter === undefined ? 1 : this.objCounter + 1;
