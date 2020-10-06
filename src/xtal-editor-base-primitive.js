@@ -10,6 +10,7 @@ const mainTemplate = createTemplate(/* html */ `
                 <button part=objectAdder class=objectAdder>add object</button>
                 <button part=stringAdder class=stringAdder>add string</button>
                 <button part=boolAdder class=boolAdder>add bool</button>
+                <button part=numberAdder class=numberAdder>add number</button>
             </div>
         </div>
         <div part=childEditors class="nonPrimitive childEditors" data-open=false></div>
@@ -34,6 +35,9 @@ const mainTemplate = createTemplate(/* html */ `
         }
         .boolAdder{
             background-color: #B1C639;
+        }
+        .numberAdder{
+            background-color: #497B8D;
         }
         .childInserters button{
             color: white;
@@ -122,7 +126,7 @@ const mainTemplate = createTemplate(/* html */ `
 
     </style>
 `);
-const refs = { key: p, value: p, editor: p, childEditors: p, expander: p, objectAdder: p, stringAdder: p, boolAdder: p, remove: p };
+const refs = { key: p, value: p, editor: p, childEditors: p, expander: p, objectAdder: p, stringAdder: p, boolAdder: p, remove: p, numberAdder: p };
 symbolize(refs);
 const initTransform = ({ self, type, hasParent }) => ({
     ':host': [templStampSym, refs],
@@ -132,6 +136,7 @@ const initTransform = ({ self, type, hasParent }) => ({
     [refs.objectAdder]: [{}, { click: self.addObject }],
     [refs.stringAdder]: [{}, { click: self.addString }],
     [refs.boolAdder]: [{}, { click: self.addBool }],
+    [refs.numberAdder]: [{}, { click: self.addNumber }],
     [refs.remove]: !hasParent
 });
 const updateTransforms = [
@@ -277,7 +282,15 @@ const addBool = ({ boolCounter, self }) => {
     self.value = JSON.stringify(newObj);
     self.open = true;
 };
-const propActions = [linkTypeAndParsedObject, linkChildValues, linkValueFromChildren, addObject, addString, addBool, link_ParsedObject];
+const addNumber = ({ numberCounter, self }) => {
+    if (numberCounter === undefined)
+        return;
+    const newObj = { ...self.parsedObject };
+    newObj['number' + numberCounter] = '0';
+    self.value = JSON.stringify(newObj);
+    self.open = true;
+};
+const propActions = [linkTypeAndParsedObject, linkChildValues, linkValueFromChildren, addObject, addString, addBool, addNumber, link_ParsedObject];
 export class XtalEditorBasePrimitive extends XtalElement {
     constructor() {
         super(...arguments);
@@ -316,12 +329,15 @@ export class XtalEditorBasePrimitive extends XtalElement {
     addBool() {
         this.boolCounter = this.boolCounter === undefined ? 1 : this.boolCounter + 1;
     }
+    addNumber() {
+        this.numberCounter = this.numberCounter === undefined ? 1 : this.numberCounter + 1;
+    }
 }
 XtalEditorBasePrimitive.is = 'xtal-editor-base-primitive';
-XtalEditorBasePrimitive.attributeProps = ({ value, uiValue, type, parsedObject, key, childValues, upwardDataFlowInProgress, internalUpdateCount, open, objCounter, strCounter, boolCounter, hasParent }) => ({
+XtalEditorBasePrimitive.attributeProps = ({ value, uiValue, type, parsedObject, key, childValues, upwardDataFlowInProgress, internalUpdateCount, open, objCounter, strCounter, boolCounter, numberCounter, hasParent }) => ({
     bool: [upwardDataFlowInProgress, open, hasParent],
     dry: [type],
-    num: [internalUpdateCount, objCounter, strCounter, boolCounter],
+    num: [internalUpdateCount, objCounter, strCounter, boolCounter, numberCounter],
     str: [value, type, key, uiValue],
     jsonProp: [value],
     obj: [parsedObject, childValues],
