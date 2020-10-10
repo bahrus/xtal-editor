@@ -131,6 +131,7 @@ const mainTemplate = createTemplate(/* html */`
 const refs = {key: p, value: p, editor: p, childEditors: p, expander: p, objectAdder: p, stringAdder: p, boolAdder: p, remove: p, numberAdder: p};
 symbolize(refs);
 
+
 const initTransform = ({self, type, hasParent}: XtalEditorBasePrimitive) => ({
     ':host': [templStampSym, refs],
     [refs.expander]: [{}, {click: self.toggle}],
@@ -185,7 +186,7 @@ const updateTransforms = [
 ] as SelectiveUpdate<any>[]
 
 const linkTypeAndParsedObject = ({value, self}: XtalEditorBasePrimitive) => {
-    let parsedObject = undefined;
+    let parsedObject = value;
     if(value !==  undefined){
         if(value === 'true' || value === 'false'){
             self.type = 'boolean';
@@ -254,7 +255,7 @@ const linkChildValues = ({parsedObject, type, self}: XtalEditorBasePrimitive) =>
 
 };
 
-const linkValueFromChildren = ({upwardDataFlowInProgress, self, type}: XtalEditorBasePrimitive) => {
+const linkValueFromChildren = ({upwardDataFlowInProgress, self}: XtalEditorBasePrimitive) => {
     if(!upwardDataFlowInProgress) return;
     const children = Array.from(self.shadowRoot!.querySelectorAll(XtalEditorBasePrimitive.is)) as XtalEditorBasePrimitive[];
     const newVal: any = {}; //TODO: support array type
@@ -269,10 +270,11 @@ const linkValueFromChildren = ({upwardDataFlowInProgress, self, type}: XtalEdito
 
 const addObject = ({objCounter, self}: XtalEditorBasePrimitive) => {
     if(objCounter === undefined) return;
+    self.open = true;
     const newObj = {...self.parsedObject};
     newObj['object' + objCounter] = {};
     self.value = JSON.stringify(newObj);
-    self.open = true;
+    
 }
 
 const addString = ({strCounter, self}: XtalEditorBasePrimitive) => {
@@ -312,7 +314,7 @@ export class XtalEditorBasePrimitive extends XtalElement{
     static attributeProps = ({value, uiValue, type, parsedObject, key, childValues, upwardDataFlowInProgress, 
         internalUpdateCount, open, objCounter, strCounter, boolCounter, numberCounter, hasParent}: XtalEditorBasePrimitive) => ({
         bool: [upwardDataFlowInProgress, open, hasParent],
-        dry: [type],
+        dry: [type, parsedObject, value, hasParent],
         num: [internalUpdateCount, objCounter, strCounter, boolCounter, numberCounter],
         str: [value, type, key, uiValue],
         jsonProp: [value],
@@ -342,8 +344,15 @@ export class XtalEditorBasePrimitive extends XtalElement{
     toggle(){
         this.open = !this.open;
     }
+    actionCount = 0;
     propActionsHub(propAction: any){
-        //console.log(propAction);
+        console.log(this.actionCount, propAction);
+        this.actionCount++;
+    }
+    transformHub(transform: any){
+        console.log(this.actionCount, transform);
+        this.actionCount++;
+        
     }
 
     addObject(){
