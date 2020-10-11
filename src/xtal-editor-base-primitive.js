@@ -170,6 +170,7 @@ const updateTransforms = [
                 target.hasParent = true;
                 target.addEventListener('internal-update-count-changed', e => {
                     self.upwardDataFlowInProgress = true;
+                    //console.log(JSON.stringify(self.value));
                 });
             }]
     }),
@@ -211,6 +212,7 @@ const link_ParsedObject = ({ uiValue, self }) => {
         case 'object':
         case 'array':
             self._parsedObject = JSON.parse(uiValue);
+            self._value = uiValue;
     }
 };
 function toString(item) {
@@ -252,7 +254,7 @@ const linkValueFromChildren = ({ upwardDataFlowInProgress, self }) => {
     const children = Array.from(self.shadowRoot.querySelectorAll(XtalEditorBasePrimitive.is));
     const newVal = {}; //TODO: support array type
     children.forEach(child => {
-        newVal[child.key] = child.value; //TODO: support for none primitive
+        newVal[child.key] = child.parsedObject; //TODO: support for none primitive
     });
     self.uiValue = JSON.stringify(newVal);
     self.incrementUpdateCount();
@@ -294,6 +296,7 @@ const propActions = [linkTypeAndParsedObject, linkChildValues, linkValueFromChil
 export class XtalEditorBasePrimitive extends XtalElement {
     constructor() {
         super(...arguments);
+        //eventScopes = [['internal-update-count-changed', 'bubbles', 'cancelable', 'composed']] as EventScopes;
         this.readyToInit = true;
         this.readyToRender = true;
         this.mainTemplate = mainTemplate;
@@ -319,12 +322,12 @@ export class XtalEditorBasePrimitive extends XtalElement {
         this.open = !this.open;
     }
     propActionsHub(propAction) {
-        console.log(this.actionCount, propAction);
-        this.actionCount++;
+        //console.log(this.actionCount, propAction);
+        //this.actionCount++;
     }
     transformHub(transform) {
-        console.log(this.actionCount, transform);
-        this.actionCount++;
+        //console.log(this.actionCount, transform);
+        //this.actionCount++;
     }
     addObject() {
         this.objCounter = this.objCounter === undefined ? 1 : this.objCounter + 1;

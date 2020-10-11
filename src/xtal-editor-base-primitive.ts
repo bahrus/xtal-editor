@@ -1,4 +1,4 @@
-import {XtalElement, define, TransformValueOptions, AttributeProps, RenderContext, SelectiveUpdate, p, symbolize} from 'xtal-element/XtalElement.js';
+import {XtalElement, define, TransformValueOptions, AttributeProps, RenderContext, SelectiveUpdate, p, symbolize, EventScopes} from 'xtal-element/XtalElement.js';
 import {createTemplate} from 'trans-render/createTemplate.js';
 import {templStampSym} from 'trans-render/standardPlugins.js';
 
@@ -176,6 +176,8 @@ const updateTransforms = [
             target.hasParent = true;
             target.addEventListener('internal-update-count-changed', e =>{
                 self.upwardDataFlowInProgress = true;
+                //console.log(JSON.stringify(self.value));
+
             })
         }]
     }),
@@ -214,7 +216,7 @@ const link_ParsedObject = ({uiValue, self}: XtalEditorBasePrimitive) => {
         case 'object':
         case 'array':
             (<any>self)._parsedObject = JSON.parse(uiValue);
-
+            (<any>self)._value = uiValue;
     }
 }
 
@@ -260,7 +262,7 @@ const linkValueFromChildren = ({upwardDataFlowInProgress, self}: XtalEditorBaseP
     const children = Array.from(self.shadowRoot!.querySelectorAll(XtalEditorBasePrimitive.is)) as XtalEditorBasePrimitive[];
     const newVal: any = {}; //TODO: support array type
     children.forEach(child =>{
-        newVal[child.key!] = child.value!;//TODO: support for none primitive
+        newVal[child.key!] = child.parsedObject!;//TODO: support for none primitive
     });
     self.uiValue = JSON.stringify(newVal);
     self.incrementUpdateCount();
@@ -320,7 +322,8 @@ export class XtalEditorBasePrimitive extends XtalElement{
         jsonProp: [value],
         obj: [parsedObject, childValues],
         notify: [internalUpdateCount],
-    } as AttributeProps)
+    } as AttributeProps);
+    //eventScopes = [['internal-update-count-changed', 'bubbles', 'cancelable', 'composed']] as EventScopes;
     readyToInit = true;
     readyToRender = true;
     mainTemplate = mainTemplate;
@@ -346,12 +349,12 @@ export class XtalEditorBasePrimitive extends XtalElement{
     }
     actionCount = 0;
     propActionsHub(propAction: any){
-        console.log(this.actionCount, propAction);
-        this.actionCount++;
+        //console.log(this.actionCount, propAction);
+        //this.actionCount++;
     }
     transformHub(transform: any){
-        console.log(this.actionCount, transform);
-        this.actionCount++;
+        //console.log(this.actionCount, transform);
+        //this.actionCount++;
         
     }
 
