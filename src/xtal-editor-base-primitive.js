@@ -5,7 +5,7 @@ const mainTemplate = createTemplate(/* html */ `
     <div class="remove" part=remove>Remove item by deleting a property name.</div>
     <div data-type=string part=editor>
         <div part=field class=field>
-            <button part=expander class="expander nonPrimitive">+</button><input part=key><input part=value>
+            <button part=expander class="expander nonPrimitive">+</button><input part=key><input part=value class=value>
             <div part=childInserters class="nonPrimitive childInserters" data-open=false>
                 <button part=objectAdder class=objectAdder>add object</button>
                 <button part=stringAdder class=stringAdder>add string</button>
@@ -110,9 +110,9 @@ const mainTemplate = createTemplate(/* html */ `
         [data-type="array"] [part="key"]{
             background-color: rgb(45, 91, 137);
         }
-        [part="value"]{
+        .value{
             background-color: #ECF3C3;
-            width: 600px;
+            flex-grow: 5;
         }
 
         input {
