@@ -1,13 +1,36 @@
 # xtal-editor
 
+<a href="https://nodei.co/npm/xtal-editor/"><img src="https://nodei.co/npm/xtal-editor.png"></a>
+
 Re-creation of [flexi-json](http://www.daviddurman.com/flexi-json-editor/jsoneditor.html), taking some liberties, but as a web component.
 
+## [Demo](https://jsfiddle.net/bahrus/u5e4okn6/1/)
+
 ## Usage
+
+Locally:
 
 ```html
 <xtal-editor-base-primitive key=root 
     value='{"string":"foo","number":5,"array":[1,2,3],"object":{"property":"value","subobj":{"arr":["foo","ha"],"numero":1}}}'>
 </xtal-editor-base-primitive>
+<script type=module>
+    import '../src/xtal-editor-base-primitive.js';
+</script>
+```
+
+CDN:
+
+The script tag above can be replaced by:
+
+```html
+<script type=module src=https://unpkg.com/xtal-editor@0.0.1/src/xtal-editor-base-primitive.js?module></script>
+```
+
+or 
+
+```html
+<script type=module src=https://cdn.skypack.dev/xtal-editor></script>
 ```
 
 ## Installation
