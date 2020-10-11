@@ -248,15 +248,30 @@ const linkChildValues = ({ parsedObject, type, self }) => {
             return;
     }
 };
-const linkValueFromChildren = ({ upwardDataFlowInProgress, self }) => {
+const linkValueFromChildren = ({ upwardDataFlowInProgress, self, type }) => {
     if (!upwardDataFlowInProgress)
         return;
     const children = Array.from(self.shadowRoot.querySelectorAll(XtalEditorBasePrimitive.is));
-    const newVal = {}; //TODO: support array type
-    children.forEach(child => {
-        newVal[child.key] = child.parsedObject; //TODO: support for none primitive
-    });
-    self.uiValue = JSON.stringify(newVal);
+    switch (type) {
+        case 'object':
+            {
+                const newVal = {}; //TODO: support array type
+                children.forEach(child => {
+                    newVal[child.key] = child.parsedObject; //TODO: support for none primitive
+                });
+                self.uiValue = JSON.stringify(newVal);
+            }
+            break;
+        case 'array':
+            {
+                const newVal = [];
+                children.forEach(child => {
+                    newVal.push(child.parsedObject); //TODO: support for none primitive
+                });
+                self.uiValue = JSON.stringify(newVal);
+            }
+            break;
+    }
     self.incrementUpdateCount();
     self.upwardDataFlowInProgress = false;
 };

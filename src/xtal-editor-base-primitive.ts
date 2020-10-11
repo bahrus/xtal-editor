@@ -257,14 +257,28 @@ const linkChildValues = ({parsedObject, type, self}: XtalEditorBasePrimitive) =>
 
 };
 
-const linkValueFromChildren = ({upwardDataFlowInProgress, self}: XtalEditorBasePrimitive) => {
+const linkValueFromChildren = ({upwardDataFlowInProgress, self, type}: XtalEditorBasePrimitive) => {
     if(!upwardDataFlowInProgress) return;
     const children = Array.from(self.shadowRoot!.querySelectorAll(XtalEditorBasePrimitive.is)) as XtalEditorBasePrimitive[];
-    const newVal: any = {}; //TODO: support array type
-    children.forEach(child =>{
-        newVal[child.key!] = child.parsedObject!;//TODO: support for none primitive
-    });
-    self.uiValue = JSON.stringify(newVal);
+    switch(type){
+        case 'object': {
+            const newVal: any = {}; //TODO: support array type
+            children.forEach(child =>{
+                newVal[child.key!] = child.parsedObject!;//TODO: support for none primitive
+            });
+            self.uiValue = JSON.stringify(newVal);
+        }
+        break;
+        case 'array':{
+            const newVal: any[] = [];
+            children.forEach(child =>{
+                newVal.push(child.parsedObject!);//TODO: support for none primitive
+            });
+            self.uiValue = JSON.stringify(newVal);
+        }
+        break;
+    }
+    
     self.incrementUpdateCount();
     self.upwardDataFlowInProgress = false;
     
