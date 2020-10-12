@@ -15,7 +15,8 @@
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
     "start": "es-dev-server --app-index demo/dev.html --node-resolve --watch --open",
-    "bundle": "rollup --config"
+    "bundle": "rollup --config",
+    "compress": "node minify"
   },
   "repository": {
     "type": "git",
