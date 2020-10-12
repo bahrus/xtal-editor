@@ -147,7 +147,7 @@ const updateTransforms = [
         [refs.value]: [{ value: value }]
     }),
     ({ uiValue }) => ({
-        [refs.value]: [{ value: uiValue }]
+        [refs.value]: [uiValue === undefined ? undefined : { value: uiValue }]
     }),
     ({ key }) => ({
         [refs.key]: [{ value: key }]

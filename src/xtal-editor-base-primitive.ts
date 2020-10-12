@@ -153,7 +153,7 @@ const updateTransforms = [
         [refs.value]: [{value: value}]
     }),
     ({uiValue}: XtalEditorBasePrimitive) => ({
-        [refs.value]: [{value: uiValue}]
+        [refs.value]: [uiValue === undefined ? undefined : {value: uiValue}]
     }),
     ({key}: XtalEditorBasePrimitive) => ({
         [refs.key]: [{value: key}]
