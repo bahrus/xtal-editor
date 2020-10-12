@@ -154,7 +154,7 @@ const updateTransforms = [
     }),
     ({ childValues, type, self }) => ({
         //insert child editor elements
-        [refs.childEditors]: [childValues, XtalEditorBasePrimitive.is, , ({ target, item, idx }) => {
+        [refs.childEditors]: [childValues, XtalEditor.is, , ({ target, item, idx }) => {
                 if (!target)
                     return;
                 //TODO:  enhance(?) TR to make this declarative
@@ -255,7 +255,7 @@ const linkChildValues = ({ parsedObject, type, self }) => {
 const linkValueFromChildren = ({ upwardDataFlowInProgress, self, type }) => {
     if (!upwardDataFlowInProgress)
         return;
-    const children = Array.from(self.shadowRoot.querySelectorAll(XtalEditorBasePrimitive.is));
+    const children = Array.from(self.shadowRoot.querySelectorAll(XtalEditor.is));
     switch (type) {
         case 'object':
             {
@@ -312,7 +312,7 @@ const addNumber = ({ numberCounter, self }) => {
     self.open = true;
 };
 const propActions = [linkTypeAndParsedObject, linkChildValues, linkValueFromChildren, addObject, addString, addBool, addNumber, link_ParsedObject];
-export class XtalEditorBasePrimitive extends XtalElement {
+export class XtalEditor extends XtalElement {
     constructor() {
         super(...arguments);
         this.readyToInit = true;
@@ -356,8 +356,8 @@ export class XtalEditorBasePrimitive extends XtalElement {
         this.numberCounter = this.numberCounter === undefined ? 1 : this.numberCounter + 1;
     }
 }
-XtalEditorBasePrimitive.is = 'xtal-editor-base-primitive';
-XtalEditorBasePrimitive.attributeProps = ({ value, uiValue, type, parsedObject, key, childValues, upwardDataFlowInProgress, internalUpdateCount, open, objCounter, strCounter, boolCounter, numberCounter, hasParent }) => ({
+XtalEditor.is = 'xtal-editor';
+XtalEditor.attributeProps = ({ value, uiValue, type, parsedObject, key, childValues, upwardDataFlowInProgress, internalUpdateCount, open, objCounter, strCounter, boolCounter, numberCounter, hasParent }) => ({
     bool: [upwardDataFlowInProgress, open, hasParent],
     dry: [type, parsedObject, value, hasParent],
     num: [internalUpdateCount, objCounter, strCounter, boolCounter, numberCounter],
@@ -366,4 +366,4 @@ XtalEditorBasePrimitive.attributeProps = ({ value, uiValue, type, parsedObject, 
     obj: [parsedObject, childValues],
     notify: [internalUpdateCount, parsedObject],
 });
-define(XtalEditorBasePrimitive);
+define(XtalEditor);

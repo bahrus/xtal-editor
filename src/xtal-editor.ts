@@ -132,7 +132,7 @@ const refs = {key: p, value: p, editor: p, childEditors: p, expander: p, objectA
 symbolize(refs);
 
 
-const initTransform = ({self, type, hasParent}: XtalEditorBasePrimitive) => ({
+const initTransform = ({self, type, hasParent}: XtalEditor) => ({
     ':host': [templStampSym, refs],
     [refs.expander]: [{}, {click: self.toggle}],
     [refs.key]: [{},{change: [self.handleKeyChange, 'value']}],
@@ -146,21 +146,21 @@ const initTransform = ({self, type, hasParent}: XtalEditorBasePrimitive) => ({
 } as TransformValueOptions);
 
 const updateTransforms = [
-    ({type}: XtalEditorBasePrimitive) => ({
+    ({type}: XtalEditor) => ({
         [refs.editor]: [{dataset: {type: type}}],
     }),
-    ({value}: XtalEditorBasePrimitive) => ({
+    ({value}: XtalEditor) => ({
         [refs.value]: [{value: value}]
     }),
-    ({uiValue}: XtalEditorBasePrimitive) => ({
+    ({uiValue}: XtalEditor) => ({
         [refs.value]: [uiValue === undefined ? undefined : {value: uiValue}]
     }),
-    ({key}: XtalEditorBasePrimitive) => ({
+    ({key}: XtalEditor) => ({
         [refs.key]: [{value: key}]
     }),
-    ({childValues, type, self}: XtalEditorBasePrimitive) => ({
+    ({childValues, type, self}: XtalEditor) => ({
         //insert child editor elements
-        [refs.childEditors]: [childValues, XtalEditorBasePrimitive.is,, ({target, item, idx}: RenderContext<XtalEditorBasePrimitive>) => {
+        [refs.childEditors]: [childValues, XtalEditor.is,, ({target, item, idx}: RenderContext<XtalEditor>) => {
             if(!target) return;
             //TODO:  enhance(?) TR to make this declarative
             switch(typeof item){
@@ -179,13 +179,13 @@ const updateTransforms = [
             });
         }]
     }),
-    ({open}: XtalEditorBasePrimitive) => ({
+    ({open}: XtalEditor) => ({
         [refs.expander]: open ? '-' : '+',
         [refs.childEditors] : [{dataset:{open: (!!open).toString()}}]
     })
 ] as SelectiveUpdate<any>[]
 
-const linkTypeAndParsedObject = ({value, self}: XtalEditorBasePrimitive) => {
+const linkTypeAndParsedObject = ({value, self}: XtalEditor) => {
     let parsedObject = value;
     if(value !==  undefined){
         if(value === 'true' || value === 'false'){
@@ -208,7 +208,7 @@ const linkTypeAndParsedObject = ({value, self}: XtalEditorBasePrimitive) => {
     self.parsedObject = parsedObject;
 };
 
-const link_ParsedObject = ({uiValue, self}: XtalEditorBasePrimitive) => {
+const link_ParsedObject = ({uiValue, self}: XtalEditor) => {
     if(uiValue === undefined) return;
     switch(self.type){
         case 'object':
@@ -237,7 +237,7 @@ function toString(item: any){
     }
 }
 
-const linkChildValues = ({parsedObject, type, self}: XtalEditorBasePrimitive) => {
+const linkChildValues = ({parsedObject, type, self}: XtalEditor) => {
     if(parsedObject === undefined) {
         self.childValues = undefined;
         return;
@@ -260,9 +260,9 @@ const linkChildValues = ({parsedObject, type, self}: XtalEditorBasePrimitive) =>
 
 };
 
-const linkValueFromChildren = ({upwardDataFlowInProgress, self, type}: XtalEditorBasePrimitive) => {
+const linkValueFromChildren = ({upwardDataFlowInProgress, self, type}: XtalEditor) => {
     if(!upwardDataFlowInProgress) return;
-    const children = Array.from(self.shadowRoot!.querySelectorAll(XtalEditorBasePrimitive.is)) as XtalEditorBasePrimitive[];
+    const children = Array.from(self.shadowRoot!.querySelectorAll(XtalEditor.is)) as XtalEditor[];
     switch(type){
         case 'object': {
             const newVal: any = {}; //TODO: support array type
@@ -287,7 +287,7 @@ const linkValueFromChildren = ({upwardDataFlowInProgress, self, type}: XtalEdito
     
 }
 
-const addObject = ({objCounter, self}: XtalEditorBasePrimitive) => {
+const addObject = ({objCounter, self}: XtalEditor) => {
     if(objCounter === undefined) return;
     self.open = true;
     const newObj = {...self.parsedObject};
@@ -296,7 +296,7 @@ const addObject = ({objCounter, self}: XtalEditorBasePrimitive) => {
     
 }
 
-const addString = ({strCounter, self}: XtalEditorBasePrimitive) => {
+const addString = ({strCounter, self}: XtalEditor) => {
     if(strCounter === undefined) return;
     const newObj = {...self.parsedObject};
     newObj['string' + strCounter] = 'val' + strCounter;
@@ -304,7 +304,7 @@ const addString = ({strCounter, self}: XtalEditorBasePrimitive) => {
     self.open = true;
 }
 
-const addBool = ({boolCounter, self}: XtalEditorBasePrimitive) => {
+const addBool = ({boolCounter, self}: XtalEditor) => {
     if(boolCounter === undefined) return;
     const newObj = {...self.parsedObject};
     newObj['bool' + boolCounter] = 'false';
@@ -312,7 +312,7 @@ const addBool = ({boolCounter, self}: XtalEditorBasePrimitive) => {
     self.open = true;
 }
 
-const addNumber = ({numberCounter, self}: XtalEditorBasePrimitive) => {
+const addNumber = ({numberCounter, self}: XtalEditor) => {
     if(numberCounter === undefined) return;
     const newObj = {...self.parsedObject};
     newObj['number' + numberCounter] = '0';
@@ -328,10 +328,10 @@ interface NameValue {
     value: string,
 }
 
-export class XtalEditorBasePrimitive extends XtalElement{
-    static is = 'xtal-editor-base-primitive';
+export class XtalEditor extends XtalElement{
+    static is = 'xtal-editor';
     static attributeProps = ({value, uiValue, type, parsedObject, key, childValues, upwardDataFlowInProgress, 
-        internalUpdateCount, open, objCounter, strCounter, boolCounter, numberCounter, hasParent}: XtalEditorBasePrimitive) => ({
+        internalUpdateCount, open, objCounter, strCounter, boolCounter, numberCounter, hasParent}: XtalEditor) => ({
         bool: [upwardDataFlowInProgress, open, hasParent],
         dry: [type, parsedObject, value, hasParent],
         num: [internalUpdateCount, objCounter, strCounter, boolCounter, numberCounter],
@@ -414,4 +414,4 @@ export class XtalEditorBasePrimitive extends XtalElement{
     hasParent: boolean | undefined;
 
 }
-define(XtalEditorBasePrimitive);
+define(XtalEditor);
