@@ -2,8 +2,8 @@
   "name": "xtal-editor",
   "version": "0.0.6",
   "description": "Edit JSON",
-  "main": "src/xtal-editor-base-primitive.js",
-  "module": "src/xtal-editor-base-primitive.js",
+  "main": "src/xtal-editor.js",
+  "module": "src/xtal-editor.js",
   "dependencies": {
     "xtal-element": "0.0.310",
     "trans-render": "0.0.267"
