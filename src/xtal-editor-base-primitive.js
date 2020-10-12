@@ -170,7 +170,6 @@ const updateTransforms = [
                 target.hasParent = true;
                 target.addEventListener('internal-update-count-changed', e => {
                     self.upwardDataFlowInProgress = true;
-                    //console.log(JSON.stringify(self.value));
                 });
             }]
     }),
@@ -311,7 +310,6 @@ const propActions = [linkTypeAndParsedObject, linkChildValues, linkValueFromChil
 export class XtalEditorBasePrimitive extends XtalElement {
     constructor() {
         super(...arguments);
-        //eventScopes = [['internal-update-count-changed', 'bubbles', 'cancelable', 'composed']] as EventScopes;
         this.readyToInit = true;
         this.readyToRender = true;
         this.mainTemplate = mainTemplate;
@@ -337,12 +335,8 @@ export class XtalEditorBasePrimitive extends XtalElement {
         this.open = !this.open;
     }
     propActionsHub(propAction) {
-        //console.log(this.actionCount, propAction);
-        //this.actionCount++;
     }
     transformHub(transform) {
-        //console.log(this.actionCount, transform);
-        //this.actionCount++;
     }
     addObject() {
         this.objCounter = this.objCounter === undefined ? 1 : this.objCounter + 1;
@@ -365,6 +359,6 @@ XtalEditorBasePrimitive.attributeProps = ({ value, uiValue, type, parsedObject, 
     str: [value, type, key, uiValue],
     jsonProp: [value],
     obj: [parsedObject, childValues],
-    notify: [internalUpdateCount],
+    notify: [internalUpdateCount, parsedObject],
 });
 define(XtalEditorBasePrimitive);
