@@ -212,6 +212,11 @@ const link_ParsedObject = ({ uiValue, self }) => {
         case 'array':
             self._parsedObject = JSON.parse(uiValue);
             self._value = uiValue;
+            self.dispatchEvent(new CustomEvent('parsed-object-changed', {
+                detail: {
+                    value: self._parsedObject
+                }
+            }));
     }
 };
 function toString(item) {

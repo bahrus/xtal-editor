@@ -215,6 +215,11 @@ const link_ParsedObject = ({uiValue, self}: XtalEditorBasePrimitive) => {
         case 'array':
             (<any>self)._parsedObject = JSON.parse(uiValue);
             (<any>self)._value = uiValue;
+            self.dispatchEvent(new CustomEvent('parsed-object-changed', {
+                detail:{
+                    value: (<any>self)._parsedObject
+                }
+            }));
     }
 }
 
