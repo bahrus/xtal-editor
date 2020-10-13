@@ -4,7 +4,7 @@
 
 Re-creation of [flexi-json](http://www.daviddurman.com/flexi-json-editor/jsoneditor.html), taking some liberties, but as a web component.
 
-## [Demo](https://jsfiddle.net/bahrus/u5e4okn6/1/)
+## [Demo](https://jsfiddle.net/bahrus/u5e4okn6/2/)
 
 ## Usage
 
@@ -30,7 +30,7 @@ The script tag above can be replaced by:
 or 
 
 ```html
-<script type=module src=https://cdn.skypack.dev/xtal-editor></script>
+<script type=module src=https://cdn.jsdelivr.net/npm/xtal-editor@0.0.7/dist/xtal-editor.js></script>
 ```
 
 ## Installation
