@@ -1,6 +1,6 @@
 {
   "name": "xtal-editor",
-  "version": "0.0.7",
+  "version": "0.0.8",
   "description": "Edit JSON",
   "main": "src/xtal-editor.js",
   "module": "src/xtal-editor.js",
