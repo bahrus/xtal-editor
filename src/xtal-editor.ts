@@ -7,6 +7,7 @@ const basePathSplit = import.meta.url.split('/');
 basePathSplit.pop();
 const basePath = basePathSplit.join('/') + '/';
 const mainTemplate = createTemplate(/* html */`
+    <slot part=slotPart></slot>
     <div class="remove" part=remove>Remove item by deleting a property name.
     
     </div>
@@ -28,6 +29,9 @@ const mainTemplate = createTemplate(/* html */`
     <style>
         :host{
             display:block;
+        }
+        slot{
+            display: none;
         }
         .expander{
             width: fit-content;
@@ -148,7 +152,8 @@ const mainTemplate = createTemplate(/* html */`
     </style>
 `);
 const refs = {
-    key: p, value: p, editor: p, childEditors: p, copyToClipboard: p, copyImg: p, expander: p, objectAdder: p, stringAdder: p, boolAdder: p, remove: p, numberAdder: p
+    boolAdder: p, childEditors: p, copyToClipboard: p, copyImg: p, editor: p, expander: p, key: p, 
+    objectAdder: p, slotPart: p, stringAdder: p,  remove: p, numberAdder: p, value: p, 
 };
 symbolize(refs);
 
@@ -164,8 +169,8 @@ const initTransform = ({self, type, hasParent}: XtalEditor) => ({
     [refs.numberAdder]: [{}, {click: self.addNumber}],
     [refs.remove]: !hasParent,
     [refs.copyToClipboard]: [{}, {click: self.copyToClipboard}],
-    [refs.copyImg]: [{src:basePath + 'copy.svg'}]
-
+    [refs.copyImg]: [{src:basePath + 'copy.svg'}],
+    [refs.slotPart]: [{}, {slotchange: self.handleSlotChange}]
 } as TransformValueOptions);
 
 const updateTransforms = [
@@ -412,6 +417,17 @@ export class XtalEditor extends XtalElement implements XtalEditorPublicProps{
     }
     addNumber(){
         this.numberCounter = this.numberCounter === undefined ? 1 : this.numberCounter + 1;
+    }
+    handleSlotChange(e: Event){
+        const slot = e.target as HTMLSlotElement;
+        const nodes = slot.assignedNodes();
+        nodes.forEach(node => {
+            const aNode = node as any;
+            if(aNode.value !== undefined){
+                this.value = aNode.value;
+            }
+        })
+        // console.log('Element in Slot "' + slots[1].name + '" changed to "' + nodes[0].outerHTML + '".');
     }
 
 

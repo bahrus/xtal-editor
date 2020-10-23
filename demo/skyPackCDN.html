@@ -6,7 +6,25 @@
     <title>Document</title>
 </head>
 <body>
-    <xtal-editor-base-primitive key=root value='{"string":"foo","number":5,"array":[1,2,3],"object":{"property":"value","subobj":{"arr":["foo","ha"],"numero":1}}}'></xtal-editor-base-primitive>
-    <script type=module src=https://cdn.skypack.dev/xtal-editor></script>
+    <xtal-editor key=root>
+        <textarea>
+            {
+                "string":"foo",
+                "number":5,
+                "array":[1,2,3],
+                "object":{
+                    "property":"value",
+                    "subobj":{
+                        "arr":["foo","ha"],
+                        "numero":1
+                    }
+                }
+            }
+        </textarea>
+    </xtal-editor>
+    <!-- <script type=module>
+        import xtalEditor from 'https://cdn.skypack.dev/xtal-editor';
+    </script> -->
+    <script type=module src=https://unpkg.com/xtal-editor/src/xtal-editor.js?module></script>
 </body>
 </html>

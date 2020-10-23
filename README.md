@@ -11,26 +11,47 @@ Re-creation of [flexi-json](http://www.daviddurman.com/flexi-json-editor/jsonedi
 Locally:
 
 ```html
-<xtal-editor-base-primitive key=root 
-    value='{"string":"foo","number":5,"array":[1,2,3],"object":{"property":"value","subobj":{"arr":["foo","ha"],"numero":1}}}'>
-</xtal-editor-base-primitive>
+<xtal-editor key=root>
+    <textarea>
+        {
+            "string":"foo",
+            "number":5,
+            "array":[1,2,3],
+            "object":{
+                "property":"value",
+                "subobj":{
+                    "arr":["foo","ha"],
+                    "numero":1
+                }
+            }
+        }
+    </textarea>
+</xtal-editor>
 <script type=module>
-    import '../src/xtal-editor-base-primitive.js';
+    import 'xtal-editor/src/xtal-editor.js';
 </script>
 ```
 
-CDN:
+## CDN
 
 The script tag above can be replaced by:
 
 ```html
-<script type=module src=https://unpkg.com/xtal-editor@0.0.1/src/xtal-editor-base-primitive.js?module></script>
+<script type=module src=https://unpkg.com/xtal-editor@0.0.1/src/xtal-editor.js?module></script>
 ```
 
 or 
 
 ```html
-<script type=module src=https://cdn.jsdelivr.net/npm/xtal-editor@0.0.7/dist/xtal-editor.js></script>
+<script type=module src=https://cdn.jsdelivr.net/npm/xtal-editor/dist/xtal-editor.js></script>
+```
+
+or
+
+```html
+<script type=module>
+import xtalEditor from 'https://cdn.skypack.dev/xtal-editor';
+</script>
 ```
 
 ## Installation
