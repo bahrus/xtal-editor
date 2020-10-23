@@ -1,0 +1,124 @@
+{
+  "version": "experimental",
+  "tags": [
+    {
+      "name": "xtal-editor",
+      "path": "./src\\xtal-editor-example1.js",
+      "attributes": [
+        {
+          "name": "disabled",
+          "description": "Any component that emits events should not do so if it is disabled.\r\nNote that this is not enforced, but the disabled property is made available.\r\nUsers of this mix-in should ensure not to call \"de\" if this property is set to true.",
+          "type": "boolean"
+        }
+      ],
+      "properties": [
+        {
+          "name": "is",
+          "type": "string",
+          "default": "\"xtal-editor\""
+        },
+        {
+          "name": "uiValue",
+          "type": "string | undefined"
+        },
+        {
+          "name": "childValues",
+          "type": "string[] | NameValue[] | undefined"
+        },
+        {
+          "name": "internalUpdateCount",
+          "type": "number | undefined"
+        },
+        {
+          "name": "objCounter",
+          "type": "number | undefined"
+        },
+        {
+          "name": "strCounter",
+          "type": "number | undefined"
+        },
+        {
+          "name": "boolCounter",
+          "type": "number | undefined"
+        },
+        {
+          "name": "numberCounter",
+          "type": "number | undefined"
+        },
+        {
+          "name": "hasParent",
+          "type": "boolean | undefined"
+        },
+        {
+          "name": "key",
+          "type": "string",
+          "default": "\"root\""
+        },
+        {
+          "name": "value",
+          "type": "string",
+          "default": "\"{}\""
+        },
+        {
+          "name": "type",
+          "type": "string",
+          "default": "\"object\""
+        },
+        {
+          "name": "parsedObject",
+          "type": "object",
+          "default": "{}"
+        },
+        {
+          "name": "open",
+          "type": "boolean",
+          "default": "false"
+        },
+        {
+          "name": "renderOptions",
+          "type": "RenderOptions"
+        },
+        {
+          "name": "mainTemplate",
+          "default": "\"mainTemplate\""
+        },
+        {
+          "name": "initTransform",
+          "type": "({ self, type, hasParent }: XtalEditor) => TransformValueOptions<HTMLElement>",
+          "default": "\"initTransform\""
+        },
+        {
+          "name": "readyToInit",
+          "type": "boolean",
+          "default": "true"
+        },
+        {
+          "name": "readyToRender",
+          "type": "boolean",
+          "default": "true"
+        },
+        {
+          "name": "updateTransforms",
+          "type": "SelectiveUpdate<any>[]",
+          "default": "[null,null,null,null,null,null]"
+        },
+        {
+          "name": "attributeProps",
+          "type": "({ value, uiValue, type, parsedObject, key, childValues, upwardDataFlowInProgress, internalUpdateCount, open, objCounter, strCounter, boolCounter, numberCounter, hasParent }: XtalEditor) => AttributeProps",
+          "default": "\"({value, uiValue, type, parsedObject, key, childValues, upwardDataFlowInProgress, \\r\\n        internalUpdateCount, open, objCounter, strCounter, boolCounter, numberCounter, hasParent}: XtalEditor) => ({\\r\\n        bool: [upwardDataFlowInProgress, open, hasParent],\\r\\n        dry: [type, parsedObject, value, hasParent],\\r\\n        num: [internalUpdateCount, objCounter, strCounter, boolCounter, numberCounter],\\r\\n        str: [value, type, key, uiValue],\\r\\n        jsonProp: [value],\\r\\n        obj: [parsedObject, childValues],\\r\\n        notify: [internalUpdateCount, parsedObject],\\r\\n    } as AttributeProps)\""
+        },
+        {
+          "name": "propActions",
+          "type": "(({ value, self }: XtalEditor) => void)[]",
+          "default": "[\"linkTypeAndParsedObject\",\"linkChildValues\",\"linkValueFromChildren\",\"addObject\",\"addString\",\"addBool\",\"addNumber\",\"link_ParsedObject\"]"
+        },
+        {
+          "name": "disabled",
+          "attribute": "disabled",
+          "description": "Any component that emits events should not do so if it is disabled.\r\nNote that this is not enforced, but the disabled property is made available.\r\nUsers of this mix-in should ensure not to call \"de\" if this property is set to true.",
+          "type": "boolean"
+        }
+      ]
+    }
+  ]
+}

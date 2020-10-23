@@ -36,7 +36,8 @@
     "start": "es-dev-server --app-index demo/dev.html --node-resolve --watch --open",
     "bundle": "rollup --config",
     "compress": "node minify",
-    "package-check": "package-check"
+    "package-check": "package-check",
+    "doc": "wca analyze src/xtal-editor-example1.js --outFile custom-elements.json"
   },
   "repository": {
     "type": "git",

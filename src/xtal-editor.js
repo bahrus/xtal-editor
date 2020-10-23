@@ -341,6 +341,9 @@ const addNumber = ({ numberCounter, self }) => {
     self.open = true;
 };
 const propActions = [linkTypeAndParsedObject, linkChildValues, linkValueFromChildren, addObject, addString, addBool, addNumber, link_ParsedObject];
+/**
+ * @element xtal-editor
+ */
 export class XtalEditor extends XtalElement {
     constructor() {
         super(...arguments);
@@ -350,6 +353,9 @@ export class XtalEditor extends XtalElement {
         this.initTransform = initTransform;
         this.updateTransforms = updateTransforms;
         this.propActions = propActions;
+        /**
+         * @private
+         */
         this.actionCount = 0;
     }
     handleKeyChange(key) {

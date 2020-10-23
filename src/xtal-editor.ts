@@ -356,6 +356,9 @@ interface NameValue {
     value: string,
 }
 
+/**
+ * @element xtal-editor
+ */
 export class XtalEditor extends XtalElement implements XtalEditorPublicProps{
     static is = 'xtal-editor';
     static attributeProps = ({value, uiValue, type, parsedObject, key, childValues, upwardDataFlowInProgress, 
@@ -397,6 +400,9 @@ export class XtalEditor extends XtalElement implements XtalEditorPublicProps{
     toggle(){
         this.open = !this.open;
     }
+    /**
+     * @private
+     */
     actionCount = 0;
 
     propActionsHub(propAction: any){
