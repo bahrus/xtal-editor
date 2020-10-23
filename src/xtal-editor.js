@@ -1,6 +1,9 @@
 import { XtalElement, define, p, symbolize } from 'xtal-element/XtalElement.js';
 import { createTemplate } from 'trans-render/createTemplate.js';
 import { templStampSym } from 'trans-render/standardPlugins.js';
+const basePathSplit = import.meta.url.split('/');
+basePathSplit.pop();
+const basePath = basePathSplit.join('/') + '/';
 const mainTemplate = createTemplate(/* html */ `
     <div class="remove" part=remove>Remove item by deleting a property name.
     
@@ -9,7 +12,7 @@ const mainTemplate = createTemplate(/* html */ `
         <div part=field class=field>
             <button part=expander class="expander nonPrimitive">+</button><input part=key><input part=value class=value>
             <div part=childInserters class="nonPrimitive childInserters" data-open=false>
-                <button class=copyBtn part=copyToClipboard><img src="../icons/copy.svg" class=copy alt="Copy to Clipboard"></button>
+                <button class=copyBtn part=copyToClipboard><img class=copy alt="Copy to Clipboard" part=copyImg></button>
                 <button part=objectAdder class=objectAdder>add object</button>
                 <button part=stringAdder class=stringAdder>add string</button>
                 <button part=boolAdder class=boolAdder>add bool</button>
@@ -138,7 +141,9 @@ const mainTemplate = createTemplate(/* html */ `
 
     </style>
 `);
-const refs = { key: p, value: p, editor: p, childEditors: p, copyToClipboard: p, expander: p, objectAdder: p, stringAdder: p, boolAdder: p, remove: p, numberAdder: p };
+const refs = {
+    key: p, value: p, editor: p, childEditors: p, copyToClipboard: p, copyImg: p, expander: p, objectAdder: p, stringAdder: p, boolAdder: p, remove: p, numberAdder: p
+};
 symbolize(refs);
 const initTransform = ({ self, type, hasParent }) => ({
     ':host': [templStampSym, refs],
@@ -150,7 +155,8 @@ const initTransform = ({ self, type, hasParent }) => ({
     [refs.boolAdder]: [{}, { click: self.addBool }],
     [refs.numberAdder]: [{}, { click: self.addNumber }],
     [refs.remove]: !hasParent,
-    [refs.copyToClipboard]: [{}, { click: self.copyToClipboard }]
+    [refs.copyToClipboard]: [{}, { click: self.copyToClipboard }],
+    [refs.copyImg]: [{ src: basePath + 'copy.svg' }]
 });
 const updateTransforms = [
     ({ type }) => ({
