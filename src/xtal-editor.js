@@ -12,12 +12,13 @@ const mainTemplate = createTemplate(/* html */ `
         <div part=field class=field>
             <button part=expander class="expander nonPrimitive">+</button><input part=key><input part=value class=value>
             <div part=childInserters class="nonPrimitive childInserters" data-open=false>
-                <button class=copyBtn part=copyToClipboard><img class=copy alt="Copy to Clipboard" part=copyImg></button>
                 <button part=objectAdder class=objectAdder>add object</button>
                 <button part=stringAdder class=stringAdder>add string</button>
                 <button part=boolAdder class=boolAdder>add bool</button>
                 <button part=numberAdder class=numberAdder>add number</button>
+                
             </div>
+            <button class=copyBtn part=copyToClipboard><img class=copy alt="Copy to Clipboard" part=copyImg></button>
         </div>
         <div part=childEditors class="nonPrimitive childEditors" data-open=false></div>
         
@@ -34,13 +35,16 @@ const mainTemplate = createTemplate(/* html */ `
             width:20px;
         }
         .copy{
-            width: 20px;
+            height: 16px;
         }
         .copyBtn{
             width: fit-content;
             height: fit-content;
             padding-left: 0px;
             padding-right: 0px;
+            padding-top: 0px;
+            padding-bottom: 0px;
+            border: 0;
         }
         .objectAdder{
             background-color: #E17000;
