@@ -2,11 +2,14 @@ import { XtalElement, define, p, symbolize } from 'xtal-element/XtalElement.js';
 import { createTemplate } from 'trans-render/createTemplate.js';
 import { templStampSym } from 'trans-render/standardPlugins.js';
 const mainTemplate = createTemplate(/* html */ `
-    <div class="remove" part=remove>Remove item by deleting a property name.</div>
+    <div class="remove" part=remove>Remove item by deleting a property name.
+    
+    </div>
     <div data-type=string part=editor>
         <div part=field class=field>
             <button part=expander class="expander nonPrimitive">+</button><input part=key><input part=value class=value>
             <div part=childInserters class="nonPrimitive childInserters" data-open=false>
+                <button class=copyBtn part=copyToClipboard><img src="../icons/copy.svg" class=copy alt="Copy to Clipboard"></button>
                 <button part=objectAdder class=objectAdder>add object</button>
                 <button part=stringAdder class=stringAdder>add string</button>
                 <button part=boolAdder class=boolAdder>add bool</button>
@@ -26,6 +29,15 @@ const mainTemplate = createTemplate(/* html */ `
             padding-left: 0px;
             padding-right: 0px;
             width:20px;
+        }
+        .copy{
+            width: 20px;
+        }
+        .copyBtn{
+            width: fit-content;
+            height: fit-content;
+            padding-left: 0px;
+            padding-right: 0px;
         }
         .objectAdder{
             background-color: #E17000;
@@ -126,7 +138,7 @@ const mainTemplate = createTemplate(/* html */ `
 
     </style>
 `);
-const refs = { key: p, value: p, editor: p, childEditors: p, expander: p, objectAdder: p, stringAdder: p, boolAdder: p, remove: p, numberAdder: p };
+const refs = { key: p, value: p, editor: p, childEditors: p, copyToClipboard: p, expander: p, objectAdder: p, stringAdder: p, boolAdder: p, remove: p, numberAdder: p };
 symbolize(refs);
 const initTransform = ({ self, type, hasParent }) => ({
     ':host': [templStampSym, refs],
@@ -137,7 +149,8 @@ const initTransform = ({ self, type, hasParent }) => ({
     [refs.stringAdder]: [{}, { click: self.addString }],
     [refs.boolAdder]: [{}, { click: self.addBool }],
     [refs.numberAdder]: [{}, { click: self.addNumber }],
-    [refs.remove]: !hasParent
+    [refs.remove]: !hasParent,
+    [refs.copyToClipboard]: [{}, { click: self.copyToClipboard }]
 });
 const updateTransforms = [
     ({ type }) => ({
@@ -335,6 +348,10 @@ export class XtalEditor extends XtalElement {
     }
     incrementUpdateCount() {
         this.internalUpdateCount = this.internalUpdateCount === undefined ? 0 : this.internalUpdateCount + 1;
+    }
+    copyToClipboard() {
+        this[refs.value].select();
+        document.execCommand("copy");
     }
     toggle() {
         this.open = !this.open;
