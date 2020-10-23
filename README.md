@@ -37,7 +37,7 @@ Locally:
 The script tag above can be replaced by:
 
 ```html
-<script type=module src=https://unpkg.com/xtal-editor@0.0.1/src/xtal-editor.js?module></script>
+<script type=module src=https://unpkg.com/xtal-editor/src/xtal-editor.js?module></script>
 ```
 
 or 
