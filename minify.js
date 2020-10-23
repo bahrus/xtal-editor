@@ -3,9 +3,6 @@ var Terser = require("terser");
 var fs = require("fs");
 var path = require("path");
 
-var options = {
-    keep_fnames: true
-};
 
 function getAllFiles(dirPath, arrayOfFiles) {
   let files = fs.readdirSync(dirPath);
@@ -27,7 +24,7 @@ function minifyFiles(filePaths) {
   filePaths.forEach(filePath => {
     fs.writeFileSync(
       filePath,
-      Terser.minify(fs.readFileSync(filePath, "utf8"), options).code
+      Terser.minify(fs.readFileSync(filePath, "utf8")).code
     );
   });
 }
