@@ -1,16 +1,21 @@
 {
   "name": "xtal-editor",
-  "version": "0.0.8",
-  "keywords": ["Web Components", "Custom Elements", "JSON", "Editor"],
+  "version": "0.0.9",
+  "keywords": [
+    "Web Components",
+    "Custom Elements",
+    "JSON",
+    "Editor"
+  ],
   "description": "Edit JSON",
   "main": "src/xtal-editor.js",
   "module": "src/xtal-editor.js",
-  "exports":{
+  "exports": {
     ".": {
       "import": "src/xtal-editor.js"
     }
   },
-  "files":[
+  "files": [
     "*"
   ],
   "types": "types.d.ts",
