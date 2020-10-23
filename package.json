@@ -1,9 +1,19 @@
 {
   "name": "xtal-editor",
   "version": "0.0.8",
+  "keywords": ["Web Components", "Custom Elements", "JSON", "Editor"],
   "description": "Edit JSON",
   "main": "src/xtal-editor.js",
   "module": "src/xtal-editor.js",
+  "exports":{
+    ".": {
+      "import": "src/xtal-editor.js"
+    }
+  },
+  "files":[
+    "*"
+  ],
+  "types": "types.d.ts",
   "dependencies": {
     "xtal-element": "0.0.310",
     "trans-render": "0.0.267"
@@ -12,14 +22,16 @@
     "es-dev-server": "1.57.8",
     "es-module-shims": "0.6.0",
     "@rollup/plugin-node-resolve": "9.0.0",
-    "xtal-test": "0.0.48"
+    "xtal-test": "0.0.48",
+    "@skypack/package-check": "0.1.0"
   },
   "scripts": {
     "serve": "node node_modules/xtal-test/serve.js",
     "test": "echo \"Error: no test specified\" && exit 1",
     "start": "es-dev-server --app-index demo/dev.html --node-resolve --watch --open",
     "bundle": "rollup --config",
-    "compress": "node minify"
+    "compress": "node minify",
+    "package-check": "package-check"
   },
   "repository": {
     "type": "git",

@@ -1,6 +1,7 @@
 import {XtalElement, define, TransformValueOptions, AttributeProps, RenderContext, SelectiveUpdate, p, symbolize, EventScopes} from 'xtal-element/XtalElement.js';
 import {createTemplate} from 'trans-render/createTemplate.js';
 import {templStampSym} from 'trans-render/standardPlugins.js';
+import {XtalEditorPublicProps, editType} from '../types.d.js';
 
 const basePathSplit = import.meta.url.split('/');
 basePathSplit.pop();
@@ -350,7 +351,7 @@ interface NameValue {
     value: string,
 }
 
-export class XtalEditor extends XtalElement{
+export class XtalEditor extends XtalElement implements XtalEditorPublicProps{
     static is = 'xtal-editor';
     static attributeProps = ({value, uiValue, type, parsedObject, key, childValues, upwardDataFlowInProgress, 
         internalUpdateCount, open, objCounter, strCounter, boolCounter, numberCounter, hasParent}: XtalEditor) => ({
@@ -419,7 +420,7 @@ export class XtalEditor extends XtalElement{
     value: string | undefined;
     uiValue: string | undefined;
 
-    type: 'string' | 'number' | 'boolean' | 'object' | 'array' | undefined;
+    type: editType;
 
     parsedObject: any;
 
