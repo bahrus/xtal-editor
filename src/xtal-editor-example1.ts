@@ -1,3 +1,4 @@
+import { editType } from '../types.js';
 import {XtalEditor} from './xtal-editor.js';
 
 /**
@@ -6,7 +7,7 @@ import {XtalEditor} from './xtal-editor.js';
 export class XtalEditorExample1 extends XtalEditor {
     key = 'root';
     value = '{}';
-    type = 'object';
+    type: editType = 'object';
     parsedObject = {};
     open = false;
 }

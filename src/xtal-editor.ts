@@ -3,9 +3,6 @@ import {createTemplate} from 'trans-render/createTemplate.js';
 import {templStampSym} from 'trans-render/standardPlugins.js';
 import {XtalEditorPublicProps, editType} from '../types.d.js';
 
-const basePathSplit = import.meta.url.split('/');
-basePathSplit.pop();
-const basePath = basePathSplit.join('/') + '/';
 const mainTemplate = createTemplate(/* html */`
     <slot part=slotPart></slot>
     <div class="remove" part=remove>Remove item by deleting a property name.
@@ -21,7 +18,7 @@ const mainTemplate = createTemplate(/* html */`
                 <button part=numberAdder class=numberAdder>add number</button>
                 
             </div>
-            <button class=copyBtn part=copyToClipboard><img class=copy alt="Copy to Clipboard" part=copyImg></button>
+            <button class=copyBtn part=copyToClipboard><img class=copy alt="Copy to Clipboard" src="https://cdn.jsdelivr.net/npm/xtal-editor/src/copy.svg"></button>
         </div>
         <div part=childEditors class="nonPrimitive childEditors" data-open=false></div>
         
@@ -152,7 +149,7 @@ const mainTemplate = createTemplate(/* html */`
     </style>
 `);
 const refs = {
-    boolAdder: p, childEditors: p, copyToClipboard: p, copyImg: p, editor: p, expander: p, key: p, 
+    boolAdder: p, childEditors: p, copyToClipboard: p, editor: p, expander: p, key: p, 
     objectAdder: p, slotPart: p, stringAdder: p,  remove: p, numberAdder: p, value: p, 
 };
 symbolize(refs);
@@ -169,7 +166,6 @@ const initTransform = ({self, type, hasParent}: XtalEditor) => ({
     [refs.numberAdder]: [{}, {click: self.addNumber}],
     [refs.remove]: !hasParent,
     [refs.copyToClipboard]: [{}, {click: self.copyToClipboard}],
-    [refs.copyImg]: [{src:basePath + 'copy.svg'}],
     [refs.slotPart]: [{}, {slotchange: self.handleSlotChange}]
 } as TransformValueOptions);
 
@@ -361,6 +357,7 @@ interface NameValue {
  */
 export class XtalEditor extends XtalElement implements XtalEditorPublicProps{
     static is = 'xtal-editor';
+    static formAssociated = true;
     static attributeProps = ({value, uiValue, type, parsedObject, key, childValues, upwardDataFlowInProgress, 
         internalUpdateCount, open, objCounter, strCounter, boolCounter, numberCounter, hasParent}: XtalEditor) => ({
         bool: [upwardDataFlowInProgress, open, hasParent],
@@ -371,6 +368,7 @@ export class XtalEditor extends XtalElement implements XtalEditorPublicProps{
         obj: [parsedObject, childValues],
         notify: [internalUpdateCount, parsedObject],
     } as AttributeProps);
+
 
     readyToInit = true;
     readyToRender = true;
