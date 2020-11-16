@@ -2,10 +2,8 @@ import { XtalElement, define, p, symbolize } from 'xtal-element/XtalElement.js';
 import { createTemplate } from 'trans-render/createTemplate.js';
 import { templStampSym } from 'trans-render/standardPlugins.js';
 const mainTemplate = createTemplate(/* html */ `
-    <slot part=slotPart></slot>
-    <div class="remove" part=remove>Remove item by deleting a property name.
-    
-    </div>
+    <slot part=slotPart name=initVal></slot>
+    <div class="remove" part=remove><slot name=Label></slot>Remove item by deleting a property name.</div>
     <div data-type=string part=editor>
         <div part=field class=field>
             <button part=expander class="expander nonPrimitive">+</button><input part=key><input part=value class=value>
