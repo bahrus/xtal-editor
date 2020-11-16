@@ -5,7 +5,7 @@ import {XtalEditorPublicProps, editType} from '../types.d.js';
 
 const mainTemplate = createTemplate(/* html */`
     <slot part=slotPart name=initVal></slot>
-    <div class="remove" part=remove><slot name=Label></slot>Remove item by deleting a property name.</div>
+    <div class="remove" part=remove></div>
     <div data-type=string part=editor>
         <div part=field class=field>
             <button part=expander class="expander nonPrimitive">+</button><input part=key><input part=value class=value>
@@ -75,6 +75,13 @@ const mainTemplate = createTemplate(/* html */`
             font-weight: bold;
             text-shadow: 1px 1px 1px black;
             background-color: black;
+            
+        }
+        .remove::after{
+            content: "JSON Editor";
+        }
+        .remove.editKey::after{
+            content: "Remove item by deleting the property name.";
         }
 
         .field{
@@ -156,8 +163,8 @@ symbolize(refs);
 const initTransform = ({self, type, hasParent}: XtalEditor) => ({
     ':host': [templStampSym, refs],
     [refs.expander]: [{}, {click: self.toggle}],
-    [refs.key]: [{},{change: [self.handleKeyChange, 'value']}],
-    [refs.value]: [{}, {change: [self.handleValueChange, 'value']}],
+    [refs.key]: [{},{change: [self.handleKeyChange, 'value'], focus: self.handleKeyFocus}],
+    [refs.value]: [{}, {change: [self.handleValueChange, 'value'], focus: self.handleValueFocus}],
     [refs.objectAdder]: [{}, {click: self.addObject}],
     [refs.stringAdder]: [{}, {click: self.addString}],
     [refs.boolAdder]: [{}, {click: self.addBool}],
@@ -196,6 +203,7 @@ const updateTransforms = [
             }
             
             target.hasParent = true;
+            target._rootEditor = self._rootEditor;
             target.addEventListener('internal-update-count-changed', e =>{
                 self.upwardDataFlowInProgress = true;
             });
@@ -375,11 +383,25 @@ export class XtalEditor extends XtalElement implements XtalEditorPublicProps{
     initTransform = initTransform;
     updateTransforms = updateTransforms;
     propActions = propActions;
+
+    connectedCallback(){
+        super.connectedCallback();
+        if(!this.hasParent){
+            this._rootEditor = this;
+        }
+    }
+    _rootEditor: XtalEditor | undefined;
     handleKeyChange(key: string){
         if(key === ''){
             this.remove();
         }
         this.value = key;
+    }
+    handleKeyFocus(e: Event){
+        ((this._rootEditor as any)[refs.remove] as HTMLElement).classList.add('editKey');
+    }
+    handleValueFocus(e: Event){
+        ((this._rootEditor as any)[refs.remove] as HTMLElement).classList.remove('editKey');
     }
     handleValueChange(val: string){
         this.value = val;
