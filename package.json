@@ -20,20 +20,20 @@
   ],
   "types": "types.d.ts",
   "dependencies": {
-    "trans-render": "0.0.272",
-    "xtal-element": "0.0.327"
+    "trans-render": "0.0.273",
+    "xtal-element": "0.0.328"
   },
   "devDependencies": {
-    "@rollup/plugin-node-resolve": "10.0.0",
+    "@rollup/plugin-node-resolve": "11.1.0",
     "@skypack/package-check": "0.2.2",
-    "es-dev-server": "1.57.8",
-    "es-module-shims": "0.7.1",
+    "@web/dev-server": "0.1.4",
+    "es-module-shims": "0.8.0",
     "xtal-test": "0.0.48"
   },
   "scripts": {
     "serve": "node node_modules/xtal-test/serve.js",
     "test": "echo \"Error: no test specified\" && exit 1",
-    "start": "es-dev-server --app-index demo/dev.html --node-resolve --watch --open",
+    "start": "web-dev-server --node-resolve --app-index demo/dev.html  --watch --open",
     "bundle": "rollup --config",
     "compress": "node minify",
     "package-check": "package-check",
