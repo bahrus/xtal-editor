@@ -153,19 +153,16 @@ const mainTemplate = html `
 </style>
 `;
 const refs = {
-    slotElement: 0,
-    boolAdderPart: 0,
-    childEditorsPart: 0,
-    copyToClipboardPart: 0,
-    editorPart: 0,
-    expanderPart: 0,
-    keyPart: 0,
-    objectAdderPart: 0,
-    stringAdderPart: 0,
-    removePart: 0,
-    numberAdderPart: 0,
-    valuePart: 0
+    slotElement: 0, boolAdderPart: 0, childEditorsPart: 0, copyToClipboardPart: 0,
+    editorPart: 0, expanderPart: 0, keyPart: 0, objectAdderPart: 0, stringAdderPart: 0,
+    removePart: 0, numberAdderPart: 0, valuePart: 0
 };
+const updateTransforms = [
+    ({ value }) => [{ [refs.valuePart]: [{ value: value }] }],
+    ({ type }) => [{ [refs.editorPart]: [{ dataset: { type: type } }] }],
+    ({ uiValue }) => [{ [refs.valuePart]: uiValue === undefined ? undefined : { value: uiValue } }],
+    ({ key }) => [{ [refs.keyPart]: [{ value: key }] }],
+];
 const linkTypeAndParsedObject = ({ value, self }) => {
     let parsedObject = value;
     if (value !== undefined) {
@@ -255,13 +252,6 @@ const linkChildValues = ({ parsedObject, type, self }) => {
             return;
     }
 };
-const updateTransforms = [
-    ({ value }) => [
-        {
-            [refs.valuePart]: [{ value: value }]
-        }
-    ]
-];
 const linkValueFromChildren = ({ upwardDataFlowInProgress, self, type }) => {
     if (!upwardDataFlowInProgress)
         return;
