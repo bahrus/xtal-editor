@@ -21,7 +21,7 @@
   "types": "types.d.ts",
   "dependencies": {
     "trans-render": "0.0.273",
-    "xtal-element": "0.0.328"
+    "xtal-element": "0.0.330"
   },
   "devDependencies": {
     "@rollup/plugin-node-resolve": "11.1.0",

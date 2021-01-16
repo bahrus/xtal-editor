@@ -10,7 +10,7 @@ const mainTemplate = html `
         <button part=expander class="expander nonPrimitive">+</button><input part=key><input part=value class=value>
         <div part=childInserters class="nonPrimitive childInserters" data-open=false>
             <button part=object-adder class=object-adder>add object</button>
-            <button part=string-Adder class=string-adder>add string</button>
+            <button part=string-adder class=string-adder>add string</button>
             <button part=bool-adder class=bool-adder>add bool</button>
             <button part=number-adder class=number-adder>add number</button>
             
@@ -207,17 +207,20 @@ const link_ParsedObject = ({ uiValue, self }) => {
             }));
     }
 };
-const addEventHandlers = ({ self, hasParent }) => [
-    { [refs.expanderPart]: [, { click: self.toggle }] },
-    { [refs.keyPart]: [, { change: [self.handleKeyChange, 'value'], focus: self.handleKeyFocus }] },
-    { [refs.valuePart]: [, { change: [self.handleValueChange, 'value'], focus: self.handleValueFocus }] },
-    { [refs.objectAdderPart]: [, { click: self.addObject }] },
-    { [refs.stringAdderPart]: [, { click: self.addString }] },
-    { [refs.boolAdderPart]: [, { click: self.addBool }] },
-    { [refs.numberAdderPart]: [, { click: self.addNumber }] },
-    { [refs.removePart]: [{ style: { display: hasParent ? 'block' : 'none' } }] },
-    { [refs.copyToClipboardPart]: [, { click: self.copyToClipboard }] },
-    { [refs.slotElement]: [, { slotchange: self.handleSlotChange }] }
+const addEventHandlers = ({ domCache, self, hasParent }) => [
+    {
+        [refs.expanderPart]: [, { click: self.toggle }],
+        [refs.keyPart]: [, { change: [self.handleKeyChange, 'value'], focus: self.handleKeyFocus }],
+        [refs.valuePart]: [, { change: [self.handleValueChange, 'value'], focus: self.handleValueFocus }],
+        [refs.objectAdderPart]: [, { click: self.addObject }],
+        [refs.stringAdderPart]: [, { click: self.addString }],
+        [refs.boolAdderPart]: [, { click: self.addBool }],
+        [refs.numberAdderPart]: [, { click: self.addNumber }],
+        [refs.removePart]: [{ style: { display: hasParent ? 'block' : 'none' } }],
+        [refs.copyToClipboardPart]: [, { click: self.copyToClipboard }],
+        [refs.slotElement]: [, { slotchange: self.handleSlotChange }]
+    },
+    [{ handlersAttached: true }]
 ];
 function toString(item) {
     switch (typeof item) {
@@ -252,6 +255,13 @@ const linkChildValues = ({ parsedObject, type, self }) => {
             return;
     }
 };
+const updateTransforms = [
+    ({ value }) => [
+        {
+            [refs.valuePart]: [{ value: value }]
+        }
+    ]
+];
 const linkValueFromChildren = ({ upwardDataFlowInProgress, self, type }) => {
     if (!upwardDataFlowInProgress)
         return;
@@ -321,8 +331,9 @@ const propActions = [
     addBool,
     addNumber,
     link_ParsedObject,
-    xp.createShadow,
+    xp.attachShadow,
     addEventHandlers,
+    updateTransforms,
 ];
 const propDefGetter = [
     xp.props,
@@ -332,6 +343,11 @@ const propDefGetter = [
     ({ hasParent }) => ({
         type: Boolean,
         dry: true,
+    }),
+    ({ handlersAttached }) => ({
+        type: Boolean,
+        dry: true,
+        stopReactionsIfFalsy: true
     }),
     ({ objCounter, strCounter, boolCounter, numberCounter }) => ({
         type: Number
@@ -438,6 +454,9 @@ export class XtalEditor extends HTMLElement {
     }
     connectedCallback() {
         xc.hydrate(this, propDefs);
+        if (!this.hasParent) {
+            this._rootEditor = this;
+        }
     }
     onPropChange(n, propDef, newVal) {
         this.reactor.addToQueue(propDef, newVal);

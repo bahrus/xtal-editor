@@ -1,6 +1,6 @@
 import {xc} from 'xtal-element/lib/XtalCore.js';
 import {xp} from 'xtal-element/lib/XtalPattern.js';
-import {PropAction, XtalPattern, destructPropInfo, PropDef} from 'xtal-element/types.d.js';
+import {PropAction, XtalPattern, destructPropInfo, PropDef, PSettings} from 'xtal-element/types.d.js';
 import {html} from 'xtal-element/lib/html.js';
 import {XtalEditorPublicProps, editType} from '../types.d.js';
 import {DOMKeyPE} from 'xtal-element/lib/DOMKeyPE.js';
@@ -13,7 +13,7 @@ const mainTemplate = html`
         <button part=expander class="expander nonPrimitive">+</button><input part=key><input part=value class=value>
         <div part=childInserters class="nonPrimitive childInserters" data-open=false>
             <button part=object-adder class=object-adder>add object</button>
-            <button part=string-Adder class=string-adder>add string</button>
+            <button part=string-adder class=string-adder>add string</button>
             <button part=bool-adder class=bool-adder>add bool</button>
             <button part=number-adder class=number-adder>add number</button>
             
@@ -209,17 +209,20 @@ const link_ParsedObject = ({uiValue, self}: XtalEditor) => {
     }
 }
 
-const addEventHandlers = ({self, hasParent}: XtalEditor) => [
-    {[refs.expanderPart]: [,{click:self.toggle}]},
-    {[refs.keyPart]: [,{change: [self.handleKeyChange, 'value'], focus: self.handleKeyFocus}]},
-    {[refs.valuePart]: [,{change: [self.handleValueChange, 'value'], focus: self.handleValueFocus}]},
-    {[refs.objectAdderPart]: [, {click: self.addObject}]},
-    {[refs.stringAdderPart]: [,{click: self.addString}]},
-    {[refs.boolAdderPart]: [, {click: self.addBool}]},
-    {[refs.numberAdderPart]: [, {click: self.addNumber}]},
-    {[refs.removePart]: [{style: {display: hasParent ? 'block' : 'none' }}]},
-    {[refs.copyToClipboardPart]: [,{click: self.copyToClipboard}]},
-    {[refs.slotElement]: [,{slotchange: self.handleSlotChange}]}
+const addEventHandlers = ({domCache, self, hasParent}: XtalEditor) => [
+    {
+        [refs.expanderPart]: [,{click:self.toggle}],
+        [refs.keyPart]: [,{change: [self.handleKeyChange, 'value'], focus: self.handleKeyFocus}],
+        [refs.valuePart]: [,{change: [self.handleValueChange, 'value'], focus: self.handleValueFocus}],
+        [refs.objectAdderPart]: [, {click: self.addObject}],
+        [refs.stringAdderPart]: [,{click: self.addString}],
+        [refs.boolAdderPart]: [, {click: self.addBool}],
+        [refs.numberAdderPart]: [, {click: self.addNumber}],
+        [refs.removePart]: [{style: {display: hasParent ? 'block' : 'none' }}],
+        [refs.copyToClipboardPart]: [,{click: self.copyToClipboard}],
+        [refs.slotElement]: [,{slotchange: self.handleSlotChange}]
+    },
+    [{handlersAttached: true}] as PSettings<XtalEditor>
 ]
 
 function toString(item: any){
@@ -257,6 +260,14 @@ const linkChildValues = ({parsedObject, type, self}: XtalEditor) => {
     }
 
 };
+
+const updateTransforms = [
+    ({value}: XtalEditor) => [
+        {
+            [refs.valuePart]: [{value: value}]
+        }
+    ]
+]
 
 const linkValueFromChildren = ({upwardDataFlowInProgress, self, type}: XtalEditor) => {
     if(!upwardDataFlowInProgress) return;
@@ -328,8 +339,9 @@ const propActions = [
     addBool, 
     addNumber, 
     link_ParsedObject,
-    xp.createShadow,
+    xp.attachShadow,
     addEventHandlers,
+    updateTransforms,
 ] as PropAction[];
 
 const propDefGetter = [
@@ -340,6 +352,11 @@ const propDefGetter = [
     ({hasParent}: XtalEditor) => ({
         type: Boolean,
         dry: true,
+    }),
+    ({handlersAttached}: XtalEditor) => ({
+        type: Boolean,
+        dry: true,
+        stopReactionsIfFalsy: true
     }),
     ({objCounter, strCounter, boolCounter, numberCounter}: XtalEditor) => ({
         type: Number
@@ -483,8 +500,13 @@ export class XtalEditor extends HTMLElement implements XtalEditorPublicProps, Xt
     numberCounter: number | undefined;
     hasParent: boolean | undefined;
 
+    handlersAttached: boolean | undefined;
+
     connectedCallback(){
         xc.hydrate<XtalEditorPublicProps>(this, propDefs);
+        if(!this.hasParent){
+            this._rootEditor = this;
+        }
     }
     onPropChange(n: string, propDef: PropDef, newVal: any){
         this.reactor.addToQueue(propDef, newVal);
