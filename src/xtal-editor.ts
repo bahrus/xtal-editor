@@ -1,219 +1,172 @@
-import {XtalElement, define, TransformValueOptions, AttributeProps, RenderContext, SelectiveUpdate, p, symbolize, EventScopes} from 'xtal-element/XtalElement.js';
-import {createTemplate} from 'trans-render/createTemplate.js';
-import {templStampSym} from 'trans-render/standardPlugins.js';
-import {XtalEditorPublicProps, editType} from '../types.d.js';
+import {xc} from 'xtal-element/lib/XtalCore.js';
+import {xp} from 'xtal-element/lib/XtalPattern.js';
+import {PropAction, XtalPattern, destructPropInfo, PropDef, PSettings} from 'xtal-element/types.d.js';
+import {html} from 'xtal-element/lib/html.js';
+import {XtalEditorPublicProps, editType} from '../types.js';
+import {DOMKeyPE} from 'xtal-element/lib/DOMKeyPE.js';
+import('./ib-id-xtal-editor.js');
 
-const mainTemplate = createTemplate(/* html */`
-    <slot part=slotPart name=initVal></slot>
-    <div class="remove" part=remove></div>
-    <div data-type=string part=editor>
-        <div part=field class=field>
-            <button part=expander class="expander nonPrimitive">+</button><input part=key><input part=value class=value>
-            <div part=childInserters class="nonPrimitive childInserters" data-open=false>
-                <button part=objectAdder class=objectAdder>add object</button>
-                <button part=stringAdder class=stringAdder>add string</button>
-                <button part=boolAdder class=boolAdder>add bool</button>
-                <button part=numberAdder class=numberAdder>add number</button>
-                
-            </div>
-            <button class=copyBtn part=copyToClipboard><img class=copy alt="Copy to Clipboard" src="https://cdn.jsdelivr.net/npm/xtal-editor/src/copy.svg"></button>
+const mainTemplate = html`
+<slot part=slot name=initVal></slot>
+<div class="remove" part=remove></div>
+<div data-type=string part=editor>
+    <div part=field class=field>
+        <button part=expander class="expander nonPrimitive">+</button><input part=key><input part=value class=value>
+        <div part=child-inserters class="nonPrimitive child-inserters" data-open=false>
+            <button part=object-adder class=object-adder>add object</button>
+            <button part=string-adder class=string-adder>add string</button>
+            <button part=bool-adder class=bool-adder>add bool</button>
+            <button part=number-adder class=number-adder>add number</button>
+            
         </div>
-        <div part=childEditors class="nonPrimitive childEditors" data-open=false></div>
-        
+        <button class=copyBtn part=copy-to-clipboard><img class=copy alt="Copy to Clipboard" src="https://cdn.jsdelivr.net/npm/xtal-editor/src/copy.svg"></button>
     </div>
-    <style>
-        :host{
-            display:block;
-        }
-        slot{
-            display: none;
-        }
-        .expander{
-            width: fit-content;
-            height: fit-content;
-            padding-left: 0px;
-            padding-right: 0px;
-            width:20px;
-        }
-        .copy{
-            height: 16px;
-        }
-        .copyBtn{
-            width: fit-content;
-            height: fit-content;
-            padding-left: 0px;
-            padding-right: 0px;
-            padding-top: 0px;
-            padding-bottom: 0px;
-            border: 0;
-        }
-        .objectAdder{
-            background-color: #E17000;
-        }
-        .stringAdder{
-            background-color: #009408;
-        }
-        .boolAdder{
-            background-color: #B1C639;
-        }
-        .numberAdder{
-            background-color: #497B8D;
-        }
-        .childInserters button{
-            color: white;
-            text-shadow:1px 1px 1px black;
-            border-radius: 5px;
-            padding: 2;
-            border: none;
-        }
-        .remove{
-            padding: 2px 4px;
-            -webkit-border-radius: 5px;
-            -moz-border-radius: 5px;
-            border-radius: 5px;
-            color: white;
-            font-weight: bold;
-            text-shadow: 1px 1px 1px black;
-            background-color: black;
-            
-        }
-        .remove::after{
-            content: "JSON Editor";
-        }
-        .remove.editKey::after{
-            content: "Remove item by deleting the property name.";
-        }
+    <div part=child-editors class="nonPrimitive child-editors" data-open=false>
+        <ib-id-xtal-editor tag=xtal-editor></ib-id-xtal-editor>
+    </div>
+    
+</div>
+<style>
+    :host{
+        display:block;
+    }
+    slot{
+        display: none;
+    }
+    .expander{
+        width: fit-content;
+        height: fit-content;
+        padding-left: 0px;
+        padding-right: 0px;
+        width:20px;
+    }
+    .copy{
+        height: 16px;
+    }
+    .copyBtn{
+        width: fit-content;
+        height: fit-content;
+        padding-left: 0px;
+        padding-right: 0px;
+        padding-top: 0px;
+        padding-bottom: 0px;
+        border: 0;
+    }
+    .object-adder{
+        background-color: #E17000;
+    }
+    .string-adder{
+        background-color: #009408;
+    }
+    .bool-adder{
+        background-color: #B1C639;
+    }
+    .number-adder{
+        background-color: #497B8D;
+    }
+    .child-inserters button{
+        color: white;
+        text-shadow:1px 1px 1px black;
+        border-radius: 5px;
+        padding: 2;
+        border: none;
+    }
+    .remove{
+        padding: 2px 4px;
+        -webkit-border-radius: 5px;
+        -moz-border-radius: 5px;
+        border-radius: 5px;
+        color: white;
+        font-weight: bold;
+        text-shadow: 1px 1px 1px black;
+        background-color: black;
+        
+    }
+    .remove::after{
+        content: "JSON Editor";
+    }
+    .remove.editKey::after{
+        content: "Remove item by deleting the property name.";
+    }
 
-        .field{
-            display:flex;
-            flex-direction:row;
-            line-height: 20px;
-            margin-top: 2px;
-            align-items: center;
-        }
-        .childInserters{
-            display: flex;
-            justify-content: center;
-        }
-        .childEditors{
-            margin-left: 25px;
-        }
-        div[part="childEditors"][data-open="false"]{
-            display: none;
-        }
-        [data-type="object"] button.nonPrimitive{
-            display: inline;
-        }
-        [data-type="object"] div.nonPrimitive[data-open="true"]{
-            display: block;
-        }
-        [data-type="array"] button.nonPrimitive{
-            display: inline;
-        }
-        [data-type="array"] div.nonPrimitive[data-open="true"]{
-            display: block;
-        }
-        [data-type="string"] .nonPrimitive{
-            display: none;
-        }
-        [data-type="number"] .nonPrimitive{
-            display: none;
-        }
-        [data-type="boolean"] .nonPrimitive{
-            display: none;
-        }
-        [data-type="string"] [part="key"]{
-            background-color: rgb(0, 148, 8);
-        }
-        [data-type="boolean"] [part="key"]{
-            background-color: #B1C639;
-        }
-        [data-type="object"] [part="key"]{
-            background-color: rgb(225, 112, 0);
-        }
-        [data-type="number"] [part="key"]{
-            background-color: rgb(73, 123, 141);
-        }
-        [data-type="array"] [part="key"]{
-            background-color: rgb(45, 91, 137);
-        }
-        .value{
-            background-color: #ECF3C3;
-            flex-grow: 5;
-        }
+    .field{
+        display:flex;
+        flex-direction:row;
+        line-height: 20px;
+        margin-top: 2px;
+        align-items: center;
+    }
+    .child-inserters{
+        display: flex;
+        justify-content: center;
+    }
+    .child-editors{
+        margin-left: 25px;
+    }
+    div[part="child-editors"][data-open="false"]{
+        display: none;
+    }
+    [data-type="object"] button.nonPrimitive{
+        display: inline;
+    }
+    [data-type="object"] div.nonPrimitive[data-open="true"]{
+        display: block;
+    }
+    [data-type="array"] button.nonPrimitive{
+        display: inline;
+    }
+    [data-type="array"] div.nonPrimitive[data-open="true"]{
+        display: block;
+    }
+    [data-type="string"] .nonPrimitive{
+        display: none;
+    }
+    [data-type="number"] .nonPrimitive{
+        display: none;
+    }
+    [data-type="boolean"] .nonPrimitive{
+        display: none;
+    }
+    [data-type="string"] [part="key"]{
+        background-color: rgb(0, 148, 8);
+    }
+    [data-type="boolean"] [part="key"]{
+        background-color: #B1C639;
+    }
+    [data-type="object"] [part="key"]{
+        background-color: rgb(225, 112, 0);
+    }
+    [data-type="number"] [part="key"]{
+        background-color: rgb(73, 123, 141);
+    }
+    [data-type="array"] [part="key"]{
+        background-color: rgb(45, 91, 137);
+    }
+    .value{
+        background-color: #ECF3C3;
+        flex-grow: 5;
+    }
 
-        input {
-            border: none;
-            -webkit-border-radius: 5px;
-            -moz-border-radius: 5px;
-            border-radius: 5px;
-            padding: 3px;
-            margin-right: 2px;
-        }
+    input {
+        border: none;
+        -webkit-border-radius: 5px;
+        -moz-border-radius: 5px;
+        border-radius: 5px;
+        padding: 3px;
+        margin-right: 2px;
+    }
 
-    </style>
-`);
+</style>
+`;
+
 const refs = {
-    boolAdder: p, childEditors: p, copyToClipboard: p, editor: p, expander: p, key: p, 
-    objectAdder: p, slotPart: p, stringAdder: p,  remove: p, numberAdder: p, value: p, 
+    slotElement: 0, boolAdderPart: 0, childEditorsPart: 0, copyToClipboardPart: 0,
+    editorPart: 0, expanderPart: 0, keyPart: 0, objectAdderPart: 0, stringAdderPart: 0,
+    removePart: 0, numberAdderPart: 0, valuePart: 0,
+    ibIdXtalEditorElement: 0
 };
-symbolize(refs);
 
 
-const initTransform = ({self, type, hasParent}: XtalEditor) => ({
-    ':host': [templStampSym, refs],
-    [refs.expander]: [{}, {click: self.toggle}],
-    [refs.key]: [{},{change: [self.handleKeyChange, 'value'], focus: self.handleKeyFocus}],
-    [refs.value]: [{}, {change: [self.handleValueChange, 'value'], focus: self.handleValueFocus}],
-    [refs.objectAdder]: [{}, {click: self.addObject}],
-    [refs.stringAdder]: [{}, {click: self.addString}],
-    [refs.boolAdder]: [{}, {click: self.addBool}],
-    [refs.numberAdder]: [{}, {click: self.addNumber}],
-    [refs.remove]: !hasParent,
-    [refs.copyToClipboard]: [{}, {click: self.copyToClipboard}],
-    [refs.slotPart]: [{}, {slotchange: self.handleSlotChange}]
-} as TransformValueOptions);
-
-const updateTransforms = [
-    ({type}: XtalEditor) => ({
-        [refs.editor]: [{dataset: {type: type}}],
-    }),
-    ({value}: XtalEditor) => ({
-        [refs.value]: [{value: value}]
-    }),
-    ({uiValue}: XtalEditor) => ({
-        [refs.value]: [uiValue === undefined ? undefined : {value: uiValue}]
-    }),
-    ({key}: XtalEditor) => ({
-        [refs.key]: [{value: key}]
-    }),
-    ({childValues, type, self}: XtalEditor) => ({
-        //insert child editor elements
-        [refs.childEditors]: [childValues, XtalEditor.is,, ({target, item, idx}: RenderContext<XtalEditor>) => {
-            if(!target) return;
-            //TODO:  enhance(?) TR to make this declarative
-            switch(typeof item){
-                case 'object':
-                    target.key = item.key;
-                    target.value = item.value;
-                    break;
-                default:
-                    target.value = item;
-                    target.key = idx!.toString();
-            }
-            
-            target.hasParent = true;
-            target._rootEditor = self._rootEditor;
-            target.addEventListener('internal-update-count-changed', e =>{
-                self.upwardDataFlowInProgress = true;
-            });
-        }]
-    }),
-    ({open}: XtalEditor) => ({
-        [refs.expander]: open ? '-' : '+',
-        [refs.childEditors] : [{dataset:{open: (!!open).toString()}}]
-    })
-] as SelectiveUpdate<any>[]
 
 const linkTypeAndParsedObject = ({value, self}: XtalEditor) => {
     let parsedObject = value;
@@ -253,6 +206,22 @@ const link_ParsedObject = ({uiValue, self}: XtalEditor) => {
     }
 }
 
+const addEventHandlers = ({domCache, self, hasParent, _rootEditor}: XtalEditor) => [
+    {
+        [refs.expanderPart]: [,{click:self.toggle}],
+        [refs.keyPart]: [,{change: [self.handleKeyChange, 'value'], focus: self.handleKeyFocus}],
+        [refs.valuePart]: [,{change: [self.handleValueChange, 'value'], focus: self.handleValueFocus}],
+        [refs.objectAdderPart]: [, {click: self.addObject}],
+        [refs.stringAdderPart]: [,{click: self.addString}],
+        [refs.boolAdderPart]: [, {click: self.addBool}],
+        [refs.numberAdderPart]: [, {click: self.addNumber}],
+        [refs.removePart]: [{style: {display: hasParent ? 'none' : 'block' }}],
+        [refs.copyToClipboardPart]: [,{click: self.copyToClipboard}],
+        [refs.slotElement]: [,{slotchange: self.handleSlotChange}],
+        [refs.ibIdXtalEditorElement]: [{_rootEditor: _rootEditor, host: self}]
+    },
+    [{handlersAttached: true}] as PSettings<XtalEditor>
+]
 
 function toString(item: any){
     switch(typeof item){
@@ -289,6 +258,8 @@ const linkChildValues = ({parsedObject, type, self}: XtalEditor) => {
     }
 
 };
+
+
 
 const linkValueFromChildren = ({upwardDataFlowInProgress, self, type}: XtalEditor) => {
     if(!upwardDataFlowInProgress) return;
@@ -350,8 +321,79 @@ const addNumber = ({numberCounter, self}: XtalEditor) => {
     self.open = true;
 }
 
+const updateTransforms = [
+    ({value}: XtalEditor) => [{[refs.valuePart]: [{value: value}]}],
+    ({type}: XtalEditor) => [{[refs.editorPart]: [{dataset: {type: type}}]}],
+    ({uiValue}: XtalEditor) => [{[refs.valuePart]: [uiValue === undefined ? undefined : {value: uiValue}]}],
+    ({key}: XtalEditor) => [{[refs.keyPart]: [{value: key}]}],
+    ({childValues, type, self}: XtalEditor) => [
+        {[refs.ibIdXtalEditorElement]: [{list: childValues}]}
+    ],
+    ({open}: XtalEditor) => [
+        {
+            [refs.expanderPart]: [{textContent: open ? '-' : '+'}],
+            [refs.childEditorsPart]: [{dataset: {open: (!!open).toString()}}]
+        }
+    ]
+]
 
-const propActions = [linkTypeAndParsedObject, linkChildValues, linkValueFromChildren, addObject, addString, addBool, addNumber, link_ParsedObject];
+const propActions = [
+    xp.manageMainTemplate,
+    linkTypeAndParsedObject, 
+    linkChildValues, 
+    linkValueFromChildren, 
+    addObject, 
+    addString, 
+    addBool, 
+    addNumber, 
+    link_ParsedObject,
+    xp.attachShadow,
+    addEventHandlers,
+    updateTransforms,
+] as PropAction[];
+
+const propDefGetter = [
+    xp.props,
+    ({upwardDataFlowInProgress, open}: XtalEditor) => ({
+        type: Boolean
+    }),
+    ({handlersAttached}: XtalEditor) => ({
+        type: Boolean,
+        dry: true,
+        stopReactionsIfFalsy: true
+    }),
+    ({objCounter, strCounter, boolCounter, numberCounter}: XtalEditor) => ({
+        type: Number
+    }),
+    ({internalUpdateCount}: XtalEditor) => ({
+        type: Number,
+        notify: true
+    }),
+    ({type}: XtalEditor) => ({
+        type: String,
+        dry: true
+    }),
+    ({key, uiValue}: XtalEditor) => ({
+        type: String,
+    }),
+    ({value}: XtalEditor) => ({
+        type: String,
+        dry: true,
+        parse: true
+    }),
+    ({parsedObject}: XtalEditor) => ({
+        type: Object,
+        dry: true,
+        notify: true
+    }),
+    ({childValues}: XtalEditor) => ({
+        type: Object,
+    }),
+] as destructPropInfo[];
+const propDefs = xc.getPropDefs(propDefGetter);
+
+
+
 
 interface NameValue {
     key: string, 
@@ -361,35 +403,17 @@ interface NameValue {
 /**
  * @element xtal-editor
  */
-export class XtalEditor extends XtalElement implements XtalEditorPublicProps{
+export class XtalEditor extends HTMLElement implements XtalEditorPublicProps, XtalPattern{
     static is = 'xtal-editor';
-    static formAssociated = true;
-    static attributeProps = ({value, uiValue, type, parsedObject, key, childValues, upwardDataFlowInProgress, 
-        internalUpdateCount, open, objCounter, strCounter, boolCounter, numberCounter, hasParent}: XtalEditor) => ({
-        bool: [upwardDataFlowInProgress, open, hasParent],
-        dry: [type, parsedObject, value, hasParent],
-        num: [internalUpdateCount, objCounter, strCounter, boolCounter, numberCounter],
-        str: [value, type, key, uiValue],
-        jsonProp: [value],
-        obj: [parsedObject, childValues],
-        notify: [internalUpdateCount, parsedObject],
-    } as AttributeProps);
-
-
-    readyToInit = true;
-    readyToRender = true;
-     
-    mainTemplate = mainTemplate;
-    initTransform = initTransform;
-    updateTransforms = updateTransforms;
-    propActions = propActions;
-
-    connectedCallback(){
-        super.connectedCallback();
-        if(!this.hasParent){
-            this._rootEditor = this;
+    reactor = new xc.Reactor(this, [
+        {
+            type: Array,
+            ctor: DOMKeyPE
         }
-    }
+    ]);
+    self=this; refs=refs; propActions = propActions; mainTemplate = mainTemplate;  clonedTemplate: DocumentFragment | undefined; domCache: any;
+
+
     _rootEditor: XtalEditor | undefined;
     handleKeyChange(key: string){
         if(key === ''){
@@ -398,10 +422,10 @@ export class XtalEditor extends XtalElement implements XtalEditorPublicProps{
         this.value = key;
     }
     handleKeyFocus(e: Event){
-        ((this._rootEditor as any)[refs.remove] as HTMLElement).classList.add('editKey');
+        (this._rootEditor!.domCache[refs.removePart] as HTMLElement).classList.add('editKey');
     }
     handleValueFocus(e: Event){
-        ((this._rootEditor as any)[refs.remove] as HTMLElement).classList.remove('editKey');
+        (this._rootEditor!.domCache[refs.removePart] as HTMLElement).classList.remove('editKey');
     }
     handleValueChange(val: string){
         this.value = val;
@@ -411,10 +435,9 @@ export class XtalEditor extends XtalElement implements XtalEditorPublicProps{
         this.internalUpdateCount = this.internalUpdateCount === undefined ? 0 : this.internalUpdateCount + 1;
     }
     copyToClipboard(){
-        (<any>this)[refs.value].select();
+        (<any>this)[refs.valuePart].select();
         document.execCommand("copy");
     }
-
     toggle(){
         this.open = !this.open;
     }
@@ -481,5 +504,17 @@ export class XtalEditor extends XtalElement implements XtalEditorPublicProps{
     numberCounter: number | undefined;
     hasParent: boolean | undefined;
 
+    handlersAttached: boolean | undefined;
+
+    connectedCallback(){
+        xc.hydrate<XtalEditorPublicProps>(this, propDefs);
+        if(!this.hasParent){
+            this._rootEditor = this;
+        }
+    }
+    onPropChange(n: string, propDef: PropDef, newVal: any){
+        this.reactor.addToQueue(propDef, newVal);
+    }
 }
-define(XtalEditor);
+xc.letThereBeProps(XtalEditor, propDefs, 'onPropChange')
+xc.define(XtalEditor);

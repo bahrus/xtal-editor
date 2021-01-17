@@ -1,5 +1,5 @@
 import {IbId} from 'ib-id/ib-id.js';
-import {XtalEditor} from './xtal-editor2.js';
+import {XtalEditor} from './xtal-editor.js';
 import {define} from 'xtal-element/lib/define.js';
 import { XtalElement } from '../../xtal-element/XtalElement.js';
 
