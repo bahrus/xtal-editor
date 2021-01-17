@@ -313,7 +313,7 @@ const addNumber = ({ numberCounter, self }) => {
 const updateTransforms = [
     ({ value }) => [{ [refs.valuePart]: [{ value: value }] }],
     ({ type }) => [{ [refs.editorPart]: [{ dataset: { type: type } }] }],
-    ({ uiValue }) => [{ [refs.valuePart]: uiValue === undefined ? undefined : { value: uiValue } }],
+    ({ uiValue }) => [{ [refs.valuePart]: [uiValue === undefined ? undefined : { value: uiValue }] }],
     ({ key }) => [{ [refs.keyPart]: [{ value: key }] }],
     ({ childValues, type, self }) => [
         { [refs.ibIdXtalEditorElement]: [{ list: childValues }] }

@@ -324,7 +324,7 @@ const addNumber = ({numberCounter, self}: XtalEditor) => {
 const updateTransforms = [
     ({value}: XtalEditor) => [{[refs.valuePart]: [{value: value}]}],
     ({type}: XtalEditor) => [{[refs.editorPart]: [{dataset: {type: type}}]}],
-    ({uiValue}: XtalEditor) => [{[refs.valuePart]: uiValue === undefined ? undefined : {value: uiValue}}],
+    ({uiValue}: XtalEditor) => [{[refs.valuePart]: [uiValue === undefined ? undefined : {value: uiValue}]}],
     ({key}: XtalEditor) => [{[refs.keyPart]: [{value: key}]}],
     ({childValues, type, self}: XtalEditor) => [
         {[refs.ibIdXtalEditorElement]: [{list: childValues}]}
