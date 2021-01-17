@@ -12,7 +12,7 @@ const mainTemplate = html`
 <div data-type=string part=editor>
     <div part=field class=field>
         <button part=expander class="expander nonPrimitive">+</button><input part=key><input part=value class=value>
-        <div part=childInserters class="nonPrimitive childInserters" data-open=false>
+        <div part=child-inserters class="nonPrimitive child-inserters" data-open=false>
             <button part=object-adder class=object-adder>add object</button>
             <button part=string-adder class=string-adder>add string</button>
             <button part=bool-adder class=bool-adder>add bool</button>
@@ -52,7 +52,7 @@ const mainTemplate = html`
         padding-bottom: 0px;
         border: 0;
     }
-    .objectAdder{
+    .object-adder{
         background-color: #E17000;
     }
     .string-adder{
@@ -64,7 +64,7 @@ const mainTemplate = html`
     .number-adder{
         background-color: #497B8D;
     }
-    .childInserters button{
+    .child-inserters button{
         color: white;
         text-shadow:1px 1px 1px black;
         border-radius: 5px;
@@ -96,7 +96,7 @@ const mainTemplate = html`
         margin-top: 2px;
         align-items: center;
     }
-    .childInserters{
+    .child-inserters{
         display: flex;
         justify-content: center;
     }
