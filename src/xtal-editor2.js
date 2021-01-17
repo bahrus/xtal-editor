@@ -317,6 +317,12 @@ const updateTransforms = [
     ({ key }) => [{ [refs.keyPart]: [{ value: key }] }],
     ({ childValues, type, self }) => [
         { [refs.ibIdXtalEditorElement]: [{ list: childValues }] }
+    ],
+    ({ open }) => [
+        {
+            [refs.expanderPart]: [{ textContent: open ? '-' : '+' }],
+            [refs.childEditorsPart]: [{ dataset: { open: (!!open).toString() } }]
+        }
     ]
 ];
 const propActions = [
@@ -337,10 +343,6 @@ const propDefGetter = [
     xp.props,
     ({ upwardDataFlowInProgress, open }) => ({
         type: Boolean
-    }),
-    ({ hasParent }) => ({
-        type: Boolean,
-        dry: true,
     }),
     ({ handlersAttached }) => ({
         type: Boolean,

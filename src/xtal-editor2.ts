@@ -328,6 +328,12 @@ const updateTransforms = [
     ({key}: XtalEditor) => [{[refs.keyPart]: [{value: key}]}],
     ({childValues, type, self}: XtalEditor) => [
         {[refs.ibIdXtalEditorElement]: [{list: childValues}]}
+    ],
+    ({open}: XtalEditor) => [
+        {
+            [refs.expanderPart]: [{textContent: open ? '-' : '+'}],
+            [refs.childEditorsPart]: [{dataset: {open: (!!open).toString()}}]
+        }
     ]
 ]
 
@@ -350,10 +356,6 @@ const propDefGetter = [
     xp.props,
     ({upwardDataFlowInProgress, open}: XtalEditor) => ({
         type: Boolean
-    }),
-    ({hasParent}: XtalEditor) => ({
-        type: Boolean,
-        dry: true,
     }),
     ({handlersAttached}: XtalEditor) => ({
         type: Boolean,
