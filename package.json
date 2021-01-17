@@ -12,7 +12,7 @@
   "module": "src/xtal-editor.js",
   "exports": {
     ".": "./xtal-editor.js",
-    "./xtal-editor.js": "./xtal-editor.js"
+    "./xtal-editor.js": "./src/xtal-editor.js"
   },
   "files": [
     "*"

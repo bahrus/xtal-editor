@@ -2,6 +2,8 @@
 
 <a href="https://nodei.co/npm/xtal-editor/"><img src="https://nodei.co/npm/xtal-editor.png"></a>
 
+<img src="https://badgen.net/bundlephobia/minzip/xtal-editor">
+
 Re-creation of [flexi-json](http://www.daviddurman.com/flexi-json-editor/jsoneditor.html), taking some liberties, but as a web component.
 
 ## [Demo](https://jsfiddle.net/bahrus/u5e4okn6/4/)
