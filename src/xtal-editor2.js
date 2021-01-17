@@ -2,6 +2,7 @@ import { xc } from 'xtal-element/lib/XtalCore.js';
 import { xp } from 'xtal-element/lib/XtalPattern.js';
 import { html } from 'xtal-element/lib/html.js';
 import { DOMKeyPE } from 'xtal-element/lib/DOMKeyPE.js';
+import('./ib-id-xtal-editor.js');
 const mainTemplate = html `
 <slot part=slot name=initVal></slot>
 <div class="remove" part=remove></div>
@@ -17,7 +18,9 @@ const mainTemplate = html `
         </div>
         <button class=copyBtn part=copy-to-clipboard><img class=copy alt="Copy to Clipboard" src="https://cdn.jsdelivr.net/npm/xtal-editor/src/copy.svg"></button>
     </div>
-    <div part=child-editors class="nonPrimitive child-editors" data-open=false></div>
+    <div part=child-editors class="nonPrimitive child-editors" data-open=false>
+        <ib-id-xtal-editor tag=xtal-editor></ib-id-xtal-editor>
+    </div>
     
 </div>
 <style>
@@ -155,14 +158,9 @@ const mainTemplate = html `
 const refs = {
     slotElement: 0, boolAdderPart: 0, childEditorsPart: 0, copyToClipboardPart: 0,
     editorPart: 0, expanderPart: 0, keyPart: 0, objectAdderPart: 0, stringAdderPart: 0,
-    removePart: 0, numberAdderPart: 0, valuePart: 0
+    removePart: 0, numberAdderPart: 0, valuePart: 0,
+    ibIdXtalEditorElement: 0
 };
-const updateTransforms = [
-    ({ value }) => [{ [refs.valuePart]: [{ value: value }] }],
-    ({ type }) => [{ [refs.editorPart]: [{ dataset: { type: type } }] }],
-    ({ uiValue }) => [{ [refs.valuePart]: uiValue === undefined ? undefined : { value: uiValue } }],
-    ({ key }) => [{ [refs.keyPart]: [{ value: key }] }],
-];
 const linkTypeAndParsedObject = ({ value, self }) => {
     let parsedObject = value;
     if (value !== undefined) {
@@ -204,7 +202,7 @@ const link_ParsedObject = ({ uiValue, self }) => {
             }));
     }
 };
-const addEventHandlers = ({ domCache, self, hasParent }) => [
+const addEventHandlers = ({ domCache, self, hasParent, _rootEditor }) => [
     {
         [refs.expanderPart]: [, { click: self.toggle }],
         [refs.keyPart]: [, { change: [self.handleKeyChange, 'value'], focus: self.handleKeyFocus }],
@@ -215,7 +213,8 @@ const addEventHandlers = ({ domCache, self, hasParent }) => [
         [refs.numberAdderPart]: [, { click: self.addNumber }],
         [refs.removePart]: [{ style: { display: hasParent ? 'block' : 'none' } }],
         [refs.copyToClipboardPart]: [, { click: self.copyToClipboard }],
-        [refs.slotElement]: [, { slotchange: self.handleSlotChange }]
+        [refs.slotElement]: [, { slotchange: self.handleSlotChange }],
+        [refs.ibIdXtalEditorElement]: [{ _rootEditor: _rootEditor, host: self }]
     },
     [{ handlersAttached: true }]
 ];
@@ -311,6 +310,15 @@ const addNumber = ({ numberCounter, self }) => {
     self.value = JSON.stringify(newObj);
     self.open = true;
 };
+const updateTransforms = [
+    ({ value }) => [{ [refs.valuePart]: [{ value: value }] }],
+    ({ type }) => [{ [refs.editorPart]: [{ dataset: { type: type } }] }],
+    ({ uiValue }) => [{ [refs.valuePart]: uiValue === undefined ? undefined : { value: uiValue } }],
+    ({ key }) => [{ [refs.keyPart]: [{ value: key }] }],
+    ({ childValues, type, self }) => [
+        { [refs.ibIdXtalEditorElement]: [{ list: childValues }] }
+    ]
+];
 const propActions = [
     xp.manageMainTemplate,
     linkTypeAndParsedObject,
