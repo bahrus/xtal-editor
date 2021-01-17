@@ -422,10 +422,10 @@ export class XtalEditor extends HTMLElement implements XtalEditorPublicProps, Xt
         this.value = key;
     }
     handleKeyFocus(e: Event){
-        ((this._rootEditor as any)[refs.removePart] as HTMLElement).classList.add('editKey');
+        (this._rootEditor!.domCache[refs.removePart] as HTMLElement).classList.add('editKey');
     }
     handleValueFocus(e: Event){
-        ((this._rootEditor as any)[refs.removePart] as HTMLElement).classList.remove('editKey');
+        (this._rootEditor!.domCache[refs.removePart] as HTMLElement).classList.remove('editKey');
     }
     handleValueChange(val: string){
         this.value = val;

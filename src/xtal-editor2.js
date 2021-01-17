@@ -406,10 +406,10 @@ export class XtalEditor extends HTMLElement {
         this.value = key;
     }
     handleKeyFocus(e) {
-        this._rootEditor[refs.removePart].classList.add('editKey');
+        this._rootEditor.domCache[refs.removePart].classList.add('editKey');
     }
     handleValueFocus(e) {
-        this._rootEditor[refs.removePart].classList.remove('editKey');
+        this._rootEditor.domCache[refs.removePart].classList.remove('editKey');
     }
     handleValueChange(val) {
         this.value = val;
