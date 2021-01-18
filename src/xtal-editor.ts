@@ -330,7 +330,7 @@ const updateTransforms = [
     ],
     ({open}: XtalEditor) => [
         {
-            [refs.expanderPart]: [{textContent: open ? '-' : '+'}],
+            [refs.expanderPart]: open ? '-' : '+',
             [refs.childEditorsPart]: [{dataset: {open: (!!open).toString()}}]
         }
     ],
