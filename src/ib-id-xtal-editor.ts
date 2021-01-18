@@ -3,6 +3,9 @@ import {XtalEditor} from './xtal-editor.js';
 import {define} from 'xtal-element/lib/define.js';
 import { XtalElement } from '../../xtal-element/XtalElement.js';
 
+/**
+ * @element ib-id-xtal-editor
+ */
 export class IbIdXtalEditor extends IbId{
     static is = 'ib-id-xtal-editor';
     _rootEditor: XtalElement | undefined;

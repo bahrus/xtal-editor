@@ -1,5 +1,8 @@
 import { IbId } from 'ib-id/ib-id.js';
 import { define } from 'xtal-element/lib/define.js';
+/**
+ * @element ib-id-xtal-editor
+ */
 export class IbIdXtalEditor extends IbId {
     connectedCallback() {
         this.map = (x, idx) => {
