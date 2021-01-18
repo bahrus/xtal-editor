@@ -206,7 +206,7 @@ const link_ParsedObject = ({uiValue, self}: XtalEditor) => {
     }
 }
 
-const addEventHandlers = ({domCache, self, hasParent, _rootEditor}: XtalEditor) => [
+const addEventHandlers = ({domCache, self, _rootEditor}: XtalEditor) => [
     {
         [refs.expanderPart]: [,{click:self.toggle}],
         [refs.keyPart]: [,{change: [self.handleKeyChange, 'value'], focus: self.handleKeyFocus}],
@@ -215,7 +215,6 @@ const addEventHandlers = ({domCache, self, hasParent, _rootEditor}: XtalEditor) 
         [refs.stringAdderPart]: [,{click: self.addString}],
         [refs.boolAdderPart]: [, {click: self.addBool}],
         [refs.numberAdderPart]: [, {click: self.addNumber}],
-        [refs.removePart]: [{style: {display: hasParent ? 'none' : 'block' }}],
         [refs.copyToClipboardPart]: [,{click: self.copyToClipboard}],
         [refs.slotElement]: [,{slotchange: self.handleSlotChange}],
         [refs.ibIdXtalEditorElement]: [{_rootEditor: _rootEditor, host: self}]
@@ -334,7 +333,10 @@ const updateTransforms = [
             [refs.expanderPart]: [{textContent: open ? '-' : '+'}],
             [refs.childEditorsPart]: [{dataset: {open: (!!open).toString()}}]
         }
-    ]
+    ],
+    ({hasParent}: XtalEditor) => [{
+        [refs.removePart]: [{style: {display: hasParent ? 'none' : 'block' }}],
+    }]
 ]
 
 const propActions = [
@@ -361,6 +363,10 @@ const propDefGetter = [
         type: Boolean,
         dry: true,
         stopReactionsIfFalsy: true
+    }),
+    ({hasParent}: XtalEditor) => ({
+        type: Boolean,
+        dry: true
     }),
     ({objCounter, strCounter, boolCounter, numberCounter}: XtalEditor) => ({
         type: Number

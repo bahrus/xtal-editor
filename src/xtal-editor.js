@@ -202,7 +202,7 @@ const link_ParsedObject = ({ uiValue, self }) => {
             }));
     }
 };
-const addEventHandlers = ({ domCache, self, hasParent, _rootEditor }) => [
+const addEventHandlers = ({ domCache, self, _rootEditor }) => [
     {
         [refs.expanderPart]: [, { click: self.toggle }],
         [refs.keyPart]: [, { change: [self.handleKeyChange, 'value'], focus: self.handleKeyFocus }],
@@ -211,7 +211,6 @@ const addEventHandlers = ({ domCache, self, hasParent, _rootEditor }) => [
         [refs.stringAdderPart]: [, { click: self.addString }],
         [refs.boolAdderPart]: [, { click: self.addBool }],
         [refs.numberAdderPart]: [, { click: self.addNumber }],
-        [refs.removePart]: [{ style: { display: hasParent ? 'none' : 'block' } }],
         [refs.copyToClipboardPart]: [, { click: self.copyToClipboard }],
         [refs.slotElement]: [, { slotchange: self.handleSlotChange }],
         [refs.ibIdXtalEditorElement]: [{ _rootEditor: _rootEditor, host: self }]
@@ -323,7 +322,10 @@ const updateTransforms = [
             [refs.expanderPart]: [{ textContent: open ? '-' : '+' }],
             [refs.childEditorsPart]: [{ dataset: { open: (!!open).toString() } }]
         }
-    ]
+    ],
+    ({ hasParent }) => [{
+            [refs.removePart]: [{ style: { display: hasParent ? 'none' : 'block' } }],
+        }]
 ];
 const propActions = [
     xp.manageMainTemplate,
@@ -348,6 +350,10 @@ const propDefGetter = [
         type: Boolean,
         dry: true,
         stopReactionsIfFalsy: true
+    }),
+    ({ hasParent }) => ({
+        type: Boolean,
+        dry: true
     }),
     ({ objCounter, strCounter, boolCounter, numberCounter }) => ({
         type: Number
