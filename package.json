@@ -11,8 +11,9 @@
   "main": "src/xtal-editor.js",
   "module": "src/xtal-editor.js",
   "exports": {
-    ".": "./xtal-editor.js",
-    "./xtal-editor.js": "./src/xtal-editor.js"
+    ".": "./src/xtal-editor.js",
+    "./xtal-editor.js": "./src/xtal-editor.js",
+    "./src/xtal-editor.js": "./src/xtal-editor.js"
   },
   "files": [
     "*"
