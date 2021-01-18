@@ -19,7 +19,7 @@
   ],
   "types": "types.d.ts",
   "dependencies": {
-    "ib-id": "0.0.4",
+    "ib-id": "0.0.6",
     "trans-render": "0.0.273",
     "xtal-element": "0.0.330"
   },
