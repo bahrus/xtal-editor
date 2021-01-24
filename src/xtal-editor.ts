@@ -1,6 +1,6 @@
 import {xc} from 'xtal-element/lib/XtalCore.js';
 import {xp} from 'xtal-element/lib/XtalPattern.js';
-import {PropAction, XtalPattern, destructPropInfo, PropDef, PSettings} from 'xtal-element/types.d.js';
+import {PropAction, XtalPattern, PropDef, PSettings, PropDefMap} from 'xtal-element/types.d.js';
 import {html} from 'xtal-element/lib/html.js';
 import {XtalEditorPublicProps, editType} from '../types.js';
 import {DOMKeyPE} from 'xtal-element/lib/DOMKeyPE.js';
@@ -159,11 +159,12 @@ const mainTemplate = html`
 </style>
 `;
 
+const s = '';
 const refs = {
-    slotElement: 0, boolAdderPart: 0, childEditorsPart: 0, copyToClipboardPart: 0,
-    editorPart: 0, expanderPart: 0, keyPart: 0, objectAdderPart: 0, stringAdderPart: 0,
-    removePart: 0, numberAdderPart: 0, valuePart: 0,
-    ibIdXtalEditorElement: 0
+    slotElement: s, boolAdderPart: s, childEditorsPart: s, copyToClipboardPart: s,
+    editorPart: s, expanderPart: s, keyPart: s, objectAdderPart: s, stringAdderPart: s,
+    removePart: s, numberAdderPart: s, valuePart: s,
+    ibIdXtalEditorElement: s
 };
 
 
@@ -354,51 +355,53 @@ const propActions = [
     updateTransforms,
 ] as PropAction[];
 
-const propDefGetter = [
-    xp.props,
-    ({upwardDataFlowInProgress, open}: XtalEditor) => ({
-        type: Boolean
-    }),
-    ({handlersAttached}: XtalEditor) => ({
+const num: PropDef = {
+    type: Number,
+};
+const bool: PropDef = {
+    type: Boolean,
+};
+const str: PropDef = {
+    type: String,
+};
+const propDefMap: PropDefMap<XtalEditor> = {
+    ...xp.props,
+    upwardDataFlowInProgress: bool, open: bool,
+    handlersAttached: {
         type: Boolean,
         dry: true,
         stopReactionsIfFalsy: true
-    }),
-    ({hasParent}: XtalEditor) => ({
+    },
+    hasParent: {
         type: Boolean,
         dry: true
-    }),
-    ({objCounter, strCounter, boolCounter, numberCounter}: XtalEditor) => ({
-        type: Number
-    }),
-    ({internalUpdateCount}: XtalEditor) => ({
+    },
+    objCounter: num, strCounter: num, boolCounter: num, numberCounter: num,
+    internalUpdateCount: {
         type: Number,
         notify: true
-    }),
-    ({type}: XtalEditor) => ({
+    },
+    type: {
         type: String,
         dry: true
-    }),
-    ({key, uiValue}: XtalEditor) => ({
-        type: String,
-    }),
-    ({value}: XtalEditor) => ({
+    },
+    key: str, uiValue: str,
+    value: {
         type: String,
         dry: true,
         parse: true
-    }),
-    ({parsedObject}: XtalEditor) => ({
+    },
+    parsedObject: {
         type: Object,
         dry: true,
         notify: true
-    }),
-    ({childValues}: XtalEditor) => ({
-        type: Object,
-    }),
-] as destructPropInfo[];
-const propDefs = xc.getPropDefs(propDefGetter);
+    },
+    childValues: {
+        type: Object
+    }
+};
 
-
+const slicedPropDefs = xc.getSlicedPropDefs(propDefMap);
 
 
 interface NameValue {
@@ -513,7 +516,7 @@ export class XtalEditor extends HTMLElement implements XtalEditorPublicProps, Xt
     handlersAttached: boolean | undefined;
 
     connectedCallback(){
-        xc.hydrate<XtalEditorPublicProps>(this, propDefs);
+        xc.hydrate<XtalEditorPublicProps>(this, slicedPropDefs);
         if(!this.hasParent){
             this._rootEditor = this;
         }
@@ -522,5 +525,5 @@ export class XtalEditor extends HTMLElement implements XtalEditorPublicProps, Xt
         this.reactor.addToQueue(propDef, newVal);
     }
 }
-xc.letThereBeProps(XtalEditor, propDefs, 'onPropChange')
+xc.letThereBeProps(XtalEditor, slicedPropDefs.propDefs, 'onPropChange')
 xc.define(XtalEditor);

@@ -155,11 +155,12 @@ const mainTemplate = html `
 
 </style>
 `;
+const s = '';
 const refs = {
-    slotElement: 0, boolAdderPart: 0, childEditorsPart: 0, copyToClipboardPart: 0,
-    editorPart: 0, expanderPart: 0, keyPart: 0, objectAdderPart: 0, stringAdderPart: 0,
-    removePart: 0, numberAdderPart: 0, valuePart: 0,
-    ibIdXtalEditorElement: 0
+    slotElement: s, boolAdderPart: s, childEditorsPart: s, copyToClipboardPart: s,
+    editorPart: s, expanderPart: s, keyPart: s, objectAdderPart: s, stringAdderPart: s,
+    removePart: s, numberAdderPart: s, valuePart: s,
+    ibIdXtalEditorElement: s
 };
 const linkTypeAndParsedObject = ({ value, self }) => {
     let parsedObject = value;
@@ -341,49 +342,52 @@ const propActions = [
     addEventHandlers,
     updateTransforms,
 ];
-const propDefGetter = [
-    xp.props,
-    ({ upwardDataFlowInProgress, open }) => ({
-        type: Boolean
-    }),
-    ({ handlersAttached }) => ({
+const num = {
+    type: Number,
+};
+const bool = {
+    type: Boolean,
+};
+const str = {
+    type: String,
+};
+const propDefMap = {
+    ...xp.props,
+    upwardDataFlowInProgress: bool, open: bool,
+    handlersAttached: {
         type: Boolean,
         dry: true,
         stopReactionsIfFalsy: true
-    }),
-    ({ hasParent }) => ({
+    },
+    hasParent: {
         type: Boolean,
         dry: true
-    }),
-    ({ objCounter, strCounter, boolCounter, numberCounter }) => ({
-        type: Number
-    }),
-    ({ internalUpdateCount }) => ({
+    },
+    objCounter: num, strCounter: num, boolCounter: num, numberCounter: num,
+    internalUpdateCount: {
         type: Number,
         notify: true
-    }),
-    ({ type }) => ({
+    },
+    type: {
         type: String,
         dry: true
-    }),
-    ({ key, uiValue }) => ({
-        type: String,
-    }),
-    ({ value }) => ({
+    },
+    key: str, uiValue: str,
+    value: {
         type: String,
         dry: true,
         parse: true
-    }),
-    ({ parsedObject }) => ({
+    },
+    parsedObject: {
         type: Object,
         dry: true,
         notify: true
-    }),
-    ({ childValues }) => ({
-        type: Object,
-    }),
-];
-const propDefs = xc.getPropDefs(propDefGetter);
+    },
+    childValues: {
+        type: Object
+    }
+};
+const slicedPropDefs = xc.getSlicedPropDefs(propDefMap);
 /**
  * @element xtal-editor
  */
@@ -459,7 +463,7 @@ export class XtalEditor extends HTMLElement {
         // console.log('Element in Slot "' + slots[1].name + '" changed to "' + nodes[0].outerHTML + '".');
     }
     connectedCallback() {
-        xc.hydrate(this, propDefs);
+        xc.hydrate(this, slicedPropDefs);
         if (!this.hasParent) {
             this._rootEditor = this;
         }
@@ -469,5 +473,5 @@ export class XtalEditor extends HTMLElement {
     }
 }
 XtalEditor.is = 'xtal-editor';
-xc.letThereBeProps(XtalEditor, propDefs, 'onPropChange');
+xc.letThereBeProps(XtalEditor, slicedPropDefs.propDefs, 'onPropChange');
 xc.define(XtalEditor);
