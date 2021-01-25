@@ -53,13 +53,13 @@ const mainTemplate = html`
         border: 0;
     }
     .object-adder{
-        background-color: #E17000;
+        background-color: #C15000;
     }
     .string-adder{
-        background-color: #009408;
+        background-color:#007408;
     }
     .bool-adder{
-        background-color: #B1C639;
+        background-color: #516600;
     }
     .number-adder{
         background-color: #497B8D;
