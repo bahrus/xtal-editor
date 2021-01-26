@@ -11,7 +11,7 @@ const mainTemplate = html`
 <div class="remove" part=remove></div>
 <div data-type=string part=editor>
     <div part=field class=field>
-        <button part=expander class="expander nonPrimitive">+</button><input part=key><input part=value class=value>
+        <button part=expander class="expander nonPrimitive">+</button><label><input part=key></label><label class=value-label><input part=value class=value></label>
         <div part=child-inserters class="nonPrimitive child-inserters" data-open=false>
             <button part=object-adder class=object-adder>add object</button>
             <button part=string-adder class=string-adder>add string</button>
@@ -144,9 +144,12 @@ const mainTemplate = html`
     }
     .value{
         background-color: #ECF3C3;
+        width: 100%;
+        padding:0;
+    }
+    .value-label{
         flex-grow: 5;
     }
-
     input {
         border: none;
         -webkit-border-radius: 5px;
