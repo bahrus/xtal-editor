@@ -8,7 +8,7 @@ const mainTemplate = html `
 <div class="remove" part=remove></div>
 <div data-type=string part=editor>
     <div part=field class=field>
-        <button part=expander class="expander nonPrimitive">+</button><label><input part=key></label><label class=value-label><input part=value class=value></label>
+        <button part=expander class="expander nonPrimitive">+</button><label><input part=key class=key></label><label class=value-label><input part=value class=value></label>
         <div part=child-inserters class="nonPrimitive child-inserters" data-open=false>
             <button part=object-adder class=object-adder>add object</button>
             <button part=string-adder class=string-adder>add string</button>
@@ -90,7 +90,6 @@ const mainTemplate = html `
         display:flex;
         flex-direction:row;
         line-height: 20px;
-        margin-top: 2px;
         align-items: center;
     }
     .child-inserters{
@@ -142,20 +141,21 @@ const mainTemplate = html `
     .value{
         background-color: #ECF3C3;
         width: 100%;
-        padding:0;
     }
     .value-label{
         flex-grow: 5;
     }
-    input {
-        border: none;
+    input.key {
+        
         -webkit-border-radius: 5px;
         -moz-border-radius: 5px;
         border-radius: 5px;
-        padding: 3px;
         margin-right: 2px;
     }
-
+    input {
+        border: none;
+        padding: 3px;
+    }
 </style>
 `;
 const s = '';
