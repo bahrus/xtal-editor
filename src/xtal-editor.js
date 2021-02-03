@@ -206,7 +206,7 @@ const link_ParsedObject = ({ uiValue, self }) => {
             }));
     }
 };
-const addEventHandlers = ({ domCache, self, _rootEditor }) => [
+const addEventHandlers = ({ domCache, self }) => [
     {
         [refs.expanderPart]: [, { click: self.toggle }],
         [refs.keyPart]: [, { change: [self.handleKeyChange, 'value'], focus: self.handleKeyFocus }],
@@ -217,7 +217,7 @@ const addEventHandlers = ({ domCache, self, _rootEditor }) => [
         [refs.numberAdderPart]: [, { click: self.addNumber }],
         [refs.copyToClipboardPart]: [, { click: self.copyToClipboard }],
         [refs.slotElement]: [, { slotchange: self.handleSlotChange }],
-        [refs.ibIdXtalEditorElement]: [{ _rootEditor: _rootEditor, host: self }]
+        [refs.ibIdXtalEditorElement]: [{ rootEditor: self.rootEditor, host: self }]
     },
     [{ handlersAttached: true }]
 ];
@@ -388,6 +388,9 @@ const propDefMap = {
     },
     childValues: {
         type: Object
+    },
+    rootEditor: {
+        type: Object,
     }
 };
 const slicedPropDefs = xc.getSlicedPropDefs(propDefMap);
@@ -397,9 +400,9 @@ const slicedPropDefs = xc.getSlicedPropDefs(propDefMap);
 export class XtalEditor extends HTMLElement {
     constructor() {
         super(...arguments);
-        this.reactor = new xc.Reactor(this, [
+        this.reactor = new xp.Reactor(this, [
             {
-                type: Array,
+                rhsType: Array,
                 ctor: DOMKeyPE
             }
         ]);
@@ -419,10 +422,10 @@ export class XtalEditor extends HTMLElement {
         this.value = key;
     }
     handleKeyFocus(e) {
-        this._rootEditor.domCache[refs.removePart].classList.add('editKey');
+        this.rootEditor.domCache[refs.removePart].classList.add('editKey');
     }
     handleValueFocus(e) {
-        this._rootEditor.domCache[refs.removePart].classList.remove('editKey');
+        this.rootEditor.domCache[refs.removePart].classList.remove('editKey');
     }
     handleValueChange(val) {
         this.value = val;
@@ -468,7 +471,7 @@ export class XtalEditor extends HTMLElement {
     connectedCallback() {
         xc.hydrate(this, slicedPropDefs);
         if (!this.hasParent) {
-            this._rootEditor = this;
+            this.rootEditor = this;
         }
     }
     onPropChange(n, propDef, newVal) {

@@ -210,7 +210,7 @@ const link_ParsedObject = ({uiValue, self}: XtalEditor) => {
     }
 }
 
-const addEventHandlers = ({domCache, self, _rootEditor}: XtalEditor) => [
+const addEventHandlers = ({domCache, self}: XtalEditor) => [
     {
         [refs.expanderPart]: [,{click:self.toggle}],
         [refs.keyPart]: [,{change: [self.handleKeyChange, 'value'], focus: self.handleKeyFocus}],
@@ -221,7 +221,7 @@ const addEventHandlers = ({domCache, self, _rootEditor}: XtalEditor) => [
         [refs.numberAdderPart]: [, {click: self.addNumber}],
         [refs.copyToClipboardPart]: [,{click: self.copyToClipboard}],
         [refs.slotElement]: [,{slotchange: self.handleSlotChange}],
-        [refs.ibIdXtalEditorElement]: [{_rootEditor: _rootEditor, host: self}]
+        [refs.ibIdXtalEditorElement]: [{rootEditor: self.rootEditor, host: self}]
     },
     [{handlersAttached: true}] as PSettings<XtalEditor>
 ]
@@ -401,6 +401,9 @@ const propDefMap: PropDefMap<XtalEditor> = {
     },
     childValues: {
         type: Object
+    },
+    rootEditor: {
+        type: Object,
     }
 };
 
@@ -417,16 +420,16 @@ interface NameValue {
  */
 export class XtalEditor extends HTMLElement implements XtalEditorPublicProps, XtalPattern{
     static is = 'xtal-editor';
-    reactor = new xc.Reactor(this, [
+    reactor = new xp.Reactor(this, [
         {
-            type: Array,
+            rhsType: Array,
             ctor: DOMKeyPE
         }
     ]);
     self=this; refs=refs; propActions = propActions; mainTemplate = mainTemplate;  clonedTemplate: DocumentFragment | undefined; domCache: any;
 
 
-    _rootEditor: XtalEditor | undefined;
+    rootEditor: XtalEditor | undefined;
     handleKeyChange(key: string){
         if(key === ''){
             this.remove();
@@ -434,10 +437,10 @@ export class XtalEditor extends HTMLElement implements XtalEditorPublicProps, Xt
         this.value = key;
     }
     handleKeyFocus(e: Event){
-        (this._rootEditor!.domCache[refs.removePart] as HTMLElement).classList.add('editKey');
+        (this.rootEditor!.domCache[refs.removePart] as HTMLElement).classList.add('editKey');
     }
     handleValueFocus(e: Event){
-        (this._rootEditor!.domCache[refs.removePart] as HTMLElement).classList.remove('editKey');
+        (this.rootEditor!.domCache[refs.removePart] as HTMLElement).classList.remove('editKey');
     }
     handleValueChange(val: string){
         this.value = val;
@@ -521,7 +524,7 @@ export class XtalEditor extends HTMLElement implements XtalEditorPublicProps, Xt
     connectedCallback(){
         xc.hydrate<XtalEditorPublicProps>(this, slicedPropDefs);
         if(!this.hasParent){
-            this._rootEditor = this;
+            this.rootEditor = this;
         }
     }
     onPropChange(n: string, propDef: PropDef, newVal: any){
