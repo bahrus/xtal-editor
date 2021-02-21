@@ -319,7 +319,7 @@ const updateTransforms = [
     ({ uiValue }) => [{ [refs.valuePart]: [uiValue === undefined ? undefined : { value: uiValue }] }],
     ({ key }) => [{ [refs.keyPart]: [{ value: key }] }],
     ({ childValues, type, self }) => [
-        { [refs.ibIdXtalEditorElement]: [{ list: childValues }] }
+        { [refs.ibIdXtalEditorElement]: [{ _rootEditor: self.rootEditor, list: childValues }] }
     ],
     ({ open }) => [
         {

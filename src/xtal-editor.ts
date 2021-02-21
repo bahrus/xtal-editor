@@ -332,7 +332,7 @@ const updateTransforms = [
     ({uiValue}: XtalEditor) => [{[refs.valuePart]: [uiValue === undefined ? undefined : {value: uiValue}]}],
     ({key}: XtalEditor) => [{[refs.keyPart]: [{value: key}]}],
     ({childValues, type, self}: XtalEditor) => [
-        {[refs.ibIdXtalEditorElement]: [{list: childValues}]}
+        {[refs.ibIdXtalEditorElement]: [{_rootEditor: self.rootEditor, list: childValues}]}
     ],
     ({open}: XtalEditor) => [
         {
