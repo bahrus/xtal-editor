@@ -195,7 +195,30 @@ const linkTypeAndParsedObject = ({value, self}: XtalEditor) => {
     self.parsedObject = parsedObject;
 };
 
-const link_ParsedObject = ({uiValue, self}: XtalEditor) => {
+const linkChildValues = ({parsedObject, type, self}: XtalEditor) => {
+    if(parsedObject === undefined) {
+        self.childValues = undefined;
+        return;
+    }
+    switch(type){
+        case 'array':
+            self.childValues = (parsedObject as any[]).map(item => toString(item)) as string[];
+            break;
+        case 'object':
+            const childValues: NameValue[] = [];
+            for(var key in parsedObject){
+                childValues.push({
+                    key: key,
+                    value: toString(parsedObject[key]),
+                } as NameValue);
+            }
+            self.childValues = childValues;
+            return;
+    }
+
+};
+
+const onUiValue = ({uiValue, self}: XtalEditor) => {
     if(uiValue === undefined) return;
     switch(self.type){
         case 'object':
@@ -239,28 +262,7 @@ function toString(item: any){
     }
 }
 
-const linkChildValues = ({parsedObject, type, self}: XtalEditor) => {
-    if(parsedObject === undefined) {
-        self.childValues = undefined;
-        return;
-    }
-    switch(type){
-        case 'array':
-            self.childValues = (parsedObject as any[]).map(item => toString(item)) as string[];
-            break;
-        case 'object':
-            const childValues: NameValue[] = [];
-            for(var key in parsedObject){
-                childValues.push({
-                    key: key,
-                    value: toString(parsedObject[key]),
-                } as NameValue);
-            }
-            self.childValues = childValues;
-            return;
-    }
 
-};
 
 
 
@@ -352,7 +354,7 @@ const propActions = [
     addString, 
     addBool, 
     addNumber, 
-    link_ParsedObject,
+    onUiValue,
     xp.attachShadow,
     addEventHandlers,
     updateTransforms,
@@ -420,7 +422,7 @@ interface NameValue {
  */
 export class XtalEditor extends HTMLElement implements XtalEditorPublicProps, XtalPattern{
     static is = 'xtal-editor';
-    reactor = new xp.Reactor(this, [
+    reactor = new xp.RxSuppl(this, [
         {
             rhsType: Array,
             ctor: DOMKeyPE

@@ -1,14 +1,13 @@
-import {IbId} from 'ib-id/ib-id.js';
+import {IBid} from 'ib-id/i-bid.js';
 import {XtalEditor} from './xtal-editor.js';
 import {define} from 'xtal-element/lib/define.js';
-import { XtalElement } from '../../xtal-element/XtalElement.js';
 
 /**
  * @element ib-id-xtal-editor
  */
-export class IbIdXtalEditor extends IbId{
+export class IbIdXtalEditor extends IBid{
     static is = 'ib-id-xtal-editor';
-    _rootEditor: XtalElement | undefined;
+    _rootEditor: any | undefined;
     host: HTMLElement | undefined;
     connectedCallback(){
         this.map = (x, idx) => {
@@ -31,9 +30,9 @@ export class IbIdXtalEditor extends IbId{
         super.connectedCallback();
     }
 
-    configureNewChild(newChild: XtalElement){
+    configureNewChild(newChild: any){
         (<any>newChild)._rootEditor = this._rootEditor;
-        newChild.addEventListener('internal-update-count-changed', e =>{
+        newChild.addEventListener('internal-update-count-changed', (e:Event) =>{
             (<any>this).host!.upwardDataFlowInProgress = true;
         });
     }

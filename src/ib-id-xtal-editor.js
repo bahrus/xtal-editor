@@ -1,9 +1,9 @@
-import { IbId } from 'ib-id/ib-id.js';
+import { IBid } from 'ib-id/i-bid.js';
 import { define } from 'xtal-element/lib/define.js';
 /**
  * @element ib-id-xtal-editor
  */
-export class IbIdXtalEditor extends IbId {
+export class IbIdXtalEditor extends IBid {
     connectedCallback() {
         this.map = (x, idx) => {
             let key = undefined;
@@ -27,7 +27,7 @@ export class IbIdXtalEditor extends IbId {
     }
     configureNewChild(newChild) {
         newChild._rootEditor = this._rootEditor;
-        newChild.addEventListener('internal-update-count-changed', e => {
+        newChild.addEventListener('internal-update-count-changed', (e) => {
             this.host.upwardDataFlowInProgress = true;
         });
     }

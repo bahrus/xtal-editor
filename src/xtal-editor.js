@@ -191,7 +191,28 @@ const linkTypeAndParsedObject = ({ value, self }) => {
     }
     self.parsedObject = parsedObject;
 };
-const link_ParsedObject = ({ uiValue, self }) => {
+const linkChildValues = ({ parsedObject, type, self }) => {
+    if (parsedObject === undefined) {
+        self.childValues = undefined;
+        return;
+    }
+    switch (type) {
+        case 'array':
+            self.childValues = parsedObject.map(item => toString(item));
+            break;
+        case 'object':
+            const childValues = [];
+            for (var key in parsedObject) {
+                childValues.push({
+                    key: key,
+                    value: toString(parsedObject[key]),
+                });
+            }
+            self.childValues = childValues;
+            return;
+    }
+};
+const onUiValue = ({ uiValue, self }) => {
     if (uiValue === undefined)
         return;
     switch (self.type) {
@@ -233,27 +254,6 @@ function toString(item) {
             return JSON.stringify(item);
     }
 }
-const linkChildValues = ({ parsedObject, type, self }) => {
-    if (parsedObject === undefined) {
-        self.childValues = undefined;
-        return;
-    }
-    switch (type) {
-        case 'array':
-            self.childValues = parsedObject.map(item => toString(item));
-            break;
-        case 'object':
-            const childValues = [];
-            for (var key in parsedObject) {
-                childValues.push({
-                    key: key,
-                    value: toString(parsedObject[key]),
-                });
-            }
-            self.childValues = childValues;
-            return;
-    }
-};
 const linkValueFromChildren = ({ upwardDataFlowInProgress, self, type }) => {
     if (!upwardDataFlowInProgress)
         return;
@@ -340,7 +340,7 @@ const propActions = [
     addString,
     addBool,
     addNumber,
-    link_ParsedObject,
+    onUiValue,
     xp.attachShadow,
     addEventHandlers,
     updateTransforms,
@@ -400,7 +400,7 @@ const slicedPropDefs = xc.getSlicedPropDefs(propDefMap);
 export class XtalEditor extends HTMLElement {
     constructor() {
         super(...arguments);
-        this.reactor = new xp.Reactor(this, [
+        this.reactor = new xp.RxSuppl(this, [
             {
                 rhsType: Array,
                 ctor: DOMKeyPE
