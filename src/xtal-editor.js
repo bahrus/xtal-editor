@@ -2,6 +2,7 @@ import { xc } from 'xtal-element/lib/XtalCore.js';
 import { xp } from 'xtal-element/lib/XtalPattern.js';
 import { html } from 'xtal-element/lib/html.js';
 import { DOMKeyPE } from 'xtal-element/lib/DOMKeyPE.js';
+import { styleTemplate } from './xtal-editor-style.js';
 import('./ib-id-xtal-editor.js');
 const mainTemplate = html `
 <slot part=slot name=initVal></slot>
@@ -23,140 +24,6 @@ const mainTemplate = html `
     </div>
     
 </div>
-<style>
-    :host{
-        display:block;
-    }
-    slot{
-        display: none;
-    }
-    .expander{
-        width: fit-content;
-        height: fit-content;
-        padding-left: 0px;
-        padding-right: 0px;
-        width:20px;
-    }
-    .copy{
-        height: 16px;
-    }
-    .copyBtn{
-        width: fit-content;
-        height: fit-content;
-        padding-left: 0px;
-        padding-right: 0px;
-        padding-top: 0px;
-        padding-bottom: 0px;
-        border: 0;
-    }
-    .object-adder{
-        background-color: #C15000;
-    }
-    .string-adder{
-        background-color:#007408;
-    }
-    .bool-adder{
-        background-color: #516600;
-    }
-    .number-adder{
-        background-color: #497B8D;
-    }
-    .child-inserters button{
-        color: white;
-        text-shadow:1px 1px 1px black;
-        border-radius: 5px;
-        padding: 2;
-        border: none;
-    }
-    .remove{
-        padding: 2px 4px;
-        -webkit-border-radius: 5px;
-        -moz-border-radius: 5px;
-        border-radius: 5px;
-        color: white;
-        font-weight: bold;
-        text-shadow: 1px 1px 1px black;
-        background-color: black;
-        
-    }
-    .remove::after{
-        content: "JSON Editor";
-    }
-    .remove.editKey::after{
-        content: "Remove item by deleting the property name.";
-    }
-
-    .field{
-        display:flex;
-        flex-direction:row;
-        line-height: 20px;
-        align-items: center;
-    }
-    .child-inserters{
-        display: flex;
-        justify-content: center;
-    }
-    .child-editors{
-        margin-left: 25px;
-    }
-    div[part="child-editors"][data-open="false"]{
-        display: none;
-    }
-    [data-type="object"] button.nonPrimitive{
-        display: inline;
-    }
-    [data-type="object"] div.nonPrimitive[data-open="true"]{
-        display: block;
-    }
-    [data-type="array"] button.nonPrimitive{
-        display: inline;
-    }
-    [data-type="array"] div.nonPrimitive[data-open="true"]{
-        display: block;
-    }
-    [data-type="string"] .nonPrimitive{
-        display: none;
-    }
-    [data-type="number"] .nonPrimitive{
-        display: none;
-    }
-    [data-type="boolean"] .nonPrimitive{
-        display: none;
-    }
-    [data-type="string"] [part="key"]{
-        background-color: rgb(0, 148, 8);
-    }
-    [data-type="boolean"] [part="key"]{
-        background-color: #B1C639;
-    }
-    [data-type="object"] [part="key"]{
-        background-color: rgb(225, 112, 0);
-    }
-    [data-type="number"] [part="key"]{
-        background-color: rgb(73, 123, 141);
-    }
-    [data-type="array"] [part="key"]{
-        background-color: rgb(45, 91, 137);
-    }
-    .value{
-        background-color: #ECF3C3;
-        width: 100%;
-    }
-    .value-label{
-        flex-grow: 5;
-    }
-    input.key {
-        
-        -webkit-border-radius: 5px;
-        -moz-border-radius: 5px;
-        border-radius: 5px;
-        margin-right: 2px;
-    }
-    input {
-        border: none;
-        padding: 3px;
-    }
-</style>
 `;
 const s = '';
 const refs = {
@@ -165,7 +32,7 @@ const refs = {
     removePart: s, numberAdderPart: s, valuePart: s,
     ibIdXtalEditorElement: s
 };
-const linkTypeAndParsedObject = ({ value, self }) => {
+const onValueChange = ({ value, self }) => {
     let parsedObject = value;
     if (value !== undefined) {
         if (value === 'true' || value === 'false') {
@@ -333,7 +200,7 @@ const updateTransforms = [
 ];
 const propActions = [
     xp.manageMainTemplate,
-    linkTypeAndParsedObject,
+    onValueChange,
     linkChildValues,
     linkValueFromChildren,
     addObject,
@@ -406,6 +273,7 @@ export class XtalEditor extends HTMLElement {
                 ctor: DOMKeyPE
             }
         ]);
+        this.styleTemplate = styleTemplate;
         this.self = this;
         this.refs = refs;
         this.propActions = propActions;
