@@ -347,5 +347,5 @@ export class XtalEditor extends HTMLElement {
     }
 }
 XtalEditor.is = 'xtal-editor';
-xc.letThereBeProps(XtalEditor, slicedPropDefs.propDefs, 'onPropChange');
+xc.letThereBeProps(XtalEditor, slicedPropDefs, 'onPropChange');
 xc.define(XtalEditor);

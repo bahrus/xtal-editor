@@ -397,5 +397,5 @@ export class XtalEditor extends HTMLElement implements XtalEditorPublicProps, Xt
         this.reactor.addToQueue(propDef, newVal);
     }
 }
-xc.letThereBeProps(XtalEditor, slicedPropDefs.propDefs, 'onPropChange');
+xc.letThereBeProps(XtalEditor, slicedPropDefs, 'onPropChange');
 xc.define(XtalEditor);

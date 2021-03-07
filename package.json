@@ -20,14 +20,14 @@
   ],
   "types": "types.d.ts",
   "dependencies": {
-    "ib-id": "0.0.15",
-    "xtal-element": "0.0.354"
+    "ib-id": "0.0.22",
+    "xtal-element": "0.0.362"
   },
   "devDependencies": {
-    "@rollup/plugin-node-resolve": "11.1.0",
+    "@rollup/plugin-node-resolve": "11.2.0",
     "@skypack/package-check": "0.2.2",
-    "@web/dev-server": "0.1.5",
-    "es-module-shims": "0.9.0",
+    "@web/dev-server": "0.1.8",
+    "es-module-shims": "0.10.1",
     "xtal-test": "0.0.48"
   },
   "scripts": {
