@@ -4,9 +4,13 @@ export const styleTemplate = html`
     :host{
         display:block;
     }
+
+    
     slot{
         display: none;
     }
+
+
     .expander{
         width: fit-content;
         height: fit-content;
@@ -44,7 +48,7 @@ export const styleTemplate = html`
         border-radius: 5px;
         padding: 2;
         border: none;
-        width:95px;
+        /* width:95px; */
     }
     .remove{
         padding: 2px 4px;
@@ -70,9 +74,29 @@ export const styleTemplate = html`
         line-height: 20px;
         align-items: center;
     }
+    @media only screen and (max-width: 1000px) {
+        .field{
+            flex-direction: column;
+        }
+        .child-inserters{
+            justify-content: flex-end;
+            width: 100%;
+        }
+        .adder{
+            font-size: 2vw;
+        }
+    }
+    @media only screen and (min-width: 1001px){
+        .child-inserters{
+            justify-content: center;
+        }
+    }
+    .text-editing{
+        display: flex;
+        flex-direction: row;
+    }
     .child-inserters{
         display: flex;
-        justify-content: center;
     }
     .child-editors{
         margin-left: 25px;
