@@ -26,24 +26,25 @@ export const styleTemplate = html `
         padding-bottom: 0px;
         border: 0;
     }
-    .object-adder{
+    .object.adder{
         background-color: #C15000;
     }
-    .string-adder{
+    .string.adder{
         background-color:#007408;
     }
-    .bool-adder{
+    .bool.adder{
         background-color: #516600;
     }
-    .number-adder{
+    .number.adder{
         background-color: #497B8D;
     }
-    .child-inserters button{
+    .adder{
         color: white;
         text-shadow:1px 1px 1px black;
         border-radius: 5px;
         padding: 2;
         border: none;
+        width:95px;
     }
     .remove{
         padding: 2px 4px;
@@ -118,9 +119,7 @@ export const styleTemplate = html `
     .value{
         background-color: #ECF3C3;
         width: 100%;
-    }
-    .value-label{
-        flex-grow: 5;
+        flex-grow:5;
     }
     input.key {
         

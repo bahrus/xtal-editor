@@ -9,12 +9,12 @@ const mainTemplate = html `
 <div class="remove" part=remove></div>
 <div data-type=string part=editor>
     <div part=field class=field>
-        <button part=expander class="expander nonPrimitive">+</button><label><input part=key class=key></label><label class=value-label><input part=value class=value></label>
+        <button part=expander class="expander nonPrimitive">+</button><input aria-label=key part=key class=key><input aria-label=value part=value class=value>
         <div part=child-inserters class="nonPrimitive child-inserters" data-open=false>
-            <button part=object-adder class=object-adder>add object</button>
-            <button part=string-adder class=string-adder>add string</button>
-            <button part=bool-adder class=bool-adder>add bool</button>
-            <button part=number-adder class=number-adder>add number</button>
+            <button part=object-adder class="object adder">add object</button>
+            <button part=string-adder class="string adder">add string</button>
+            <button part=bool-adder class="bool adder">add bool</button>
+            <button part=number-adder class="number adder">add number</button>
             
         </div>
         <button class=copyBtn part=copy-to-clipboard><img class=copy alt="Copy to Clipboard" src="https://cdn.jsdelivr.net/npm/xtal-editor/src/copy.svg"></button>
