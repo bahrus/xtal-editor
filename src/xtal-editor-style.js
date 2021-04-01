@@ -95,6 +95,8 @@ export const styleTemplate = html `
         display: flex;
         flex-direction: row;
         width: 100%;
+        padding-top:1px;
+        padding-bottom:1px;
     }
     .child-inserters{
         display: flex;
