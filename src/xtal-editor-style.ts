@@ -94,6 +94,7 @@ export const styleTemplate = html`
     .text-editing{
         display: flex;
         flex-direction: row;
+        width: 100%;
     }
     .child-inserters{
         display: flex;

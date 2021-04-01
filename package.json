@@ -21,13 +21,12 @@
   "types": "types.d.ts",
   "dependencies": {
     "ib-id": "0.0.25",
-    "xtal-element": "0.0.370"
+    "xtal-element": "0.0.371"
   },
   "devDependencies": {
     "@rollup/plugin-node-resolve": "11.2.1",
     "@skypack/package-check": "0.2.2",
     "@web/dev-server": "0.1.10",
-    "es-module-shims": "0.10.3",
     "xtal-test": "0.0.50"
   },
   "scripts": {
