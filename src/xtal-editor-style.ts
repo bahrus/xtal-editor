@@ -85,16 +85,25 @@ export const styleTemplate = html`
         .adder{
             font-size: 2vw;
         }
+        .text-editing{
+            width: 100%;
+        }
     }
     @media only screen and (min-width: 1001px){
         .child-inserters{
             justify-content: center;
         }
+        .field{
+            width: 100%;
+            justify-content: space-evenly;
+        }
+        .text-editing{
+            flex-grow: 1;
+        }
     }
     .text-editing{
         display: flex;
         flex-direction: row;
-        width: 100%;
         padding-top:1px;
         padding-bottom:1px;
     }
