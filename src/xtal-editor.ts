@@ -226,51 +226,53 @@ const propActions = [
     updateTransforms,
 ] as PropAction[];
 
+const baseProp: PropDef = {
+    dry: true,
+    async: true,
+}
+
 const num: PropDef = {
+    ...baseProp,
     type: Number,
 };
 const bool: PropDef = {
+    ...baseProp,
     type: Boolean,
 };
 const str: PropDef = {
+    ...baseProp,
     type: String,
 };
 const propDefMap: PropDefMap<XtalEditor> = {
     ...xp.props,
     upwardDataFlowInProgress: bool, open: bool,
     handlersAttached: {
-        type: Boolean,
-        dry: true,
-        stopReactionsIfFalsy: true
+        ...bool,
+        stopReactionsIfFalsy: true,
     },
-    hasParent: {
-        type: Boolean,
-        dry: true
-    },
+    hasParent: bool,
     objCounter: num, strCounter: num, boolCounter: num, numberCounter: num,
     internalUpdateCount: {
-        type: Number,
+        ...num,
         notify: true
     },
-    type: {
-        type: String,
-        dry: true
-    },
+    type: str,
     key: str, uiValue: str,
     value: {
-        type: String,
-        dry: true,
+        ...str,
         parse: true
     },
     parsedObject: {
+        ...baseProp,
         type: Object,
-        dry: true,
         notify: true
     },
     childValues: {
+        ...baseProp,
         type: Object
     },
     rootEditor: {
+        ...baseProp,
         type: Object,
     }
 };

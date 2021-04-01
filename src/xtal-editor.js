@@ -215,51 +215,52 @@ const propActions = [
     addEventHandlers,
     updateTransforms,
 ];
+const baseProp = {
+    dry: true,
+    async: true,
+};
 const num = {
+    ...baseProp,
     type: Number,
 };
 const bool = {
+    ...baseProp,
     type: Boolean,
 };
 const str = {
+    ...baseProp,
     type: String,
 };
 const propDefMap = {
     ...xp.props,
     upwardDataFlowInProgress: bool, open: bool,
     handlersAttached: {
-        type: Boolean,
-        dry: true,
-        stopReactionsIfFalsy: true
+        ...bool,
+        stopReactionsIfFalsy: true,
     },
-    hasParent: {
-        type: Boolean,
-        dry: true
-    },
+    hasParent: bool,
     objCounter: num, strCounter: num, boolCounter: num, numberCounter: num,
     internalUpdateCount: {
-        type: Number,
+        ...num,
         notify: true
     },
-    type: {
-        type: String,
-        dry: true
-    },
+    type: str,
     key: str, uiValue: str,
     value: {
-        type: String,
-        dry: true,
+        ...str,
         parse: true
     },
     parsedObject: {
+        ...baseProp,
         type: Object,
-        dry: true,
         notify: true
     },
     childValues: {
+        ...baseProp,
         type: Object
     },
     rootEditor: {
+        ...baseProp,
         type: Object,
     }
 };
