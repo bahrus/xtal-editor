@@ -48,7 +48,6 @@ export const styleTemplate = html `
         border-radius: 5px;
         padding: 2;
         border: none;
-        /* width:95px; */
     }
     .remove{
         padding: 2px 4px;
@@ -81,9 +80,6 @@ export const styleTemplate = html `
         .child-inserters{
             justify-content: flex-end;
             width: 100%;
-        }
-        .adder{
-            font-size: 2vw;
         }
         .text-editing{
             width: 100%;
