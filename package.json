@@ -20,7 +20,7 @@
   ],
   "types": "types.d.ts",
   "dependencies": {
-    "ib-id": "0.0.25",
+    "ib-id": "0.0.26",
     "xtal-element": "0.0.371"
   },
   "devDependencies": {
