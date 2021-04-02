@@ -215,56 +215,6 @@ const propActions = [
     addEventHandlers,
     updateTransforms,
 ];
-const baseProp = {
-    dry: true,
-    async: true,
-};
-const num = {
-    ...baseProp,
-    type: Number,
-};
-const bool = {
-    ...baseProp,
-    type: Boolean,
-};
-const str = {
-    ...baseProp,
-    type: String,
-};
-const propDefMap = {
-    ...xp.props,
-    upwardDataFlowInProgress: bool, open: bool,
-    handlersAttached: {
-        ...bool,
-        stopReactionsIfFalsy: true,
-    },
-    hasParent: bool,
-    objCounter: num, strCounter: num, boolCounter: num, numberCounter: num,
-    internalUpdateCount: {
-        ...num,
-        notify: true
-    },
-    type: str,
-    key: str, uiValue: str,
-    value: {
-        ...str,
-        parse: true
-    },
-    parsedObject: {
-        ...baseProp,
-        type: Object,
-        notify: true
-    },
-    childValues: {
-        ...baseProp,
-        type: Object
-    },
-    rootEditor: {
-        ...baseProp,
-        type: Object,
-    }
-};
-const slicedPropDefs = xc.getSlicedPropDefs(propDefMap);
 /**
  * @element xtal-editor
  */
@@ -351,5 +301,55 @@ export class XtalEditor extends HTMLElement {
     }
 }
 XtalEditor.is = 'xtal-editor';
+const baseProp = {
+    dry: true,
+    async: true,
+};
+const num = {
+    ...baseProp,
+    type: Number,
+};
+const bool = {
+    ...baseProp,
+    type: Boolean,
+};
+const str = {
+    ...baseProp,
+    type: String,
+};
+const propDefMap = {
+    ...xp.props,
+    upwardDataFlowInProgress: bool, open: bool,
+    handlersAttached: {
+        ...bool,
+        stopReactionsIfFalsy: true,
+    },
+    hasParent: bool,
+    objCounter: num, strCounter: num, boolCounter: num, numberCounter: num,
+    internalUpdateCount: {
+        ...num,
+        notify: true
+    },
+    type: str,
+    key: str, uiValue: str,
+    value: {
+        ...str,
+        parse: true
+    },
+    parsedObject: {
+        ...baseProp,
+        type: Object,
+        notify: true
+    },
+    childValues: {
+        ...baseProp,
+        type: Object
+    },
+    rootEditor: {
+        ...baseProp,
+        type: Object,
+    }
+};
+const slicedPropDefs = xc.getSlicedPropDefs(propDefMap);
 xc.letThereBeProps(XtalEditor, slicedPropDefs, 'onPropChange');
 xc.define(XtalEditor);

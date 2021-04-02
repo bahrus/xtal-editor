@@ -41,7 +41,7 @@ const refs = {
 };
 
 
-const onValueChange = ({value, self}: XtalEditor) => {
+const onValueChange = ({value, self}: X) => {
     let parsedObject = value;
     if(value !==  undefined){
         if(value === 'true' || value === 'false'){
@@ -64,7 +64,7 @@ const onValueChange = ({value, self}: XtalEditor) => {
     self.parsedObject = parsedObject;
 };
 
-const linkChildValues = ({parsedObject, type, self}: XtalEditor) => {
+const linkChildValues = ({parsedObject, type, self}: X) => {
     if(parsedObject === undefined) {
         self.childValues = undefined;
         return;
@@ -87,7 +87,7 @@ const linkChildValues = ({parsedObject, type, self}: XtalEditor) => {
 
 };
 
-const onUiValue = ({uiValue, self}: XtalEditor) => {
+const onUiValue = ({uiValue, self}: X) => {
     if(uiValue === undefined) return;
     switch(self.type){
         case 'object':
@@ -102,7 +102,7 @@ const onUiValue = ({uiValue, self}: XtalEditor) => {
     }
 }
 
-const addEventHandlers = ({domCache, self}: XtalEditor) => [
+const addEventHandlers = ({domCache, self}: X) => [
     {
         [refs.expanderPart]: [,{click:self.toggle}],
         [refs.keyPart]: [,{change: [self.handleKeyChange, 'value'], focus: self.handleKeyFocus}],
@@ -159,7 +159,7 @@ const linkValueFromChildren = ({upwardDataFlowInProgress, self, type}: XtalEdito
 }
 
 
-const addObject = ({objCounter, self}: XtalEditor) => {
+const addObject = ({objCounter, self}: X) => {
     if(objCounter === undefined) return;
     self.open = true;
     const newObj = {...self.parsedObject};
@@ -168,7 +168,7 @@ const addObject = ({objCounter, self}: XtalEditor) => {
     
 }
 
-const addString = ({strCounter, self}: XtalEditor) => {
+const addString = ({strCounter, self}: X) => {
     if(strCounter === undefined) return;
     const newObj = {...self.parsedObject};
     newObj['string' + strCounter] = 'val' + strCounter;
@@ -176,7 +176,7 @@ const addString = ({strCounter, self}: XtalEditor) => {
     self.open = true;
 }
 
-const addBool = ({boolCounter, self}: XtalEditor) => {
+const addBool = ({boolCounter, self}: X) => {
     if(boolCounter === undefined) return;
     const newObj = {...self.parsedObject};
     newObj['bool' + boolCounter] = 'false';
@@ -184,7 +184,7 @@ const addBool = ({boolCounter, self}: XtalEditor) => {
     self.open = true;
 }
 
-const addNumber = ({numberCounter, self}: XtalEditor) => {
+const addNumber = ({numberCounter, self}: X) => {
     if(numberCounter === undefined) return;
     const newObj = {...self.parsedObject};
     newObj['number' + numberCounter] = '0';
@@ -193,20 +193,20 @@ const addNumber = ({numberCounter, self}: XtalEditor) => {
 }
 
 const updateTransforms = [
-    ({value}: XtalEditor) => [{[refs.valuePart]: [{value: value}]}],
-    ({type}: XtalEditor) => [{[refs.editorPart]: [{dataset: {type: type}}]}],
-    ({uiValue}: XtalEditor) => [{[refs.valuePart]: [uiValue === undefined ? undefined : {value: uiValue}]}],
-    ({key}: XtalEditor) => [{[refs.keyPart]: [{value: key}]}],
-    ({childValues, type, self}: XtalEditor) => [
+    ({value}: X) => [{[refs.valuePart]: [{value: value}]}],
+    ({type}: X) => [{[refs.editorPart]: [{dataset: {type: type}}]}],
+    ({uiValue}: X) => [{[refs.valuePart]: [uiValue === undefined ? undefined : {value: uiValue}]}],
+    ({key}: X) => [{[refs.keyPart]: [{value: key}]}],
+    ({childValues, type, self}: X) => [
         {[refs.ibIdXtalEditorElement]: [{_rootEditor: self.rootEditor, list: childValues}]}
     ],
-    ({open}: XtalEditor) => [
+    ({open}: X) => [
         {
             [refs.expanderPart]: open ? '-' : '+',
             [refs.childEditorsPart]: [{dataset: {open: (!!open).toString()}}]
         }
     ],
-    ({hasParent}: XtalEditor) => [{
+    ({hasParent}: X) => [{
         [refs.removePart]: [{style: {display: hasParent ? 'none' : 'block' }}],
     }]
 ]
@@ -226,64 +226,7 @@ const propActions = [
     updateTransforms,
 ] as PropAction[];
 
-const baseProp: PropDef = {
-    dry: true,
-    async: true,
-}
 
-const num: PropDef = {
-    ...baseProp,
-    type: Number,
-};
-const bool: PropDef = {
-    ...baseProp,
-    type: Boolean,
-};
-const str: PropDef = {
-    ...baseProp,
-    type: String,
-};
-const propDefMap: PropDefMap<XtalEditor> = {
-    ...xp.props,
-    upwardDataFlowInProgress: bool, open: bool,
-    handlersAttached: {
-        ...bool,
-        stopReactionsIfFalsy: true,
-    },
-    hasParent: bool,
-    objCounter: num, strCounter: num, boolCounter: num, numberCounter: num,
-    internalUpdateCount: {
-        ...num,
-        notify: true
-    },
-    type: str,
-    key: str, uiValue: str,
-    value: {
-        ...str,
-        parse: true
-    },
-    parsedObject: {
-        ...baseProp,
-        type: Object,
-        notify: true
-    },
-    childValues: {
-        ...baseProp,
-        type: Object
-    },
-    rootEditor: {
-        ...baseProp,
-        type: Object,
-    }
-};
-
-const slicedPropDefs = xc.getSlicedPropDefs(propDefMap);
-
-
-interface NameValue {
-    key: string, 
-    value: string,
-}
 
 /**
  * @element xtal-editor
@@ -403,5 +346,67 @@ export class XtalEditor extends HTMLElement implements XtalEditorPublicProps, Xt
         this.reactor.addToQueue(propDef, newVal);
     }
 }
+
+type X = XtalEditor;
+
+const baseProp: PropDef = {
+    dry: true,
+    async: true,
+}
+
+const num: PropDef = {
+    ...baseProp,
+    type: Number,
+};
+const bool: PropDef = {
+    ...baseProp,
+    type: Boolean,
+};
+const str: PropDef = {
+    ...baseProp,
+    type: String,
+};
+const propDefMap: PropDefMap<XtalEditor> = {
+    ...xp.props,
+    upwardDataFlowInProgress: bool, open: bool,
+    handlersAttached: {
+        ...bool,
+        stopReactionsIfFalsy: true,
+    },
+    hasParent: bool,
+    objCounter: num, strCounter: num, boolCounter: num, numberCounter: num,
+    internalUpdateCount: {
+        ...num,
+        notify: true
+    },
+    type: str,
+    key: str, uiValue: str,
+    value: {
+        ...str,
+        parse: true
+    },
+    parsedObject: {
+        ...baseProp,
+        type: Object,
+        notify: true
+    },
+    childValues: {
+        ...baseProp,
+        type: Object
+    },
+    rootEditor: {
+        ...baseProp,
+        type: Object,
+    }
+};
+
+const slicedPropDefs = xc.getSlicedPropDefs(propDefMap);
+
+
+interface NameValue {
+    key: string, 
+    value: string,
+}
+
 xc.letThereBeProps(XtalEditor, slicedPropDefs, 'onPropChange');
 xc.define(XtalEditor);
