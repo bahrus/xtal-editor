@@ -188,7 +188,7 @@ const updateTransforms = [
     ({ type }) => [{ [refs.editorPart]: [{ dataset: { type: type } }] }],
     ({ uiValue }) => [{ [refs.valuePart]: [uiValue === undefined ? undefined : { value: uiValue }] }],
     ({ key }) => [{ [refs.keyPart]: [{ value: key }] }],
-    ({ childValues, type, self }) => [
+    ({ childValues, type, openEcho, self }) => [
         { [refs.ibIdXtalEditorElement]: [{ _rootEditor: self.rootEditor, list: childValues }] }
     ],
     ({ open }) => [
@@ -313,17 +313,22 @@ const bool = {
     ...baseProp,
     type: Boolean,
 };
+const bool2 = {
+    ...bool,
+    stopReactionsIfFalsy: true,
+};
 const str = {
     ...baseProp,
     type: String,
 };
 const propDefMap = {
     ...xp.props,
-    upwardDataFlowInProgress: bool, open: bool,
-    handlersAttached: {
+    upwardDataFlowInProgress: bool,
+    open: {
         ...bool,
-        stopReactionsIfFalsy: true,
+        echoTo: 'openEcho'
     },
+    handlersAttached: bool2,
     hasParent: bool,
     objCounter: num, strCounter: num, boolCounter: num, numberCounter: num,
     internalUpdateCount: {
@@ -343,8 +348,10 @@ const propDefMap = {
     },
     childValues: {
         ...baseProp,
+        stopReactionsIfFalsy: true,
         type: Object
     },
+    openEcho: bool2,
     rootEditor: {
         ...baseProp,
         type: Object,

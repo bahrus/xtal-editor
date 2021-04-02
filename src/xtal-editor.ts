@@ -197,7 +197,7 @@ const updateTransforms = [
     ({type}: X) => [{[refs.editorPart]: [{dataset: {type: type}}]}],
     ({uiValue}: X) => [{[refs.valuePart]: [uiValue === undefined ? undefined : {value: uiValue}]}],
     ({key}: X) => [{[refs.keyPart]: [{value: key}]}],
-    ({childValues, type, self}: X) => [
+    ({childValues, type, openEcho, self}: X) => [
         {[refs.ibIdXtalEditorElement]: [{_rootEditor: self.rootEditor, list: childValues}]}
     ],
     ({open}: X) => [
@@ -321,6 +321,8 @@ export class XtalEditor extends HTMLElement implements XtalEditorPublicProps, Xt
 
     open: boolean | undefined;
 
+    openEcho: boolean | undefined;
+
     /**
      * @private
      */
@@ -362,17 +364,23 @@ const bool: PropDef = {
     ...baseProp,
     type: Boolean,
 };
+const bool2: PropDef = {
+    ...bool,
+    stopReactionsIfFalsy: true,
+}
 const str: PropDef = {
     ...baseProp,
     type: String,
 };
+
 const propDefMap: PropDefMap<XtalEditor> = {
     ...xp.props,
-    upwardDataFlowInProgress: bool, open: bool,
-    handlersAttached: {
+    upwardDataFlowInProgress: bool, 
+    open: {
         ...bool,
-        stopReactionsIfFalsy: true,
+        echoTo: 'openEcho'
     },
+    handlersAttached: bool2,
     hasParent: bool,
     objCounter: num, strCounter: num, boolCounter: num, numberCounter: num,
     internalUpdateCount: {
@@ -392,8 +400,10 @@ const propDefMap: PropDefMap<XtalEditor> = {
     },
     childValues: {
         ...baseProp,
+        stopReactionsIfFalsy: true,
         type: Object
     },
+    openEcho:  bool2,
     rootEditor: {
         ...baseProp,
         type: Object,
