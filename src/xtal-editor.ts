@@ -186,8 +186,18 @@ const addBool = ({boolCounter, self}: X) => {
 
 const addNumber = ({numberCounter, self}: X) => {
     if(numberCounter === undefined) return;
-    const newObj = {...self.parsedObject};
-    newObj['number' + numberCounter] = '0';
+    let newObj: any;
+    switch(self.type){
+        case 'object':
+            newObj = {...self.parsedObject};
+            newObj['number' + numberCounter] = '0';
+            break;
+        case 'array':
+            newObj = [...self.parsedObject];
+            newObj.push(numberCounter);
+            break;
+    }
+
     self.value = JSON.stringify(newObj);
     self.open = true;
 }

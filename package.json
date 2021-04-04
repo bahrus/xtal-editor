@@ -20,8 +20,8 @@
   ],
   "types": "types.d.ts",
   "dependencies": {
-    "ib-id": "0.0.26",
-    "xtal-element": "0.0.371"
+    "ib-id": "0.0.27",
+    "xtal-element": "0.0.375"
   },
   "devDependencies": {
     "@rollup/plugin-node-resolve": "11.2.1",
