@@ -6,8 +6,7 @@
 
 Re-creation of [flexi-json](http://www.daviddurman.com/flexi-json-editor/jsoneditor.html), taking some liberties, but as a web component.
 
-## [Demo](https://jsfiddle.net/bahrus/u5e4okn6/8/)
-
+## [Demo](https://jsfiddle.net/bahrus/u5e4okn6/10/)
 ## Usage
 
 Locally:
