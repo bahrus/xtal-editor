@@ -154,8 +154,16 @@ const linkValueFromChildren = ({ upwardDataFlowInProgress, self, type }) => {
 const addObject = ({ objCounter, self }) => {
     if (objCounter === undefined)
         return;
-    const newObj = { ...self.parsedObject };
-    newObj['object' + objCounter] = {};
+    let newObj;
+    switch (self.type) {
+        case 'object':
+            newObj = { ...self.parsedObject };
+            newObj['object' + objCounter] = {};
+            break;
+        case 'array':
+            newObj = [...self.parsedObject];
+            newObj.push({});
+    }
     self.value = JSON.stringify(newObj);
     self.open = true;
 };

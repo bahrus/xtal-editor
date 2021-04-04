@@ -161,9 +161,16 @@ const linkValueFromChildren = ({upwardDataFlowInProgress, self, type}: XtalEdito
 
 const addObject = ({objCounter, self}: X) => {
     if(objCounter === undefined) return;
-    
-    const newObj = {...self.parsedObject};
-    newObj['object' + objCounter] = {};
+    let newObj: any;
+    switch(self.type){
+        case 'object':    
+            newObj = {...self.parsedObject};
+            newObj['object' + objCounter] = {};
+            break;
+        case 'array':
+            newObj = [...self.parsedObject];
+            newObj.push({});
+    }
     self.value = JSON.stringify(newObj);
     self.open = true;
     
