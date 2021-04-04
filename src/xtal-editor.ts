@@ -178,8 +178,17 @@ const addString = ({strCounter, self}: X) => {
 
 const addBool = ({boolCounter, self}: X) => {
     if(boolCounter === undefined) return;
-    const newObj = {...self.parsedObject};
-    newObj['bool' + boolCounter] = 'false';
+    let newObj: any;
+    switch(self.type){
+        case 'object':
+            newObj = {...self.parsedObject};
+            newObj['bool' + boolCounter] = 'false';
+            break;
+        case 'array':
+            newObj = [...self.parsedObject];
+            newObj.push(true);
+            break;
+    }
     self.value = JSON.stringify(newObj);
     self.open = true;
 }
@@ -194,7 +203,7 @@ const addNumber = ({numberCounter, self}: X) => {
             break;
         case 'array':
             newObj = [...self.parsedObject];
-            newObj.push(numberCounter);
+            newObj.push(0);
             break;
     }
 
