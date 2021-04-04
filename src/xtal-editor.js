@@ -154,16 +154,25 @@ const linkValueFromChildren = ({ upwardDataFlowInProgress, self, type }) => {
 const addObject = ({ objCounter, self }) => {
     if (objCounter === undefined)
         return;
-    self.open = true;
     const newObj = { ...self.parsedObject };
     newObj['object' + objCounter] = {};
     self.value = JSON.stringify(newObj);
+    self.open = true;
 };
 const addString = ({ strCounter, self }) => {
     if (strCounter === undefined)
         return;
-    const newObj = { ...self.parsedObject };
-    newObj['string' + strCounter] = 'val' + strCounter;
+    let newObj;
+    switch (self.type) {
+        case 'object':
+            newObj = { ...self.parsedObject };
+            newObj['string' + strCounter] = 'val' + strCounter;
+            break;
+        case 'array':
+            newObj = [...self.parsedObject];
+            newObj.push('string');
+            break;
+    }
     self.value = JSON.stringify(newObj);
     self.open = true;
 };
