@@ -44,23 +44,35 @@ const refs = {
 const onValueChange = ({value, self}: X) => {
     let parsedObject = value;
     if(value !==  undefined){
-        if(typeof value === 'string'){
-            if(value === 'true' || value === 'false'){
-                self.type = 'boolean';
-            }else if(!isNaN(value as any as number)){
-                self.type = 'number';
-            }else{
-                try{
-                    parsedObject = JSON.parse(value);
-                    if(Array.isArray(parsedObject)){
-                        self.type = 'array';
-                    }else{
-                        self.type = 'object';
+        switch(typeof value){
+            case 'string':
+                if(value === 'true' || value === 'false'){
+                    self.type = 'boolean';
+                }else if(!isNaN(value as any as number)){
+                    self.type = 'number';
+                }else{
+                    try{
+                        parsedObject = JSON.parse(value);
+                        if(Array.isArray(parsedObject)){
+                            self.type = 'array';
+                        }else{
+                            self.type = 'object';
+                        }
+                    }catch(e){
+                        self.type = 'string';
                     }
-                }catch(e){
-                    self.type = 'string';
                 }
-            }
+                break;
+            case 'object':
+                if(Array.isArray(parsedObject)){
+                    self.type = 'array';
+                }else{
+                    self.type = 'object';
+                }
+                break;
+        }
+        if(typeof value === 'string'){
+
         }
 
     }
