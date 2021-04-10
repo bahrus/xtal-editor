@@ -38,24 +38,26 @@ const refs = {
 const onValueChange = ({ value, self }) => {
     let parsedObject = value;
     if (value !== undefined) {
-        if (value === 'true' || value === 'false') {
-            self.type = 'boolean';
-        }
-        else if (!isNaN(value)) {
-            self.type = 'number';
-        }
-        else {
-            try {
-                parsedObject = JSON.parse(value);
-                if (Array.isArray(parsedObject)) {
-                    self.type = 'array';
-                }
-                else {
-                    self.type = 'object';
-                }
+        if (typeof value === 'string') {
+            if (value === 'true' || value === 'false') {
+                self.type = 'boolean';
             }
-            catch (e) {
-                self.type = 'string';
+            else if (!isNaN(value)) {
+                self.type = 'number';
+            }
+            else {
+                try {
+                    parsedObject = JSON.parse(value);
+                    if (Array.isArray(parsedObject)) {
+                        self.type = 'array';
+                    }
+                    else {
+                        self.type = 'object';
+                    }
+                }
+                catch (e) {
+                    self.type = 'string';
+                }
             }
         }
     }
