@@ -70,8 +70,6 @@ const onValueChange = ({ value, self }) => {
                 }
                 break;
         }
-        if (typeof value === 'string') {
-        }
     }
     self.parsedObject = parsedObject;
 };
@@ -233,7 +231,7 @@ const addNumber = ({ numberCounter, self }) => {
     self.open = true;
 };
 const updateTransforms = [
-    ({ value }) => [{ [refs.valuePart]: [{ value: value }] }],
+    ({ value }) => [{ [refs.valuePart]: [{ value: typeof value === 'string' ? value : JSON.stringify(value) }] }],
     ({ type }) => [{ [refs.editorPart]: [{ dataset: { type: type } }] }],
     ({ uiValue }) => [{ [refs.valuePart]: [uiValue === undefined ? undefined : { value: uiValue }] }],
     ({ key }) => [{ [refs.keyPart]: [{ value: key }] }],

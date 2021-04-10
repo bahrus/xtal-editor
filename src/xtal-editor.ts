@@ -69,10 +69,8 @@ const onValueChange = ({value, self}: X) => {
                 }else{
                     self.type = 'object';
                 }
-                break;
-        }
-        if(typeof value === 'string'){
 
+                break;
         }
 
     }
@@ -244,7 +242,7 @@ const addNumber = ({numberCounter, self}: X) => {
 }
 
 const updateTransforms = [
-    ({value}: X) => [{[refs.valuePart]: [{value: value}]}],
+    ({value}: X) => [{[refs.valuePart]: [{value: typeof value === 'string' ? value : JSON.stringify(value)}]}],
     ({type}: X) => [{[refs.editorPart]: [{dataset: {type: type}}]}],
     ({uiValue}: X) => [{[refs.valuePart]: [uiValue === undefined ? undefined : {value: uiValue}]}],
     ({key}: X) => [{[refs.keyPart]: [{value: key}]}],
