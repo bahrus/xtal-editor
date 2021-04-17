@@ -8,8 +8,3 @@ export interface XtalEditorPublicProps extends Partial<HTMLElement>{
     open: boolean | undefined;
 }
 
-declare global {
-    interface HTMLElementTagNameMap {
-        "xtal-editor": XtalEditorPublicProps,
-    }
-}

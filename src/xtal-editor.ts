@@ -469,3 +469,9 @@ interface NameValue {
 
 xc.letThereBeProps(XtalEditor, slicedPropDefs, 'onPropChange');
 xc.define(XtalEditor);
+
+declare global {
+    interface HTMLElementTagNameMap {
+        "xtal-editor": XtalEditor,
+    }
+}
