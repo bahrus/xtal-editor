@@ -21,7 +21,7 @@ export class IbIdXtalEditor extends IBid{
                 break;
                 default: {
                     value = x;
-                    key = idx!.toString()
+                    key = `[${idx!.toString()}]`
                 }
             }
             const hasParent = true;

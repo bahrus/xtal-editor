@@ -1,4 +1,4 @@
-import {xc} from 'xtal-element/lib/XtalCore.js';
+import {xc, IInternals} from 'xtal-element/lib/XtalCore.js';
 import {xp} from 'xtal-element/lib/XtalPattern.js';
 import {PropAction, XtalPattern, PropDef, PSettings, PropDefMap} from 'xtal-element/types.d.js';
 import {html} from 'xtal-element/lib/html.js';
@@ -280,8 +280,13 @@ const propActions = [
 /**
  * @element xtal-editor
  */
-export class XtalEditor extends HTMLElement implements XtalEditorPublicProps, XtalPattern{
+export class XtalEditor extends HTMLElement implements XtalEditorPublicProps, XtalPattern, IInternals{
     static is = 'xtal-editor';
+    constructor(){
+        super();
+        xc.initInternals(this);
+    }
+    _internals: any;
     reactor = new xp.RxSuppl(this, [
         {
             rhsType: Array,

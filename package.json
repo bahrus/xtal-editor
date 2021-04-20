@@ -20,8 +20,8 @@
   ],
   "types": "types.d.ts",
   "dependencies": {
-    "ib-id": "0.0.28",
-    "xtal-element": "0.0.376"
+    "ib-id": "0.0.30",
+    "xtal-element": "0.0.383"
   },
   "devDependencies": {
     "@rollup/plugin-node-resolve": "11.2.1",
@@ -42,7 +42,7 @@
     "type": "git",
     "url": "git+https://github.com/bahrus/xtal-editor.git"
   },
-  "author": "",
+  "author": "anderson.bruce.b@gmail.com",
   "license": "MIT",
   "bugs": {
     "url": "https://github.com/bahrus/xtal-editor/issues"

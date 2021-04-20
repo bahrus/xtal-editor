@@ -267,7 +267,7 @@ const propActions = [
  */
 export class XtalEditor extends HTMLElement {
     constructor() {
-        super(...arguments);
+        super();
         this.reactor = new xp.RxSuppl(this, [
             {
                 rhsType: Array,
@@ -283,6 +283,7 @@ export class XtalEditor extends HTMLElement {
          * @private
          */
         this.actionCount = 0;
+        xc.initInternals(this);
     }
     handleKeyChange(key) {
         if (key === '') {
