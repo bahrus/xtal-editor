@@ -21,9 +21,9 @@ const mainTemplate = html`
             <button part=string-adder class="string adder">add string</button>
             <button part=bool-adder class="bool adder">add bool</button>
             <button part=number-adder class="number adder">add number</button>
-            <button id=copy part=copy-to-clipboard></button>
-            <button id=expand-all part=expand-all>ea</button>
-            <button id=collapse-all part=collapse-all>ca</button>
+            <button id=copy class=action part=copy-to-clipboard title="Copy to Clipboard"></button>
+            <button id=expand-all class=action part=expand-all title="Expand All" aria-label="Expand All"></button>
+            <button id=collapse-all class=action part=collapse-all title="Collapse All" aria-label="Collapse All"></button>
         </div>
         
     </div>

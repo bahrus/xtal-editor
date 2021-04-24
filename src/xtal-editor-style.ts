@@ -72,15 +72,20 @@ export const styleTemplate = html`
     }
     #copy{
         background-image: url(https://cdn.jsdelivr.net/npm/xtal-editor/src/copy.svg);
+        
+    }
+    #expand-all{
+        background-image: url(https://cdn.jsdelivr.net/npm/xtal-editor/src/arrows-expand.svg);
+        width: 20px;
+    }
+    .action{
         background-repeat:no-repeat;
         background-position-y:center;
         height: 22px;
     }
-    #expand-all{
-        background-image: url(https://cdn.jsdelivr.net/npm/xtal-editor/src/arrows-expand.svg);
-        background-repeat:no-repeat;
-        background-position-y:center;
-        height: 22px;
+    #collapse-all{
+        background-image: url(https://cdn.jsdelivr.net/npm/xtal-editor/src/arrows-collapse.svg);
+        width: 20px;
     }
     @media only screen and (max-width: 1000px) {
         .field{
