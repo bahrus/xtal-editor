@@ -70,8 +70,14 @@ export const styleTemplate = html`
         line-height: 20px;
         align-items: center;
     }
-    .copy{
+    #copy{
         background-image: url(https://cdn.jsdelivr.net/npm/xtal-editor/src/copy.svg);
+        background-repeat:no-repeat;
+        background-position-y:center;
+        height: 22px;
+    }
+    #expand-all{
+        background-image: url(https://cdn.jsdelivr.net/npm/xtal-editor/src/arrows-expand.svg);
         background-repeat:no-repeat;
         background-position-y:center;
         height: 22px;

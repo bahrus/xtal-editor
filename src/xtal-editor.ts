@@ -21,7 +21,7 @@ const mainTemplate = html`
             <button part=string-adder class="string adder">add string</button>
             <button part=bool-adder class="bool adder">add bool</button>
             <button part=number-adder class="number adder">add number</button>
-            <button class=copy part=copy-to-clipboard></button>
+            <button id=copy part=copy-to-clipboard></button>
             <button id=expand-all part=expand-all>ea</button>
             <button id=collapse-all part=collapse-all>ca</button>
         </div>
@@ -36,7 +36,7 @@ const mainTemplate = html`
 
 const s = '';
 const refs = {
-    slotElement: s, boolAdderPart: s, childEditorsPart: s, copyToClipboardPart: s,
+    slotElement: s, boolAdderPart: s, childEditorsPart: s, copyId: s,
     editorPart: s, expanderPart: s, keyPart: s, objectAdderPart: s, stringAdderPart: s,
     removePart: s, numberAdderPart: s, valuePart: s,
     ibIdXtalEditorElement: s, expandAllId:s, collapseAllId: s, 
@@ -126,7 +126,7 @@ const addEventHandlers = ({domCache, self}: X) => [
         [refs.stringAdderPart]: [,{click: self.addString}],
         [refs.boolAdderPart]: [, {click: self.addBool}],
         [refs.numberAdderPart]: [, {click: self.addNumber}],
-        [refs.copyToClipboardPart]: [,{click: self.copyToClipboard}],
+        [refs.copyId]: [,{click: self.copyToClipboard}],
         [refs.slotElement]: [,{slotchange: self.handleSlotChange}],
         [refs.ibIdXtalEditorElement]: [{rootEditor: self.rootEditor, host: self}],
         [refs.expandAllId]: [,{click:self.handleExpandAll}],
