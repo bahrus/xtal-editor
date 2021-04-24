@@ -18,9 +18,6 @@ export const styleTemplate = html`
         padding-right: 0px;
         width:20px;
     }
-    .copy{
-        height: 16px;
-    }
     .copyBtn{
         width: fit-content;
         height: fit-content;
@@ -72,6 +69,12 @@ export const styleTemplate = html`
         flex-direction:row;
         line-height: 20px;
         align-items: center;
+    }
+    .copy{
+        background-image: url(https://cdn.jsdelivr.net/npm/xtal-editor/src/copy.svg);
+        background-repeat:no-repeat;
+        background-position-y:center;
+        height: 22px;
     }
     @media only screen and (max-width: 1000px) {
         .field{

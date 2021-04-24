@@ -18,7 +18,9 @@ const mainTemplate = html `
             <button part=string-adder class="string adder">add string</button>
             <button part=bool-adder class="bool adder">add bool</button>
             <button part=number-adder class="number adder">add number</button>
-            <button class=copyBtn part=copy-to-clipboard><img class=copy alt="Copy to Clipboard" src="https://cdn.jsdelivr.net/npm/xtal-editor/src/copy.svg"></button>
+            <button class=copy part=copy-to-clipboard></button>
+            <button id=expand-all part=expand-all>ea</button>
+            <button id=collapse-all part=collapse-all>ca</button>
         </div>
         
     </div>
@@ -33,7 +35,7 @@ const refs = {
     slotElement: s, boolAdderPart: s, childEditorsPart: s, copyToClipboardPart: s,
     editorPart: s, expanderPart: s, keyPart: s, objectAdderPart: s, stringAdderPart: s,
     removePart: s, numberAdderPart: s, valuePart: s,
-    ibIdXtalEditorElement: s
+    ibIdXtalEditorElement: s, expandAllId: s, collapseAllId: s,
 };
 const onValueChange = ({ value, self }) => {
     let parsedObject = value;
@@ -120,7 +122,9 @@ const addEventHandlers = ({ domCache, self }) => [
         [refs.numberAdderPart]: [, { click: self.addNumber }],
         [refs.copyToClipboardPart]: [, { click: self.copyToClipboard }],
         [refs.slotElement]: [, { slotchange: self.handleSlotChange }],
-        [refs.ibIdXtalEditorElement]: [{ rootEditor: self.rootEditor, host: self }]
+        [refs.ibIdXtalEditorElement]: [{ rootEditor: self.rootEditor, host: self }],
+        [refs.expandAllId]: [, { click: self.handleExpandAll }],
+        [refs.collapseAllId]: [, { click: self.handleCollapseAll }]
     },
     [{ handlersAttached: true }]
 ];
@@ -139,7 +143,7 @@ function toString(item) {
 const linkValueFromChildren = ({ upwardDataFlowInProgress, self, type }) => {
     if (!upwardDataFlowInProgress)
         return;
-    const children = Array.from(self.shadowRoot.querySelectorAll(XtalEditor.is));
+    const children = self.childEditors;
     switch (type) {
         case 'object':
             {
@@ -301,12 +305,32 @@ export class XtalEditor extends HTMLElement {
         this.value = val;
         this.incrementUpdateCount();
     }
+    handleExpandAll() {
+        this.expandAll();
+    }
+    handleCollapseAll() {
+        this.collapseAll();
+    }
     incrementUpdateCount() {
         this.internalUpdateCount = this.internalUpdateCount === undefined ? 0 : this.internalUpdateCount + 1;
     }
     copyToClipboard() {
         this[refs.valuePart].select();
         document.execCommand("copy");
+    }
+    expandAll() {
+        this.open = true;
+        setTimeout(() => {
+            for (const child of this.childEditors) {
+                child.expandAll();
+            }
+        }, 50);
+    }
+    collapseAll() {
+        for (const child of this.childEditors) {
+            child.collapseAll();
+        }
+        this.open = false;
     }
     toggle() {
         this.open = !this.open;
@@ -346,6 +370,9 @@ export class XtalEditor extends HTMLElement {
     }
     onPropChange(n, propDef, newVal) {
         this.reactor.addToQueue(propDef, newVal);
+    }
+    get childEditors() {
+        return Array.from(this.shadowRoot.querySelectorAll(XtalEditor.is));
     }
 }
 XtalEditor.is = 'xtal-editor';
