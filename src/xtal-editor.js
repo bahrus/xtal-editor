@@ -315,7 +315,7 @@ export class XtalEditor extends HTMLElement {
         this.internalUpdateCount = this.internalUpdateCount === undefined ? 0 : this.internalUpdateCount + 1;
     }
     copyToClipboard() {
-        this[refs.valuePart].select();
+        this.domCache[refs.valuePart].select();
         document.execCommand("copy");
     }
     expandAll() {

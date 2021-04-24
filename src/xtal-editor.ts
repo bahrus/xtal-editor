@@ -329,7 +329,7 @@ export class XtalEditor extends HTMLElement implements XtalEditorPublicProps, Xt
         this.internalUpdateCount = this.internalUpdateCount === undefined ? 0 : this.internalUpdateCount + 1;
     }
     copyToClipboard(){
-        (<any>this)[refs.valuePart].select();
+        (<any>this.domCache)[refs.valuePart].select();
         document.execCommand("copy");
     }
     expandAll(){
