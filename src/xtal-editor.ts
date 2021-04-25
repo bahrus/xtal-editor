@@ -30,6 +30,7 @@ const mainTemplate = html`
     </div>
     <div part=child-editors class="nonPrimitive child-editors" data-open=false>
         <proxy-prop from-root-node-host observe-prop=expandAll echo-to=xtal-editor prop=expandAll></proxy-prop>
+        <proxy-prop from-root-node-host observe-prop=collapseAll echo-to=xtal-editor prop=collapseAll></proxy-prop>
         <ib-id-xtal-editor tag=xtal-editor></ib-id-xtal-editor>
     </div>
     
@@ -251,6 +252,10 @@ const onExpandAll = ({expandAll, self}: X) => {
     self.open = true;
 }
 
+const onCollapseAll = ({collapseAll, self}: X) => {
+    self.open = false;
+}
+
 const updateTransforms = [
     ({value}: X) => [{[refs.valuePart]: [{value: typeof value === 'string' ? value : JSON.stringify(value)}]}],
     ({type}: X) => [{[refs.editorPart]: [{dataset: {type: type}}]}],
@@ -284,6 +289,7 @@ const propActions = [
     addEventHandlers,
     updateTransforms,
     onExpandAll,
+    onCollapseAll
 ] as PropAction[];
 
 
@@ -327,10 +333,12 @@ export class XtalEditor extends HTMLElement implements XtalEditorPublicProps, Xt
         this.incrementUpdateCount();
     }
     handleExpandAll(){
+        this.collapseAll = false;
         this.expandAll = true;
     }
     handleCollapseAll(){
-        this.collapseAll();
+        this.expandAll = false;
+        this.collapseAll = true;
     }
     incrementUpdateCount(){
         this.internalUpdateCount = this.internalUpdateCount === undefined ? 0 : this.internalUpdateCount + 1;
@@ -339,21 +347,7 @@ export class XtalEditor extends HTMLElement implements XtalEditorPublicProps, Xt
         (<any>this.domCache)[refs.valuePart].select();
         document.execCommand("copy");
     }
-    // expandAll(){
-    //     this.open = true;
-    //     setTimeout(() => { //TODO: hack
-    //         for(const child of this.childEditors){
-    //             child.expandAll();
-    //         }
-    //     }, 50);
 
-    // }
-    collapseAll(){
-        for(const child of this.childEditors){
-            child.collapseAll();
-        }
-        this.open = false;
-    }
     toggle(){
         this.open = !this.open;
     }
@@ -404,6 +398,8 @@ export class XtalEditor extends HTMLElement implements XtalEditorPublicProps, Xt
     openEcho: boolean | undefined;
 
     expandAll: boolean | undefined;
+
+    collapseAll: boolean | undefined;
 
     /**
      * @private
@@ -467,6 +463,7 @@ const propDefMap: PropDefMap<XtalEditor> = {
         echoTo: 'openEcho'
     },
     expandAll: bool2,
+    collapseAll: bool2,
     handlersAttached: bool2,
     hasParent: bool,
     objCounter: num, strCounter: num, boolCounter: num, numberCounter: num,

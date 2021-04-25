@@ -27,6 +27,7 @@ const mainTemplate = html `
     </div>
     <div part=child-editors class="nonPrimitive child-editors" data-open=false>
         <proxy-prop from-root-node-host observe-prop=expandAll echo-to=xtal-editor prop=expandAll></proxy-prop>
+        <proxy-prop from-root-node-host observe-prop=collapseAll echo-to=xtal-editor prop=collapseAll></proxy-prop>
         <ib-id-xtal-editor tag=xtal-editor></ib-id-xtal-editor>
     </div>
     
@@ -239,6 +240,9 @@ const addNumber = ({ numberCounter, self }) => {
 const onExpandAll = ({ expandAll, self }) => {
     self.open = true;
 };
+const onCollapseAll = ({ collapseAll, self }) => {
+    self.open = false;
+};
 const updateTransforms = [
     ({ value }) => [{ [refs.valuePart]: [{ value: typeof value === 'string' ? value : JSON.stringify(value) }] }],
     ({ type }) => [{ [refs.editorPart]: [{ dataset: { type: type } }] }],
@@ -271,6 +275,7 @@ const propActions = [
     addEventHandlers,
     updateTransforms,
     onExpandAll,
+    onCollapseAll
 ];
 /**
  * @element xtal-editor
@@ -312,10 +317,12 @@ export class XtalEditor extends HTMLElement {
         this.incrementUpdateCount();
     }
     handleExpandAll() {
+        this.collapseAll = false;
         this.expandAll = true;
     }
     handleCollapseAll() {
-        this.collapseAll();
+        this.expandAll = false;
+        this.collapseAll = true;
     }
     incrementUpdateCount() {
         this.internalUpdateCount = this.internalUpdateCount === undefined ? 0 : this.internalUpdateCount + 1;
@@ -323,20 +330,6 @@ export class XtalEditor extends HTMLElement {
     copyToClipboard() {
         this.domCache[refs.valuePart].select();
         document.execCommand("copy");
-    }
-    // expandAll(){
-    //     this.open = true;
-    //     setTimeout(() => { //TODO: hack
-    //         for(const child of this.childEditors){
-    //             child.expandAll();
-    //         }
-    //     }, 50);
-    // }
-    collapseAll() {
-        for (const child of this.childEditors) {
-            child.collapseAll();
-        }
-        this.open = false;
     }
     toggle() {
         this.open = !this.open;
@@ -406,6 +399,7 @@ const propDefMap = {
         echoTo: 'openEcho'
     },
     expandAll: bool2,
+    collapseAll: bool2,
     handlersAttached: bool2,
     hasParent: bool,
     objCounter: num, strCounter: num, boolCounter: num, numberCounter: num,
