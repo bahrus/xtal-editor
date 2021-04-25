@@ -4,6 +4,7 @@ import { html } from 'xtal-element/lib/html.js';
 import { DOMKeyPE } from 'xtal-element/lib/DOMKeyPE.js';
 import { styleTemplate } from './xtal-editor-style.js';
 import('./ib-id-xtal-editor.js');
+import('proxy-prop/proxy-prop.js');
 const mainTemplate = html `
 <slot part=slot name=initVal></slot>
 <div class="remove" part=remove></div>
@@ -25,6 +26,7 @@ const mainTemplate = html `
         
     </div>
     <div part=child-editors class="nonPrimitive child-editors" data-open=false>
+        <proxy-prop from-root-node-host observe-prop=expandAll echo-to=xtal-editor prop=expandAll></proxy-prop>
         <ib-id-xtal-editor tag=xtal-editor></ib-id-xtal-editor>
     </div>
     
@@ -234,6 +236,9 @@ const addNumber = ({ numberCounter, self }) => {
     self.value = JSON.stringify(newObj);
     self.open = true;
 };
+const onExpandAll = ({ expandAll, self }) => {
+    self.open = true;
+};
 const updateTransforms = [
     ({ value }) => [{ [refs.valuePart]: [{ value: typeof value === 'string' ? value : JSON.stringify(value) }] }],
     ({ type }) => [{ [refs.editorPart]: [{ dataset: { type: type } }] }],
@@ -265,6 +270,7 @@ const propActions = [
     xp.attachShadow,
     addEventHandlers,
     updateTransforms,
+    onExpandAll,
 ];
 /**
  * @element xtal-editor
@@ -306,7 +312,7 @@ export class XtalEditor extends HTMLElement {
         this.incrementUpdateCount();
     }
     handleExpandAll() {
-        this.expandAll();
+        this.expandAll = true;
     }
     handleCollapseAll() {
         this.collapseAll();
@@ -318,14 +324,14 @@ export class XtalEditor extends HTMLElement {
         this.domCache[refs.valuePart].select();
         document.execCommand("copy");
     }
-    expandAll() {
-        this.open = true;
-        setTimeout(() => {
-            for (const child of this.childEditors) {
-                child.expandAll();
-            }
-        }, 50);
-    }
+    // expandAll(){
+    //     this.open = true;
+    //     setTimeout(() => { //TODO: hack
+    //         for(const child of this.childEditors){
+    //             child.expandAll();
+    //         }
+    //     }, 50);
+    // }
     collapseAll() {
         for (const child of this.childEditors) {
             child.collapseAll();
@@ -334,10 +340,6 @@ export class XtalEditor extends HTMLElement {
     }
     toggle() {
         this.open = !this.open;
-    }
-    propActionsHub(propAction) {
-    }
-    transformHub(transform) {
     }
     addObject() {
         this.objCounter = this.objCounter === undefined ? 1 : this.objCounter + 1;
@@ -403,6 +405,7 @@ const propDefMap = {
         ...bool,
         echoTo: 'openEcho'
     },
+    expandAll: bool2,
     handlersAttached: bool2,
     hasParent: bool,
     objCounter: num, strCounter: num, boolCounter: num, numberCounter: num,

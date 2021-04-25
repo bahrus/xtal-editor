@@ -21,7 +21,8 @@
   "types": "types.d.ts",
   "dependencies": {
     "ib-id": "0.0.30",
-    "xtal-element": "0.0.383"
+    "proxy-prop": "0.0.2",
+    "xtal-element": "0.0.384"
   },
   "devDependencies": {
     "@rollup/plugin-node-resolve": "11.2.1",

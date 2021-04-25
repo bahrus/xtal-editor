@@ -1,11 +1,12 @@
-import {xc, IInternals} from 'xtal-element/lib/XtalCore.js';
-import {xp} from 'xtal-element/lib/XtalPattern.js';
-import {PropAction, XtalPattern, PropDef, PSettings, PropDefMap} from 'xtal-element/types.d.js';
+import {xc, IInternals, PropAction, PropDef,PropDefMap, IReactor} from 'xtal-element/lib/XtalCore.js';
+import {xp, XtalPattern} from 'xtal-element/lib/XtalPattern.js';
+import {PSettings} from 'xtal-element/types.d.js';
 import {html} from 'xtal-element/lib/html.js';
 import {XtalEditorPublicProps, editType} from '../types.js';
 import {DOMKeyPE} from 'xtal-element/lib/DOMKeyPE.js';
 import {styleTemplate} from './xtal-editor-style.js';
 import('./ib-id-xtal-editor.js');
+import('proxy-prop/proxy-prop.js');
 
 const mainTemplate = html`
 <slot part=slot name=initVal></slot>
@@ -28,6 +29,7 @@ const mainTemplate = html`
         
     </div>
     <div part=child-editors class="nonPrimitive child-editors" data-open=false>
+        <proxy-prop from-root-node-host observe-prop=expandAll echo-to=xtal-editor prop=expandAll></proxy-prop>
         <ib-id-xtal-editor tag=xtal-editor></ib-id-xtal-editor>
     </div>
     
@@ -245,6 +247,10 @@ const addNumber = ({numberCounter, self}: X) => {
     self.open = true;
 }
 
+const onExpandAll = ({expandAll, self}: X) => {
+    self.open = true;
+}
+
 const updateTransforms = [
     ({value}: X) => [{[refs.valuePart]: [{value: typeof value === 'string' ? value : JSON.stringify(value)}]}],
     ({type}: X) => [{[refs.editorPart]: [{dataset: {type: type}}]}],
@@ -277,6 +283,7 @@ const propActions = [
     xp.attachShadow,
     addEventHandlers,
     updateTransforms,
+    onExpandAll,
 ] as PropAction[];
 
 
@@ -291,7 +298,7 @@ export class XtalEditor extends HTMLElement implements XtalEditorPublicProps, Xt
         xc.initInternals(this);
     }
     _internals: any;
-    reactor = new xp.RxSuppl(this, [
+    reactor: IReactor = new xp.RxSuppl(this, [
         {
             rhsType: Array,
             ctor: DOMKeyPE
@@ -320,7 +327,7 @@ export class XtalEditor extends HTMLElement implements XtalEditorPublicProps, Xt
         this.incrementUpdateCount();
     }
     handleExpandAll(){
-        this.expandAll();
+        this.expandAll = true;
     }
     handleCollapseAll(){
         this.collapseAll();
@@ -332,15 +339,15 @@ export class XtalEditor extends HTMLElement implements XtalEditorPublicProps, Xt
         (<any>this.domCache)[refs.valuePart].select();
         document.execCommand("copy");
     }
-    expandAll(){
-        this.open = true;
-        setTimeout(() => { //TODO: hack
-            for(const child of this.childEditors){
-                child.expandAll();
-            }
-        }, 50);
+    // expandAll(){
+    //     this.open = true;
+    //     setTimeout(() => { //TODO: hack
+    //         for(const child of this.childEditors){
+    //             child.expandAll();
+    //         }
+    //     }, 50);
 
-    }
+    // }
     collapseAll(){
         for(const child of this.childEditors){
             child.collapseAll();
@@ -354,12 +361,6 @@ export class XtalEditor extends HTMLElement implements XtalEditorPublicProps, Xt
      * @private
      */
     actionCount = 0;
-
-    propActionsHub(propAction: any){
-    }
-
-    transformHub(transform: any){
-    }
 
     addObject(){
         this.objCounter = this.objCounter === undefined ? 1 : this.objCounter + 1;
@@ -401,6 +402,8 @@ export class XtalEditor extends HTMLElement implements XtalEditorPublicProps, Xt
     open: boolean | undefined;
 
     openEcho: boolean | undefined;
+
+    expandAll: boolean | undefined;
 
     /**
      * @private
@@ -463,6 +466,7 @@ const propDefMap: PropDefMap<XtalEditor> = {
         ...bool,
         echoTo: 'openEcho'
     },
+    expandAll: bool2,
     handlersAttached: bool2,
     hasParent: bool,
     objCounter: num, strCounter: num, boolCounter: num, numberCounter: num,
