@@ -21,7 +21,7 @@
   "types": "types.d.ts",
   "dependencies": {
     "ib-id": "0.0.33",
-    "proxy-prop": "0.0.7",
+    "proxy-prop": "0.0.9",
     "xtal-element": "0.0.389"
   },
   "devDependencies": {
