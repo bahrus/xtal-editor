@@ -440,7 +440,11 @@ const bool: PropDef = {
 const bool2: PropDef = {
     ...bool,
     stopReactionsIfFalsy: true,
-}
+};
+const bool3: PropDef = {
+    ...bool2,
+    dry: false,
+};
 const str: PropDef = {
     ...baseProp,
     type: String,
@@ -453,8 +457,8 @@ const propDefMap: PropDefMap<XtalEditor> = {
         ...bool,
         echoTo: 'openEcho'
     },
-    expandAll: bool2,
-    collapseAll: bool2,
+    expandAll: bool3,
+    collapseAll: bool3,
     handlersAttached: bool2,
     hasParent: bool,
     objCounter: num, strCounter: num, boolCounter: num, numberCounter: num,

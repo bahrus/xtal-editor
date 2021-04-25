@@ -378,6 +378,10 @@ const bool2 = {
     ...bool,
     stopReactionsIfFalsy: true,
 };
+const bool3 = {
+    ...bool2,
+    dry: false,
+};
 const str = {
     ...baseProp,
     type: String,
@@ -389,8 +393,8 @@ const propDefMap = {
         ...bool,
         echoTo: 'openEcho'
     },
-    expandAll: bool2,
-    collapseAll: bool2,
+    expandAll: bool3,
+    collapseAll: bool3,
     handlersAttached: bool2,
     hasParent: bool,
     objCounter: num, strCounter: num, boolCounter: num, numberCounter: num,
