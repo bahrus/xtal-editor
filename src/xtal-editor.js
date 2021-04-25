@@ -26,8 +26,8 @@ const mainTemplate = html `
         
     </div>
     <div part=child-editors class="nonPrimitive child-editors" data-open=false>
-        <proxy-prop from-root-node-host observe-prop=expandAll echo-to=xtal-editor prop=expandAll></proxy-prop>
-        <proxy-prop from-root-node-host observe-prop=collapseAll echo-to=xtal-editor prop=collapseAll></proxy-prop>
+        <p-p from-root-node-host observe-prop=expandAll to=xtal-editor prop=expandAll></p-p>
+        <p-p from-root-node-host observe-prop=collapseAll to=xtal-editor prop=collapseAll></p-p>
         <ib-id-xtal-editor tag=xtal-editor></ib-id-xtal-editor>
     </div>
     
@@ -126,8 +126,8 @@ const addEventHandlers = ({ domCache, self }) => [
         [refs.copyId]: [, { click: self.copyToClipboard }],
         [refs.slotElement]: [, { slotchange: self.handleSlotChange }],
         [refs.ibIdXtalEditorElement]: [{ rootEditor: self.rootEditor, host: self }],
-        [refs.expandAllId]: [, { click: self.handleExpandAll }],
-        [refs.collapseAllId]: [, { click: self.handleCollapseAll }]
+        [refs.expandAllId]: [, { click: { collapseAll: false, expandAll: true } }],
+        [refs.collapseAllId]: [, { click: { expandAll: false, collapseAll: true } }]
     },
     [{ handlersAttached: true }]
 ];
@@ -138,7 +138,6 @@ function toString(item) {
         case 'number':
         case 'boolean':
             return item.toString();
-            break;
         case 'object':
             return JSON.stringify(item);
     }
@@ -315,14 +314,6 @@ export class XtalEditor extends HTMLElement {
     handleValueChange(val) {
         this.value = val;
         this.incrementUpdateCount();
-    }
-    handleExpandAll() {
-        this.collapseAll = false;
-        this.expandAll = true;
-    }
-    handleCollapseAll() {
-        this.expandAll = false;
-        this.collapseAll = true;
     }
     incrementUpdateCount() {
         this.internalUpdateCount = this.internalUpdateCount === undefined ? 0 : this.internalUpdateCount + 1;
