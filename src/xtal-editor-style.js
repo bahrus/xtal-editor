@@ -37,6 +37,9 @@ export const styleTemplate = html `
         --obj-odd-level-editor-bg: #FFEFCC;
         --array-even-level-editor-bg: #A9DBDD;
         --array-odd-level-editor-bg: #D9DBDD;
+        --string-adder-bg: #007408;
+        --bool-adder-bg: #516600;
+        --num-adder-bg:#497B8D
     }
     .editor[data-type="object"][data-even-level="true"]{
         background-color: var(--obj-even-level-editor-bg);
@@ -51,13 +54,13 @@ export const styleTemplate = html `
         background-color: var(--array-odd-level-editor-bg);
     }
     .string.adder{
-        background-color:#007408;
+        background-color:var(--string-adder-bg);
     }
     .bool.adder{
-        background-color: #516600;
+        background-color: var(--bool-adder-bg);
     }
     .number.adder{
-        background-color: #497B8D;
+        background-color: var(--num-adder-bg);
     }
     .adder{
         color: white;
