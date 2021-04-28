@@ -28,6 +28,7 @@ const mainTemplate = html `
     <div part=child-editors class="nonPrimitive child-editors" data-open=false>
         <p-p from-root-node-host observe-prop=expandAll to=xtal-editor prop=expandAll></p-p>
         <p-p from-root-node-host observe-prop=collapseAll to=xtal-editor prop=collapseAll></p-p>
+        <p-p from-root-node-host observe-prop=evenLevel to=xtal-editor prop=parentLevel></p-p>
         <ib-id-xtal-editor tag=xtal-editor></ib-id-xtal-editor>
     </div>
     
@@ -236,6 +237,13 @@ const addNumber = ({ numberCounter, self }) => {
     self.value = JSON.stringify(newObj);
     self.open = true;
 };
+const initEvenLevel = ({ rootEditor, self }) => {
+    if (rootEditor === self)
+        self.evenLevel = true;
+};
+const linkEvenLevel = ({ parentLevel, self }) => {
+    self.evenLevel = !parentLevel;
+};
 const onExpandAll = ({ expandAll, self }) => {
     self.open = true;
 };
@@ -258,6 +266,9 @@ const updateTransforms = [
     ],
     ({ hasParent }) => [{
             [refs.removePart]: [{ style: { display: hasParent ? 'none' : 'block' } }],
+        }],
+    ({ evenLevel }) => [{
+            [refs.editorPart]: [{ dataset: { evenLevel: evenLevel } }]
         }]
 ];
 const propActions = [
@@ -274,7 +285,9 @@ const propActions = [
     addEventHandlers,
     updateTransforms,
     onExpandAll,
-    onCollapseAll
+    onCollapseAll,
+    initEvenLevel,
+    linkEvenLevel
 ];
 /**
  * @element xtal-editor
@@ -382,6 +395,10 @@ const bool3 = {
     ...bool2,
     dry: false,
 };
+const bool4 = {
+    ...bool,
+    reflect: true,
+};
 const str = {
     ...baseProp,
     type: String,
@@ -422,7 +439,9 @@ const propDefMap = {
     rootEditor: {
         ...baseProp,
         type: Object,
-    }
+    },
+    evenLevel: bool4,
+    parentLevel: bool,
 };
 const slicedPropDefs = xc.getSlicedPropDefs(propDefMap);
 xc.letThereBeProps(XtalEditor, slicedPropDefs, 'onPropChange');

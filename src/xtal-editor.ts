@@ -31,6 +31,7 @@ const mainTemplate = html`
     <div part=child-editors class="nonPrimitive child-editors" data-open=false>
         <p-p from-root-node-host observe-prop=expandAll to=xtal-editor prop=expandAll></p-p>
         <p-p from-root-node-host observe-prop=collapseAll to=xtal-editor prop=collapseAll></p-p>
+        <p-p from-root-node-host observe-prop=evenLevel to=xtal-editor prop=parentLevel></p-p>
         <ib-id-xtal-editor tag=xtal-editor></ib-id-xtal-editor>
     </div>
     
@@ -247,6 +248,14 @@ const addNumber = ({numberCounter, self}: X) => {
     self.open = true;
 }
 
+const initEvenLevel = ({rootEditor, self}: X) => {
+    if(rootEditor === self) self.evenLevel = true;
+}
+
+const linkEvenLevel = ({parentLevel, self}: X) => {
+    self.evenLevel = !parentLevel;
+}
+
 const onExpandAll = ({expandAll, self}: X) => {
     self.open = true;
 }
@@ -271,6 +280,9 @@ const updateTransforms = [
     ],
     ({hasParent}: X) => [{
         [refs.removePart]: [{style: {display: hasParent ? 'none' : 'block' }}],
+    }],
+    ({evenLevel}: X) =>[{
+        [refs.editorPart]: [{dataset:{evenLevel: evenLevel}}]
     }]
 ]
 
@@ -288,7 +300,9 @@ const propActions = [
     addEventHandlers,
     updateTransforms,
     onExpandAll,
-    onCollapseAll
+    onCollapseAll,
+    initEvenLevel,
+    linkEvenLevel
 ] as PropAction[];
 
 
@@ -404,6 +418,8 @@ export class XtalEditor extends HTMLElement implements XtalEditorPublicProps, Xt
     boolCounter: number | undefined;
     numberCounter: number | undefined;
     hasParent: boolean | undefined;
+    evenLevel: boolean | undefined;
+    parentLevel: boolean | undefined;
 
     handlersAttached: boolean | undefined;
 
@@ -445,10 +461,16 @@ const bool3: PropDef = {
     ...bool2,
     dry: false,
 };
+const bool4: PropDef = {
+    ...bool,
+    reflect: true,
+};
 const str: PropDef = {
     ...baseProp,
     type: String,
 };
+
+
 
 const propDefMap: PropDefMap<XtalEditor> = {
     ...xp.props,
@@ -486,7 +508,9 @@ const propDefMap: PropDefMap<XtalEditor> = {
     rootEditor: {
         ...baseProp,
         type: Object,
-    }
+    },
+    evenLevel: bool4,
+    parentLevel: bool,
 };
 
 const slicedPropDefs = xc.getSlicedPropDefs(propDefMap);

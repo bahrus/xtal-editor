@@ -30,6 +30,20 @@ export const styleTemplate = html`
     .object.adder{
         background-color: #C15000;
     }
+    .editor{
+        --obj-key-bg: rgb(225, 112, 0);
+        --array-key-bg: rgb(45, 91, 137);
+    }
+    .editor[data-type="object"][data-even-level="true"]{
+        background-color: #F1E090;
+    }
+    .editor[data-type="object"][data-even-level="false"]{
+        background-color: #FFEFFF;
+    }
+    .editor[data-type="array"]{
+        background-color: #A9DBDD;
+    }
+
     .string.adder{
         background-color:#007408;
     }
@@ -154,13 +168,15 @@ export const styleTemplate = html`
         background-color: #B1C639;
     }
     [data-type="object"] [part="key"]{
-        background-color: rgb(225, 112, 0);
+        background-color: var(--obj-key-bg);
+        color: color-contrast(var(--obj-key-bg) vs white, black);
     }
     [data-type="number"] [part="key"]{
         background-color: rgb(73, 123, 141);
     }
     [data-type="array"] [part="key"]{
-        background-color: rgb(45, 91, 137);
+        background-color: var(--array-key-bg);
+        color: color-contrast(var(--array-key-bg) vs white, black);
     }
     .value{
         background-color: #ECF3C3;
