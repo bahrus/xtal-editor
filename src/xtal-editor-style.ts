@@ -38,12 +38,14 @@ export const styleTemplate = html`
         background-color: #F1E090;
     }
     .editor[data-type="object"][data-even-level="false"]{
-        background-color: #FFEFFF;
+        background-color: #FFEFCC;
     }
-    .editor[data-type="array"]{
+    .editor[data-type="array"][data-even-level="true"]{
         background-color: #A9DBDD;
     }
-
+    .editor[data-type="array"][data-even-level="false"]{
+        background-color: #D9DBDD;
+    }
     .string.adder{
         background-color:#007408;
     }
