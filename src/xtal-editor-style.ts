@@ -33,18 +33,22 @@ export const styleTemplate = html`
     .editor{
         --obj-key-bg: rgb(225, 112, 0);
         --array-key-bg: rgb(45, 91, 137);
+        --obj-even-level-editor-bg: #F1E090;
+        --obj-odd-level-editor-bg: #FFEFCC;
+        --array-even-level-editor-bg: #A9DBDD;
+        --array-odd-level-editor-bg: #D9DBDD;
     }
     .editor[data-type="object"][data-even-level="true"]{
-        background-color: #F1E090;
+        background-color: var(--obj-even-level-editor-bg);
     }
     .editor[data-type="object"][data-even-level="false"]{
-        background-color: #FFEFCC;
+        background-color: var(--obj-odd-level-editor-bg);
     }
     .editor[data-type="array"][data-even-level="true"]{
-        background-color: #A9DBDD;
+        background-color: var(--array-even-level-editor-bg);
     }
     .editor[data-type="array"][data-even-level="false"]{
-        background-color: #D9DBDD;
+        background-color: var(--array-odd-level-editor-bg);
     }
     .string.adder{
         background-color:#007408;
