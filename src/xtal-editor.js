@@ -26,9 +26,9 @@ const mainTemplate = html `
         
     </div>
     <div part=child-editors class="nonPrimitive child-editors" data-open=false>
-        <p-p from-root-node-host observe-prop=expandAll to=xtal-editor prop=expandAll></p-p>
-        <p-p from-root-node-host observe-prop=collapseAll to=xtal-editor prop=collapseAll></p-p>
-        <p-p from-root-node-host observe-prop=evenLevel to=xtal-editor prop=parentLevel></p-p>
+        <p-p from-host observe-prop=expandAll to=xtal-editor prop=expandAll></p-p>
+        <p-p from-host observe-prop=collapseAll to=xtal-editor prop=collapseAll></p-p>
+        <p-p from-host observe-prop=evenLevel to=xtal-editor prop=parentLevel></p-p>
         <ib-id-xtal-editor tag=xtal-editor></ib-id-xtal-editor>
     </div>
     
@@ -362,7 +362,7 @@ export class XtalEditor extends HTMLElement {
         // console.log('Element in Slot "' + slots[1].name + '" changed to "' + nodes[0].outerHTML + '".');
     }
     connectedCallback() {
-        xc.hydrate(this, slicedPropDefs);
+        xc.mergeProps(this, slicedPropDefs);
         if (!this.hasParent) {
             this.rootEditor = this;
         }
