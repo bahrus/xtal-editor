@@ -291,10 +291,21 @@ const propActions = [
 ];
 /**
  * @element xtal-editor
+ * @slot initVal - Pass in the initial JSON string via a textarea component with this slot (or some other input element with property "value" where the string can be pulled from.)
+ * @prop {string} key - Root node name to display
+ * @attr {string} key - Root node name to display
+ * @prop {boolean} [open] Indicates with Editor should show child nodes expanded.
+ * @attr {boolean} [open] Indicates with Editor should show child nodes expanded.
+ * @event {ValueDetail} parsed-object-changed - Fired after successfully parsing JSON string to edit.
+ * @event {ValueDetail} internal-updated-count-changed -- Used for internal use.
  */
 export class XtalEditor extends HTMLElement {
     constructor() {
         super();
+        /**
+         * @private
+    
+         */
         this.reactor = new xp.RxSuppl(this, [
             {
                 rhsType: Array,
@@ -302,9 +313,21 @@ export class XtalEditor extends HTMLElement {
             }
         ]);
         this.styleTemplate = styleTemplate;
+        /**
+         * @private
+         */
         this.self = this;
+        /**
+         * @private
+         */
         this.refs = refs;
+        /**
+         * @private
+         */
         this.propActions = propActions;
+        /**
+         * @private
+         */
         this.mainTemplate = mainTemplate;
         /**
          * @private

@@ -16,7 +16,7 @@
     "./src/xtal-editor.js": "./src/xtal-editor.js"
   },
   "files": [
-    "*"
+    "src/*"
   ],
   "types": "types.d.ts",
   "dependencies": {
@@ -27,7 +27,8 @@
   "devDependencies": {
     "@rollup/plugin-node-resolve": "11.2.1",
     "@skypack/package-check": "0.2.2",
-    "xtal-test": "0.0.51"
+    "xtal-test": "0.0.51",
+    "@custom-elements-manifest/analyzer": "0.4.11"
   },
   "scripts": {
     "serve": "node node_modules/xtal-test/serve.js",
@@ -36,7 +37,7 @@
     "bundle": "rollup --config",
     "compress": "node minify",
     "package-check": "package-check",
-    "doc": "wca analyze src/xtal-editor-example1.js --outFile custom-elements.json"
+    "doc": "custom-elements-manifest analyze"
   },
   "repository": {
     "type": "git",
@@ -47,5 +48,6 @@
   "bugs": {
     "url": "https://github.com/bahrus/xtal-editor/issues"
   },
-  "homepage": "https://github.com/bahrus/xtal-editor#readme"
+  "homepage": "https://github.com/bahrus/xtal-editor#readme",
+  "customElements": "custom-elements.json"
 }

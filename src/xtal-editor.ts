@@ -309,14 +309,25 @@ const propActions = [
 
 /**
  * @element xtal-editor
+ * @slot initVal - Pass in the initial JSON string via a textarea component with this slot (or some other input element with property "value" where the string can be pulled from.)
+ * @prop {string} key - Root node name to display
+ * @attr {string} key - Root node name to display
+ * @prop {boolean} [open] Indicates with Editor should show child nodes expanded.
+ * @attr {boolean} [open] Indicates with Editor should show child nodes expanded.
+ * @event {ValueDetail} parsed-object-changed - Fired after successfully parsing JSON string to edit.
+ * @event {ValueDetail} internal-updated-count-changed -- Used for internal use.
  */
-export class XtalEditor extends HTMLElement implements XtalEditorPublicProps, XtalPattern, IInternals{
+export class XtalEditor extends HTMLElement implements XtalPattern, IInternals{
     static is = 'xtal-editor';
     constructor(){
         super();
         xc.initInternals(this);
     }
     _internals: any;
+    /**
+     * @private
+
+     */
     reactor: IReactor = new xp.RxSuppl(this, [
         {
             rhsType: Array,
@@ -324,10 +335,30 @@ export class XtalEditor extends HTMLElement implements XtalEditorPublicProps, Xt
         }
     ]);
     styleTemplate = styleTemplate;
-    self=this; refs=refs; propActions = propActions; mainTemplate = mainTemplate; 
+    /**
+     * @private
+     */
+    self=this; 
+    /**
+     * @private
+     */
+    refs=refs; 
+    /**
+     * @private
+     */
+    propActions = propActions; 
+    /**
+     * @private
+     */
+    mainTemplate = mainTemplate; 
+    /**
+     * @private
+     */
     clonedTemplate: DocumentFragment | undefined; domCache: any;
 
-
+    /**
+     * @private
+     */
     rootEditor: XtalEditor | undefined;
     handleKeyChange(key: string){
         if(key === ''){
@@ -437,7 +468,7 @@ export class XtalEditor extends HTMLElement implements XtalEditorPublicProps, Xt
         return Array.from(this.shadowRoot!.querySelectorAll(XtalEditor.is)) as XtalEditor[]
     }
 }
-
+export interface XtalEditor extends XtalEditorPublicProps{}
 type X = XtalEditor;
 
 const baseProp: PropDef = {

@@ -1,122 +1,2020 @@
 {
-  "version": "experimental",
-  "tags": [
+  "schemaVersion": "1.0.0",
+  "readme": "",
+  "modules": [
     {
-      "name": "xtal-editor",
-      "path": "./src\\xtal-editor-example1.js",
-      "attributes": [
+      "kind": "javascript-module",
+      "path": "types.d.ts",
+      "declarations": [],
+      "exports": []
+    },
+    {
+      "kind": "javascript-module",
+      "path": "src/ib-id-xtal-editor.js",
+      "declarations": [
         {
-          "name": "disabled",
-          "description": "Any component that emits events should not do so if it is disabled.\r\nNote that this is not enforced, but the disabled property is made available.\r\nUsers of this mix-in should ensure not to call \"de\" if this property is set to true.",
-          "type": "boolean"
+          "kind": "class",
+          "description": "",
+          "name": "IbIdXtalEditor",
+          "members": [
+            {
+              "kind": "method",
+              "name": "configureNewChild",
+              "parameters": [
+                {
+                  "name": "newChild"
+                }
+              ]
+            }
+          ],
+          "superclass": {
+            "name": "IBid",
+            "package": "ib-id/i-bid.js"
+          },
+          "tagName": "ib-id-xtal-editor",
+          "customElement": true
         }
       ],
-      "properties": [
+      "exports": [
         {
-          "name": "is",
-          "type": "string",
-          "default": "\"xtal-editor\""
-        },
+          "kind": "js",
+          "name": "IbIdXtalEditor",
+          "declaration": {
+            "name": "IbIdXtalEditor",
+            "module": "src/ib-id-xtal-editor.js"
+          }
+        }
+      ]
+    },
+    {
+      "kind": "javascript-module",
+      "path": "src/ib-id-xtal-editor.ts",
+      "declarations": [
         {
-          "name": "uiValue",
-          "type": "string | undefined"
-        },
+          "kind": "class",
+          "description": "",
+          "name": "IbIdXtalEditor",
+          "members": [
+            {
+              "kind": "field",
+              "name": "is",
+              "type": {
+                "text": "string"
+              },
+              "static": true,
+              "default": "'ib-id-xtal-editor'"
+            },
+            {
+              "kind": "field",
+              "name": "_rootEditor",
+              "type": {
+                "text": "any | undefined"
+              }
+            },
+            {
+              "kind": "field",
+              "name": "host",
+              "type": {
+                "text": "HTMLElement | undefined"
+              }
+            },
+            {
+              "kind": "method",
+              "name": "configureNewChild",
+              "parameters": [
+                {
+                  "name": "newChild",
+                  "type": {
+                    "text": "any"
+                  }
+                }
+              ]
+            }
+          ],
+          "superclass": {
+            "name": "IBid",
+            "package": "ib-id/i-bid.js"
+          },
+          "tagName": "ib-id-xtal-editor",
+          "customElement": true
+        }
+      ],
+      "exports": [
         {
-          "name": "childValues",
-          "type": "string[] | NameValue[] | undefined"
-        },
+          "kind": "js",
+          "name": "IbIdXtalEditor",
+          "declaration": {
+            "name": "IbIdXtalEditor",
+            "module": "src/ib-id-xtal-editor.ts"
+          }
+        }
+      ]
+    },
+    {
+      "kind": "javascript-module",
+      "path": "src/xtal-editor-example1.js",
+      "declarations": [
         {
-          "name": "internalUpdateCount",
-          "type": "number | undefined"
-        },
+          "kind": "class",
+          "description": "",
+          "name": "XtalEditorExample1",
+          "members": [
+            {
+              "kind": "field",
+              "name": "key",
+              "type": {
+                "text": "string"
+              },
+              "description": "Root node name to display",
+              "default": "'root'",
+              "inheritedFrom": {
+                "name": "XtalEditor",
+                "module": "src/xtal-editor.ts"
+              }
+            },
+            {
+              "kind": "field",
+              "name": "value",
+              "type": {
+                "text": "string | undefined"
+              },
+              "default": "'{}'",
+              "inheritedFrom": {
+                "name": "XtalEditor",
+                "module": "src/xtal-editor.ts"
+              }
+            },
+            {
+              "kind": "field",
+              "name": "type",
+              "type": {
+                "text": "editType"
+              },
+              "default": "'object'",
+              "inheritedFrom": {
+                "name": "XtalEditor",
+                "module": "src/xtal-editor.ts"
+              }
+            },
+            {
+              "kind": "field",
+              "name": "parsedObject",
+              "type": {
+                "text": "any"
+              },
+              "default": "{}",
+              "inheritedFrom": {
+                "name": "XtalEditor",
+                "module": "src/xtal-editor.ts"
+              }
+            },
+            {
+              "kind": "field",
+              "name": "open",
+              "type": {
+                "text": "boolean"
+              },
+              "description": "Indicates with Editor should show child nodes expanded.",
+              "default": "false",
+              "inheritedFrom": {
+                "name": "XtalEditor",
+                "module": "src/xtal-editor.ts"
+              }
+            },
+            {
+              "kind": "field",
+              "name": "is",
+              "type": {
+                "text": "string"
+              },
+              "static": true,
+              "default": "'xtal-editor'",
+              "inheritedFrom": {
+                "name": "XtalEditor",
+                "module": "src/xtal-editor.ts"
+              }
+            },
+            {
+              "kind": "field",
+              "name": "_internals",
+              "type": {
+                "text": "any"
+              },
+              "inheritedFrom": {
+                "name": "XtalEditor",
+                "module": "src/xtal-editor.ts"
+              }
+            },
+            {
+              "kind": "field",
+              "name": "reactor",
+              "type": {
+                "text": "IReactor"
+              },
+              "default": "new xp.RxSuppl(this, [\r\n        {\r\n            rhsType: Array,\r\n            ctor: DOMKeyPE\r\n        }\r\n    ])",
+              "privacy": "private",
+              "inheritedFrom": {
+                "name": "XtalEditor",
+                "module": "src/xtal-editor.ts"
+              }
+            },
+            {
+              "kind": "field",
+              "name": "styleTemplate",
+              "default": "html `\r\n<style>\r\n    :host{\r\n        display:block;\r\n    }\r\n\r\n    \r\n    slot{\r\n        display: none;\r\n    }\r\n\r\n\r\n    .expander{\r\n        width: fit-content;\r\n        height: fit-content;\r\n        padding-left: 0px;\r\n        padding-right: 0px;\r\n        width:20px;\r\n    }\r\n    .copyBtn{\r\n        width: fit-content;\r\n        height: fit-content;\r\n        padding-left: 0px;\r\n        padding-right: 0px;\r\n        padding-top: 0px;\r\n        padding-bottom: 0px;\r\n        border: 0;\r\n    }\r\n    .object.adder{\r\n        background-color: #C15000;\r\n    }\r\n    .editor{\r\n        --obj-key-bg: rgb(225, 112, 0);\r\n        --array-key-bg: rgb(45, 91, 137);\r\n        --obj-even-level-editor-bg: #F1E090;\r\n        --obj-odd-level-editor-bg: #FFEFCC;\r\n        --array-even-level-editor-bg: #A9DBDD;\r\n        --array-odd-level-editor-bg: #D9DBDD;\r\n        --string-adder-bg: #007408;\r\n        --bool-adder-bg: #516600;\r\n        --num-adder-bg:#497B8D\r\n    }\r\n    .editor[data-type=\"object\"][data-even-level=\"true\"]{\r\n        background-color: var(--obj-even-level-editor-bg);\r\n    }\r\n    .editor[data-type=\"object\"][data-even-level=\"false\"]{\r\n        background-color: var(--obj-odd-level-editor-bg);\r\n    }\r\n    .editor[data-type=\"array\"][data-even-level=\"true\"]{\r\n        background-color: var(--array-even-level-editor-bg);\r\n    }\r\n    .editor[data-type=\"array\"][data-even-level=\"false\"]{\r\n        background-color: var(--array-odd-level-editor-bg);\r\n    }\r\n    .string.adder{\r\n        background-color:var(--string-adder-bg);\r\n    }\r\n    .bool.adder{\r\n        background-color: var(--bool-adder-bg);\r\n    }\r\n    .number.adder{\r\n        background-color: var(--num-adder-bg);\r\n    }\r\n    .adder{\r\n        color: white;\r\n        text-shadow:1px 1px 1px black;\r\n        border-radius: 5px;\r\n        padding: 2;\r\n        border: none;\r\n    }\r\n    .remove{\r\n        padding: 2px 4px;\r\n        -webkit-border-radius: 5px;\r\n        -moz-border-radius: 5px;\r\n        border-radius: 5px;\r\n        color: white;\r\n        font-weight: bold;\r\n        text-shadow: 1px 1px 1px black;\r\n        background-color: black;\r\n        \r\n    }\r\n    .remove::after{\r\n        content: \"JSON Editor\";\r\n    }\r\n    .remove.editKey::after{\r\n        content: \"Remove item by deleting the property name.\";\r\n    }\r\n\r\n    .field{\r\n        display:flex;\r\n        flex-direction:row;\r\n        line-height: 20px;\r\n        align-items: center;\r\n    }\r\n    #copy{\r\n        background-image: url(https://cdn.jsdelivr.net/npm/xtal-editor/src/copy.svg);\r\n        \r\n    }\r\n    #expand-all{\r\n        background-image: url(https://cdn.jsdelivr.net/npm/xtal-editor/src/arrows-expand.svg);\r\n        width: 20px;\r\n    }\r\n    .action{\r\n        background-repeat:no-repeat;\r\n        background-position-y:center;\r\n        height: 22px;\r\n    }\r\n    #collapse-all{\r\n        background-image: url(https://cdn.jsdelivr.net/npm/xtal-editor/src/arrows-collapse.svg);\r\n        width: 20px;\r\n    }\r\n    @media only screen and (max-width: 1000px) {\r\n        .field{\r\n            flex-direction: column;\r\n        }\r\n        .child-inserters{\r\n            justify-content: flex-end;\r\n            width: 100%;\r\n        }\r\n        .text-editing{\r\n            width: 100%;\r\n        }\r\n    }\r\n    @media only screen and (min-width: 1001px){\r\n        .child-inserters{\r\n            justify-content: center;\r\n        }\r\n        .field{\r\n            width: 100%;\r\n            justify-content: space-evenly;\r\n        }\r\n        .text-editing{\r\n            flex-grow: 1;\r\n        }\r\n    }\r\n    .text-editing{\r\n        display: flex;\r\n        flex-direction: row;\r\n        padding-top:1px;\r\n        padding-bottom:1px;\r\n    }\r\n    .child-inserters{\r\n        display: flex;\r\n    }\r\n    .child-editors{\r\n        margin-left: 25px;\r\n    }\r\n    div[part=\"child-editors\"][data-open=\"false\"]{\r\n        display: none;\r\n    }\r\n    [data-type=\"object\"] button.nonPrimitive{\r\n        display: inline;\r\n    }\r\n    [data-type=\"object\"] div.nonPrimitive[data-open=\"true\"]{\r\n        display: block;\r\n    }\r\n    [data-type=\"array\"] button.nonPrimitive{\r\n        display: inline;\r\n    }\r\n    [data-type=\"array\"] div.nonPrimitive[data-open=\"true\"]{\r\n        display: block;\r\n    }\r\n    [data-type=\"string\"] .nonPrimitive{\r\n        display: none;\r\n    }\r\n    [data-type=\"number\"] .nonPrimitive{\r\n        display: none;\r\n    }\r\n    [data-type=\"boolean\"] .nonPrimitive{\r\n        display: none;\r\n    }\r\n    [data-type=\"string\"] [part=\"key\"]{\r\n        background-color: rgb(0, 148, 8);\r\n    }\r\n    [data-type=\"boolean\"] [part=\"key\"]{\r\n        background-color: #B1C639;\r\n    }\r\n    [data-type=\"object\"] [part=\"key\"]{\r\n        background-color: var(--obj-key-bg);\r\n        color: color-contrast(var(--obj-key-bg) vs white, black);\r\n    }\r\n    [data-type=\"number\"] [part=\"key\"]{\r\n        background-color: rgb(73, 123, 141);\r\n    }\r\n    [data-type=\"array\"] [part=\"key\"]{\r\n        background-color: var(--array-key-bg);\r\n        color: color-contrast(var(--array-key-bg) vs white, black);\r\n    }\r\n    .value{\r\n        background-color: #ECF3C3;\r\n        width: 100%;\r\n        flex-grow:5;\r\n    }\r\n    input.key {\r\n        \r\n        -webkit-border-radius: 5px;\r\n        -moz-border-radius: 5px;\r\n        border-radius: 5px;\r\n        margin-right: 2px;\r\n    }\r\n    input {\r\n        border: none;\r\n        padding: 3px;\r\n    }\r\n</style>\r\n`",
+              "inheritedFrom": {
+                "name": "XtalEditor",
+                "module": "src/xtal-editor.ts"
+              }
+            },
+            {
+              "kind": "field",
+              "name": "self",
+              "default": "this",
+              "privacy": "private",
+              "inheritedFrom": {
+                "name": "XtalEditor",
+                "module": "src/xtal-editor.ts"
+              }
+            },
+            {
+              "kind": "field",
+              "name": "refs",
+              "default": "{\r\n    slotElement: s, boolAdderPart: s, childEditorsPart: s, copyId: s,\r\n    editorPart: s, expanderPart: s, keyPart: s, objectAdderPart: s, stringAdderPart: s,\r\n    removePart: s, numberAdderPart: s, valuePart: s,\r\n    ibIdXtalEditorElement: s, expandAllId:s, collapseAllId: s, \r\n}",
+              "privacy": "private",
+              "type": {
+                "text": "object"
+              },
+              "inheritedFrom": {
+                "name": "XtalEditor",
+                "module": "src/xtal-editor.ts"
+              }
+            },
+            {
+              "kind": "field",
+              "name": "propActions",
+              "default": "[\r\n    xp.manageMainTemplate,\r\n    onValueChange, \r\n    linkChildValues, \r\n    linkValueFromChildren, \r\n    addObject, \r\n    addString, \r\n    addBool, \r\n    addNumber, \r\n    onUiValue,\r\n    xp.attachShadow,\r\n    addEventHandlers,\r\n    updateTransforms,\r\n    onExpandAll,\r\n    onCollapseAll,\r\n    initEvenLevel,\r\n    linkEvenLevel\r\n]",
+              "privacy": "private",
+              "inheritedFrom": {
+                "name": "XtalEditor",
+                "module": "src/xtal-editor.ts"
+              }
+            },
+            {
+              "kind": "field",
+              "name": "mainTemplate",
+              "default": "html`\r\n<slot part=slot name=initVal></slot>\r\n<div class=\"remove\" part=remove></div>\r\n<div data-type=string part=editor class=editor>\r\n    <div part=field class=field>\r\n        <div class=text-editing>\r\n            <button part=expander class=\"expander nonPrimitive\">+</button>\r\n            <input aria-label=key part=key class=key><input aria-label=value part=value class=value>\r\n        </div>\r\n        <div part=child-inserters class=\"nonPrimitive child-inserters\" data-open=false>\r\n            <button part=object-adder class=\"object adder\">add object</button>\r\n            <button part=string-adder class=\"string adder\">add string</button>\r\n            <button part=bool-adder class=\"bool adder\">add bool</button>\r\n            <button part=number-adder class=\"number adder\">add number</button>\r\n            <button id=copy class=action part=copy-to-clipboard title=\"Copy to Clipboard\"></button>\r\n            <button id=expand-all class=action part=expand-all title=\"Expand All\" aria-label=\"Expand All\"></button>\r\n            <button id=collapse-all class=action part=collapse-all title=\"Collapse All\" aria-label=\"Collapse All\"></button>\r\n        </div>\r\n        \r\n    </div>\r\n    <div part=child-editors class=\"nonPrimitive child-editors\" data-open=false>\r\n        <p-p from-host observe-prop=expandAll to=xtal-editor prop=expandAll></p-p>\r\n        <p-p from-host observe-prop=collapseAll to=xtal-editor prop=collapseAll></p-p>\r\n        <p-p from-host observe-prop=evenLevel to=xtal-editor prop=parentLevel></p-p>\r\n        <ib-id-xtal-editor tag=xtal-editor></ib-id-xtal-editor>\r\n    </div>\r\n    \r\n</div>\r\n`",
+              "privacy": "private",
+              "inheritedFrom": {
+                "name": "XtalEditor",
+                "module": "src/xtal-editor.ts"
+              }
+            },
+            {
+              "kind": "field",
+              "name": "clonedTemplate",
+              "type": {
+                "text": "DocumentFragment | undefined"
+              },
+              "privacy": "private",
+              "inheritedFrom": {
+                "name": "XtalEditor",
+                "module": "src/xtal-editor.ts"
+              }
+            },
+            {
+              "kind": "field",
+              "name": "domCache",
+              "type": {
+                "text": "any"
+              },
+              "inheritedFrom": {
+                "name": "XtalEditor",
+                "module": "src/xtal-editor.ts"
+              }
+            },
+            {
+              "kind": "field",
+              "name": "rootEditor",
+              "type": {
+                "text": "XtalEditor | undefined"
+              },
+              "privacy": "private",
+              "inheritedFrom": {
+                "name": "XtalEditor",
+                "module": "src/xtal-editor.ts"
+              }
+            },
+            {
+              "kind": "method",
+              "name": "handleKeyChange",
+              "parameters": [
+                {
+                  "name": "key",
+                  "type": {
+                    "text": "string"
+                  }
+                }
+              ],
+              "inheritedFrom": {
+                "name": "XtalEditor",
+                "module": "src/xtal-editor.ts"
+              }
+            },
+            {
+              "kind": "method",
+              "name": "handleKeyFocus",
+              "parameters": [
+                {
+                  "name": "e",
+                  "type": {
+                    "text": "Event"
+                  }
+                }
+              ],
+              "inheritedFrom": {
+                "name": "XtalEditor",
+                "module": "src/xtal-editor.ts"
+              }
+            },
+            {
+              "kind": "method",
+              "name": "handleValueFocus",
+              "parameters": [
+                {
+                  "name": "e",
+                  "type": {
+                    "text": "Event"
+                  }
+                }
+              ],
+              "inheritedFrom": {
+                "name": "XtalEditor",
+                "module": "src/xtal-editor.ts"
+              }
+            },
+            {
+              "kind": "method",
+              "name": "handleValueChange",
+              "parameters": [
+                {
+                  "name": "val",
+                  "type": {
+                    "text": "string"
+                  }
+                }
+              ],
+              "inheritedFrom": {
+                "name": "XtalEditor",
+                "module": "src/xtal-editor.ts"
+              }
+            },
+            {
+              "kind": "method",
+              "name": "incrementUpdateCount",
+              "inheritedFrom": {
+                "name": "XtalEditor",
+                "module": "src/xtal-editor.ts"
+              }
+            },
+            {
+              "kind": "method",
+              "name": "copyToClipboard",
+              "inheritedFrom": {
+                "name": "XtalEditor",
+                "module": "src/xtal-editor.ts"
+              }
+            },
+            {
+              "kind": "method",
+              "name": "toggle",
+              "inheritedFrom": {
+                "name": "XtalEditor",
+                "module": "src/xtal-editor.ts"
+              }
+            },
+            {
+              "kind": "field",
+              "name": "actionCount",
+              "type": {
+                "text": "number"
+              },
+              "default": "0",
+              "privacy": "private",
+              "inheritedFrom": {
+                "name": "XtalEditor",
+                "module": "src/xtal-editor.ts"
+              }
+            },
+            {
+              "kind": "method",
+              "name": "addObject",
+              "inheritedFrom": {
+                "name": "XtalEditor",
+                "module": "src/xtal-editor.ts"
+              }
+            },
+            {
+              "kind": "method",
+              "name": "addString",
+              "inheritedFrom": {
+                "name": "XtalEditor",
+                "module": "src/xtal-editor.ts"
+              }
+            },
+            {
+              "kind": "method",
+              "name": "addBool",
+              "inheritedFrom": {
+                "name": "XtalEditor",
+                "module": "src/xtal-editor.ts"
+              }
+            },
+            {
+              "kind": "method",
+              "name": "addNumber",
+              "inheritedFrom": {
+                "name": "XtalEditor",
+                "module": "src/xtal-editor.ts"
+              }
+            },
+            {
+              "kind": "method",
+              "name": "handleSlotChange",
+              "parameters": [
+                {
+                  "name": "e",
+                  "type": {
+                    "text": "Event"
+                  }
+                }
+              ],
+              "inheritedFrom": {
+                "name": "XtalEditor",
+                "module": "src/xtal-editor.ts"
+              }
+            },
+            {
+              "kind": "field",
+              "name": "uiValue",
+              "type": {
+                "text": "string | undefined"
+              },
+              "inheritedFrom": {
+                "name": "XtalEditor",
+                "module": "src/xtal-editor.ts"
+              }
+            },
+            {
+              "kind": "field",
+              "name": "childValues",
+              "type": {
+                "text": "string[] | undefined | NameValue[]"
+              },
+              "inheritedFrom": {
+                "name": "XtalEditor",
+                "module": "src/xtal-editor.ts"
+              }
+            },
+            {
+              "kind": "field",
+              "name": "openEcho",
+              "type": {
+                "text": "boolean | undefined"
+              },
+              "inheritedFrom": {
+                "name": "XtalEditor",
+                "module": "src/xtal-editor.ts"
+              }
+            },
+            {
+              "kind": "field",
+              "name": "expandAll",
+              "type": {
+                "text": "boolean | undefined"
+              },
+              "inheritedFrom": {
+                "name": "XtalEditor",
+                "module": "src/xtal-editor.ts"
+              }
+            },
+            {
+              "kind": "field",
+              "name": "collapseAll",
+              "type": {
+                "text": "boolean | undefined"
+              },
+              "inheritedFrom": {
+                "name": "XtalEditor",
+                "module": "src/xtal-editor.ts"
+              }
+            },
+            {
+              "kind": "field",
+              "name": "upwardDataFlowInProgress",
+              "type": {
+                "text": "boolean | undefined"
+              },
+              "privacy": "private",
+              "inheritedFrom": {
+                "name": "XtalEditor",
+                "module": "src/xtal-editor.ts"
+              }
+            },
+            {
+              "kind": "field",
+              "name": "internalUpdateCount",
+              "type": {
+                "text": "number | undefined"
+              },
+              "inheritedFrom": {
+                "name": "XtalEditor",
+                "module": "src/xtal-editor.ts"
+              }
+            },
+            {
+              "kind": "field",
+              "name": "objCounter",
+              "type": {
+                "text": "number | undefined"
+              },
+              "inheritedFrom": {
+                "name": "XtalEditor",
+                "module": "src/xtal-editor.ts"
+              }
+            },
+            {
+              "kind": "field",
+              "name": "strCounter",
+              "type": {
+                "text": "number | undefined"
+              },
+              "inheritedFrom": {
+                "name": "XtalEditor",
+                "module": "src/xtal-editor.ts"
+              }
+            },
+            {
+              "kind": "field",
+              "name": "boolCounter",
+              "type": {
+                "text": "number | undefined"
+              },
+              "inheritedFrom": {
+                "name": "XtalEditor",
+                "module": "src/xtal-editor.ts"
+              }
+            },
+            {
+              "kind": "field",
+              "name": "numberCounter",
+              "type": {
+                "text": "number | undefined"
+              },
+              "inheritedFrom": {
+                "name": "XtalEditor",
+                "module": "src/xtal-editor.ts"
+              }
+            },
+            {
+              "kind": "field",
+              "name": "hasParent",
+              "type": {
+                "text": "boolean | undefined"
+              },
+              "inheritedFrom": {
+                "name": "XtalEditor",
+                "module": "src/xtal-editor.ts"
+              }
+            },
+            {
+              "kind": "field",
+              "name": "evenLevel",
+              "type": {
+                "text": "boolean | undefined"
+              },
+              "inheritedFrom": {
+                "name": "XtalEditor",
+                "module": "src/xtal-editor.ts"
+              }
+            },
+            {
+              "kind": "field",
+              "name": "parentLevel",
+              "type": {
+                "text": "boolean | undefined"
+              },
+              "inheritedFrom": {
+                "name": "XtalEditor",
+                "module": "src/xtal-editor.ts"
+              }
+            },
+            {
+              "kind": "field",
+              "name": "handlersAttached",
+              "type": {
+                "text": "boolean | undefined"
+              },
+              "inheritedFrom": {
+                "name": "XtalEditor",
+                "module": "src/xtal-editor.ts"
+              }
+            },
+            {
+              "kind": "method",
+              "name": "onPropChange",
+              "parameters": [
+                {
+                  "name": "n",
+                  "type": {
+                    "text": "string"
+                  }
+                },
+                {
+                  "name": "propDef",
+                  "type": {
+                    "text": "PropDef"
+                  }
+                },
+                {
+                  "name": "newVal",
+                  "type": {
+                    "text": "any"
+                  }
+                }
+              ],
+              "inheritedFrom": {
+                "name": "XtalEditor",
+                "module": "src/xtal-editor.ts"
+              }
+            },
+            {
+              "kind": "field",
+              "name": "childEditors",
+              "inheritedFrom": {
+                "name": "XtalEditor",
+                "module": "src/xtal-editor.ts"
+              }
+            }
+          ],
+          "superclass": {
+            "name": "XtalEditor",
+            "module": "/src/xtal-editor.js"
+          },
+          "tagName": "xtal-editor",
+          "customElement": true,
+          "attributes": [
+            {
+              "type": {
+                "text": "string"
+              },
+              "description": "Root node name to display",
+              "name": "key",
+              "inheritedFrom": {
+                "name": "XtalEditor",
+                "module": "src/xtal-editor.ts"
+              }
+            },
+            {
+              "type": {
+                "text": "boolean"
+              },
+              "description": "Indicates with Editor should show child nodes expanded.",
+              "name": "open",
+              "inheritedFrom": {
+                "name": "XtalEditor",
+                "module": "src/xtal-editor.ts"
+              }
+            }
+          ],
+          "events": [
+            {
+              "type": {
+                "text": "ValueDetail"
+              },
+              "description": "Fired after successfully parsing JSON string to edit.",
+              "name": "parsed-object-changed",
+              "inheritedFrom": {
+                "name": "XtalEditor",
+                "module": "src/xtal-editor.ts"
+              }
+            },
+            {
+              "type": {
+                "text": "ValueDetail"
+              },
+              "description": "-- Used for internal use.",
+              "name": "internal-updated-count-changed",
+              "inheritedFrom": {
+                "name": "XtalEditor",
+                "module": "src/xtal-editor.ts"
+              }
+            }
+          ]
+        }
+      ],
+      "exports": [
         {
-          "name": "objCounter",
-          "type": "number | undefined"
-        },
+          "kind": "js",
+          "name": "XtalEditorExample1",
+          "declaration": {
+            "name": "XtalEditorExample1",
+            "module": "src/xtal-editor-example1.js"
+          }
+        }
+      ]
+    },
+    {
+      "kind": "javascript-module",
+      "path": "src/xtal-editor-example1.ts",
+      "declarations": [
         {
-          "name": "strCounter",
-          "type": "number | undefined"
-        },
+          "kind": "class",
+          "description": "",
+          "name": "XtalEditorExample1",
+          "members": [
+            {
+              "kind": "field",
+              "name": "key",
+              "type": {
+                "text": "string"
+              },
+              "description": "Root node name to display",
+              "default": "'root'",
+              "inheritedFrom": {
+                "name": "XtalEditor",
+                "module": "src/xtal-editor.ts"
+              }
+            },
+            {
+              "kind": "field",
+              "name": "value",
+              "type": {
+                "text": "string | undefined"
+              },
+              "default": "'{}'",
+              "inheritedFrom": {
+                "name": "XtalEditor",
+                "module": "src/xtal-editor.ts"
+              }
+            },
+            {
+              "kind": "field",
+              "name": "type",
+              "type": {
+                "text": "editType"
+              },
+              "default": "'object'",
+              "inheritedFrom": {
+                "name": "XtalEditor",
+                "module": "src/xtal-editor.ts"
+              }
+            },
+            {
+              "kind": "field",
+              "name": "parsedObject",
+              "type": {
+                "text": "any"
+              },
+              "default": "{}",
+              "inheritedFrom": {
+                "name": "XtalEditor",
+                "module": "src/xtal-editor.ts"
+              }
+            },
+            {
+              "kind": "field",
+              "name": "open",
+              "type": {
+                "text": "boolean"
+              },
+              "description": "Indicates with Editor should show child nodes expanded.",
+              "default": "false",
+              "inheritedFrom": {
+                "name": "XtalEditor",
+                "module": "src/xtal-editor.ts"
+              }
+            },
+            {
+              "kind": "field",
+              "name": "is",
+              "type": {
+                "text": "string"
+              },
+              "static": true,
+              "default": "'xtal-editor'",
+              "inheritedFrom": {
+                "name": "XtalEditor",
+                "module": "src/xtal-editor.ts"
+              }
+            },
+            {
+              "kind": "field",
+              "name": "_internals",
+              "type": {
+                "text": "any"
+              },
+              "inheritedFrom": {
+                "name": "XtalEditor",
+                "module": "src/xtal-editor.ts"
+              }
+            },
+            {
+              "kind": "field",
+              "name": "reactor",
+              "type": {
+                "text": "IReactor"
+              },
+              "default": "new xp.RxSuppl(this, [\r\n        {\r\n            rhsType: Array,\r\n            ctor: DOMKeyPE\r\n        }\r\n    ])",
+              "privacy": "private",
+              "inheritedFrom": {
+                "name": "XtalEditor",
+                "module": "src/xtal-editor.ts"
+              }
+            },
+            {
+              "kind": "field",
+              "name": "styleTemplate",
+              "default": "html `\r\n<style>\r\n    :host{\r\n        display:block;\r\n    }\r\n\r\n    \r\n    slot{\r\n        display: none;\r\n    }\r\n\r\n\r\n    .expander{\r\n        width: fit-content;\r\n        height: fit-content;\r\n        padding-left: 0px;\r\n        padding-right: 0px;\r\n        width:20px;\r\n    }\r\n    .copyBtn{\r\n        width: fit-content;\r\n        height: fit-content;\r\n        padding-left: 0px;\r\n        padding-right: 0px;\r\n        padding-top: 0px;\r\n        padding-bottom: 0px;\r\n        border: 0;\r\n    }\r\n    .object.adder{\r\n        background-color: #C15000;\r\n    }\r\n    .editor{\r\n        --obj-key-bg: rgb(225, 112, 0);\r\n        --array-key-bg: rgb(45, 91, 137);\r\n        --obj-even-level-editor-bg: #F1E090;\r\n        --obj-odd-level-editor-bg: #FFEFCC;\r\n        --array-even-level-editor-bg: #A9DBDD;\r\n        --array-odd-level-editor-bg: #D9DBDD;\r\n        --string-adder-bg: #007408;\r\n        --bool-adder-bg: #516600;\r\n        --num-adder-bg:#497B8D\r\n    }\r\n    .editor[data-type=\"object\"][data-even-level=\"true\"]{\r\n        background-color: var(--obj-even-level-editor-bg);\r\n    }\r\n    .editor[data-type=\"object\"][data-even-level=\"false\"]{\r\n        background-color: var(--obj-odd-level-editor-bg);\r\n    }\r\n    .editor[data-type=\"array\"][data-even-level=\"true\"]{\r\n        background-color: var(--array-even-level-editor-bg);\r\n    }\r\n    .editor[data-type=\"array\"][data-even-level=\"false\"]{\r\n        background-color: var(--array-odd-level-editor-bg);\r\n    }\r\n    .string.adder{\r\n        background-color:var(--string-adder-bg);\r\n    }\r\n    .bool.adder{\r\n        background-color: var(--bool-adder-bg);\r\n    }\r\n    .number.adder{\r\n        background-color: var(--num-adder-bg);\r\n    }\r\n    .adder{\r\n        color: white;\r\n        text-shadow:1px 1px 1px black;\r\n        border-radius: 5px;\r\n        padding: 2;\r\n        border: none;\r\n    }\r\n    .remove{\r\n        padding: 2px 4px;\r\n        -webkit-border-radius: 5px;\r\n        -moz-border-radius: 5px;\r\n        border-radius: 5px;\r\n        color: white;\r\n        font-weight: bold;\r\n        text-shadow: 1px 1px 1px black;\r\n        background-color: black;\r\n        \r\n    }\r\n    .remove::after{\r\n        content: \"JSON Editor\";\r\n    }\r\n    .remove.editKey::after{\r\n        content: \"Remove item by deleting the property name.\";\r\n    }\r\n\r\n    .field{\r\n        display:flex;\r\n        flex-direction:row;\r\n        line-height: 20px;\r\n        align-items: center;\r\n    }\r\n    #copy{\r\n        background-image: url(https://cdn.jsdelivr.net/npm/xtal-editor/src/copy.svg);\r\n        \r\n    }\r\n    #expand-all{\r\n        background-image: url(https://cdn.jsdelivr.net/npm/xtal-editor/src/arrows-expand.svg);\r\n        width: 20px;\r\n    }\r\n    .action{\r\n        background-repeat:no-repeat;\r\n        background-position-y:center;\r\n        height: 22px;\r\n    }\r\n    #collapse-all{\r\n        background-image: url(https://cdn.jsdelivr.net/npm/xtal-editor/src/arrows-collapse.svg);\r\n        width: 20px;\r\n    }\r\n    @media only screen and (max-width: 1000px) {\r\n        .field{\r\n            flex-direction: column;\r\n        }\r\n        .child-inserters{\r\n            justify-content: flex-end;\r\n            width: 100%;\r\n        }\r\n        .text-editing{\r\n            width: 100%;\r\n        }\r\n    }\r\n    @media only screen and (min-width: 1001px){\r\n        .child-inserters{\r\n            justify-content: center;\r\n        }\r\n        .field{\r\n            width: 100%;\r\n            justify-content: space-evenly;\r\n        }\r\n        .text-editing{\r\n            flex-grow: 1;\r\n        }\r\n    }\r\n    .text-editing{\r\n        display: flex;\r\n        flex-direction: row;\r\n        padding-top:1px;\r\n        padding-bottom:1px;\r\n    }\r\n    .child-inserters{\r\n        display: flex;\r\n    }\r\n    .child-editors{\r\n        margin-left: 25px;\r\n    }\r\n    div[part=\"child-editors\"][data-open=\"false\"]{\r\n        display: none;\r\n    }\r\n    [data-type=\"object\"] button.nonPrimitive{\r\n        display: inline;\r\n    }\r\n    [data-type=\"object\"] div.nonPrimitive[data-open=\"true\"]{\r\n        display: block;\r\n    }\r\n    [data-type=\"array\"] button.nonPrimitive{\r\n        display: inline;\r\n    }\r\n    [data-type=\"array\"] div.nonPrimitive[data-open=\"true\"]{\r\n        display: block;\r\n    }\r\n    [data-type=\"string\"] .nonPrimitive{\r\n        display: none;\r\n    }\r\n    [data-type=\"number\"] .nonPrimitive{\r\n        display: none;\r\n    }\r\n    [data-type=\"boolean\"] .nonPrimitive{\r\n        display: none;\r\n    }\r\n    [data-type=\"string\"] [part=\"key\"]{\r\n        background-color: rgb(0, 148, 8);\r\n    }\r\n    [data-type=\"boolean\"] [part=\"key\"]{\r\n        background-color: #B1C639;\r\n    }\r\n    [data-type=\"object\"] [part=\"key\"]{\r\n        background-color: var(--obj-key-bg);\r\n        color: color-contrast(var(--obj-key-bg) vs white, black);\r\n    }\r\n    [data-type=\"number\"] [part=\"key\"]{\r\n        background-color: rgb(73, 123, 141);\r\n    }\r\n    [data-type=\"array\"] [part=\"key\"]{\r\n        background-color: var(--array-key-bg);\r\n        color: color-contrast(var(--array-key-bg) vs white, black);\r\n    }\r\n    .value{\r\n        background-color: #ECF3C3;\r\n        width: 100%;\r\n        flex-grow:5;\r\n    }\r\n    input.key {\r\n        \r\n        -webkit-border-radius: 5px;\r\n        -moz-border-radius: 5px;\r\n        border-radius: 5px;\r\n        margin-right: 2px;\r\n    }\r\n    input {\r\n        border: none;\r\n        padding: 3px;\r\n    }\r\n</style>\r\n`",
+              "inheritedFrom": {
+                "name": "XtalEditor",
+                "module": "src/xtal-editor.ts"
+              }
+            },
+            {
+              "kind": "field",
+              "name": "self",
+              "default": "this",
+              "privacy": "private",
+              "inheritedFrom": {
+                "name": "XtalEditor",
+                "module": "src/xtal-editor.ts"
+              }
+            },
+            {
+              "kind": "field",
+              "name": "refs",
+              "default": "{\r\n    slotElement: s, boolAdderPart: s, childEditorsPart: s, copyId: s,\r\n    editorPart: s, expanderPart: s, keyPart: s, objectAdderPart: s, stringAdderPart: s,\r\n    removePart: s, numberAdderPart: s, valuePart: s,\r\n    ibIdXtalEditorElement: s, expandAllId:s, collapseAllId: s, \r\n}",
+              "privacy": "private",
+              "type": {
+                "text": "object"
+              },
+              "inheritedFrom": {
+                "name": "XtalEditor",
+                "module": "src/xtal-editor.ts"
+              }
+            },
+            {
+              "kind": "field",
+              "name": "propActions",
+              "default": "[\r\n    xp.manageMainTemplate,\r\n    onValueChange, \r\n    linkChildValues, \r\n    linkValueFromChildren, \r\n    addObject, \r\n    addString, \r\n    addBool, \r\n    addNumber, \r\n    onUiValue,\r\n    xp.attachShadow,\r\n    addEventHandlers,\r\n    updateTransforms,\r\n    onExpandAll,\r\n    onCollapseAll,\r\n    initEvenLevel,\r\n    linkEvenLevel\r\n]",
+              "privacy": "private",
+              "inheritedFrom": {
+                "name": "XtalEditor",
+                "module": "src/xtal-editor.ts"
+              }
+            },
+            {
+              "kind": "field",
+              "name": "mainTemplate",
+              "default": "html`\r\n<slot part=slot name=initVal></slot>\r\n<div class=\"remove\" part=remove></div>\r\n<div data-type=string part=editor class=editor>\r\n    <div part=field class=field>\r\n        <div class=text-editing>\r\n            <button part=expander class=\"expander nonPrimitive\">+</button>\r\n            <input aria-label=key part=key class=key><input aria-label=value part=value class=value>\r\n        </div>\r\n        <div part=child-inserters class=\"nonPrimitive child-inserters\" data-open=false>\r\n            <button part=object-adder class=\"object adder\">add object</button>\r\n            <button part=string-adder class=\"string adder\">add string</button>\r\n            <button part=bool-adder class=\"bool adder\">add bool</button>\r\n            <button part=number-adder class=\"number adder\">add number</button>\r\n            <button id=copy class=action part=copy-to-clipboard title=\"Copy to Clipboard\"></button>\r\n            <button id=expand-all class=action part=expand-all title=\"Expand All\" aria-label=\"Expand All\"></button>\r\n            <button id=collapse-all class=action part=collapse-all title=\"Collapse All\" aria-label=\"Collapse All\"></button>\r\n        </div>\r\n        \r\n    </div>\r\n    <div part=child-editors class=\"nonPrimitive child-editors\" data-open=false>\r\n        <p-p from-host observe-prop=expandAll to=xtal-editor prop=expandAll></p-p>\r\n        <p-p from-host observe-prop=collapseAll to=xtal-editor prop=collapseAll></p-p>\r\n        <p-p from-host observe-prop=evenLevel to=xtal-editor prop=parentLevel></p-p>\r\n        <ib-id-xtal-editor tag=xtal-editor></ib-id-xtal-editor>\r\n    </div>\r\n    \r\n</div>\r\n`",
+              "privacy": "private",
+              "inheritedFrom": {
+                "name": "XtalEditor",
+                "module": "src/xtal-editor.ts"
+              }
+            },
+            {
+              "kind": "field",
+              "name": "clonedTemplate",
+              "type": {
+                "text": "DocumentFragment | undefined"
+              },
+              "privacy": "private",
+              "inheritedFrom": {
+                "name": "XtalEditor",
+                "module": "src/xtal-editor.ts"
+              }
+            },
+            {
+              "kind": "field",
+              "name": "domCache",
+              "type": {
+                "text": "any"
+              },
+              "inheritedFrom": {
+                "name": "XtalEditor",
+                "module": "src/xtal-editor.ts"
+              }
+            },
+            {
+              "kind": "field",
+              "name": "rootEditor",
+              "type": {
+                "text": "XtalEditor | undefined"
+              },
+              "privacy": "private",
+              "inheritedFrom": {
+                "name": "XtalEditor",
+                "module": "src/xtal-editor.ts"
+              }
+            },
+            {
+              "kind": "method",
+              "name": "handleKeyChange",
+              "parameters": [
+                {
+                  "name": "key",
+                  "type": {
+                    "text": "string"
+                  }
+                }
+              ],
+              "inheritedFrom": {
+                "name": "XtalEditor",
+                "module": "src/xtal-editor.ts"
+              }
+            },
+            {
+              "kind": "method",
+              "name": "handleKeyFocus",
+              "parameters": [
+                {
+                  "name": "e",
+                  "type": {
+                    "text": "Event"
+                  }
+                }
+              ],
+              "inheritedFrom": {
+                "name": "XtalEditor",
+                "module": "src/xtal-editor.ts"
+              }
+            },
+            {
+              "kind": "method",
+              "name": "handleValueFocus",
+              "parameters": [
+                {
+                  "name": "e",
+                  "type": {
+                    "text": "Event"
+                  }
+                }
+              ],
+              "inheritedFrom": {
+                "name": "XtalEditor",
+                "module": "src/xtal-editor.ts"
+              }
+            },
+            {
+              "kind": "method",
+              "name": "handleValueChange",
+              "parameters": [
+                {
+                  "name": "val",
+                  "type": {
+                    "text": "string"
+                  }
+                }
+              ],
+              "inheritedFrom": {
+                "name": "XtalEditor",
+                "module": "src/xtal-editor.ts"
+              }
+            },
+            {
+              "kind": "method",
+              "name": "incrementUpdateCount",
+              "inheritedFrom": {
+                "name": "XtalEditor",
+                "module": "src/xtal-editor.ts"
+              }
+            },
+            {
+              "kind": "method",
+              "name": "copyToClipboard",
+              "inheritedFrom": {
+                "name": "XtalEditor",
+                "module": "src/xtal-editor.ts"
+              }
+            },
+            {
+              "kind": "method",
+              "name": "toggle",
+              "inheritedFrom": {
+                "name": "XtalEditor",
+                "module": "src/xtal-editor.ts"
+              }
+            },
+            {
+              "kind": "field",
+              "name": "actionCount",
+              "type": {
+                "text": "number"
+              },
+              "default": "0",
+              "privacy": "private",
+              "inheritedFrom": {
+                "name": "XtalEditor",
+                "module": "src/xtal-editor.ts"
+              }
+            },
+            {
+              "kind": "method",
+              "name": "addObject",
+              "inheritedFrom": {
+                "name": "XtalEditor",
+                "module": "src/xtal-editor.ts"
+              }
+            },
+            {
+              "kind": "method",
+              "name": "addString",
+              "inheritedFrom": {
+                "name": "XtalEditor",
+                "module": "src/xtal-editor.ts"
+              }
+            },
+            {
+              "kind": "method",
+              "name": "addBool",
+              "inheritedFrom": {
+                "name": "XtalEditor",
+                "module": "src/xtal-editor.ts"
+              }
+            },
+            {
+              "kind": "method",
+              "name": "addNumber",
+              "inheritedFrom": {
+                "name": "XtalEditor",
+                "module": "src/xtal-editor.ts"
+              }
+            },
+            {
+              "kind": "method",
+              "name": "handleSlotChange",
+              "parameters": [
+                {
+                  "name": "e",
+                  "type": {
+                    "text": "Event"
+                  }
+                }
+              ],
+              "inheritedFrom": {
+                "name": "XtalEditor",
+                "module": "src/xtal-editor.ts"
+              }
+            },
+            {
+              "kind": "field",
+              "name": "uiValue",
+              "type": {
+                "text": "string | undefined"
+              },
+              "inheritedFrom": {
+                "name": "XtalEditor",
+                "module": "src/xtal-editor.ts"
+              }
+            },
+            {
+              "kind": "field",
+              "name": "childValues",
+              "type": {
+                "text": "string[] | undefined | NameValue[]"
+              },
+              "inheritedFrom": {
+                "name": "XtalEditor",
+                "module": "src/xtal-editor.ts"
+              }
+            },
+            {
+              "kind": "field",
+              "name": "openEcho",
+              "type": {
+                "text": "boolean | undefined"
+              },
+              "inheritedFrom": {
+                "name": "XtalEditor",
+                "module": "src/xtal-editor.ts"
+              }
+            },
+            {
+              "kind": "field",
+              "name": "expandAll",
+              "type": {
+                "text": "boolean | undefined"
+              },
+              "inheritedFrom": {
+                "name": "XtalEditor",
+                "module": "src/xtal-editor.ts"
+              }
+            },
+            {
+              "kind": "field",
+              "name": "collapseAll",
+              "type": {
+                "text": "boolean | undefined"
+              },
+              "inheritedFrom": {
+                "name": "XtalEditor",
+                "module": "src/xtal-editor.ts"
+              }
+            },
+            {
+              "kind": "field",
+              "name": "upwardDataFlowInProgress",
+              "type": {
+                "text": "boolean | undefined"
+              },
+              "privacy": "private",
+              "inheritedFrom": {
+                "name": "XtalEditor",
+                "module": "src/xtal-editor.ts"
+              }
+            },
+            {
+              "kind": "field",
+              "name": "internalUpdateCount",
+              "type": {
+                "text": "number | undefined"
+              },
+              "inheritedFrom": {
+                "name": "XtalEditor",
+                "module": "src/xtal-editor.ts"
+              }
+            },
+            {
+              "kind": "field",
+              "name": "objCounter",
+              "type": {
+                "text": "number | undefined"
+              },
+              "inheritedFrom": {
+                "name": "XtalEditor",
+                "module": "src/xtal-editor.ts"
+              }
+            },
+            {
+              "kind": "field",
+              "name": "strCounter",
+              "type": {
+                "text": "number | undefined"
+              },
+              "inheritedFrom": {
+                "name": "XtalEditor",
+                "module": "src/xtal-editor.ts"
+              }
+            },
+            {
+              "kind": "field",
+              "name": "boolCounter",
+              "type": {
+                "text": "number | undefined"
+              },
+              "inheritedFrom": {
+                "name": "XtalEditor",
+                "module": "src/xtal-editor.ts"
+              }
+            },
+            {
+              "kind": "field",
+              "name": "numberCounter",
+              "type": {
+                "text": "number | undefined"
+              },
+              "inheritedFrom": {
+                "name": "XtalEditor",
+                "module": "src/xtal-editor.ts"
+              }
+            },
+            {
+              "kind": "field",
+              "name": "hasParent",
+              "type": {
+                "text": "boolean | undefined"
+              },
+              "inheritedFrom": {
+                "name": "XtalEditor",
+                "module": "src/xtal-editor.ts"
+              }
+            },
+            {
+              "kind": "field",
+              "name": "evenLevel",
+              "type": {
+                "text": "boolean | undefined"
+              },
+              "inheritedFrom": {
+                "name": "XtalEditor",
+                "module": "src/xtal-editor.ts"
+              }
+            },
+            {
+              "kind": "field",
+              "name": "parentLevel",
+              "type": {
+                "text": "boolean | undefined"
+              },
+              "inheritedFrom": {
+                "name": "XtalEditor",
+                "module": "src/xtal-editor.ts"
+              }
+            },
+            {
+              "kind": "field",
+              "name": "handlersAttached",
+              "type": {
+                "text": "boolean | undefined"
+              },
+              "inheritedFrom": {
+                "name": "XtalEditor",
+                "module": "src/xtal-editor.ts"
+              }
+            },
+            {
+              "kind": "method",
+              "name": "onPropChange",
+              "parameters": [
+                {
+                  "name": "n",
+                  "type": {
+                    "text": "string"
+                  }
+                },
+                {
+                  "name": "propDef",
+                  "type": {
+                    "text": "PropDef"
+                  }
+                },
+                {
+                  "name": "newVal",
+                  "type": {
+                    "text": "any"
+                  }
+                }
+              ],
+              "inheritedFrom": {
+                "name": "XtalEditor",
+                "module": "src/xtal-editor.ts"
+              }
+            },
+            {
+              "kind": "field",
+              "name": "childEditors",
+              "inheritedFrom": {
+                "name": "XtalEditor",
+                "module": "src/xtal-editor.ts"
+              }
+            }
+          ],
+          "superclass": {
+            "name": "XtalEditor",
+            "module": "/src/xtal-editor.js"
+          },
+          "tagName": "xtal-editor",
+          "customElement": true,
+          "attributes": [
+            {
+              "type": {
+                "text": "string"
+              },
+              "description": "Root node name to display",
+              "name": "key",
+              "inheritedFrom": {
+                "name": "XtalEditor",
+                "module": "src/xtal-editor.ts"
+              }
+            },
+            {
+              "type": {
+                "text": "boolean"
+              },
+              "description": "Indicates with Editor should show child nodes expanded.",
+              "name": "open",
+              "inheritedFrom": {
+                "name": "XtalEditor",
+                "module": "src/xtal-editor.ts"
+              }
+            }
+          ],
+          "events": [
+            {
+              "type": {
+                "text": "ValueDetail"
+              },
+              "description": "Fired after successfully parsing JSON string to edit.",
+              "name": "parsed-object-changed",
+              "inheritedFrom": {
+                "name": "XtalEditor",
+                "module": "src/xtal-editor.ts"
+              }
+            },
+            {
+              "type": {
+                "text": "ValueDetail"
+              },
+              "description": "-- Used for internal use.",
+              "name": "internal-updated-count-changed",
+              "inheritedFrom": {
+                "name": "XtalEditor",
+                "module": "src/xtal-editor.ts"
+              }
+            }
+          ]
+        }
+      ],
+      "exports": [
         {
-          "name": "boolCounter",
-          "type": "number | undefined"
-        },
+          "kind": "js",
+          "name": "XtalEditorExample1",
+          "declaration": {
+            "name": "XtalEditorExample1",
+            "module": "src/xtal-editor-example1.ts"
+          }
+        }
+      ]
+    },
+    {
+      "kind": "javascript-module",
+      "path": "src/xtal-editor-style.js",
+      "declarations": [
         {
-          "name": "numberCounter",
-          "type": "number | undefined"
-        },
+          "kind": "variable",
+          "name": "styleTemplate",
+          "default": "html `\r\n<style>\r\n    :host{\r\n        display:block;\r\n    }\r\n\r\n    \r\n    slot{\r\n        display: none;\r\n    }\r\n\r\n\r\n    .expander{\r\n        width: fit-content;\r\n        height: fit-content;\r\n        padding-left: 0px;\r\n        padding-right: 0px;\r\n        width:20px;\r\n    }\r\n    .copyBtn{\r\n        width: fit-content;\r\n        height: fit-content;\r\n        padding-left: 0px;\r\n        padding-right: 0px;\r\n        padding-top: 0px;\r\n        padding-bottom: 0px;\r\n        border: 0;\r\n    }\r\n    .object.adder{\r\n        background-color: #C15000;\r\n    }\r\n    .editor{\r\n        --obj-key-bg: rgb(225, 112, 0);\r\n        --array-key-bg: rgb(45, 91, 137);\r\n        --obj-even-level-editor-bg: #F1E090;\r\n        --obj-odd-level-editor-bg: #FFEFCC;\r\n        --array-even-level-editor-bg: #A9DBDD;\r\n        --array-odd-level-editor-bg: #D9DBDD;\r\n        --string-adder-bg: #007408;\r\n        --bool-adder-bg: #516600;\r\n        --num-adder-bg:#497B8D\r\n    }\r\n    .editor[data-type=\"object\"][data-even-level=\"true\"]{\r\n        background-color: var(--obj-even-level-editor-bg);\r\n    }\r\n    .editor[data-type=\"object\"][data-even-level=\"false\"]{\r\n        background-color: var(--obj-odd-level-editor-bg);\r\n    }\r\n    .editor[data-type=\"array\"][data-even-level=\"true\"]{\r\n        background-color: var(--array-even-level-editor-bg);\r\n    }\r\n    .editor[data-type=\"array\"][data-even-level=\"false\"]{\r\n        background-color: var(--array-odd-level-editor-bg);\r\n    }\r\n    .string.adder{\r\n        background-color:var(--string-adder-bg);\r\n    }\r\n    .bool.adder{\r\n        background-color: var(--bool-adder-bg);\r\n    }\r\n    .number.adder{\r\n        background-color: var(--num-adder-bg);\r\n    }\r\n    .adder{\r\n        color: white;\r\n        text-shadow:1px 1px 1px black;\r\n        border-radius: 5px;\r\n        padding: 2;\r\n        border: none;\r\n    }\r\n    .remove{\r\n        padding: 2px 4px;\r\n        -webkit-border-radius: 5px;\r\n        -moz-border-radius: 5px;\r\n        border-radius: 5px;\r\n        color: white;\r\n        font-weight: bold;\r\n        text-shadow: 1px 1px 1px black;\r\n        background-color: black;\r\n        \r\n    }\r\n    .remove::after{\r\n        content: \"JSON Editor\";\r\n    }\r\n    .remove.editKey::after{\r\n        content: \"Remove item by deleting the property name.\";\r\n    }\r\n\r\n    .field{\r\n        display:flex;\r\n        flex-direction:row;\r\n        line-height: 20px;\r\n        align-items: center;\r\n    }\r\n    #copy{\r\n        background-image: url(https://cdn.jsdelivr.net/npm/xtal-editor/src/copy.svg);\r\n        \r\n    }\r\n    #expand-all{\r\n        background-image: url(https://cdn.jsdelivr.net/npm/xtal-editor/src/arrows-expand.svg);\r\n        width: 20px;\r\n    }\r\n    .action{\r\n        background-repeat:no-repeat;\r\n        background-position-y:center;\r\n        height: 22px;\r\n    }\r\n    #collapse-all{\r\n        background-image: url(https://cdn.jsdelivr.net/npm/xtal-editor/src/arrows-collapse.svg);\r\n        width: 20px;\r\n    }\r\n    @media only screen and (max-width: 1000px) {\r\n        .field{\r\n            flex-direction: column;\r\n        }\r\n        .child-inserters{\r\n            justify-content: flex-end;\r\n            width: 100%;\r\n        }\r\n        .text-editing{\r\n            width: 100%;\r\n        }\r\n    }\r\n    @media only screen and (min-width: 1001px){\r\n        .child-inserters{\r\n            justify-content: center;\r\n        }\r\n        .field{\r\n            width: 100%;\r\n            justify-content: space-evenly;\r\n        }\r\n        .text-editing{\r\n            flex-grow: 1;\r\n        }\r\n    }\r\n    .text-editing{\r\n        display: flex;\r\n        flex-direction: row;\r\n        padding-top:1px;\r\n        padding-bottom:1px;\r\n    }\r\n    .child-inserters{\r\n        display: flex;\r\n    }\r\n    .child-editors{\r\n        margin-left: 25px;\r\n    }\r\n    div[part=\"child-editors\"][data-open=\"false\"]{\r\n        display: none;\r\n    }\r\n    [data-type=\"object\"] button.nonPrimitive{\r\n        display: inline;\r\n    }\r\n    [data-type=\"object\"] div.nonPrimitive[data-open=\"true\"]{\r\n        display: block;\r\n    }\r\n    [data-type=\"array\"] button.nonPrimitive{\r\n        display: inline;\r\n    }\r\n    [data-type=\"array\"] div.nonPrimitive[data-open=\"true\"]{\r\n        display: block;\r\n    }\r\n    [data-type=\"string\"] .nonPrimitive{\r\n        display: none;\r\n    }\r\n    [data-type=\"number\"] .nonPrimitive{\r\n        display: none;\r\n    }\r\n    [data-type=\"boolean\"] .nonPrimitive{\r\n        display: none;\r\n    }\r\n    [data-type=\"string\"] [part=\"key\"]{\r\n        background-color: rgb(0, 148, 8);\r\n    }\r\n    [data-type=\"boolean\"] [part=\"key\"]{\r\n        background-color: #B1C639;\r\n    }\r\n    [data-type=\"object\"] [part=\"key\"]{\r\n        background-color: var(--obj-key-bg);\r\n        color: color-contrast(var(--obj-key-bg) vs white, black);\r\n    }\r\n    [data-type=\"number\"] [part=\"key\"]{\r\n        background-color: rgb(73, 123, 141);\r\n    }\r\n    [data-type=\"array\"] [part=\"key\"]{\r\n        background-color: var(--array-key-bg);\r\n        color: color-contrast(var(--array-key-bg) vs white, black);\r\n    }\r\n    .value{\r\n        background-color: #ECF3C3;\r\n        width: 100%;\r\n        flex-grow:5;\r\n    }\r\n    input.key {\r\n        \r\n        -webkit-border-radius: 5px;\r\n        -moz-border-radius: 5px;\r\n        border-radius: 5px;\r\n        margin-right: 2px;\r\n    }\r\n    input {\r\n        border: none;\r\n        padding: 3px;\r\n    }\r\n</style>\r\n`"
+        }
+      ],
+      "exports": [
         {
-          "name": "hasParent",
-          "type": "boolean | undefined"
-        },
+          "kind": "js",
+          "name": "styleTemplate",
+          "declaration": {
+            "name": "styleTemplate",
+            "module": "src/xtal-editor-style.js"
+          }
+        }
+      ]
+    },
+    {
+      "kind": "javascript-module",
+      "path": "src/xtal-editor-style.ts",
+      "declarations": [
         {
-          "name": "key",
-          "type": "string",
-          "default": "\"root\""
-        },
+          "kind": "variable",
+          "name": "styleTemplate",
+          "default": "html`\r\n<style>\r\n    :host{\r\n        display:block;\r\n    }\r\n\r\n    \r\n    slot{\r\n        display: none;\r\n    }\r\n\r\n\r\n    .expander{\r\n        width: fit-content;\r\n        height: fit-content;\r\n        padding-left: 0px;\r\n        padding-right: 0px;\r\n        width:20px;\r\n    }\r\n    .copyBtn{\r\n        width: fit-content;\r\n        height: fit-content;\r\n        padding-left: 0px;\r\n        padding-right: 0px;\r\n        padding-top: 0px;\r\n        padding-bottom: 0px;\r\n        border: 0;\r\n    }\r\n    .object.adder{\r\n        background-color: #C15000;\r\n    }\r\n    .editor{\r\n        --obj-key-bg: rgb(225, 112, 0);\r\n        --array-key-bg: rgb(45, 91, 137);\r\n        --obj-even-level-editor-bg: #F1E090;\r\n        --obj-odd-level-editor-bg: #FFEFCC;\r\n        --array-even-level-editor-bg: #A9DBDD;\r\n        --array-odd-level-editor-bg: #D9DBDD;\r\n        --string-adder-bg: #007408;\r\n        --bool-adder-bg: #516600;\r\n        --num-adder-bg:#497B8D\r\n    }\r\n    .editor[data-type=\"object\"][data-even-level=\"true\"]{\r\n        background-color: var(--obj-even-level-editor-bg);\r\n    }\r\n    .editor[data-type=\"object\"][data-even-level=\"false\"]{\r\n        background-color: var(--obj-odd-level-editor-bg);\r\n    }\r\n    .editor[data-type=\"array\"][data-even-level=\"true\"]{\r\n        background-color: var(--array-even-level-editor-bg);\r\n    }\r\n    .editor[data-type=\"array\"][data-even-level=\"false\"]{\r\n        background-color: var(--array-odd-level-editor-bg);\r\n    }\r\n    .string.adder{\r\n        background-color:var(--string-adder-bg);\r\n    }\r\n    .bool.adder{\r\n        background-color: var(--bool-adder-bg);\r\n    }\r\n    .number.adder{\r\n        background-color: var(--num-adder-bg);\r\n    }\r\n    .adder{\r\n        color: white;\r\n        text-shadow:1px 1px 1px black;\r\n        border-radius: 5px;\r\n        padding: 2;\r\n        border: none;\r\n    }\r\n    .remove{\r\n        padding: 2px 4px;\r\n        -webkit-border-radius: 5px;\r\n        -moz-border-radius: 5px;\r\n        border-radius: 5px;\r\n        color: white;\r\n        font-weight: bold;\r\n        text-shadow: 1px 1px 1px black;\r\n        background-color: black;\r\n        \r\n    }\r\n    .remove::after{\r\n        content: \"JSON Editor\";\r\n    }\r\n    .remove.editKey::after{\r\n        content: \"Remove item by deleting the property name.\";\r\n    }\r\n\r\n    .field{\r\n        display:flex;\r\n        flex-direction:row;\r\n        line-height: 20px;\r\n        align-items: center;\r\n    }\r\n    #copy{\r\n        background-image: url(https://cdn.jsdelivr.net/npm/xtal-editor/src/copy.svg);\r\n        \r\n    }\r\n    #expand-all{\r\n        background-image: url(https://cdn.jsdelivr.net/npm/xtal-editor/src/arrows-expand.svg);\r\n        width: 20px;\r\n    }\r\n    .action{\r\n        background-repeat:no-repeat;\r\n        background-position-y:center;\r\n        height: 22px;\r\n    }\r\n    #collapse-all{\r\n        background-image: url(https://cdn.jsdelivr.net/npm/xtal-editor/src/arrows-collapse.svg);\r\n        width: 20px;\r\n    }\r\n    @media only screen and (max-width: 1000px) {\r\n        .field{\r\n            flex-direction: column;\r\n        }\r\n        .child-inserters{\r\n            justify-content: flex-end;\r\n            width: 100%;\r\n        }\r\n        .text-editing{\r\n            width: 100%;\r\n        }\r\n    }\r\n    @media only screen and (min-width: 1001px){\r\n        .child-inserters{\r\n            justify-content: center;\r\n        }\r\n        .field{\r\n            width: 100%;\r\n            justify-content: space-evenly;\r\n        }\r\n        .text-editing{\r\n            flex-grow: 1;\r\n        }\r\n    }\r\n    .text-editing{\r\n        display: flex;\r\n        flex-direction: row;\r\n        padding-top:1px;\r\n        padding-bottom:1px;\r\n    }\r\n    .child-inserters{\r\n        display: flex;\r\n    }\r\n    .child-editors{\r\n        margin-left: 25px;\r\n    }\r\n    div[part=\"child-editors\"][data-open=\"false\"]{\r\n        display: none;\r\n    }\r\n    [data-type=\"object\"] button.nonPrimitive{\r\n        display: inline;\r\n    }\r\n    [data-type=\"object\"] div.nonPrimitive[data-open=\"true\"]{\r\n        display: block;\r\n    }\r\n    [data-type=\"array\"] button.nonPrimitive{\r\n        display: inline;\r\n    }\r\n    [data-type=\"array\"] div.nonPrimitive[data-open=\"true\"]{\r\n        display: block;\r\n    }\r\n    [data-type=\"string\"] .nonPrimitive{\r\n        display: none;\r\n    }\r\n    [data-type=\"number\"] .nonPrimitive{\r\n        display: none;\r\n    }\r\n    [data-type=\"boolean\"] .nonPrimitive{\r\n        display: none;\r\n    }\r\n    [data-type=\"string\"] [part=\"key\"]{\r\n        background-color: rgb(0, 148, 8);\r\n    }\r\n    [data-type=\"boolean\"] [part=\"key\"]{\r\n        background-color: #B1C639;\r\n    }\r\n    [data-type=\"object\"] [part=\"key\"]{\r\n        background-color: var(--obj-key-bg);\r\n        color: color-contrast(var(--obj-key-bg) vs white, black);\r\n    }\r\n    [data-type=\"number\"] [part=\"key\"]{\r\n        background-color: rgb(73, 123, 141);\r\n    }\r\n    [data-type=\"array\"] [part=\"key\"]{\r\n        background-color: var(--array-key-bg);\r\n        color: color-contrast(var(--array-key-bg) vs white, black);\r\n    }\r\n    .value{\r\n        background-color: #ECF3C3;\r\n        width: 100%;\r\n        flex-grow:5;\r\n    }\r\n    input.key {\r\n        \r\n        -webkit-border-radius: 5px;\r\n        -moz-border-radius: 5px;\r\n        border-radius: 5px;\r\n        margin-right: 2px;\r\n    }\r\n    input {\r\n        border: none;\r\n        padding: 3px;\r\n    }\r\n</style>\r\n`"
+        }
+      ],
+      "exports": [
         {
-          "name": "value",
-          "type": "string",
-          "default": "\"{}\""
-        },
+          "kind": "js",
+          "name": "styleTemplate",
+          "declaration": {
+            "name": "styleTemplate",
+            "module": "src/xtal-editor-style.ts"
+          }
+        }
+      ]
+    },
+    {
+      "kind": "javascript-module",
+      "path": "src/xtal-editor.js",
+      "declarations": [
         {
-          "name": "type",
-          "type": "string",
-          "default": "\"object\""
-        },
+          "kind": "class",
+          "description": "",
+          "name": "XtalEditor",
+          "slots": [
+            {
+              "description": "Pass in the initial JSON string via a textarea component with this slot (or some other input element with property \"value\" where the string can be pulled from.)",
+              "name": "initVal"
+            }
+          ],
+          "members": [
+            {
+              "kind": "method",
+              "name": "handleKeyChange",
+              "parameters": [
+                {
+                  "name": "key"
+                }
+              ]
+            },
+            {
+              "kind": "method",
+              "name": "handleKeyFocus",
+              "parameters": [
+                {
+                  "name": "e"
+                }
+              ]
+            },
+            {
+              "kind": "method",
+              "name": "handleValueFocus",
+              "parameters": [
+                {
+                  "name": "e"
+                }
+              ]
+            },
+            {
+              "kind": "method",
+              "name": "handleValueChange",
+              "parameters": [
+                {
+                  "name": "val"
+                }
+              ]
+            },
+            {
+              "kind": "method",
+              "name": "incrementUpdateCount"
+            },
+            {
+              "kind": "method",
+              "name": "copyToClipboard"
+            },
+            {
+              "kind": "method",
+              "name": "toggle"
+            },
+            {
+              "kind": "method",
+              "name": "addObject"
+            },
+            {
+              "kind": "method",
+              "name": "addString"
+            },
+            {
+              "kind": "method",
+              "name": "addBool"
+            },
+            {
+              "kind": "method",
+              "name": "addNumber"
+            },
+            {
+              "kind": "method",
+              "name": "handleSlotChange",
+              "parameters": [
+                {
+                  "name": "e"
+                }
+              ]
+            },
+            {
+              "kind": "method",
+              "name": "onPropChange",
+              "parameters": [
+                {
+                  "name": "n"
+                },
+                {
+                  "name": "propDef"
+                },
+                {
+                  "name": "newVal"
+                }
+              ]
+            },
+            {
+              "kind": "field",
+              "name": "childEditors"
+            },
+            {
+              "kind": "field",
+              "name": "reactor",
+              "privacy": "private",
+              "default": "new xp.RxSuppl(this, [\n            {\n                rhsType: Array,\n                ctor: DOMKeyPE\n            }\n        ])"
+            },
+            {
+              "kind": "field",
+              "name": "styleTemplate",
+              "default": "styleTemplate"
+            },
+            {
+              "kind": "field",
+              "name": "self",
+              "privacy": "private",
+              "default": "this"
+            },
+            {
+              "kind": "field",
+              "name": "refs",
+              "privacy": "private",
+              "default": "{\n    slotElement: s, boolAdderPart: s, childEditorsPart: s, copyId: s,\n    editorPart: s, expanderPart: s, keyPart: s, objectAdderPart: s, stringAdderPart: s,\n    removePart: s, numberAdderPart: s, valuePart: s,\n    ibIdXtalEditorElement: s, expandAllId: s, collapseAllId: s,\n}",
+              "type": {
+                "text": "object"
+              }
+            },
+            {
+              "kind": "field",
+              "name": "propActions",
+              "privacy": "private",
+              "default": "[\n    xp.manageMainTemplate,\n    onValueChange,\n    linkChildValues,\n    linkValueFromChildren,\n    addObject,\n    addString,\n    addBool,\n    addNumber,\n    onUiValue,\n    xp.attachShadow,\n    addEventHandlers,\n    updateTransforms,\n    onExpandAll,\n    onCollapseAll,\n    initEvenLevel,\n    linkEvenLevel\n]",
+              "type": {
+                "text": "array"
+              }
+            },
+            {
+              "kind": "field",
+              "name": "mainTemplate",
+              "privacy": "private",
+              "default": "html `\r\n<slot part=slot name=initVal></slot>\r\n<div class=\"remove\" part=remove></div>\r\n<div data-type=string part=editor class=editor>\r\n    <div part=field class=field>\r\n        <div class=text-editing>\r\n            <button part=expander class=\"expander nonPrimitive\">+</button>\r\n            <input aria-label=key part=key class=key><input aria-label=value part=value class=value>\r\n        </div>\r\n        <div part=child-inserters class=\"nonPrimitive child-inserters\" data-open=false>\r\n            <button part=object-adder class=\"object adder\">add object</button>\r\n            <button part=string-adder class=\"string adder\">add string</button>\r\n            <button part=bool-adder class=\"bool adder\">add bool</button>\r\n            <button part=number-adder class=\"number adder\">add number</button>\r\n            <button id=copy class=action part=copy-to-clipboard title=\"Copy to Clipboard\"></button>\r\n            <button id=expand-all class=action part=expand-all title=\"Expand All\" aria-label=\"Expand All\"></button>\r\n            <button id=collapse-all class=action part=collapse-all title=\"Collapse All\" aria-label=\"Collapse All\"></button>\r\n        </div>\r\n        \r\n    </div>\r\n    <div part=child-editors class=\"nonPrimitive child-editors\" data-open=false>\r\n        <p-p from-host observe-prop=expandAll to=xtal-editor prop=expandAll></p-p>\r\n        <p-p from-host observe-prop=collapseAll to=xtal-editor prop=collapseAll></p-p>\r\n        <p-p from-host observe-prop=evenLevel to=xtal-editor prop=parentLevel></p-p>\r\n        <ib-id-xtal-editor tag=xtal-editor></ib-id-xtal-editor>\r\n    </div>\r\n    \r\n</div>\r\n`"
+            },
+            {
+              "kind": "field",
+              "name": "actionCount",
+              "type": {
+                "text": "number"
+              },
+              "privacy": "private",
+              "default": "0"
+            },
+            {
+              "type": {
+                "text": "string"
+              },
+              "description": "Root node name to display",
+              "name": "key",
+              "kind": "field"
+            },
+            {
+              "type": {
+                "text": "boolean"
+              },
+              "description": "Indicates with Editor should show child nodes expanded.",
+              "name": "open",
+              "kind": "field"
+            }
+          ],
+          "events": [
+            {
+              "type": {
+                "text": "ValueDetail"
+              },
+              "description": "Fired after successfully parsing JSON string to edit.",
+              "name": "parsed-object-changed"
+            },
+            {
+              "type": {
+                "text": "ValueDetail"
+              },
+              "description": "-- Used for internal use.",
+              "name": "internal-updated-count-changed"
+            }
+          ],
+          "attributes": [
+            {
+              "type": {
+                "text": "string"
+              },
+              "description": "Root node name to display",
+              "name": "key"
+            },
+            {
+              "type": {
+                "text": "boolean"
+              },
+              "description": "Indicates with Editor should show child nodes expanded.",
+              "name": "open"
+            }
+          ],
+          "superclass": {
+            "name": "HTMLElement"
+          },
+          "tagName": "xtal-editor",
+          "customElement": true
+        }
+      ],
+      "exports": [
         {
-          "name": "parsedObject",
-          "type": "object",
-          "default": "{}"
-        },
+          "kind": "js",
+          "name": "XtalEditor",
+          "declaration": {
+            "name": "XtalEditor",
+            "module": "src/xtal-editor.js"
+          }
+        }
+      ]
+    },
+    {
+      "kind": "javascript-module",
+      "path": "src/xtal-editor.ts",
+      "declarations": [
         {
-          "name": "open",
-          "type": "boolean",
-          "default": "false"
-        },
+          "kind": "class",
+          "description": "",
+          "name": "XtalEditor",
+          "slots": [
+            {
+              "description": "Pass in the initial JSON string via a textarea component with this slot (or some other input element with property \"value\" where the string can be pulled from.)",
+              "name": "initVal"
+            }
+          ],
+          "members": [
+            {
+              "kind": "field",
+              "name": "is",
+              "type": {
+                "text": "string"
+              },
+              "static": true,
+              "default": "'xtal-editor'"
+            },
+            {
+              "kind": "field",
+              "name": "_internals",
+              "type": {
+                "text": "any"
+              }
+            },
+            {
+              "kind": "field",
+              "name": "reactor",
+              "type": {
+                "text": "IReactor"
+              },
+              "default": "new xp.RxSuppl(this, [\r\n        {\r\n            rhsType: Array,\r\n            ctor: DOMKeyPE\r\n        }\r\n    ])",
+              "privacy": "private"
+            },
+            {
+              "kind": "field",
+              "name": "styleTemplate",
+              "default": "html `\r\n<style>\r\n    :host{\r\n        display:block;\r\n    }\r\n\r\n    \r\n    slot{\r\n        display: none;\r\n    }\r\n\r\n\r\n    .expander{\r\n        width: fit-content;\r\n        height: fit-content;\r\n        padding-left: 0px;\r\n        padding-right: 0px;\r\n        width:20px;\r\n    }\r\n    .copyBtn{\r\n        width: fit-content;\r\n        height: fit-content;\r\n        padding-left: 0px;\r\n        padding-right: 0px;\r\n        padding-top: 0px;\r\n        padding-bottom: 0px;\r\n        border: 0;\r\n    }\r\n    .object.adder{\r\n        background-color: #C15000;\r\n    }\r\n    .editor{\r\n        --obj-key-bg: rgb(225, 112, 0);\r\n        --array-key-bg: rgb(45, 91, 137);\r\n        --obj-even-level-editor-bg: #F1E090;\r\n        --obj-odd-level-editor-bg: #FFEFCC;\r\n        --array-even-level-editor-bg: #A9DBDD;\r\n        --array-odd-level-editor-bg: #D9DBDD;\r\n        --string-adder-bg: #007408;\r\n        --bool-adder-bg: #516600;\r\n        --num-adder-bg:#497B8D\r\n    }\r\n    .editor[data-type=\"object\"][data-even-level=\"true\"]{\r\n        background-color: var(--obj-even-level-editor-bg);\r\n    }\r\n    .editor[data-type=\"object\"][data-even-level=\"false\"]{\r\n        background-color: var(--obj-odd-level-editor-bg);\r\n    }\r\n    .editor[data-type=\"array\"][data-even-level=\"true\"]{\r\n        background-color: var(--array-even-level-editor-bg);\r\n    }\r\n    .editor[data-type=\"array\"][data-even-level=\"false\"]{\r\n        background-color: var(--array-odd-level-editor-bg);\r\n    }\r\n    .string.adder{\r\n        background-color:var(--string-adder-bg);\r\n    }\r\n    .bool.adder{\r\n        background-color: var(--bool-adder-bg);\r\n    }\r\n    .number.adder{\r\n        background-color: var(--num-adder-bg);\r\n    }\r\n    .adder{\r\n        color: white;\r\n        text-shadow:1px 1px 1px black;\r\n        border-radius: 5px;\r\n        padding: 2;\r\n        border: none;\r\n    }\r\n    .remove{\r\n        padding: 2px 4px;\r\n        -webkit-border-radius: 5px;\r\n        -moz-border-radius: 5px;\r\n        border-radius: 5px;\r\n        color: white;\r\n        font-weight: bold;\r\n        text-shadow: 1px 1px 1px black;\r\n        background-color: black;\r\n        \r\n    }\r\n    .remove::after{\r\n        content: \"JSON Editor\";\r\n    }\r\n    .remove.editKey::after{\r\n        content: \"Remove item by deleting the property name.\";\r\n    }\r\n\r\n    .field{\r\n        display:flex;\r\n        flex-direction:row;\r\n        line-height: 20px;\r\n        align-items: center;\r\n    }\r\n    #copy{\r\n        background-image: url(https://cdn.jsdelivr.net/npm/xtal-editor/src/copy.svg);\r\n        \r\n    }\r\n    #expand-all{\r\n        background-image: url(https://cdn.jsdelivr.net/npm/xtal-editor/src/arrows-expand.svg);\r\n        width: 20px;\r\n    }\r\n    .action{\r\n        background-repeat:no-repeat;\r\n        background-position-y:center;\r\n        height: 22px;\r\n    }\r\n    #collapse-all{\r\n        background-image: url(https://cdn.jsdelivr.net/npm/xtal-editor/src/arrows-collapse.svg);\r\n        width: 20px;\r\n    }\r\n    @media only screen and (max-width: 1000px) {\r\n        .field{\r\n            flex-direction: column;\r\n        }\r\n        .child-inserters{\r\n            justify-content: flex-end;\r\n            width: 100%;\r\n        }\r\n        .text-editing{\r\n            width: 100%;\r\n        }\r\n    }\r\n    @media only screen and (min-width: 1001px){\r\n        .child-inserters{\r\n            justify-content: center;\r\n        }\r\n        .field{\r\n            width: 100%;\r\n            justify-content: space-evenly;\r\n        }\r\n        .text-editing{\r\n            flex-grow: 1;\r\n        }\r\n    }\r\n    .text-editing{\r\n        display: flex;\r\n        flex-direction: row;\r\n        padding-top:1px;\r\n        padding-bottom:1px;\r\n    }\r\n    .child-inserters{\r\n        display: flex;\r\n    }\r\n    .child-editors{\r\n        margin-left: 25px;\r\n    }\r\n    div[part=\"child-editors\"][data-open=\"false\"]{\r\n        display: none;\r\n    }\r\n    [data-type=\"object\"] button.nonPrimitive{\r\n        display: inline;\r\n    }\r\n    [data-type=\"object\"] div.nonPrimitive[data-open=\"true\"]{\r\n        display: block;\r\n    }\r\n    [data-type=\"array\"] button.nonPrimitive{\r\n        display: inline;\r\n    }\r\n    [data-type=\"array\"] div.nonPrimitive[data-open=\"true\"]{\r\n        display: block;\r\n    }\r\n    [data-type=\"string\"] .nonPrimitive{\r\n        display: none;\r\n    }\r\n    [data-type=\"number\"] .nonPrimitive{\r\n        display: none;\r\n    }\r\n    [data-type=\"boolean\"] .nonPrimitive{\r\n        display: none;\r\n    }\r\n    [data-type=\"string\"] [part=\"key\"]{\r\n        background-color: rgb(0, 148, 8);\r\n    }\r\n    [data-type=\"boolean\"] [part=\"key\"]{\r\n        background-color: #B1C639;\r\n    }\r\n    [data-type=\"object\"] [part=\"key\"]{\r\n        background-color: var(--obj-key-bg);\r\n        color: color-contrast(var(--obj-key-bg) vs white, black);\r\n    }\r\n    [data-type=\"number\"] [part=\"key\"]{\r\n        background-color: rgb(73, 123, 141);\r\n    }\r\n    [data-type=\"array\"] [part=\"key\"]{\r\n        background-color: var(--array-key-bg);\r\n        color: color-contrast(var(--array-key-bg) vs white, black);\r\n    }\r\n    .value{\r\n        background-color: #ECF3C3;\r\n        width: 100%;\r\n        flex-grow:5;\r\n    }\r\n    input.key {\r\n        \r\n        -webkit-border-radius: 5px;\r\n        -moz-border-radius: 5px;\r\n        border-radius: 5px;\r\n        margin-right: 2px;\r\n    }\r\n    input {\r\n        border: none;\r\n        padding: 3px;\r\n    }\r\n</style>\r\n`"
+            },
+            {
+              "kind": "field",
+              "name": "self",
+              "default": "this",
+              "privacy": "private"
+            },
+            {
+              "kind": "field",
+              "name": "refs",
+              "default": "{\r\n    slotElement: s, boolAdderPart: s, childEditorsPart: s, copyId: s,\r\n    editorPart: s, expanderPart: s, keyPart: s, objectAdderPart: s, stringAdderPart: s,\r\n    removePart: s, numberAdderPart: s, valuePart: s,\r\n    ibIdXtalEditorElement: s, expandAllId:s, collapseAllId: s, \r\n}",
+              "privacy": "private",
+              "type": {
+                "text": "object"
+              }
+            },
+            {
+              "kind": "field",
+              "name": "propActions",
+              "default": "[\r\n    xp.manageMainTemplate,\r\n    onValueChange, \r\n    linkChildValues, \r\n    linkValueFromChildren, \r\n    addObject, \r\n    addString, \r\n    addBool, \r\n    addNumber, \r\n    onUiValue,\r\n    xp.attachShadow,\r\n    addEventHandlers,\r\n    updateTransforms,\r\n    onExpandAll,\r\n    onCollapseAll,\r\n    initEvenLevel,\r\n    linkEvenLevel\r\n]",
+              "privacy": "private"
+            },
+            {
+              "kind": "field",
+              "name": "mainTemplate",
+              "default": "html`\r\n<slot part=slot name=initVal></slot>\r\n<div class=\"remove\" part=remove></div>\r\n<div data-type=string part=editor class=editor>\r\n    <div part=field class=field>\r\n        <div class=text-editing>\r\n            <button part=expander class=\"expander nonPrimitive\">+</button>\r\n            <input aria-label=key part=key class=key><input aria-label=value part=value class=value>\r\n        </div>\r\n        <div part=child-inserters class=\"nonPrimitive child-inserters\" data-open=false>\r\n            <button part=object-adder class=\"object adder\">add object</button>\r\n            <button part=string-adder class=\"string adder\">add string</button>\r\n            <button part=bool-adder class=\"bool adder\">add bool</button>\r\n            <button part=number-adder class=\"number adder\">add number</button>\r\n            <button id=copy class=action part=copy-to-clipboard title=\"Copy to Clipboard\"></button>\r\n            <button id=expand-all class=action part=expand-all title=\"Expand All\" aria-label=\"Expand All\"></button>\r\n            <button id=collapse-all class=action part=collapse-all title=\"Collapse All\" aria-label=\"Collapse All\"></button>\r\n        </div>\r\n        \r\n    </div>\r\n    <div part=child-editors class=\"nonPrimitive child-editors\" data-open=false>\r\n        <p-p from-host observe-prop=expandAll to=xtal-editor prop=expandAll></p-p>\r\n        <p-p from-host observe-prop=collapseAll to=xtal-editor prop=collapseAll></p-p>\r\n        <p-p from-host observe-prop=evenLevel to=xtal-editor prop=parentLevel></p-p>\r\n        <ib-id-xtal-editor tag=xtal-editor></ib-id-xtal-editor>\r\n    </div>\r\n    \r\n</div>\r\n`",
+              "privacy": "private"
+            },
+            {
+              "kind": "field",
+              "name": "clonedTemplate",
+              "type": {
+                "text": "DocumentFragment | undefined"
+              },
+              "privacy": "private"
+            },
+            {
+              "kind": "field",
+              "name": "domCache",
+              "type": {
+                "text": "any"
+              }
+            },
+            {
+              "kind": "field",
+              "name": "rootEditor",
+              "type": {
+                "text": "XtalEditor | undefined"
+              },
+              "privacy": "private"
+            },
+            {
+              "kind": "method",
+              "name": "handleKeyChange",
+              "parameters": [
+                {
+                  "name": "key",
+                  "type": {
+                    "text": "string"
+                  }
+                }
+              ]
+            },
+            {
+              "kind": "method",
+              "name": "handleKeyFocus",
+              "parameters": [
+                {
+                  "name": "e",
+                  "type": {
+                    "text": "Event"
+                  }
+                }
+              ]
+            },
+            {
+              "kind": "method",
+              "name": "handleValueFocus",
+              "parameters": [
+                {
+                  "name": "e",
+                  "type": {
+                    "text": "Event"
+                  }
+                }
+              ]
+            },
+            {
+              "kind": "method",
+              "name": "handleValueChange",
+              "parameters": [
+                {
+                  "name": "val",
+                  "type": {
+                    "text": "string"
+                  }
+                }
+              ]
+            },
+            {
+              "kind": "method",
+              "name": "incrementUpdateCount"
+            },
+            {
+              "kind": "method",
+              "name": "copyToClipboard"
+            },
+            {
+              "kind": "method",
+              "name": "toggle"
+            },
+            {
+              "kind": "field",
+              "name": "actionCount",
+              "type": {
+                "text": "number"
+              },
+              "default": "0",
+              "privacy": "private"
+            },
+            {
+              "kind": "method",
+              "name": "addObject"
+            },
+            {
+              "kind": "method",
+              "name": "addString"
+            },
+            {
+              "kind": "method",
+              "name": "addBool"
+            },
+            {
+              "kind": "method",
+              "name": "addNumber"
+            },
+            {
+              "kind": "method",
+              "name": "handleSlotChange",
+              "parameters": [
+                {
+                  "name": "e",
+                  "type": {
+                    "text": "Event"
+                  }
+                }
+              ]
+            },
+            {
+              "kind": "field",
+              "name": "key",
+              "type": {
+                "text": "string"
+              },
+              "description": "Root node name to display"
+            },
+            {
+              "kind": "field",
+              "name": "value",
+              "type": {
+                "text": "string | undefined"
+              }
+            },
+            {
+              "kind": "field",
+              "name": "uiValue",
+              "type": {
+                "text": "string | undefined"
+              }
+            },
+            {
+              "kind": "field",
+              "name": "type",
+              "type": {
+                "text": "editType"
+              }
+            },
+            {
+              "kind": "field",
+              "name": "parsedObject",
+              "type": {
+                "text": "any"
+              }
+            },
+            {
+              "kind": "field",
+              "name": "childValues",
+              "type": {
+                "text": "string[] | undefined | NameValue[]"
+              }
+            },
+            {
+              "kind": "field",
+              "name": "open",
+              "type": {
+                "text": "boolean"
+              },
+              "description": "Indicates with Editor should show child nodes expanded."
+            },
+            {
+              "kind": "field",
+              "name": "openEcho",
+              "type": {
+                "text": "boolean | undefined"
+              }
+            },
+            {
+              "kind": "field",
+              "name": "expandAll",
+              "type": {
+                "text": "boolean | undefined"
+              }
+            },
+            {
+              "kind": "field",
+              "name": "collapseAll",
+              "type": {
+                "text": "boolean | undefined"
+              }
+            },
+            {
+              "kind": "field",
+              "name": "upwardDataFlowInProgress",
+              "type": {
+                "text": "boolean | undefined"
+              },
+              "privacy": "private"
+            },
+            {
+              "kind": "field",
+              "name": "internalUpdateCount",
+              "type": {
+                "text": "number | undefined"
+              }
+            },
+            {
+              "kind": "field",
+              "name": "objCounter",
+              "type": {
+                "text": "number | undefined"
+              }
+            },
+            {
+              "kind": "field",
+              "name": "strCounter",
+              "type": {
+                "text": "number | undefined"
+              }
+            },
+            {
+              "kind": "field",
+              "name": "boolCounter",
+              "type": {
+                "text": "number | undefined"
+              }
+            },
+            {
+              "kind": "field",
+              "name": "numberCounter",
+              "type": {
+                "text": "number | undefined"
+              }
+            },
+            {
+              "kind": "field",
+              "name": "hasParent",
+              "type": {
+                "text": "boolean | undefined"
+              }
+            },
+            {
+              "kind": "field",
+              "name": "evenLevel",
+              "type": {
+                "text": "boolean | undefined"
+              }
+            },
+            {
+              "kind": "field",
+              "name": "parentLevel",
+              "type": {
+                "text": "boolean | undefined"
+              }
+            },
+            {
+              "kind": "field",
+              "name": "handlersAttached",
+              "type": {
+                "text": "boolean | undefined"
+              }
+            },
+            {
+              "kind": "method",
+              "name": "onPropChange",
+              "parameters": [
+                {
+                  "name": "n",
+                  "type": {
+                    "text": "string"
+                  }
+                },
+                {
+                  "name": "propDef",
+                  "type": {
+                    "text": "PropDef"
+                  }
+                },
+                {
+                  "name": "newVal",
+                  "type": {
+                    "text": "any"
+                  }
+                }
+              ]
+            },
+            {
+              "kind": "field",
+              "name": "childEditors"
+            }
+          ],
+          "events": [
+            {
+              "type": {
+                "text": "ValueDetail"
+              },
+              "description": "Fired after successfully parsing JSON string to edit.",
+              "name": "parsed-object-changed"
+            },
+            {
+              "type": {
+                "text": "ValueDetail"
+              },
+              "description": "-- Used for internal use.",
+              "name": "internal-updated-count-changed"
+            }
+          ],
+          "attributes": [
+            {
+              "type": {
+                "text": "string"
+              },
+              "description": "Root node name to display",
+              "name": "key"
+            },
+            {
+              "type": {
+                "text": "boolean"
+              },
+              "description": "Indicates with Editor should show child nodes expanded.",
+              "name": "open"
+            }
+          ],
+          "superclass": {
+            "name": "HTMLElement"
+          },
+          "tagName": "xtal-editor",
+          "customElement": true
+        }
+      ],
+      "exports": [
         {
-          "name": "renderOptions",
-          "type": "RenderOptions"
-        },
-        {
-          "name": "mainTemplate",
-          "default": "\"mainTemplate\""
-        },
-        {
-          "name": "initTransform",
-          "type": "({ self, type, hasParent }: XtalEditor) => TransformValueOptions<HTMLElement>",
-          "default": "\"initTransform\""
-        },
-        {
-          "name": "readyToInit",
-          "type": "boolean",
-          "default": "true"
-        },
-        {
-          "name": "readyToRender",
-          "type": "boolean",
-          "default": "true"
-        },
-        {
-          "name": "updateTransforms",
-          "type": "SelectiveUpdate<any>[]",
-          "default": "[null,null,null,null,null,null]"
-        },
-        {
-          "name": "attributeProps",
-          "type": "({ value, uiValue, type, parsedObject, key, childValues, upwardDataFlowInProgress, internalUpdateCount, open, objCounter, strCounter, boolCounter, numberCounter, hasParent }: XtalEditor) => AttributeProps",
-          "default": "\"({value, uiValue, type, parsedObject, key, childValues, upwardDataFlowInProgress, \\r\\n        internalUpdateCount, open, objCounter, strCounter, boolCounter, numberCounter, hasParent}: XtalEditor) => ({\\r\\n        bool: [upwardDataFlowInProgress, open, hasParent],\\r\\n        dry: [type, parsedObject, value, hasParent],\\r\\n        num: [internalUpdateCount, objCounter, strCounter, boolCounter, numberCounter],\\r\\n        str: [value, type, key, uiValue],\\r\\n        jsonProp: [value],\\r\\n        obj: [parsedObject, childValues],\\r\\n        notify: [internalUpdateCount, parsedObject],\\r\\n    } as AttributeProps)\""
-        },
-        {
-          "name": "propActions",
-          "type": "(({ value, self }: XtalEditor) => void)[]",
-          "default": "[\"linkTypeAndParsedObject\",\"linkChildValues\",\"linkValueFromChildren\",\"addObject\",\"addString\",\"addBool\",\"addNumber\",\"link_ParsedObject\"]"
-        },
-        {
-          "name": "disabled",
-          "attribute": "disabled",
-          "description": "Any component that emits events should not do so if it is disabled.\r\nNote that this is not enforced, but the disabled property is made available.\r\nUsers of this mix-in should ensure not to call \"de\" if this property is set to true.",
-          "type": "boolean"
+          "kind": "js",
+          "name": "XtalEditor",
+          "declaration": {
+            "name": "XtalEditor",
+            "module": "src/xtal-editor.ts"
+          }
         }
       ]
     }
