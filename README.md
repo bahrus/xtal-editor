@@ -33,6 +33,8 @@ Locally:
 </script>
 ```
 
+## [Reference API](https://bahrus.github.io/wc-info/cdn-base.html?npmPackage=xtal-editor@0.0.43)
+
 ## CDN
 
 The script tag above can be replaced by:
