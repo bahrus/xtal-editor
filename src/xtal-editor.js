@@ -298,46 +298,66 @@ const propActions = [
  * @attr {boolean} [open] Indicates with Editor should show child nodes expanded.
  * @event {ValueDetail} parsed-object-changed - Fired after successfully parsing JSON string to edit.
  * @event {ValueDetail} internal-updated-count-changed -- Used for internal use.
+ * @cssprop --text-color - Controls the color of foo
+ * @cssprop [--obj-key-bg = rgb(225, 112, 0)] - Object Key Background Color
+ * @cssprop [--array-key-bg = rgb(45, 91, 137)] - Array Key Background Color
+ * @cssprop [--obj-even-level-editor-bg = #F1E090] - Object Even Level Editor Background Color
+ * @cssprop [--obj-odd-level-editor-bg = #FFEFCC] - Object Odd Level Editor Background Color
+ * @cssprop [--array-even-level-editor-bg = #A9DBDD] - Array Even Level Editor Background Color
+ * @cssprop [--array-odd-level-editor-bg = #D9DBDD] - Array Odd Level Editor Background Color
+ * @cssprop [--string-adder-bg = #007408] - String Adder Background Color
+ * @cssprop [--bool-adder-bg = #516600] - Bool Adder Background Color
+ * @cssprop [--num-adder-bg = #497B8D] - Number Adder Background Color
  */
 export class XtalEditor extends HTMLElement {
+    static is = 'xtal-editor';
     constructor() {
         super();
-        /**
-         * @private
-    
-         */
-        this.reactor = new xp.RxSuppl(this, [
-            {
-                rhsType: Array,
-                ctor: DOMKeyPE
-            }
-        ]);
-        /**
-         * @private
-         */
-        this.styleTemplate = styleTemplate;
-        /**
-         * @private
-         */
-        this.self = this;
-        /**
-         * @private
-         */
-        this.refs = refs;
-        /**
-         * @private
-         */
-        this.propActions = propActions;
-        /**
-         * @private
-         */
-        this.mainTemplate = mainTemplate;
-        /**
-         * @private
-         */
-        this.actionCount = 0;
         xc.initInternals(this);
     }
+    /**
+     * @private
+     */
+    _internals;
+    /**
+     * @private
+
+     */
+    reactor = new xp.RxSuppl(this, [
+        {
+            rhsType: Array,
+            ctor: DOMKeyPE
+        }
+    ]);
+    /**
+     * @private
+     */
+    styleTemplate = styleTemplate;
+    /**
+     * @private
+     */
+    self = this;
+    /**
+     * @private
+     */
+    refs = refs;
+    /**
+     * @private
+     */
+    propActions = propActions;
+    /**
+     * @private
+     */
+    mainTemplate = mainTemplate;
+    /**
+     * @private
+     */
+    clonedTemplate;
+    domCache;
+    /**
+     * @private
+     */
+    rootEditor;
     handleKeyChange(key) {
         if (key === '') {
             this.remove();
@@ -364,6 +384,10 @@ export class XtalEditor extends HTMLElement {
     toggle() {
         this.open = !this.open;
     }
+    /**
+     * @private
+     */
+    actionCount = 0;
     addObject() {
         this.objCounter = this.objCounter === undefined ? 1 : this.objCounter + 1;
     }
@@ -387,6 +411,29 @@ export class XtalEditor extends HTMLElement {
         });
         // console.log('Element in Slot "' + slots[1].name + '" changed to "' + nodes[0].outerHTML + '".');
     }
+    key;
+    value;
+    uiValue;
+    type;
+    parsedObject;
+    childValues;
+    open;
+    openEcho;
+    expandAll;
+    collapseAll;
+    /**
+     * @private
+     */
+    upwardDataFlowInProgress;
+    internalUpdateCount;
+    objCounter;
+    strCounter;
+    boolCounter;
+    numberCounter;
+    hasParent;
+    evenLevel;
+    parentLevel;
+    handlersAttached;
     connectedCallback() {
         xc.mergeProps(this, slicedPropDefs);
         if (!this.hasParent) {
@@ -400,7 +447,6 @@ export class XtalEditor extends HTMLElement {
         return Array.from(this.shadowRoot.querySelectorAll(XtalEditor.is));
     }
 }
-XtalEditor.is = 'xtal-editor';
 const baseProp = {
     dry: true,
     async: true,

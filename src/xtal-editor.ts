@@ -316,6 +316,16 @@ const propActions = [
  * @attr {boolean} [open] Indicates with Editor should show child nodes expanded.
  * @event {ValueDetail} parsed-object-changed - Fired after successfully parsing JSON string to edit.
  * @event {ValueDetail} internal-updated-count-changed -- Used for internal use.
+ * @cssprop --text-color - Controls the color of foo
+ * @cssprop [--obj-key-bg = rgb(225, 112, 0)] - Object Key Background Color
+ * @cssprop [--array-key-bg = rgb(45, 91, 137)] - Array Key Background Color
+ * @cssprop [--obj-even-level-editor-bg = #F1E090] - Object Even Level Editor Background Color
+ * @cssprop [--obj-odd-level-editor-bg = #FFEFCC] - Object Odd Level Editor Background Color
+ * @cssprop [--array-even-level-editor-bg = #A9DBDD] - Array Even Level Editor Background Color
+ * @cssprop [--array-odd-level-editor-bg = #D9DBDD] - Array Odd Level Editor Background Color
+ * @cssprop [--string-adder-bg = #007408] - String Adder Background Color
+ * @cssprop [--bool-adder-bg = #516600] - Bool Adder Background Color
+ * @cssprop [--num-adder-bg = #497B8D] - Number Adder Background Color
  */
 export class XtalEditor extends HTMLElement implements XtalPattern, IInternals{
     static is = 'xtal-editor';

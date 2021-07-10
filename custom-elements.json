@@ -18,6 +18,23 @@
           "name": "IbIdXtalEditor",
           "members": [
             {
+              "kind": "field",
+              "name": "is",
+              "type": {
+                "text": "string"
+              },
+              "static": true,
+              "default": "'ib-id-xtal-editor'"
+            },
+            {
+              "kind": "field",
+              "name": "_rootEditor"
+            },
+            {
+              "kind": "field",
+              "name": "host"
+            },
+            {
               "kind": "method",
               "name": "configureNewChild",
               "parameters": [
@@ -160,6 +177,57 @@
           "kind": "class",
           "description": "",
           "name": "XtalEditor",
+          "cssProperties": [
+            {
+              "description": "Controls the color of foo",
+              "name": "--text-color"
+            },
+            {
+              "description": "Object Key Background Color",
+              "name": "--obj-key-bg",
+              "default": "rgb(225, 112, 0)"
+            },
+            {
+              "description": "Array Key Background Color",
+              "name": "--array-key-bg",
+              "default": "rgb(45, 91, 137)"
+            },
+            {
+              "description": "Object Even Level Editor Background Color",
+              "name": "--obj-even-level-editor-bg",
+              "default": "#F1E090"
+            },
+            {
+              "description": "Object Odd Level Editor Background Color",
+              "name": "--obj-odd-level-editor-bg",
+              "default": "#FFEFCC"
+            },
+            {
+              "description": "Array Even Level Editor Background Color",
+              "name": "--array-even-level-editor-bg",
+              "default": "#A9DBDD"
+            },
+            {
+              "description": "Array Odd Level Editor Background Color",
+              "name": "--array-odd-level-editor-bg",
+              "default": "#D9DBDD"
+            },
+            {
+              "description": "String Adder Background Color",
+              "name": "--string-adder-bg",
+              "default": "#007408"
+            },
+            {
+              "description": "Bool Adder Background Color",
+              "name": "--bool-adder-bg",
+              "default": "#516600"
+            },
+            {
+              "description": "Number Adder Background Color",
+              "name": "--num-adder-bg",
+              "default": "#497B8D"
+            }
+          ],
           "slots": [
             {
               "description": "Pass in the initial JSON string via a textarea component with this slot (or some other input element with property \"value\" where the string can be pulled from.)",
@@ -167,6 +235,76 @@
             }
           ],
           "members": [
+            {
+              "kind": "field",
+              "name": "is",
+              "type": {
+                "text": "string"
+              },
+              "static": true,
+              "default": "'xtal-editor'"
+            },
+            {
+              "kind": "field",
+              "name": "_internals",
+              "privacy": "private"
+            },
+            {
+              "kind": "field",
+              "name": "reactor",
+              "default": "new xp.RxSuppl(this, [\n        {\n            rhsType: Array,\n            ctor: DOMKeyPE\n        }\n    ])",
+              "privacy": "private"
+            },
+            {
+              "kind": "field",
+              "name": "styleTemplate",
+              "default": "html `\r\n<style>\r\n    :host{\r\n        display:block;\r\n    }\r\n\r\n    \r\n    slot{\r\n        display: none;\r\n    }\r\n\r\n\r\n    .expander{\r\n        width: fit-content;\r\n        height: fit-content;\r\n        padding-left: 0px;\r\n        padding-right: 0px;\r\n        width:20px;\r\n    }\r\n    .copyBtn{\r\n        width: fit-content;\r\n        height: fit-content;\r\n        padding-left: 0px;\r\n        padding-right: 0px;\r\n        padding-top: 0px;\r\n        padding-bottom: 0px;\r\n        border: 0;\r\n    }\r\n    .object.adder{\r\n        background-color: #C15000;\r\n    }\r\n    .editor{\r\n        --obj-key-bg: rgb(225, 112, 0);\r\n        --array-key-bg: rgb(45, 91, 137);\r\n        --obj-even-level-editor-bg: #F1E090;\r\n        --obj-odd-level-editor-bg: #FFEFCC;\r\n        --array-even-level-editor-bg: #A9DBDD;\r\n        --array-odd-level-editor-bg: #D9DBDD;\r\n        --string-adder-bg: #007408;\r\n        --bool-adder-bg: #516600;\r\n        --num-adder-bg:#497B8D\r\n    }\r\n    .editor[data-type=\"object\"][data-even-level=\"true\"]{\r\n        background-color: var(--obj-even-level-editor-bg);\r\n    }\r\n    .editor[data-type=\"object\"][data-even-level=\"false\"]{\r\n        background-color: var(--obj-odd-level-editor-bg);\r\n    }\r\n    .editor[data-type=\"array\"][data-even-level=\"true\"]{\r\n        background-color: var(--array-even-level-editor-bg);\r\n    }\r\n    .editor[data-type=\"array\"][data-even-level=\"false\"]{\r\n        background-color: var(--array-odd-level-editor-bg);\r\n    }\r\n    .string.adder{\r\n        background-color:var(--string-adder-bg);\r\n    }\r\n    .bool.adder{\r\n        background-color: var(--bool-adder-bg);\r\n    }\r\n    .number.adder{\r\n        background-color: var(--num-adder-bg);\r\n    }\r\n    .adder{\r\n        color: white;\r\n        text-shadow:1px 1px 1px black;\r\n        border-radius: 5px;\r\n        padding: 2;\r\n        border: none;\r\n    }\r\n    .remove{\r\n        padding: 2px 4px;\r\n        -webkit-border-radius: 5px;\r\n        -moz-border-radius: 5px;\r\n        border-radius: 5px;\r\n        color: white;\r\n        font-weight: bold;\r\n        text-shadow: 1px 1px 1px black;\r\n        background-color: black;\r\n        \r\n    }\r\n    .remove::after{\r\n        content: \"JSON Editor\";\r\n    }\r\n    .remove.editKey::after{\r\n        content: \"Remove item by deleting the property name.\";\r\n    }\r\n\r\n    .field{\r\n        display:flex;\r\n        flex-direction:row;\r\n        line-height: 20px;\r\n        align-items: center;\r\n    }\r\n    #copy{\r\n        background-image: url(https://cdn.jsdelivr.net/npm/xtal-editor/src/copy.svg);\r\n        \r\n    }\r\n    #expand-all{\r\n        background-image: url(https://cdn.jsdelivr.net/npm/xtal-editor/src/arrows-expand.svg);\r\n        width: 20px;\r\n    }\r\n    .action{\r\n        background-repeat:no-repeat;\r\n        background-position-y:center;\r\n        height: 22px;\r\n    }\r\n    #collapse-all{\r\n        background-image: url(https://cdn.jsdelivr.net/npm/xtal-editor/src/arrows-collapse.svg);\r\n        width: 20px;\r\n    }\r\n    @media only screen and (max-width: 1000px) {\r\n        .field{\r\n            flex-direction: column;\r\n        }\r\n        .child-inserters{\r\n            justify-content: flex-end;\r\n            width: 100%;\r\n        }\r\n        .text-editing{\r\n            width: 100%;\r\n        }\r\n    }\r\n    @media only screen and (min-width: 1001px){\r\n        .child-inserters{\r\n            justify-content: center;\r\n        }\r\n        .field{\r\n            width: 100%;\r\n            justify-content: space-evenly;\r\n        }\r\n        .text-editing{\r\n            flex-grow: 1;\r\n        }\r\n    }\r\n    .text-editing{\r\n        display: flex;\r\n        flex-direction: row;\r\n        padding-top:1px;\r\n        padding-bottom:1px;\r\n    }\r\n    .child-inserters{\r\n        display: flex;\r\n    }\r\n    .child-editors{\r\n        margin-left: 25px;\r\n    }\r\n    div[part=\"child-editors\"][data-open=\"false\"]{\r\n        display: none;\r\n    }\r\n    [data-type=\"object\"] button.nonPrimitive{\r\n        display: inline;\r\n    }\r\n    [data-type=\"object\"] div.nonPrimitive[data-open=\"true\"]{\r\n        display: block;\r\n    }\r\n    [data-type=\"array\"] button.nonPrimitive{\r\n        display: inline;\r\n    }\r\n    [data-type=\"array\"] div.nonPrimitive[data-open=\"true\"]{\r\n        display: block;\r\n    }\r\n    [data-type=\"string\"] .nonPrimitive{\r\n        display: none;\r\n    }\r\n    [data-type=\"number\"] .nonPrimitive{\r\n        display: none;\r\n    }\r\n    [data-type=\"boolean\"] .nonPrimitive{\r\n        display: none;\r\n    }\r\n    [data-type=\"string\"] [part=\"key\"]{\r\n        background-color: rgb(0, 148, 8);\r\n    }\r\n    [data-type=\"boolean\"] [part=\"key\"]{\r\n        background-color: #B1C639;\r\n    }\r\n    [data-type=\"object\"] [part=\"key\"]{\r\n        background-color: var(--obj-key-bg);\r\n        color: color-contrast(var(--obj-key-bg) vs white, black);\r\n    }\r\n    [data-type=\"number\"] [part=\"key\"]{\r\n        background-color: rgb(73, 123, 141);\r\n    }\r\n    [data-type=\"array\"] [part=\"key\"]{\r\n        background-color: var(--array-key-bg);\r\n        color: color-contrast(var(--array-key-bg) vs white, black);\r\n    }\r\n    .value{\r\n        background-color: #ECF3C3;\r\n        width: 100%;\r\n        flex-grow:5;\r\n    }\r\n    input.key {\r\n        \r\n        -webkit-border-radius: 5px;\r\n        -moz-border-radius: 5px;\r\n        border-radius: 5px;\r\n        margin-right: 2px;\r\n    }\r\n    input {\r\n        border: none;\r\n        padding: 3px;\r\n    }\r\n</style>\r\n`",
+              "privacy": "private"
+            },
+            {
+              "kind": "field",
+              "name": "self",
+              "default": "this",
+              "privacy": "private"
+            },
+            {
+              "kind": "field",
+              "name": "refs",
+              "default": "{\n    slotElement: s, boolAdderPart: s, childEditorsPart: s, copyId: s,\n    editorPart: s, expanderPart: s, keyPart: s, objectAdderPart: s, stringAdderPart: s,\n    removePart: s, numberAdderPart: s, valuePart: s,\n    ibIdXtalEditorElement: s, expandAllId: s, collapseAllId: s,\n}",
+              "privacy": "private",
+              "type": {
+                "text": "object"
+              }
+            },
+            {
+              "kind": "field",
+              "name": "propActions",
+              "default": "[\n    xp.manageMainTemplate,\n    onValueChange,\n    linkChildValues,\n    linkValueFromChildren,\n    addObject,\n    addString,\n    addBool,\n    addNumber,\n    onUiValue,\n    xp.attachShadow,\n    addEventHandlers,\n    updateTransforms,\n    onExpandAll,\n    onCollapseAll,\n    initEvenLevel,\n    linkEvenLevel\n]",
+              "privacy": "private",
+              "type": {
+                "text": "array"
+              }
+            },
+            {
+              "kind": "field",
+              "name": "mainTemplate",
+              "default": "html `\r\n<slot part=slot name=initVal></slot>\r\n<div class=\"remove\" part=remove></div>\r\n<div data-type=string part=editor class=editor>\r\n    <div part=field class=field>\r\n        <div class=text-editing>\r\n            <button part=expander class=\"expander nonPrimitive\">+</button>\r\n            <input aria-label=key part=key class=key><input aria-label=value part=value class=value>\r\n        </div>\r\n        <div part=child-inserters class=\"nonPrimitive child-inserters\" data-open=false>\r\n            <button part=object-adder class=\"object adder\">add object</button>\r\n            <button part=string-adder class=\"string adder\">add string</button>\r\n            <button part=bool-adder class=\"bool adder\">add bool</button>\r\n            <button part=number-adder class=\"number adder\">add number</button>\r\n            <button id=copy class=action part=copy-to-clipboard title=\"Copy to Clipboard\"></button>\r\n            <button id=expand-all class=action part=expand-all title=\"Expand All\" aria-label=\"Expand All\"></button>\r\n            <button id=collapse-all class=action part=collapse-all title=\"Collapse All\" aria-label=\"Collapse All\"></button>\r\n        </div>\r\n        \r\n    </div>\r\n    <div part=child-editors class=\"nonPrimitive child-editors\" data-open=false>\r\n        <p-p from-host observe-prop=expandAll to=xtal-editor prop=expandAll></p-p>\r\n        <p-p from-host observe-prop=collapseAll to=xtal-editor prop=collapseAll></p-p>\r\n        <p-p from-host observe-prop=evenLevel to=xtal-editor prop=parentLevel></p-p>\r\n        <ib-id-xtal-editor tag=xtal-editor></ib-id-xtal-editor>\r\n    </div>\r\n    \r\n</div>\r\n`",
+              "privacy": "private"
+            },
+            {
+              "kind": "field",
+              "name": "clonedTemplate",
+              "privacy": "private"
+            },
+            {
+              "kind": "field",
+              "name": "domCache"
+            },
+            {
+              "kind": "field",
+              "name": "rootEditor",
+              "privacy": "private"
+            },
             {
               "kind": "method",
               "name": "handleKeyChange",
@@ -216,6 +354,15 @@
               "name": "toggle"
             },
             {
+              "kind": "field",
+              "name": "actionCount",
+              "type": {
+                "text": "number"
+              },
+              "default": "0",
+              "privacy": "private"
+            },
+            {
               "kind": "method",
               "name": "addObject"
             },
@@ -241,6 +388,95 @@
               ]
             },
             {
+              "kind": "field",
+              "name": "key",
+              "type": {
+                "text": "string"
+              },
+              "description": "Root node name to display"
+            },
+            {
+              "kind": "field",
+              "name": "value"
+            },
+            {
+              "kind": "field",
+              "name": "uiValue"
+            },
+            {
+              "kind": "field",
+              "name": "type"
+            },
+            {
+              "kind": "field",
+              "name": "parsedObject"
+            },
+            {
+              "kind": "field",
+              "name": "childValues"
+            },
+            {
+              "kind": "field",
+              "name": "open",
+              "type": {
+                "text": "boolean"
+              },
+              "description": "Indicates with Editor should show child nodes expanded."
+            },
+            {
+              "kind": "field",
+              "name": "openEcho"
+            },
+            {
+              "kind": "field",
+              "name": "expandAll"
+            },
+            {
+              "kind": "field",
+              "name": "collapseAll"
+            },
+            {
+              "kind": "field",
+              "name": "upwardDataFlowInProgress",
+              "privacy": "private"
+            },
+            {
+              "kind": "field",
+              "name": "internalUpdateCount"
+            },
+            {
+              "kind": "field",
+              "name": "objCounter"
+            },
+            {
+              "kind": "field",
+              "name": "strCounter"
+            },
+            {
+              "kind": "field",
+              "name": "boolCounter"
+            },
+            {
+              "kind": "field",
+              "name": "numberCounter"
+            },
+            {
+              "kind": "field",
+              "name": "hasParent"
+            },
+            {
+              "kind": "field",
+              "name": "evenLevel"
+            },
+            {
+              "kind": "field",
+              "name": "parentLevel"
+            },
+            {
+              "kind": "field",
+              "name": "handlersAttached"
+            },
+            {
               "kind": "method",
               "name": "onPropChange",
               "parameters": [
@@ -258,73 +494,6 @@
             {
               "kind": "field",
               "name": "childEditors"
-            },
-            {
-              "kind": "field",
-              "name": "reactor",
-              "privacy": "private",
-              "default": "new xp.RxSuppl(this, [\n            {\n                rhsType: Array,\n                ctor: DOMKeyPE\n            }\n        ])"
-            },
-            {
-              "kind": "field",
-              "name": "styleTemplate",
-              "privacy": "private",
-              "default": "styleTemplate"
-            },
-            {
-              "kind": "field",
-              "name": "self",
-              "privacy": "private",
-              "default": "this"
-            },
-            {
-              "kind": "field",
-              "name": "refs",
-              "privacy": "private",
-              "default": "{\n    slotElement: s, boolAdderPart: s, childEditorsPart: s, copyId: s,\n    editorPart: s, expanderPart: s, keyPart: s, objectAdderPart: s, stringAdderPart: s,\n    removePart: s, numberAdderPart: s, valuePart: s,\n    ibIdXtalEditorElement: s, expandAllId: s, collapseAllId: s,\n}",
-              "type": {
-                "text": "object"
-              }
-            },
-            {
-              "kind": "field",
-              "name": "propActions",
-              "privacy": "private",
-              "default": "[\n    xp.manageMainTemplate,\n    onValueChange,\n    linkChildValues,\n    linkValueFromChildren,\n    addObject,\n    addString,\n    addBool,\n    addNumber,\n    onUiValue,\n    xp.attachShadow,\n    addEventHandlers,\n    updateTransforms,\n    onExpandAll,\n    onCollapseAll,\n    initEvenLevel,\n    linkEvenLevel\n]",
-              "type": {
-                "text": "array"
-              }
-            },
-            {
-              "kind": "field",
-              "name": "mainTemplate",
-              "privacy": "private",
-              "default": "html `\r\n<slot part=slot name=initVal></slot>\r\n<div class=\"remove\" part=remove></div>\r\n<div data-type=string part=editor class=editor>\r\n    <div part=field class=field>\r\n        <div class=text-editing>\r\n            <button part=expander class=\"expander nonPrimitive\">+</button>\r\n            <input aria-label=key part=key class=key><input aria-label=value part=value class=value>\r\n        </div>\r\n        <div part=child-inserters class=\"nonPrimitive child-inserters\" data-open=false>\r\n            <button part=object-adder class=\"object adder\">add object</button>\r\n            <button part=string-adder class=\"string adder\">add string</button>\r\n            <button part=bool-adder class=\"bool adder\">add bool</button>\r\n            <button part=number-adder class=\"number adder\">add number</button>\r\n            <button id=copy class=action part=copy-to-clipboard title=\"Copy to Clipboard\"></button>\r\n            <button id=expand-all class=action part=expand-all title=\"Expand All\" aria-label=\"Expand All\"></button>\r\n            <button id=collapse-all class=action part=collapse-all title=\"Collapse All\" aria-label=\"Collapse All\"></button>\r\n        </div>\r\n        \r\n    </div>\r\n    <div part=child-editors class=\"nonPrimitive child-editors\" data-open=false>\r\n        <p-p from-host observe-prop=expandAll to=xtal-editor prop=expandAll></p-p>\r\n        <p-p from-host observe-prop=collapseAll to=xtal-editor prop=collapseAll></p-p>\r\n        <p-p from-host observe-prop=evenLevel to=xtal-editor prop=parentLevel></p-p>\r\n        <ib-id-xtal-editor tag=xtal-editor></ib-id-xtal-editor>\r\n    </div>\r\n    \r\n</div>\r\n`"
-            },
-            {
-              "kind": "field",
-              "name": "actionCount",
-              "type": {
-                "text": "number"
-              },
-              "privacy": "private",
-              "default": "0"
-            },
-            {
-              "type": {
-                "text": "string"
-              },
-              "description": "Root node name to display",
-              "name": "key",
-              "kind": "field"
-            },
-            {
-              "type": {
-                "text": "boolean"
-              },
-              "description": "Indicates with Editor should show child nodes expanded.",
-              "name": "open",
-              "kind": "field"
             }
           ],
           "events": [
@@ -385,6 +554,57 @@
           "kind": "class",
           "description": "",
           "name": "XtalEditor",
+          "cssProperties": [
+            {
+              "description": "Controls the color of foo",
+              "name": "--text-color"
+            },
+            {
+              "description": "Object Key Background Color",
+              "name": "--obj-key-bg",
+              "default": "rgb(225, 112, 0)"
+            },
+            {
+              "description": "Array Key Background Color",
+              "name": "--array-key-bg",
+              "default": "rgb(45, 91, 137)"
+            },
+            {
+              "description": "Object Even Level Editor Background Color",
+              "name": "--obj-even-level-editor-bg",
+              "default": "#F1E090"
+            },
+            {
+              "description": "Object Odd Level Editor Background Color",
+              "name": "--obj-odd-level-editor-bg",
+              "default": "#FFEFCC"
+            },
+            {
+              "description": "Array Even Level Editor Background Color",
+              "name": "--array-even-level-editor-bg",
+              "default": "#A9DBDD"
+            },
+            {
+              "description": "Array Odd Level Editor Background Color",
+              "name": "--array-odd-level-editor-bg",
+              "default": "#D9DBDD"
+            },
+            {
+              "description": "String Adder Background Color",
+              "name": "--string-adder-bg",
+              "default": "#007408"
+            },
+            {
+              "description": "Bool Adder Background Color",
+              "name": "--bool-adder-bg",
+              "default": "#516600"
+            },
+            {
+              "description": "Number Adder Background Color",
+              "name": "--num-adder-bg",
+              "default": "#497B8D"
+            }
+          ],
           "slots": [
             {
               "description": "Pass in the initial JSON string via a textarea component with this slot (or some other input element with property \"value\" where the string can be pulled from.)",

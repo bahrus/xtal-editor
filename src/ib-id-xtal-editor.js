@@ -4,6 +4,9 @@ import { define } from 'xtal-element/lib/define.js';
  * @element ib-id-xtal-editor
  */
 export class IbIdXtalEditor extends IBid {
+    static is = 'ib-id-xtal-editor';
+    _rootEditor;
+    host;
     connectedCallback() {
         this.map = (x, idx) => {
             let key = undefined;
@@ -32,5 +35,4 @@ export class IbIdXtalEditor extends IBid {
         });
     }
 }
-IbIdXtalEditor.is = 'ib-id-xtal-editor';
 define(IbIdXtalEditor);
