@@ -20,14 +20,14 @@
   ],
   "types": "types.d.ts",
   "dependencies": {
-    "ib-id": "0.0.40",
-    "proxy-prop": "0.0.16",
-    "xtal-element": "0.0.400"
+    "ib-id": "0.0.57",
+    "pass-prop": "0.0.13",
+    "xtal-element": "0.0.413"
   },
   "devDependencies": {
     "@rollup/plugin-node-resolve": "11.2.1",
     "@skypack/package-check": "0.2.2",
-    "xtal-test": "0.0.50"
+    "xtal-test": "0.0.51"
   },
   "scripts": {
     "serve": "node node_modules/xtal-test/serve.js",
