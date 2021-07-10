@@ -14,9 +14,12 @@
     ".": "./src/xtal-editor.js",
     "./xtal-editor.js": "./src/xtal-editor.js",
     "./src/xtal-editor.js": "./src/xtal-editor.js"
+    
   },
   "files": [
-    "src/*"
+    "src/*",
+    "custom-elements.json",
+    "types.d.ts"
   ],
   "types": "types.d.ts",
   "dependencies": {
