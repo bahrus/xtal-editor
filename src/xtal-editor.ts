@@ -323,6 +323,9 @@ export class XtalEditor extends HTMLElement implements XtalPattern, IInternals{
         super();
         xc.initInternals(this);
     }
+    /**
+     * @private
+     */
     _internals: any;
     /**
      * @private
@@ -334,6 +337,9 @@ export class XtalEditor extends HTMLElement implements XtalPattern, IInternals{
             ctor: DOMKeyPE
         }
     ]);
+    /**
+     * @private
+     */
     styleTemplate = styleTemplate;
     /**
      * @private

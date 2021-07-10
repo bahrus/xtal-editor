@@ -312,6 +312,9 @@ export class XtalEditor extends HTMLElement {
                 ctor: DOMKeyPE
             }
         ]);
+        /**
+         * @private
+         */
         this.styleTemplate = styleTemplate;
         /**
          * @private
