@@ -228,6 +228,64 @@
               "default": "#497B8D"
             }
           ],
+          "cssParts": [
+            {
+              "description": "Element that displays title only at top level",
+              "name": "remove"
+            },
+            {
+              "description": "Element containing the editor",
+              "name": "editor"
+            },
+            {
+              "description": "Element containing a field",
+              "name": "field"
+            },
+            {
+              "description": "Expander button",
+              "name": "expander"
+            },
+            {
+              "description": "Input element for editing key",
+              "name": "key"
+            },
+            {
+              "description": "Section containing buttons to insert children",
+              "name": "child-inserts"
+            },
+            {
+              "description": "Button to add a subobject",
+              "name": "object-adder"
+            },
+            {
+              "description": "Button to add a string child",
+              "name": "string-adder"
+            },
+            {
+              "description": "Button to add a boolean child",
+              "name": "bool-adder"
+            },
+            {
+              "description": "Button to add a number child",
+              "name": "number-adder"
+            },
+            {
+              "description": "Button to copy JSON to clipboard",
+              "name": "copy-to-clipboard"
+            },
+            {
+              "description": "Button to expand JSON tree",
+              "name": "expand-all"
+            },
+            {
+              "description": "Button to collapse JSON tree",
+              "name": "collapse-all"
+            },
+            {
+              "description": "section containing child editors",
+              "name": "child-editors"
+            }
+          ],
           "slots": [
             {
               "description": "Pass in the initial JSON string via a textarea component with this slot (or some other input element with property \"value\" where the string can be pulled from.)",
@@ -603,6 +661,64 @@
               "description": "Number Adder Background Color",
               "name": "--num-adder-bg",
               "default": "#497B8D"
+            }
+          ],
+          "cssParts": [
+            {
+              "description": "Element that displays title only at top level",
+              "name": "remove"
+            },
+            {
+              "description": "Element containing the editor",
+              "name": "editor"
+            },
+            {
+              "description": "Element containing a field",
+              "name": "field"
+            },
+            {
+              "description": "Expander button",
+              "name": "expander"
+            },
+            {
+              "description": "Input element for editing key",
+              "name": "key"
+            },
+            {
+              "description": "Section containing buttons to insert children",
+              "name": "child-inserts"
+            },
+            {
+              "description": "Button to add a subobject",
+              "name": "object-adder"
+            },
+            {
+              "description": "Button to add a string child",
+              "name": "string-adder"
+            },
+            {
+              "description": "Button to add a boolean child",
+              "name": "bool-adder"
+            },
+            {
+              "description": "Button to add a number child",
+              "name": "number-adder"
+            },
+            {
+              "description": "Button to copy JSON to clipboard",
+              "name": "copy-to-clipboard"
+            },
+            {
+              "description": "Button to expand JSON tree",
+              "name": "expand-all"
+            },
+            {
+              "description": "Button to collapse JSON tree",
+              "name": "collapse-all"
+            },
+            {
+              "description": "section containing child editors",
+              "name": "child-editors"
             }
           ],
           "slots": [

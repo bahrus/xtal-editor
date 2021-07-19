@@ -2,7 +2,7 @@ import {xc, IInternals, PropAction, PropDef,PropDefMap, IReactor} from 'xtal-ele
 import {xp, XtalPattern} from 'xtal-element/lib/XtalPattern.js';
 import {PSettings} from 'xtal-element/types.d.js';
 import {html} from 'xtal-element/lib/html.js';
-import {XtalEditorPublicProps, editType} from '../types.js';
+import {XtalEditorProps, editType, NameValue} from '../types.js';
 import {DOMKeyPE} from 'xtal-element/lib/DOMKeyPE.js';
 import {styleTemplate} from './xtal-editor-style.js';
 import('./ib-id-xtal-editor.js');
@@ -326,6 +326,21 @@ const propActions = [
  * @cssprop [--string-adder-bg = #007408] - String Adder Background Color
  * @cssprop [--bool-adder-bg = #516600] - Bool Adder Background Color
  * @cssprop [--num-adder-bg = #497B8D] - Number Adder Background Color
+ * @csspart remove - Element that displays title only at top level
+ * @csspart editor - Element containing the editor
+ * @csspart field - Element containing a field
+ * @csspart expander - Expander button
+ * @csspart key - Input element for editing key
+ * @csspart child-inserts - Section containing buttons to insert children
+ * @csspart object-adder - Button to add a subobject
+ * @csspart string-adder - Button to add a string child
+ * @csspart bool-adder - Button to add a boolean child
+ * @csspart number-adder - Button to add a number child
+ * @csspart copy-to-clipboard - Button to copy JSON to clipboard
+ * @csspart expand-all - Button to expand JSON tree
+ * @csspart collapse-all - Button to collapse JSON tree
+ * @csspart child-editors - section containing child editors
+ * 
  */
 export class XtalEditor extends HTMLElement implements XtalPattern, IInternals{
     static is = 'xtal-editor';
@@ -372,10 +387,7 @@ export class XtalEditor extends HTMLElement implements XtalPattern, IInternals{
      */
     clonedTemplate: DocumentFragment | undefined; domCache: any;
 
-    /**
-     * @private
-     */
-    rootEditor: XtalEditor | undefined;
+
     handleKeyChange(key: string){
         if(key === ''){
             this.remove();
@@ -434,24 +446,6 @@ export class XtalEditor extends HTMLElement implements XtalPattern, IInternals{
     }
 
 
-    key: string | undefined;
-
-    value: string | undefined;
-    uiValue: string | undefined;
-
-    type: editType;
-
-    parsedObject: any;
-
-    childValues: string[] | undefined | NameValue[];
-
-    open: boolean | undefined;
-
-    openEcho: boolean | undefined;
-
-    expandAll: boolean | undefined;
-
-    collapseAll: boolean | undefined;
 
     /**
      * @private
@@ -471,7 +465,7 @@ export class XtalEditor extends HTMLElement implements XtalPattern, IInternals{
     handlersAttached: boolean | undefined;
 
     connectedCallback(){
-        xc.mergeProps<XtalEditorPublicProps>(this, slicedPropDefs);
+        xc.mergeProps<XtalEditorProps>(this, slicedPropDefs);
         if(!this.hasParent){
             this.rootEditor = this;
         }
@@ -484,7 +478,7 @@ export class XtalEditor extends HTMLElement implements XtalPattern, IInternals{
         return Array.from(this.shadowRoot!.querySelectorAll(XtalEditor.is)) as XtalEditor[]
     }
 }
-export interface XtalEditor extends XtalEditorPublicProps{}
+export interface XtalEditor extends XtalEditorProps{}
 type X = XtalEditor;
 
 const baseProp: PropDef = {
@@ -563,10 +557,7 @@ const propDefMap: PropDefMap<XtalEditor> = {
 const slicedPropDefs = xc.getSlicedPropDefs(propDefMap);
 
 
-interface NameValue {
-    key: string, 
-    value: string,
-}
+
 
 xc.letThereBeProps(XtalEditor, slicedPropDefs, 'onPropChange');
 xc.define(XtalEditor);

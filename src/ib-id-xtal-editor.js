@@ -5,8 +5,6 @@ import { define } from 'xtal-element/lib/define.js';
  */
 export class IbIdXtalEditor extends IBid {
     static is = 'ib-id-xtal-editor';
-    _rootEditor;
-    host;
     connectedCallback() {
         this.map = (x, idx) => {
             let key = undefined;

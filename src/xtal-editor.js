@@ -308,6 +308,21 @@ const propActions = [
  * @cssprop [--string-adder-bg = #007408] - String Adder Background Color
  * @cssprop [--bool-adder-bg = #516600] - Bool Adder Background Color
  * @cssprop [--num-adder-bg = #497B8D] - Number Adder Background Color
+ * @csspart remove - Element that displays title only at top level
+ * @csspart editor - Element containing the editor
+ * @csspart field - Element containing a field
+ * @csspart expander - Expander button
+ * @csspart key - Input element for editing key
+ * @csspart child-inserts - Section containing buttons to insert children
+ * @csspart object-adder - Button to add a subobject
+ * @csspart string-adder - Button to add a string child
+ * @csspart bool-adder - Button to add a boolean child
+ * @csspart number-adder - Button to add a number child
+ * @csspart copy-to-clipboard - Button to copy JSON to clipboard
+ * @csspart expand-all - Button to expand JSON tree
+ * @csspart collapse-all - Button to collapse JSON tree
+ * @csspart child-editors - section containing child editors
+ *
  */
 export class XtalEditor extends HTMLElement {
     static is = 'xtal-editor';
@@ -354,10 +369,6 @@ export class XtalEditor extends HTMLElement {
      */
     clonedTemplate;
     domCache;
-    /**
-     * @private
-     */
-    rootEditor;
     handleKeyChange(key) {
         if (key === '') {
             this.remove();
@@ -411,16 +422,6 @@ export class XtalEditor extends HTMLElement {
         });
         // console.log('Element in Slot "' + slots[1].name + '" changed to "' + nodes[0].outerHTML + '".');
     }
-    key;
-    value;
-    uiValue;
-    type;
-    parsedObject;
-    childValues;
-    open;
-    openEcho;
-    expandAll;
-    collapseAll;
     /**
      * @private
      */

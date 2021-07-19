@@ -1,14 +1,14 @@
 import {IBid} from 'ib-id/i-bid.js';
 import {XtalEditor} from './xtal-editor.js';
 import {define} from 'xtal-element/lib/define.js';
+import { IbIdXtalEditorProps } from '../types.js';
 
 /**
  * @element ib-id-xtal-editor
  */
 export class IbIdXtalEditor extends IBid{
     static is = 'ib-id-xtal-editor';
-    _rootEditor: any | undefined;
-    host: HTMLElement | undefined;
+
     connectedCallback(){
         this.map = (x, idx) => {
             let key: any = undefined;
@@ -38,4 +38,5 @@ export class IbIdXtalEditor extends IBid{
     }
     
 }
+export interface IbIdXtalEditor extends IbIdXtalEditorProps{}
 define(IbIdXtalEditor);
