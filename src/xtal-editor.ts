@@ -465,7 +465,6 @@ export class XtalEditor extends HTMLElement implements XtalPattern, IInternals{
     handlersAttached: boolean | undefined;
 
     connectedCallback(){
-        console.log('iah');
         xc.mergeProps<XtalEditorProps>(this, slicedPropDefs);
         if(!this.hasParent){
             this.rootEditor = this;
