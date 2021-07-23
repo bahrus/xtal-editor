@@ -6,7 +6,7 @@
     <title>Document</title>
 </head>
 <body>
-    <xtal-editor key=abc hidden>
+    <xtal-editor key=abc id=editor>
         <textarea slot="initVal">
             {
                 "string":"foo",
@@ -22,6 +22,15 @@
             }
         </textarea>
     </xtal-editor>
+    <div id=target></div>
+
+    <button onclick=moveTarget()>Move target</button>
+
+    <script>
+        function moveTarget(){
+            target.appendChild(editor);
+        }
+    </script>
 
     <script type=importmap>
         {

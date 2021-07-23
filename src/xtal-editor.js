@@ -436,6 +436,7 @@ export class XtalEditor extends HTMLElement {
     parentLevel;
     handlersAttached;
     connectedCallback() {
+        console.log('iah');
         xc.mergeProps(this, slicedPropDefs);
         if (!this.hasParent) {
             this.rootEditor = this;
