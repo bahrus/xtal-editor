@@ -1,8 +1,11 @@
 import {html} from 'xtal-element/lib/html.js';
 export const styleTemplate = html`
 <style>
-    :host:not([hidden]){
+    :host{
         display:block;
+    }
+    :host[hidden]{
+        display:none;
     }
 
     
