@@ -4,9 +4,10 @@ import {PSettings} from 'xtal-element/types.d.js';
 import {html} from 'xtal-element/lib/html.js';
 import {XtalEditorProps, editType, NameValue} from '../types.js';
 import {DOMKeyPE} from 'xtal-element/lib/DOMKeyPE.js';
-import {styleTemplate} from './xtal-editor-style.js';
+//import {styleTemplate} from './xtal-editor-style.js';
 import('./ib-id-xtal-editor.js');
 import('pass-prop/p-p.js');
+import styles from './theme.css' assert { type: 'css' };
 
 const mainTemplate = html`
 <slot part=slot name=initVal></slot>
@@ -365,7 +366,8 @@ export class XtalEditor extends HTMLElement implements XtalPattern, IInternals{
     /**
      * @private
      */
-    styleTemplate = styleTemplate;
+    styleImport = styles;
+    //styleTemplate = styleTemplate;
     /**
      * @private
      */

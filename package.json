@@ -22,14 +22,14 @@
   ],
   "types": "types.d.ts",
   "dependencies": {
-    "ib-id": "0.0.58",
+    "ib-id": "0.0.60",
     "pass-prop": "0.0.19",
-    "xtal-element": "0.0.416"
+    "xtal-element": "0.0.420"
   },
   "devDependencies": {
     "@skypack/package-check": "0.2.2",
     "xtal-test": "0.0.51",
-    "@custom-elements-manifest/analyzer": "0.4.12"
+    "@custom-elements-manifest/analyzer": "0.4.17"
   },
   "scripts": {
     "serve": "node node_modules/xtal-test/serve.js",

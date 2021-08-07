@@ -2,9 +2,10 @@ import { xc } from 'xtal-element/lib/XtalCore.js';
 import { xp } from 'xtal-element/lib/XtalPattern.js';
 import { html } from 'xtal-element/lib/html.js';
 import { DOMKeyPE } from 'xtal-element/lib/DOMKeyPE.js';
-import { styleTemplate } from './xtal-editor-style.js';
+//import {styleTemplate} from './xtal-editor-style.js';
 import('./ib-id-xtal-editor.js');
 import('pass-prop/p-p.js');
+import styles from './theme.css' assert { type: 'css'};
 const mainTemplate = html `
 <slot part=slot name=initVal></slot>
 <div class="remove" part=remove></div>
@@ -347,7 +348,8 @@ export class XtalEditor extends HTMLElement {
     /**
      * @private
      */
-    styleTemplate = styleTemplate;
+    styleImport = styles;
+    //styleTemplate = styleTemplate;
     /**
      * @private
      */
