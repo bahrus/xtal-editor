@@ -80,6 +80,9 @@ slot{
     background-color: black;
     
 }
+.remove[data-has-parent="true"]{
+    display:none;
+}
 .remove::after{
     content: "JSON Editor";
 }
