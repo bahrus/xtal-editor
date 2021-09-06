@@ -34,7 +34,9 @@ const mainTemplate = tm.html `
         <p-d from-host observe-prop=collapseAll to=xtal-editor prop=collapseAll></p-d>
         <p-d from-host observe-prop=evenLevel to=xtal-editor prop=parentLevel></p-d> -->
         <template data-from=child-editors-list>
-            <xtal-editor has-parent></xtal-editor>
+            <p-d observe-host vft=expandAll to=[-open] m=1></p-d>
+            <p-d observe-host vft=expandAll to=[-expand-all] m=1></p-d>
+            <xtal-editor -open has-parent -expand-all></xtal-editor>
         </template>
         <p-d observe-host vft=childValues to=[-list] m=1></p-d>
         <i-bid -list id=child-editors-list updatable
@@ -55,7 +57,7 @@ const doBoolAdderParts = ({ self }) => [{}, { click: self.addBool }];
 const doNumberAdderParts = ({ self }) => [{}, { click: self.addNumber }];
 const doCopy = ({ self }) => [{}, { click: self.copyToClipboard }];
 const initSlotElements = ({ self }) => [{}, { slotchange: self.handleSlotChange }];
-const initExpandAll = ({ self }) => [{}, { click: { collapseAll: false, expandAll: true } }];
+const initExpandAll = ({ self }) => [{}, { click: { collapseAll: false, expandAll: true, open: true } }];
 const doCollapseAll = ({ self }) => [{}, { click: { expandAll: false, collapseAll: true } }];
 const updateValue = ({ value }) => [{ value: typeof value === 'string' ? value : JSON.stringify(value) }];
 const updateKey = ({ key }) => [{ value: key }];
@@ -328,6 +330,12 @@ const isRef = {
     isRef: true,
     parse: false,
 };
+const notifyProp = {
+    notify: {
+        dispatch: true,
+        reflect: { asAttr: true }
+    }
+};
 const xe = new XE({
     config: {
         tagName: 'xtal-editor',
@@ -363,14 +371,8 @@ const xe = new XE({
                     dispatch: true
                 }
             },
-            open: {
-                notify: {
-                    dispatch: true,
-                    reflect: {
-                        asAttr: true,
-                    }
-                }
-            }
+            open: notifyProp,
+            expandAll: notifyProp,
         },
         actions: {
             ...tm.doInitTransform,

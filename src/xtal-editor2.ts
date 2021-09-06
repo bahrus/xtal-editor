@@ -1,4 +1,4 @@
-import {PropInfo, XE} from 'xtal-element/src/XE.js';
+import {PropInfoExt, XE} from 'xtal-element/src/XE.js';
 import {TemplMgmtActions, TemplMgmtProps, tm} from 'trans-render/lib/mixins/TemplMgmtWithPEST.js';
 import {XtalEditorActions, XtalEditorProps, NameValue} from '../types';
 import('pass-down/p-d.js');
@@ -35,7 +35,9 @@ const mainTemplate = tm.html`
         <p-d from-host observe-prop=collapseAll to=xtal-editor prop=collapseAll></p-d>
         <p-d from-host observe-prop=evenLevel to=xtal-editor prop=parentLevel></p-d> -->
         <template data-from=child-editors-list>
-            <xtal-editor has-parent></xtal-editor>
+            <p-d observe-host vft=expandAll to=[-open] m=1></p-d>
+            <p-d observe-host vft=expandAll to=[-expand-all] m=1></p-d>
+            <xtal-editor -open has-parent -expand-all></xtal-editor>
         </template>
         <p-d observe-host vft=childValues to=[-list] m=1></p-d>
         <i-bid -list id=child-editors-list updatable
@@ -57,7 +59,7 @@ const doBoolAdderParts = ({self}: X) => [{}, {click: self.addBool}];
 const doNumberAdderParts = ({self}: X) => [{}, {click: self.addNumber}];
 const doCopy = ({self}: X) => [{}, {click: self.copyToClipboard}];
 const initSlotElements = ({self}: X) => [{}, {slotchange: self.handleSlotChange}];
-const initExpandAll = ({self}: X) => [{}, {click:{collapseAll: false, expandAll: true}}];
+const initExpandAll = ({self}: X) => [{}, {click:{collapseAll: false, expandAll: true, open: true}}];
 const doCollapseAll = ({self}: X) => [{}, {click:{expandAll: false, collapseAll: true}}];
 const updateValue = ({value}: X) => [{value: typeof value === 'string' ? value : JSON.stringify(value)}];
 const updateKey = ({key}: X) => [{value: key}];
@@ -334,10 +336,16 @@ export interface XtalEditorCore extends XtalEditorProps{}
 //             return JSON.stringify(item);
 //     }
 // }
-const isRef:PropInfo = {
+const isRef:PropInfoExt = {
     isRef: true,
     parse: false,
 };
+const notifyProp:PropInfoExt = {
+    notify:{
+        dispatch:true,
+        reflect:{asAttr:true}
+    }
+}
 const xe = new XE<XtalEditorProps & TemplMgmtProps, XtalEditorActions>({
     config:{
         tagName: 'xtal-editor',
@@ -373,14 +381,8 @@ const xe = new XE<XtalEditorProps & TemplMgmtProps, XtalEditorActions>({
                     dispatch: true
                 }
             },
-            open:{
-                notify:{
-                    dispatch: true,
-                    reflect:{
-                        asAttr: true,
-                    }
-                }
-            }
+            open:notifyProp,
+            expandAll:notifyProp,
         },
         actions:{
             ...tm.doInitTransform,

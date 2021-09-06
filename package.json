@@ -23,9 +23,9 @@
   "types": "types.d.ts",
   "dependencies": {
     "ib-id": "0.0.62",
-    "pass-down": "0.0.97",
+    "pass-down": "0.0.101",
     "xtal-element": "0.0.439",
-    "trans-render": "0.0.381"
+    "trans-render": "0.0.383"
   },
   "devDependencies": {
     "@skypack/package-check": "0.2.2",
