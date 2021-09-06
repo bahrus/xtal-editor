@@ -256,6 +256,7 @@ const doSlotElements = ({self}: X) => [{}, {slotchange: self.handleSlotChange}];
 const doExpandAll = ({self}: X) => [{}, {click:{collapseAll: false, expandAll: true}}];
 const doCollapseAll = ({self}: X) => [{}, {click:{expandAll: false, collapseAll: true}}];
 const updateValue = ({value}: X) => [{value: typeof value === 'string' ? value : JSON.stringify(value)}];
+const updateType = ({type}: X) => [{dataset: {type: type}}];
 
 const tagName = 'xtal-editor';
 export class XtalEditorCore extends HTMLElement implements XtalEditorActions{
@@ -272,6 +273,7 @@ export class XtalEditorCore extends HTMLElement implements XtalEditorActions{
     doExpandAll = doExpandAll;
     doCollapseAll = doCollapseAll;
     updateValue = updateValue;
+    updateType = updateType;
     parseValue({value}: this){
         let parsedObject = value;
         if(value !==  undefined){
@@ -540,6 +542,7 @@ const xe = new XE<XtalEditorProps & TemplMgmtProps, XtalEditorActions>({
             slotElements: isRef,
             expandAllIds: isRef,
             collapseAllIds: isRef,
+            editorParts: isRef,
         },
         actions:{
             ...tm.doInitTransform,
@@ -552,7 +555,12 @@ const xe = new XE<XtalEditorProps & TemplMgmtProps, XtalEditorActions>({
             },
             updateValue:{
                 ifKeyIn: ['value'],
+                ifAllOf: ['valueParts'],
                 target: 'valueParts'
+            },
+            updateType:{
+                ifAllOf: ['type', 'editorParts'],
+                target: 'editorParts',
             }
             // setChildValues:{
             //     ifKeyIn: ['parsedObject']

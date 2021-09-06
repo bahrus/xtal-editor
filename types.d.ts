@@ -69,7 +69,8 @@ export interface XtalEditorProps{
     slotElements: NodeListOf<HTMLSlotElement>;
     expandAllIds: NodeListOf<HTMLButtonElement>;
     collapseAllIds: NodeListOf<HTMLButtonElement>;
-    removeParts: NodeListOf<HTMLButtonElement>
+    removeParts: NodeListOf<HTMLButtonElement>;
+    editorParts: NodeListOf<HTMLDivElement>;
 }
 
 export interface XtalEditorActions{
@@ -119,6 +120,7 @@ export interface XtalEditorActions{
     doExpandAll:(self:this)=>any;
     doCollapseAll:(self:this)=>any;
     updateValue:(self:this)=>any;
+    updateType:(self:this)=>any;
 }
 
 export interface NameValue {
