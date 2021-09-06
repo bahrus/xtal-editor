@@ -86,12 +86,15 @@ const mainTemplate = tm.html `
         background-color: black;
         
     }
+    .remove[data-has-parent="true"]{
+        display:none;
+    }
     .remove::after{
         content: "JSON Editor";
     }
-    .remove.editKey::after{
+    /* .remove.editKey::after{
         content: "Remove item by deleting the property name.";
-    }
+    } */
 
     .field{
         display:flex;
@@ -211,7 +214,8 @@ const mainTemplate = tm.html `
     }
 </style>
 <slot part=slot name=initVal></slot>
-<div class="remove" part=remove></div>
+<p-d observe-host vft=hasParent to=[-data-has-parent] as=str-attr m=1></p-d>
+<div class="remove" part=remove -data-has-parent></div>
 <div data-type=string part=editor class=editor>
     <div part=field class=field>
         <div class=text-editing>
@@ -237,7 +241,7 @@ const mainTemplate = tm.html `
         <p-d from-host observe-prop=collapseAll to=xtal-editor prop=collapseAll></p-d>
         <p-d from-host observe-prop=evenLevel to=xtal-editor prop=parentLevel></p-d> -->
         <template data-from=child-editors-list>
-            <xtal-editor></xtal-editor>
+            <xtal-editor has-parent></xtal-editor>
         </template>
         <p-d observe-host vft=childValues to=[-list] m=1></p-d>
         <i-bid -list id=child-editors-list updatable
@@ -531,6 +535,7 @@ const xe = new XE({
             expandAll: false,
             collapseAll: false,
             isC: true,
+            hasParent: false,
         },
         propInfo: {
             expanderParts: isRef,
