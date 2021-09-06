@@ -46,7 +46,7 @@ const mainTemplate = tm.html `
     
 </div>
 `;
-const doExpanderParts = ({ self }) => [{}, { click: self.toggle }];
+const initExpander = ({ self }) => [{}, { click: { open: !self.open } }];
 const doKeyParts = ({ self }) => [{}, { change: [self.handleKeyChange, 'value'], focus: self.handleKeyFocus }];
 const doValueParts = ({ self }) => [{}, { change: [self.handleValueChange, 'value'], focus: self.handleValueFocus }];
 const doObjectAdderParts = ({ self }) => [{}, { click: self.addObject }];
@@ -54,8 +54,8 @@ const doStringAdderParts = ({ self }) => [{}, { click: self.addString }];
 const doBoolAdderParts = ({ self }) => [{}, { click: self.addBool }];
 const doNumberAdderParts = ({ self }) => [{}, { click: self.addNumber }];
 const doCopy = ({ self }) => [{}, { click: self.copyToClipboard }];
-const doSlotElements = ({ self }) => [{}, { slotchange: self.handleSlotChange }];
-const doExpandAll = ({ self }) => [{}, { click: { collapseAll: false, expandAll: true } }];
+const initSlotElements = ({ self }) => [{}, { slotchange: self.handleSlotChange }];
+const initExpandAll = ({ self }) => [{}, { click: { collapseAll: false, expandAll: true } }];
 const doCollapseAll = ({ self }) => [{}, { click: { expandAll: false, collapseAll: true } }];
 const updateValue = ({ value }) => [{ value: typeof value === 'string' ? value : JSON.stringify(value) }];
 const updateKey = ({ key }) => [{ value: key }];
@@ -63,7 +63,7 @@ const updateType = ({ type }) => [{ dataset: { type: type } }];
 const tagName = 'xtal-editor';
 export class XtalEditorCore extends HTMLElement {
     self = this;
-    doExpanderParts = doExpanderParts;
+    initExpander = initExpander;
     doKeyParts = doKeyParts;
     doValueParts = doValueParts;
     doObjectAdderParts = doObjectAdderParts;
@@ -71,8 +71,8 @@ export class XtalEditorCore extends HTMLElement {
     doBoolAdderParts = doBoolAdderParts;
     doNumberAdderParts = doNumberAdderParts;
     doCopy = doCopy;
-    doSlotElements = doSlotElements;
-    doExpandAll = doExpandAll;
+    initSlotElement = initSlotElements;
+    initExpandAll = initExpandAll;
     doCollapseAll = doCollapseAll;
     updateValue = updateValue;
     updateType = updateType;
@@ -190,9 +190,6 @@ export class XtalEditorCore extends HTMLElement {
     internalUpdateCount;
     incrementUpdateCount() {
         this.internalUpdateCount = this.internalUpdateCount === undefined ? 0 : this.internalUpdateCount + 1;
-    }
-    toggle() {
-        this.open = !this.open;
     }
     addObject({ objCounter, parsedObject, type }) {
         let newObj;
@@ -377,7 +374,7 @@ const xe = new XE({
         },
         actions: {
             ...tm.doInitTransform,
-            doSlotElements: {
+            initSlotElement: {
                 ifAllOf: ['slotElements'],
                 target: 'slotElements'
             },
@@ -400,9 +397,13 @@ const xe = new XE({
             setChildValues: {
                 ifAllOf: ['parsedObject', 'open']
             },
-            doExpanderParts: {
+            initExpander: {
                 ifAllOf: ['expanderParts'],
                 target: 'expanderParts'
+            },
+            initExpandAll: {
+                ifAllOf: ['expandAllIds'],
+                target: 'expandAllIds'
             },
             // syncValueFromChildren:{
             //     ifAllOf: ['upwardDataFlowInProgress']
@@ -458,10 +459,6 @@ const xe = new XE({
             // doCopy:{
             //     ifAllOf:['clonedTemplate'],
             //     target:'copyIds'
-            // },
-            // doExpandAll:{
-            //     ifAllOf:['clonedTemplate'],
-            //     target:'expandAllIds'
             // },
             // doCollapseAll:{
             //     ifAllOf:['clonedTemplate'],

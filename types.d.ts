@@ -108,7 +108,7 @@ export interface XtalEditorActions{
         open: boolean,
     }
     onConnected(self: this):void;
-    doExpanderParts:(self: this) => any;
+    initExpander:(self: this) => any;
     //doOpen:(self: this) => any;
     doKeyParts:(self:this)=>any;
     doValueParts:(self:this)=>any;
@@ -117,8 +117,8 @@ export interface XtalEditorActions{
     doBoolAdderParts:(self:this)=>any;
     doNumberAdderParts:(self:this)=>any;
     doCopy:(self:this)=>any;
-    doSlotElements:(self:this)=>any;
-    doExpandAll:(self:this)=>any;
+    initSlotElement:(self:this)=>any;
+    initExpandAll:(self:this)=>any;
     doCollapseAll:(self:this)=>any;
     updateValue:(self:this)=>any;
     updateType:(self:this)=>any;
