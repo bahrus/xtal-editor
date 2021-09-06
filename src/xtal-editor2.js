@@ -115,7 +115,13 @@ export class XtalEditorCore extends HTMLElement {
         }
         return { parsedObject };
     }
+    #lastParsedObject;
     setChildValues({ parsedObject, type }) {
+        if (parsedObject === this.#lastParsedObject)
+            return {
+                childValues: this.childValues
+            };
+        this.#lastParsedObject = parsedObject;
         if (parsedObject === undefined) {
             return {
                 childValues: undefined
@@ -381,7 +387,7 @@ const xe = new XE({
                 target: 'editorParts',
             },
             setChildValues: {
-                ifKeyIn: ['parsedObject']
+                ifAllOf: ['parsedObject', 'open']
             },
             doExpanderParts: {
                 ifAllOf: ['expanderParts'],
