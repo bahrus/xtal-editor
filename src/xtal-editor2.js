@@ -354,8 +354,8 @@ const xe = new XE({
             numberAdderParts: isRef,
             copyIds: isRef,
             slotElements: isRef,
-            expandAllIds: isRef,
-            collapseAllIds: isRef,
+            expandAllParts: isRef,
+            collapseAllParts: isRef,
             editorParts: isRef,
             childValues: {
                 parse: false,
@@ -402,8 +402,8 @@ const xe = new XE({
                 target: 'expanderParts'
             },
             initExpandAll: {
-                ifAllOf: ['expandAllIds'],
-                target: 'expandAllIds'
+                ifAllOf: ['expandAllParts'],
+                target: 'expandAllParts'
             },
             // syncValueFromChildren:{
             //     ifAllOf: ['upwardDataFlowInProgress']

@@ -364,8 +364,8 @@ const xe = new XE<XtalEditorProps & TemplMgmtProps, XtalEditorActions>({
             numberAdderParts: isRef,
             copyIds: isRef,
             slotElements: isRef,
-            expandAllIds: isRef,
-            collapseAllIds: isRef,
+            expandAllParts: isRef,
+            collapseAllParts: isRef,
             editorParts: isRef,
             childValues:{
                 parse: false,
@@ -412,8 +412,8 @@ const xe = new XE<XtalEditorProps & TemplMgmtProps, XtalEditorActions>({
                 target:'expanderParts'
             },
             initExpandAll:{
-                ifAllOf:['expandAllIds'],
-                target:'expandAllIds'
+                ifAllOf:['expandAllParts'],
+                target:'expandAllParts'
             },
             // syncValueFromChildren:{
             //     ifAllOf: ['upwardDataFlowInProgress']

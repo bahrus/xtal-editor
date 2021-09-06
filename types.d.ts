@@ -67,8 +67,8 @@ export interface XtalEditorProps{
     numberAdderParts: NodeListOf<HTMLButtonElement>;
     copyIds: NodeListOf<HTMLButtonElement>;
     slotElements: NodeListOf<HTMLSlotElement>;
-    expandAllIds: NodeListOf<HTMLButtonElement>;
-    collapseAllIds: NodeListOf<HTMLButtonElement>;
+    expandAllParts: NodeListOf<HTMLButtonElement>;
+    collapseAllParts: NodeListOf<HTMLButtonElement>;
     removeParts: NodeListOf<HTMLButtonElement>;
     editorParts: NodeListOf<HTMLDivElement>;
 }
