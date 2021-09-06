@@ -58,7 +58,7 @@ const doNumberAdderParts = ({ self }) => [{}, { click: self.addNumber }];
 const doCopy = ({ self }) => [{}, { click: self.copyToClipboard }];
 const initSlotElements = ({ self }) => [{}, { slotchange: self.handleSlotChange }];
 const initExpandAll = ({ self }) => [{}, { click: { collapseAll: false, expandAll: true, open: true } }];
-const doCollapseAll = ({ self }) => [{}, { click: { expandAll: false, collapseAll: true } }];
+const initCollapseAll = ({ self }) => [{}, { click: { expandAll: false, collapseAll: true, open: false } }];
 const updateValue = ({ value }) => [{ value: typeof value === 'string' ? value : JSON.stringify(value) }];
 const updateKey = ({ key }) => [{ value: key }];
 const updateType = ({ type }) => [{ dataset: { type: type } }];
@@ -75,7 +75,7 @@ export class XtalEditorCore extends HTMLElement {
     doCopy = doCopy;
     initSlotElement = initSlotElements;
     initExpandAll = initExpandAll;
-    doCollapseAll = doCollapseAll;
+    initCollapseAll = initCollapseAll;
     updateValue = updateValue;
     updateType = updateType;
     updateKey = updateKey;
@@ -269,16 +269,16 @@ export class XtalEditorCore extends HTMLElement {
             evenLevel: !parentLevel
         };
     }
-    onExpandAll({}) {
-        return {
-            open: true,
-        };
-    }
-    onCollapseAll({}) {
-        return {
-            open: false,
-        };
-    }
+    // onExpandAll({}: this){
+    //     return{
+    //         open: true,
+    //     }
+    // }
+    // onCollapseAll({}: this){
+    //     return{
+    //         open: false,
+    //     }
+    // }
     onConnected({ hasParent }) {
         if (!hasParent) {
             this.rootEditor = this;
@@ -373,6 +373,7 @@ const xe = new XE({
             },
             open: notifyProp,
             expandAll: notifyProp,
+            collapseAll: notifyProp
         },
         actions: {
             ...tm.doInitTransform,
@@ -407,6 +408,10 @@ const xe = new XE({
                 ifAllOf: ['expandAllParts'],
                 target: 'expandAllParts'
             },
+            initCollapseAll: {
+                ifAllOf: ['collapseAllParts'],
+                target: 'collapseAllParts'
+            },
             // syncValueFromChildren:{
             //     ifAllOf: ['upwardDataFlowInProgress']
             // },
@@ -427,12 +432,6 @@ const xe = new XE({
             // },
             // setEvenLevel:{
             //     ifKeyIn: ['parentLevel']
-            // },
-            // onExpandAll:{
-            //     ifAllOf: ['expandAll']
-            // },
-            // onCollapseAll:{
-            //     ifAllOf: ['collapseAll']
             // },
             // doKeyParts:{
             //     ifAllOf:['clonedTemplate'],

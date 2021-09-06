@@ -97,16 +97,16 @@ export interface XtalEditorActions{
         value: any,
         open: boolean,
     }
-    initEvenLevel(self: this):void;
-    setEvenLevel(self: this):{
-        evenLevel: boolean,
-    }
-    onExpandAll(self: this):{
-        open: boolean,
-    }
-    onCollapseAll(self: this):{
-        open: boolean,
-    }
+    //initEvenLevel(self: this):void;
+    // setEvenLevel(self: this):{
+    //     evenLevel: boolean,
+    // }
+    // initExpandAll(self: this):{
+    //     open: boolean,
+    // }
+    // initCollapseAll(self: this):{
+    //     open: boolean,
+    // }
     onConnected(self: this):void;
     initExpander:(self: this) => any;
     //doOpen:(self: this) => any;
@@ -119,7 +119,7 @@ export interface XtalEditorActions{
     doCopy:(self:this)=>any;
     initSlotElement:(self:this)=>any;
     initExpandAll:(self:this)=>any;
-    doCollapseAll:(self:this)=>any;
+    initCollapseAll:(self:this)=>any;
     updateValue:(self:this)=>any;
     updateType:(self:this)=>any;
     updateKey:(self:this)=>any;

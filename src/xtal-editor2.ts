@@ -60,7 +60,7 @@ const doNumberAdderParts = ({self}: X) => [{}, {click: self.addNumber}];
 const doCopy = ({self}: X) => [{}, {click: self.copyToClipboard}];
 const initSlotElements = ({self}: X) => [{}, {slotchange: self.handleSlotChange}];
 const initExpandAll = ({self}: X) => [{}, {click:{collapseAll: false, expandAll: true, open: true}}];
-const doCollapseAll = ({self}: X) => [{}, {click:{expandAll: false, collapseAll: true}}];
+const initCollapseAll = ({self}: X) => [{}, {click:{expandAll: false, collapseAll: true, open: false}}];
 const updateValue = ({value}: X) => [{value: typeof value === 'string' ? value : JSON.stringify(value)}];
 const updateKey = ({key}: X) => [{value: key}];
 const updateType = ({type}: X) => [{dataset: {type: type}}];
@@ -78,7 +78,7 @@ export class XtalEditorCore extends HTMLElement implements XtalEditorActions{
     doCopy = doCopy;
     initSlotElement = initSlotElements;
     initExpandAll = initExpandAll;
-    doCollapseAll = doCollapseAll;
+    initCollapseAll = initCollapseAll;
     updateValue = updateValue;
     updateType = updateType;
     updateKey = updateKey;
@@ -275,16 +275,16 @@ export class XtalEditorCore extends HTMLElement implements XtalEditorActions{
             evenLevel: !parentLevel
         }
     }
-    onExpandAll({}: this){
-        return{
-            open: true,
-        }
-    }
-    onCollapseAll({}: this){
-        return{
-            open: false,
-        }
-    }
+    // onExpandAll({}: this){
+    //     return{
+    //         open: true,
+    //     }
+    // }
+    // onCollapseAll({}: this){
+    //     return{
+    //         open: false,
+    //     }
+    // }
     onConnected({hasParent}: this){
         if(!hasParent){
             this.rootEditor = this;
@@ -383,6 +383,7 @@ const xe = new XE<XtalEditorProps & TemplMgmtProps, XtalEditorActions>({
             },
             open:notifyProp,
             expandAll:notifyProp,
+            collapseAll:notifyProp
         },
         actions:{
             ...tm.doInitTransform,
@@ -417,6 +418,10 @@ const xe = new XE<XtalEditorProps & TemplMgmtProps, XtalEditorActions>({
                 ifAllOf:['expandAllParts'],
                 target:'expandAllParts'
             },
+            initCollapseAll:{
+                ifAllOf: ['collapseAllParts'],
+                target:'collapseAllParts'
+            },
             // syncValueFromChildren:{
             //     ifAllOf: ['upwardDataFlowInProgress']
             // },
@@ -438,12 +443,8 @@ const xe = new XE<XtalEditorProps & TemplMgmtProps, XtalEditorActions>({
             // setEvenLevel:{
             //     ifKeyIn: ['parentLevel']
             // },
-            // onExpandAll:{
-            //     ifAllOf: ['expandAll']
-            // },
-            // onCollapseAll:{
-            //     ifAllOf: ['collapseAll']
-            // },
+
+
 
             // doKeyParts:{
             //     ifAllOf:['clonedTemplate'],

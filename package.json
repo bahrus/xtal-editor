@@ -23,7 +23,7 @@
   "types": "types.d.ts",
   "dependencies": {
     "ib-id": "0.0.62",
-    "pass-down": "0.0.101",
+    "pass-down": "0.0.103",
     "xtal-element": "0.0.439",
     "trans-render": "0.0.383"
   },
