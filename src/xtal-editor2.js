@@ -128,20 +128,31 @@ export class XtalEditorCore extends HTMLElement {
             };
         }
         switch (type) {
-            case 'array':
-                return {
-                    childValues: parsedObject.map(item => toString(item)),
-                };
-                break;
-            case 'object':
+            case 'array': {
                 const childValues = [];
-                for (var key in parsedObject) {
+                let cnt = 0;
+                for (const item of parsedObject) {
                     childValues.push({
-                        key: key,
-                        value: toString(parsedObject[key]),
+                        key: cnt.toString(),
+                        value: item
                     });
+                    cnt++;
                 }
-                return { childValues };
+                return {
+                    childValues,
+                };
+            }
+            case 'object':
+                {
+                    const childValues = [];
+                    for (var key in parsedObject) {
+                        childValues.push({
+                            key: key,
+                            value: parsedObject[key] //toString(parsedObject[key]),
+                        });
+                    }
+                    return { childValues };
+                }
             default: {
                 return {
                     childValues: undefined,
@@ -305,17 +316,17 @@ export class XtalEditorCore extends HTMLElement {
         }
     }
 }
-function toString(item) {
-    switch (typeof item) {
-        case 'string':
-            return item;
-        case 'number':
-        case 'boolean':
-            return item.toString();
-        case 'object':
-            return JSON.stringify(item);
-    }
-}
+// function toString(item: any){
+//     switch(typeof item){
+//         case 'string':
+//             return item;
+//         case 'number':
+//         case 'boolean':
+//             return item.toString();
+//         case 'object':
+//             return JSON.stringify(item);
+//     }
+// }
 const isRef = {
     isRef: true,
     parse: false,

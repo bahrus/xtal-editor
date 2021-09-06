@@ -128,20 +128,32 @@ export class XtalEditorCore extends HTMLElement implements XtalEditorActions{
             }
         }
         switch(type){
-            case 'array':
-                return{
-                    childValues: (parsedObject as any[]).map(item => toString(item)) as string[],
+            case 'array':{
+                    const childValues: NameValue[] = [];
+                    let cnt = 0;
+                    for(const item of parsedObject){
+                        childValues.push({
+                            key: cnt.toString(),
+                            value: item
+                        });
+                        cnt++;
+                    }
+                    return{
+                        childValues,
+                    }
                 }
-                break;
             case 'object':
-                const childValues: NameValue[] = [];
-                for(var key in parsedObject){
-                    childValues.push({
-                        key: key,
-                        value: toString(parsedObject[key]),
-                    } as NameValue);
+                {
+                    const childValues: NameValue[] = [];
+                    for(var key in parsedObject){
+                        childValues.push({
+                            key: key,
+                            value: parsedObject[key] //toString(parsedObject[key]),
+                        } as NameValue);
+                    }
+                    return {childValues};
                 }
-                return {childValues};
+
             default:{
                 return {
                     childValues: undefined,
@@ -314,17 +326,17 @@ export class XtalEditorCore extends HTMLElement implements XtalEditorActions{
 
 export interface XtalEditorCore extends XtalEditorProps{} 
 
-function toString(item: any){
-    switch(typeof item){
-        case 'string':
-            return item;
-        case 'number':
-        case 'boolean':
-            return item.toString();
-        case 'object':
-            return JSON.stringify(item);
-    }
-}
+// function toString(item: any){
+//     switch(typeof item){
+//         case 'string':
+//             return item;
+//         case 'number':
+//         case 'boolean':
+//             return item.toString();
+//         case 'object':
+//             return JSON.stringify(item);
+//     }
+// }
 const isRef:PropInfo = {
     isRef: true,
     parse: false,
