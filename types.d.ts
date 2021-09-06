@@ -118,6 +118,7 @@ export interface XtalEditorActions{
     doSlotElements:(self:this)=>any;
     doExpandAll:(self:this)=>any;
     doCollapseAll:(self:this)=>any;
+    updateValue:(self:this)=>any;
 }
 
 export interface NameValue {

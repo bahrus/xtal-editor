@@ -252,6 +252,7 @@ const doCopy = ({ self }) => [{}, { click: self.copyToClipboard }];
 const doSlotElements = ({ self }) => [{}, { slotchange: self.handleSlotChange }];
 const doExpandAll = ({ self }) => [{}, { click: { collapseAll: false, expandAll: true } }];
 const doCollapseAll = ({ self }) => [{}, { click: { expandAll: false, collapseAll: true } }];
+const updateValue = ({ value }) => [{ value: typeof value === 'string' ? value : JSON.stringify(value) }];
 const tagName = 'xtal-editor';
 export class XtalEditorCore extends HTMLElement {
     self = this;
@@ -266,6 +267,7 @@ export class XtalEditorCore extends HTMLElement {
     doSlotElements = doSlotElements;
     doExpandAll = doExpandAll;
     doCollapseAll = doCollapseAll;
+    updateValue = updateValue;
     parseValue({ value }) {
         let parsedObject = value;
         if (value !== undefined) {
@@ -477,13 +479,12 @@ export class XtalEditorCore extends HTMLElement {
     handleSlotChange(e) {
         const slot = e.target;
         const nodes = slot.assignedNodes();
-        nodes.forEach(node => {
+        for (const node of nodes) {
             const aNode = node;
             if (aNode.value !== undefined) {
                 this.value = aNode.value;
             }
-        });
-        // console.log('Element in Slot "' + slots[1].name + '" changed to "' + nodes[0].outerHTML + '".');
+        }
     }
 }
 function toString(item) {
@@ -530,9 +531,17 @@ const xe = new XE({
         },
         actions: {
             ...tm.doInitTransform,
+            doSlotElements: {
+                ifAllOf: ['slotElements'],
+                target: 'slotElements'
+            },
             parseValue: {
                 ifAllOf: ['value']
             },
+            updateValue: {
+                ifKeyIn: ['value'],
+                target: 'valueParts'
+            }
             // setChildValues:{
             //     ifKeyIn: ['parsedObject']
             // },
@@ -593,10 +602,6 @@ const xe = new XE({
             // doCopy:{
             //     ifAllOf:['clonedTemplate'],
             //     target:'copyIds'
-            // },
-            // doSlotElements:{
-            //     ifAllOf:['clonedTemplate'],
-            //     target:'slotElements'
             // },
             // doExpandAll:{
             //     ifAllOf:['clonedTemplate'],

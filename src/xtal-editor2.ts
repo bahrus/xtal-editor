@@ -255,6 +255,7 @@ const doCopy = ({self}: X) => [{}, {click: self.copyToClipboard}];
 const doSlotElements = ({self}: X) => [{}, {slotchange: self.handleSlotChange}];
 const doExpandAll = ({self}: X) => [{}, {click:{collapseAll: false, expandAll: true}}];
 const doCollapseAll = ({self}: X) => [{}, {click:{expandAll: false, collapseAll: true}}];
+const updateValue = ({value}: X) => [{value: typeof value === 'string' ? value : JSON.stringify(value)}];
 
 const tagName = 'xtal-editor';
 export class XtalEditorCore extends HTMLElement implements XtalEditorActions{
@@ -270,6 +271,7 @@ export class XtalEditorCore extends HTMLElement implements XtalEditorActions{
     doSlotElements = doSlotElements;
     doExpandAll = doExpandAll;
     doCollapseAll = doCollapseAll;
+    updateValue = updateValue;
     parseValue({value}: this){
         let parsedObject = value;
         if(value !==  undefined){
@@ -486,13 +488,12 @@ export class XtalEditorCore extends HTMLElement implements XtalEditorActions{
     handleSlotChange(e: Event){
         const slot = e.target as HTMLSlotElement;
         const nodes = slot.assignedNodes();
-        nodes.forEach(node => {
+        for(const node of nodes){
             const aNode = node as any;
             if(aNode.value !== undefined){
                 this.value = aNode.value;
-            }
-        })
-        // console.log('Element in Slot "' + slots[1].name + '" changed to "' + nodes[0].outerHTML + '".');
+            }            
+        }
     }
 }
 
@@ -542,9 +543,17 @@ const xe = new XE<XtalEditorProps & TemplMgmtProps, XtalEditorActions>({
         },
         actions:{
             ...tm.doInitTransform,
+            doSlotElements:{
+                ifAllOf:['slotElements'],
+                target:'slotElements'
+            },
             parseValue:{
                 ifAllOf: ['value']
             },
+            updateValue:{
+                ifKeyIn: ['value'],
+                target: 'valueParts'
+            }
             // setChildValues:{
             //     ifKeyIn: ['parsedObject']
             // },
@@ -605,10 +614,6 @@ const xe = new XE<XtalEditorProps & TemplMgmtProps, XtalEditorActions>({
             // doCopy:{
             //     ifAllOf:['clonedTemplate'],
             //     target:'copyIds'
-            // },
-            // doSlotElements:{
-            //     ifAllOf:['clonedTemplate'],
-            //     target:'slotElements'
             // },
             // doExpandAll:{
             //     ifAllOf:['clonedTemplate'],
