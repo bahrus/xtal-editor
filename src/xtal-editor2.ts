@@ -232,13 +232,18 @@ const mainTemplate = tm.html`
         
     </div>
     <div part=child-editors class="nonPrimitive child-editors" data-open=false>
-        <p-d from-host observe-prop=expandAll to=xtal-editor prop=expandAll></p-d>
+        <!-- <p-d from-host observe-prop=expandAll to=xtal-editor prop=expandAll></p-d>
         <p-d from-host observe-prop=collapseAll to=xtal-editor prop=collapseAll></p-d>
-        <p-d from-host observe-prop=evenLevel to=xtal-editor prop=parentLevel></p-d>
+        <p-d from-host observe-prop=evenLevel to=xtal-editor prop=parentLevel></p-d> -->
         <template data-from=child-editors-list>
             <xtal-editor></xtal-editor>
         </template>
-        <i-bid id=child-editors-list></i-bid>
+        <p-d observe-host vft=childValues to=[-list] m=1></p-d>
+        <i-bid -list id=child-editors-list
+              transform='{
+                  "xtal-editor":[{"value": ["value"]}]
+              }'
+        ></i-bid>
     </div>
     
 </div>
@@ -543,6 +548,12 @@ const xe = new XE<XtalEditorProps & TemplMgmtProps, XtalEditorActions>({
             expandAllIds: isRef,
             collapseAllIds: isRef,
             editorParts: isRef,
+            childValues:{
+                parse: false,
+                notify: {
+                    dispatch: true
+                }
+            }
         },
         actions:{
             ...tm.doInitTransform,
@@ -561,10 +572,10 @@ const xe = new XE<XtalEditorProps & TemplMgmtProps, XtalEditorActions>({
             updateType:{
                 ifAllOf: ['type', 'editorParts'],
                 target: 'editorParts',
-            }
-            // setChildValues:{
-            //     ifKeyIn: ['parsedObject']
-            // },
+            },
+            setChildValues:{
+                ifKeyIn: ['parsedObject']
+            },
             // syncValueFromChildren:{
             //     ifAllOf: ['upwardDataFlowInProgress']
             // },
