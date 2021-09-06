@@ -8,6 +8,9 @@
 		"strict": true,
 		"watch": true
 	},
+	"files":[
+		"src/xtal-editor2.ts"
+	],
 	"exclude":[
 		"node_modules"
 	]

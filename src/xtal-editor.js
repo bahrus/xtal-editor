@@ -5,7 +5,12 @@ import { DOMKeyPE } from 'xtal-element/lib/DOMKeyPE.js';
 //import {styleTemplate} from './xtal-editor-style.js';
 import('./ib-id-xtal-editor.js');
 import('pass-prop/p-p.js');
-import styles from './theme.css' assert { type: 'css'};
+import styles from './theme.css';
+assert;
+{
+    type: 'css';
+}
+;
 const mainTemplate = html `
 <slot part=slot name=initVal></slot>
 <div class="remove" part=remove></div>
