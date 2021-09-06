@@ -25,7 +25,7 @@
     "ib-id": "0.0.62",
     "pass-down": "0.0.97",
     "xtal-element": "0.0.439",
-    "trans-render": "0.0.380"
+    "trans-render": "0.0.381"
   },
   "devDependencies": {
     "@skypack/package-check": "0.2.2",

@@ -3,9 +3,11 @@ import {TemplMgmtActions, TemplMgmtProps, tm} from 'trans-render/lib/mixins/Temp
 import {XtalEditorActions, XtalEditorProps, NameValue} from '../types';
 import('pass-down/p-d.js');
 import('ib-id/i-bid.js');
-
+const style = await import('./theme.css', {
+    assert: { type: 'css' }
+});
 const mainTemplate = tm.html`
-<style>
+<!-- <style>
     :host{
         display:block;
     }
@@ -214,7 +216,7 @@ const mainTemplate = tm.html`
         border: none;
         padding: 3px;
     }
-</style>
+</style> -->
 <slot part=slot name=initVal></slot>
 <p-d observe-host vft=hasParent to=[-data-has-parent] as=str-attr m=1></p-d>
 <div class="remove" part=remove -data-has-parent></div>
@@ -675,6 +677,7 @@ const xe = new XE<XtalEditorProps & TemplMgmtProps, XtalEditorActions>({
     },
     complexPropDefaults:{
         mainTemplate: mainTemplate,
+        styles: [style.default],
     },
     superclass: XtalEditorCore,
     mixins:[tm.TemplMgmtMixin]
