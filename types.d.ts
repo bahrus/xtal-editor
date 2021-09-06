@@ -121,6 +121,7 @@ export interface XtalEditorActions{
     doCollapseAll:(self:this)=>any;
     updateValue:(self:this)=>any;
     updateType:(self:this)=>any;
+    updateKey:(self:this)=>any;
 }
 
 export interface NameValue {

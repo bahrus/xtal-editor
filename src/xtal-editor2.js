@@ -216,7 +216,8 @@ const mainTemplate = tm.html `
     <div part=field class=field>
         <div class=text-editing>
             <button part=expander class="expander nonPrimitive">+</button>
-            <input aria-label=key part=key class=key><input aria-label=value part=value class=value>
+            <input aria-label=key part=key class=key -value>
+            <input aria-label=value part=value class=value>
         </div>
         <div part=child-inserters class="nonPrimitive child-inserters" data-open=false>
             <button part=object-adder class="object adder">add object</button>
@@ -258,6 +259,7 @@ const doSlotElements = ({ self }) => [{}, { slotchange: self.handleSlotChange }]
 const doExpandAll = ({ self }) => [{}, { click: { collapseAll: false, expandAll: true } }];
 const doCollapseAll = ({ self }) => [{}, { click: { expandAll: false, collapseAll: true } }];
 const updateValue = ({ value }) => [{ value: typeof value === 'string' ? value : JSON.stringify(value) }];
+const updateKey = ({ key }) => [{ value: key }];
 const updateType = ({ type }) => [{ dataset: { type: type } }];
 const tagName = 'xtal-editor';
 export class XtalEditorCore extends HTMLElement {
@@ -275,6 +277,7 @@ export class XtalEditorCore extends HTMLElement {
     doCollapseAll = doCollapseAll;
     updateValue = updateValue;
     updateType = updateType;
+    updateKey = updateKey;
     parseValue({ value }) {
         let parsedObject = value;
         if (value !== undefined) {
@@ -514,6 +517,7 @@ const xe = new XE({
         tagName: 'xtal-editor',
         propDefaults: {
             value: '',
+            key: '',
             open: false,
             uiValue: '',
             objCounter: 0,
@@ -551,6 +555,10 @@ const xe = new XE({
             },
             parseValue: {
                 ifAllOf: ['value']
+            },
+            updateKey: {
+                ifAllOf: ['key', 'keyParts'],
+                target: 'keyParts'
             },
             updateValue: {
                 ifKeyIn: ['value'],
