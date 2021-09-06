@@ -22,10 +22,10 @@
   ],
   "types": "types.d.ts",
   "dependencies": {
-    "ib-id": "0.0.61",
-    "pass-down": "0.0.95",
+    "ib-id": "0.0.62",
+    "pass-down": "0.0.97",
     "xtal-element": "0.0.439",
-    "trans-render": "0.0.376"
+    "trans-render": "0.0.380"
   },
   "devDependencies": {
     "@skypack/package-check": "0.2.2",

@@ -217,7 +217,8 @@ const mainTemplate = tm.html`
 <div data-type=string part=editor class=editor>
     <div part=field class=field>
         <div class=text-editing>
-            <button part=expander class="expander nonPrimitive">+</button>
+            <p-d observe-host vft=open to=[-text-content] true-val=- false-val=+></p-d>
+            <button part=expander class="expander nonPrimitive" -text-content></button>
             <input aria-label=key part=key class=key -value>
             <input aria-label=value part=value class=value>
         </div>
@@ -232,7 +233,8 @@ const mainTemplate = tm.html`
         </div>
         
     </div>
-    <div part=child-editors class="nonPrimitive child-editors" data-open=false>
+    <p-d observe-host vft=open to=[-data-open] as=str-attr m=1></p-d>
+    <div part=child-editors class="nonPrimitive child-editors" -data-open data-open=false>
         <!-- <p-d from-host observe-prop=expandAll to=xtal-editor prop=expandAll></p-d>
         <p-d from-host observe-prop=collapseAll to=xtal-editor prop=collapseAll></p-d>
         <p-d from-host observe-prop=evenLevel to=xtal-editor prop=parentLevel></p-d> -->
@@ -240,9 +242,9 @@ const mainTemplate = tm.html`
             <xtal-editor></xtal-editor>
         </template>
         <p-d observe-host vft=childValues to=[-list] m=1></p-d>
-        <i-bid -list id=child-editors-list
+        <i-bid -list id=child-editors-list updatable
               transform='{
-                  "xtal-editor":[{"value": ["value"]}]
+                  "xtal-editor":[{"value": ["value"], "key": ["key"]}]
               }'
         ></i-bid>
     </div>
@@ -250,7 +252,7 @@ const mainTemplate = tm.html`
 </div>
 `;
 
-const doExpanderParts = ({self}: X) => [{open:!self.open}];
+const doExpanderParts = ({self}: X) => [{},{click:self.toggle}];
 const doKeyParts = ({self}: X) => [{}, {change:[self.handleKeyChange, 'value'], focus: self.handleKeyFocus}];
 const doValueParts = ({self}: X) => [{}, {change: [self.handleValueChange, 'value'], focus: self.handleValueFocus}];
 const doObjectAdderParts = ({self}: X) => [{}, {click: self.addObject}];
@@ -378,6 +380,9 @@ export class XtalEditorCore extends HTMLElement implements XtalEditorActions{
     internalUpdateCount: number | undefined;
     incrementUpdateCount(){
         this.internalUpdateCount = this.internalUpdateCount === undefined ? 0 : this.internalUpdateCount + 1;
+    }
+    toggle(){
+        this.open = !this.open;
     }
     addObject({objCounter, parsedObject, type}: this){
         let newObj: any;
@@ -557,6 +562,14 @@ const xe = new XE<XtalEditorProps & TemplMgmtProps, XtalEditorActions>({
                 notify: {
                     dispatch: true
                 }
+            },
+            open:{
+                notify:{
+                    dispatch: true,
+                    reflect:{
+                        asAttr: true,
+                    }
+                }
             }
         },
         actions:{
@@ -583,6 +596,10 @@ const xe = new XE<XtalEditorProps & TemplMgmtProps, XtalEditorActions>({
             },
             setChildValues:{
                 ifKeyIn: ['parsedObject']
+            },
+            doExpanderParts:{
+                ifAllOf:['expanderParts'],
+                target:'expanderParts'
             },
             // syncValueFromChildren:{
             //     ifAllOf: ['upwardDataFlowInProgress']
@@ -611,9 +628,7 @@ const xe = new XE<XtalEditorProps & TemplMgmtProps, XtalEditorActions>({
             // onCollapseAll:{
             //     ifAllOf: ['collapseAll']
             // },
-            // doExpanderParts:{
-            //     ifKeyIn:['open'],
-            // },
+
             // doKeyParts:{
             //     ifAllOf:['clonedTemplate'],
             //     target:'keyParts'

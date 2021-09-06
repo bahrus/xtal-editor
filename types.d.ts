@@ -109,6 +109,7 @@ export interface XtalEditorActions{
     }
     onConnected(self: this):void;
     doExpanderParts:(self: this) => any;
+    //doOpen:(self: this) => any;
     doKeyParts:(self:this)=>any;
     doValueParts:(self:this)=>any;
     doObjectAdderParts:(self:this)=>any;
