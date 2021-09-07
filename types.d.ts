@@ -79,7 +79,7 @@ export interface XtalEditorActions{
         parsedObject: any
     }
     setChildValues(self: this):{
-        childValues: string[] | NameValue[],
+        childValues: string[] | NameValue[] | undefined,
     }
     syncValueFromChildren(self: this):void;
     addObject(self: this):{

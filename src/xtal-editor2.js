@@ -356,7 +356,8 @@ const xe = new XE({
             },
             open: notifyProp,
             expandAll: notifyProp,
-            collapseAll: notifyProp
+            collapseAll: notifyProp,
+            internalUpdateCount: notifyProp,
         },
         actions: {
             ...tm.doInitTransform,

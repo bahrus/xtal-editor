@@ -369,7 +369,8 @@ const xe = new XE<XtalEditorProps & TemplMgmtProps, XtalEditorActions>({
             },
             open:notifyProp,
             expandAll:notifyProp,
-            collapseAll:notifyProp
+            collapseAll:notifyProp,
+            internalUpdateCount:notifyProp,
         },
         actions:{
             ...tm.doInitTransform,
