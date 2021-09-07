@@ -24,6 +24,7 @@
   "dependencies": {
     "ib-id": "0.0.62",
     "pass-down": "0.0.103",
+    "pass-up": "0.0.6",
     "xtal-element": "0.0.439",
     "trans-render": "0.0.383"
   },

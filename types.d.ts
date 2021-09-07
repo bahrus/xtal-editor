@@ -2,19 +2,19 @@
 import { PEUnionSettings } from '../trans-render/lib/types.js';
 
 
-export type editType = 'string' | 'number' | 'boolean' | 'object' | 'array' | undefined;
+export type editType = 'string' | 'number' | 'boolean' | 'object' | 'array';
 
 export interface XtalEditorProps{
     /**
      * @prop {string} key - Root node name to display
      * @attr {string} key - Root node name to display
      */
-    key: string | undefined;
+    key: string;
     /**
      * @prop {string} [value] JSON data to edit
      * 
      */
-    value: string | undefined;
+    value: string;
     /**
      * @private
      */
@@ -27,28 +27,29 @@ export interface XtalEditorProps{
      * @prop {boolean} [open] Indicates with Editor should show child nodes expanded.
      * @attr {boolean} [open] Indicates with Editor should show child nodes expanded.
      */
-    open: boolean | undefined;
+    open: boolean;
 
     /**
      * @private
      */
-    rootEditor: this | undefined;
+    rootEditor: this;
 
 
-    openEcho: boolean | undefined;
+    openEcho: boolean;
 
-    expandAll: boolean | undefined;
+    expandAll: boolean;
 
-    collapseAll: boolean | undefined;
-
-
-    uiValue: string | undefined;
+    collapseAll: boolean;
 
 
+    uiValue: string;
 
-    childValues: string[] | undefined | NameValue[];
+
+
+    childValues: string[] | NameValue[];
 
     upwardDataFlowInProgress: boolean;
+    internalUpdateCount: number;
 
     objCounter: number;
     strCounter: number;
@@ -78,7 +79,7 @@ export interface XtalEditorActions{
         parsedObject: any
     }
     setChildValues(self: this):{
-        childValues: string[] | undefined | NameValue[],
+        childValues: string[] | NameValue[],
     }
     syncValueFromChildren(self: this):void;
     addObject(self: this):{
@@ -111,7 +112,7 @@ export interface XtalEditorActions{
     initExpander:(self: this) => any;
     //doOpen:(self: this) => any;
     doKeyParts:(self:this)=>any;
-    doValueParts:(self:this)=>any;
+    initValueParts:(self:this)=>any;
     doObjectAdderParts:(self:this)=>any;
     doStringAdderParts:(self:this)=>any;
     doBoolAdderParts:(self:this)=>any;
@@ -131,7 +132,7 @@ export interface NameValue {
 }
 
 // export interface IbIdXtalEditorProps extends XtalEditor{
-//     _rootEditor: any | undefined;
-//     host: HTMLElement | undefined;
+//     _rootEditor: any;
+//     host: HTMLElement;
 // }
 

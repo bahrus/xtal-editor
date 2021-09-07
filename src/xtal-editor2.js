@@ -1,6 +1,7 @@
 import { XE } from 'xtal-element/src/XE.js';
 import { tm } from 'trans-render/lib/mixins/TemplMgmtWithPEST.js';
 import('pass-down/p-d.js');
+import('pass-up/p-u.js');
 import('ib-id/i-bid.js');
 const style = await import('./theme.css', {
     assert: { type: 'css' }
@@ -30,13 +31,11 @@ const mainTemplate = tm.html `
     </div>
     <p-d observe-host vft=open to=[-data-open] as=str-attr m=1></p-d>
     <div part=child-editors class="nonPrimitive child-editors" -data-open data-open=false>
-        <!-- <p-d from-host observe-prop=expandAll to=xtal-editor prop=expandAll></p-d>
-        <p-d from-host observe-prop=collapseAll to=xtal-editor prop=collapseAll></p-d>
-        <p-d from-host observe-prop=evenLevel to=xtal-editor prop=parentLevel></p-d> -->
         <template data-from=child-editors-list>
             <p-d observe-host vft=expandAll to=[-open] m=1></p-d>
             <p-d observe-host vft=expandAll to=[-expand-all] m=1></p-d>
             <xtal-editor -open has-parent -expand-all></xtal-editor>
+            <p-u on=internal-update-count-changed to-host prop=upwardDataFlowInProgress parse-val-as=truthy></p-u>
         </template>
         <p-d observe-host vft=childValues to=[-list] m=1></p-d>
         <i-bid -list id=child-editors-list updatable
@@ -50,7 +49,7 @@ const mainTemplate = tm.html `
 `;
 const initExpander = ({ self }) => [{}, { click: { open: !self.open } }];
 const doKeyParts = ({ self }) => [{}, { change: [self.handleKeyChange, 'value'], focus: self.handleKeyFocus }];
-const doValueParts = ({ self }) => [{}, { change: [self.handleValueChange, 'value'], focus: self.handleValueFocus }];
+const initValueParts = ({ self }) => [{}, { change: [self.handleValueChange, 'value'], focus: self.handleValueFocus }];
 const doObjectAdderParts = ({ self }) => [{}, { click: self.addObject }];
 const doStringAdderParts = ({ self }) => [{}, { click: self.addString }];
 const doBoolAdderParts = ({ self }) => [{}, { click: self.addBool }];
@@ -67,7 +66,7 @@ export class XtalEditorCore extends HTMLElement {
     self = this;
     initExpander = initExpander;
     doKeyParts = doKeyParts;
-    doValueParts = doValueParts;
+    initValueParts = initValueParts;
     doObjectAdderParts = doObjectAdderParts;
     doStringAdderParts = doStringAdderParts;
     doBoolAdderParts = doBoolAdderParts;
@@ -183,16 +182,17 @@ export class XtalEditorCore extends HTMLElement {
                 }
                 break;
         }
-        this.incrementUpdateCount();
+        //this.incrementUpdateCount();
+        this.internalUpdateCount++;
         this.upwardDataFlowInProgress = false;
     }
     get childEditors() {
         return Array.from(this.shadowRoot.querySelectorAll(tagName));
     }
-    internalUpdateCount;
-    incrementUpdateCount() {
-        this.internalUpdateCount = this.internalUpdateCount === undefined ? 0 : this.internalUpdateCount + 1;
-    }
+    //internalUpdateCount: number | undefined;
+    // incrementUpdateCount(){
+    //     this.internalUpdateCount = this.internalUpdateCount === undefined ? 0 : this.internalUpdateCount + 1;
+    // }
     addObject({ objCounter, parsedObject, type }) {
         let newObj;
         switch (type) {
@@ -260,31 +260,12 @@ export class XtalEditorCore extends HTMLElement {
             open: true,
         };
     }
-    initEvenLevel({ rootEditor }) {
-        if (rootEditor === this)
-            this.evenLevel = true;
-    }
-    setEvenLevel({ parentLevel }) {
-        return {
-            evenLevel: !parentLevel
-        };
-    }
-    // onExpandAll({}: this){
-    //     return{
-    //         open: true,
-    //     }
-    // }
-    // onCollapseAll({}: this){
-    //     return{
-    //         open: false,
-    //     }
-    // }
     onConnected({ hasParent }) {
         if (!hasParent) {
             this.rootEditor = this;
         }
     }
-    handleKeyChange(key) {
+    handleKeyChange(self, key) {
         if (key === '') {
             this.remove();
         }
@@ -294,11 +275,11 @@ export class XtalEditorCore extends HTMLElement {
         this.rootEditor.removeParts.forEach(x => x.classList.add('editKey'));
     }
     handleValueFocus(e) {
-        this.rootEditor.removeParts.forEach(x => x.classList.remove('editKey'));
+        //this.rootEditor!.removeParts.forEach(x => x.classList.remove('editKey'));
     }
-    handleValueChange(val) {
+    handleValueChange(self, val, e) {
         this.value = val;
-        this.incrementUpdateCount();
+        this.internalUpdateCount++;
     }
     copyToClipboard() {
         this.valueParts[0].select();
@@ -351,6 +332,8 @@ const xe = new XE({
             collapseAll: false,
             isC: true,
             hasParent: false,
+            upwardDataFlowInProgress: false,
+            internalUpdateCount: 0,
         },
         propInfo: {
             expanderParts: isRef,
@@ -412,6 +395,10 @@ const xe = new XE({
                 ifAllOf: ['collapseAllParts'],
                 target: 'collapseAllParts'
             },
+            initValueParts: {
+                ifAllOf: ['valueParts'],
+                target: 'valueParts'
+            },
             // syncValueFromChildren:{
             //     ifAllOf: ['upwardDataFlowInProgress']
             // },
@@ -436,10 +423,6 @@ const xe = new XE({
             // doKeyParts:{
             //     ifAllOf:['clonedTemplate'],
             //     target:'keyParts'
-            // },
-            // doValueParts:{
-            //     ifAllOf:['clonedTemplate'],
-            //     target:'valueParts'
             // },
             // doObjectAdderParts:{
             //     ifAllOf:['clonedTemplate'],
