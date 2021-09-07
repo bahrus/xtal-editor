@@ -1,22 +1,23 @@
-import {xc, IInternals, PropAction, PropDef,PropDefMap, IReactor} from 'xtal-element/lib/XtalCore.js';
-import {xp, XtalPattern} from 'xtal-element/lib/XtalPattern.js';
-import {PSettings} from 'xtal-element/types.d.js';
-import {html} from 'xtal-element/lib/html.js';
-import {XtalEditorProps, editType, NameValue} from '../types.js';
-import {DOMKeyPE} from 'xtal-element/lib/DOMKeyPE.js';
-//import {styleTemplate} from './xtal-editor-style.js';
-import('./ib-id-xtal-editor.js');
-import('pass-prop/p-p.js');
-import styles from './theme.css' assert { type: 'css' };
-
-const mainTemplate = html`
+import {PropInfoExt, XE} from 'xtal-element/src/XE.js';
+import {TemplMgmtActions, TemplMgmtProps, tm} from 'trans-render/lib/mixins/TemplMgmtWithPEST.js';
+import {XtalEditorActions, XtalEditorProps, NameValue} from '../types';
+import('pass-down/p-d.js');
+import('pass-up/p-u.js');
+import('ib-id/i-bid.js');
+const style = await import('./theme.css', {
+    assert: { type: 'css' }
+});
+const mainTemplate = tm.html`
 <slot part=slot name=initVal></slot>
-<div class="remove" part=remove></div>
+<p-d observe-host vft=hasParent to=[-data-has-parent] as=str-attr m=1></p-d>
+<div class="remove" part=remove -data-has-parent data-has-parent=true></div>
 <div data-type=string part=editor class=editor>
     <div part=field class=field>
         <div class=text-editing>
-            <button part=expander class="expander nonPrimitive">+</button>
-            <input aria-label=key part=key class=key><input aria-label=value part=value class=value>
+            <p-d observe-host vft=open to=[-text-content] true-val=- false-val=+></p-d>
+            <button part=expander class="expander nonPrimitive" -text-content></button>
+            <input aria-label=key part=key class=key -value>
+            <input aria-label=value part=value class=value>
         </div>
         <div part=child-inserters class="nonPrimitive child-inserters" data-open=false>
             <button part=object-adder class="object adder">add object</button>
@@ -29,284 +30,471 @@ const mainTemplate = html`
         </div>
         
     </div>
-    <div part=child-editors class="nonPrimitive child-editors" data-open=false>
-        <p-p from-host observe-prop=expandAll to=xtal-editor prop=expandAll></p-p>
-        <p-p from-host observe-prop=collapseAll to=xtal-editor prop=collapseAll></p-p>
-        <p-p from-host observe-prop=evenLevel to=xtal-editor prop=parentLevel></p-p>
-        <ib-id-xtal-editor tag=xtal-editor></ib-id-xtal-editor>
+    <p-d observe-host vft=open to=[-data-open] as=str-attr m=1></p-d>
+    <div part=child-editors class="nonPrimitive child-editors" -data-open data-open=false>
+        <template data-from=child-editors-list>
+            <p-d observe-host vft=expandAll to=[-open] m=1></p-d>
+            <p-d observe-host vft=expandAll to=[-expand-all] m=1></p-d>
+            <xtal-editor -open has-parent -expand-all></xtal-editor>
+            <p-u on=internal-update-count-changed to-host prop=upwardDataFlowInProgress parse-val-as=truthy></p-u>
+        </template>
+        <p-d observe-host vft=childValues to=[-list] m=1></p-d>
+        <i-bid -list id=child-editors-list updatable
+              transform='{
+                  "xtal-editor":[{"value": ["value"], "key": ["key"]}]
+              }'
+        ></i-bid>
     </div>
     
 </div>
 `;
+const toggleOpen = ({self}: X) =>{
+    self.open = !self.open;
+}
 
-const s = '';
-const refs = {
-    slotElement: s, boolAdderPart: s, childEditorsPart: s, copyId: s,
-    editorPart: s, expanderPart: s, keyPart: s, objectAdderPart: s, stringAdderPart: s,
-    removePart: s, numberAdderPart: s, valuePart: s,
-    ibIdXtalEditorElement: s, expandAllId:s, collapseAllId: s, 
-};
+const initExpander = ({self}: X) => [{},{click:[toggleOpen]}];
+const doKeyParts = ({self}: X) => [{}, {change:[self.handleKeyChange, 'value'], focus: self.handleKeyFocus}];
+const initValueParts = ({self}: X) => [{}, {change: [self.handleValueChange, 'value'], focus: self.handleValueFocus}];
+const incObjCounter = ({self}: X) => self.objCounter++;
+const initObjectAdderParts = ({self}: X) => [{}, {click: [incObjCounter]}];
+const incStrCounter = ({self}: X) => self.strCounter++;
+const initStringAdderParts = ({self}: X) => [{}, {click: [incStrCounter]}];
+const incBoolCounter = ({self}: X) => self.boolCounter++;
+const initBoolAdderParts = ({self}: X) => [{}, {click: [incBoolCounter]}];
+const incNumCounter = ({self}: X) => self.numberCounter++;
+const initNumberAdderParts = ({self}: X) => [{}, {click: [incNumCounter]}];
+const initCopy = ({self}: X) => [{}, {click: self.copyToClipboard}];
+const initSlotElements = ({self}: X) => [{}, {slotchange: self.handleSlotChange}];
+const initExpandAll = ({self}: X) => [{}, {click:{collapseAll: false, expandAll: true, open: true}}];
+const initCollapseAll = ({self}: X) => [{}, {click:{expandAll: false, collapseAll: true, open: false}}];
+const updateValue = ({value}: X) => [{value: typeof value === 'string' ? value : JSON.stringify(value)}];
+const updateKey = ({key}: X) => [{value: key}];
+const updateType = ({type}: X) => [{dataset: {type: type}}];
 
-
-const onValueChange = ({value, self}: X) => {
-    let parsedObject = value;
-    if(value !==  undefined){
-        switch(typeof value){
-            case 'string':
-                if(value === 'true' || value === 'false'){
-                    self.type = 'boolean';
-                }else if(!isNaN(value as any as number)){
-                    self.type = 'number';
-                }else{
-                    try{
-                        parsedObject = JSON.parse(value);
-                        if(Array.isArray(parsedObject)){
-                            self.type = 'array';
-                        }else{
-                            self.type = 'object';
+const tagName = 'xtal-editor';
+export class XtalEditorCore extends HTMLElement implements XtalEditorActions{
+    self = this;
+    initExpander = initExpander;
+    doKeyParts = doKeyParts;
+    initValueParts = initValueParts;
+    initObjectAdderParts = initObjectAdderParts;
+    initStringAdderParts = initStringAdderParts;
+    initBoolAdderParts = initBoolAdderParts;
+    initNumberAdderParts = initNumberAdderParts;
+    initCopy = initCopy;
+    initSlotElement = initSlotElements;
+    initExpandAll = initExpandAll;
+    initCollapseAll = initCollapseAll;
+    updateValue = updateValue;
+    updateType = updateType;
+    updateKey = updateKey;
+    parseValue({value}: this){
+        let parsedObject = value;
+        if(value !==  undefined){
+            switch(typeof value){
+                case 'string':
+                    if(value === 'true' || value === 'false'){
+                        this.type = 'boolean';
+                    }else if(!isNaN(value as any as number)){
+                        this.type = 'number';
+                    }else{
+                        try{
+                            parsedObject = JSON.parse(value);
+                            if(Array.isArray(parsedObject)){
+                                this.type = 'array';
+                            }else{
+                                this.type = 'object';
+                            }
+                        }catch(e){
+                            this.type = 'string';
                         }
-                    }catch(e){
-                        self.type = 'string';
+                    }
+                    break;
+                case 'object':
+                    if(Array.isArray(parsedObject)){
+                        this.type = 'array';
+                    }else{
+                        this.type = 'object';
+                    }
+    
+                    break;
+            }
+    
+        }
+        return {parsedObject};
+           
+    }
+    #lastParsedObject: any;
+    setChildValues({parsedObject, type}: this){
+        if(parsedObject === this.#lastParsedObject) return {
+            childValues: this.childValues
+        };
+        this.#lastParsedObject = parsedObject;
+        if(parsedObject === undefined) {
+            return {
+                childValues: undefined
+            }
+        }
+        switch(type){
+            case 'array':{
+                    const childValues: NameValue[] = [];
+                    let cnt = 0;
+                    for(const item of parsedObject){
+                        childValues.push({
+                            key: cnt.toString(),
+                            value: item
+                        });
+                        cnt++;
+                    }
+                    return{
+                        childValues,
                     }
                 }
-                break;
             case 'object':
-                if(Array.isArray(parsedObject)){
-                    self.type = 'array';
-                }else{
-                    self.type = 'object';
+                {
+                    const childValues: NameValue[] = [];
+                    for(var key in parsedObject){
+                        childValues.push({
+                            key: key,
+                            value: parsedObject[key] //toString(parsedObject[key]),
+                        } as NameValue);
+                    }
+                    return {childValues};
                 }
 
+            default:{
+                return {
+                    childValues: undefined,
+                }
+            }
+        }        
+    }
+
+    syncValueFromChildren({childEditors, type}: this){
+        let newVal: any;
+        switch(type){
+            case 'object': {
+                newVal = {}; //TODO: support array type
+                childEditors.forEach(child =>{
+                    newVal[child.key!] = child.parsedObject!;//TODO: support for none primitive
+                });
+
+            }
+            break;
+            case 'array':{
+                newVal = [];
+                childEditors.forEach(child =>{
+                    newVal.push(child.parsedObject!);//TODO: support for none primitive
+                });
+            }
+            break;
+        }
+        if(newVal !== undefined){
+            (<any>this).setValsQuietly({value: newVal, parsedObject: newVal});
+            const childValues = this.setChildValues(this);
+            (<any>this).setValsQuietly({childValues});
+            this.valueParts[0].value = JSON.stringify(newVal);
+        }
+        
+        this.internalUpdateCount!++;
+        this.upwardDataFlowInProgress = false;        
+    }
+
+    get childEditors(){
+        return Array.from(this.shadowRoot!.querySelectorAll(tagName)) as (HTMLElement & XtalEditorProps)[]
+    }
+
+    addObject({objCounter, parsedObject, type}: this){
+        let newObj: any;
+        switch(type){
+            case 'object':    
+                newObj = {...parsedObject};
+                newObj['object' + objCounter] = {};
+                break;
+            case 'array':
+                newObj = [...parsedObject];
+                newObj.push({});
+        }
+        return {
+            value: newObj,//JSON.stringify(newObj),
+            internalUpdateCount: this.internalUpdateCount + 1,
+            open: true,
+        };
+
+    }
+
+    addString({strCounter, parsedObject, type}: this){
+        let newObj: any;
+        switch(type){
+            case 'object':
+                newObj = {...parsedObject};
+                newObj['string' + strCounter] = 'val' + strCounter;
+                break;
+            case 'array':
+                newObj = [...parsedObject];
+                newObj.push('string');
                 break;
         }
+        return{
+            value:JSON.stringify(newObj),
+            internalUpdateCount: this.internalUpdateCount + 1,
+            open: true,
+        };
+    }
+
+    addBool({boolCounter, parsedObject, type}: this){
+        let newObj: any;
+        switch(type){
+            case 'object':
+                newObj = {...parsedObject};
+                newObj['bool' + boolCounter] = 'false';
+                break;
+            case 'array':
+                newObj = [...parsedObject];
+                newObj.push(true);
+                break;
+        }
+        return{
+            value: JSON.stringify(newObj),
+            internalUpdateCount: this.internalUpdateCount + 1,
+            open: true,
+        };
 
     }
-    self.parsedObject = parsedObject;
+
+    addNumber({numberCounter, parsedObject, type}: this){
+        let newObj: any;
+        switch(type){
+            case 'object':
+                newObj = {...parsedObject};
+                newObj['number' + numberCounter] = '0';
+                break;
+            case 'array':
+                newObj = [...parsedObject];
+                newObj.push(0);
+                break;
+        }
+        return{
+            value: JSON.stringify(newObj),
+            internalUpdateCount: this.internalUpdateCount + 1,
+            open: true,
+        };
+    }
+
+
+    onConnected({hasParent}: this){
+        if(!hasParent){
+            this.rootEditor = this;
+        }
+    }
+
+    handleKeyChange(self: this, key: string){
+        if(key === ''){
+            this.remove();
+        }
+        this.value = key;
+    }
+    handleKeyFocus(e: Event){
+        this.rootEditor!.removeParts.forEach(x => x.classList.add('editKey'));
+    }
+    handleValueFocus(e: Event){
+        //this.rootEditor!.removeParts.forEach(x => x.classList.remove('editKey'));
+    }
+    handleValueChange(self: this, val: string, e: InputEvent){
+        this.value = val;
+        this.internalUpdateCount!++;
+    }
+    copyToClipboard(){
+        this.valueParts[0].select();
+        document.execCommand("copy");
+    }
+    handleSlotChange(e: Event){
+        const slot = e.target as HTMLSlotElement;
+        const nodes = slot.assignedNodes();
+        for(const node of nodes){
+            const aNode = node as any;
+            if(aNode.value !== undefined){
+                this.value = aNode.value;
+            }            
+        }
+    }
+}
+
+export interface XtalEditorCore extends XtalEditorProps{} 
+
+// function toString(item: any){
+//     switch(typeof item){
+//         case 'string':
+//             return item;
+//         case 'number':
+//         case 'boolean':
+//             return item.toString();
+//         case 'object':
+//             return JSON.stringify(item);
+//     }
+// }
+const isRef:PropInfoExt = {
+    isRef: true,
+    parse: false,
 };
-
-const linkChildValues = ({parsedObject, type, self}: X) => {
-    if(parsedObject === undefined) {
-        self.childValues = undefined;
-        return;
+const notifyProp:PropInfoExt = {
+    notify:{
+        dispatch:true,
+        reflect:{asAttr:true}
     }
-    switch(type){
-        case 'array':
-            self.childValues = (parsedObject as any[]).map(item => toString(item)) as string[];
-            break;
-        case 'object':
-            const childValues: NameValue[] = [];
-            for(var key in parsedObject){
-                childValues.push({
-                    key: key,
-                    value: toString(parsedObject[key]),
-                } as NameValue);
-            }
-            self.childValues = childValues;
-            return;
-    }
-
-};
-
-const onUiValue = ({uiValue, self}: X) => {
-    if(uiValue === undefined) return;
-    switch(self.type){
-        case 'object':
-        case 'array':
-            (<any>self)._parsedObject = JSON.parse(uiValue);
-            (<any>self)._value = uiValue;
-            self.dispatchEvent(new CustomEvent('parsed-object-changed', {
-                detail:{
-                    value: (<any>self)._parsedObject
+}
+const xe = new XE<XtalEditorProps & TemplMgmtProps, XtalEditorActions>({
+    config:{
+        tagName: 'xtal-editor',
+        propDefaults:{
+            value: '',
+            key: '',
+            open: false,
+            objCounter: 0,
+            strCounter: 0,
+            numberCounter: 0,
+            boolCounter: 0,
+            evenLevel: false,
+            parentLevel: false,
+            expandAll: false,
+            collapseAll: false,
+            isC: true,
+            hasParent: false,
+            upwardDataFlowInProgress: false,
+            internalUpdateCount: 0,
+        },
+        propInfo:{
+            expanderParts: isRef,
+            keyParts: isRef,
+            valueParts: isRef,
+            objectAdderParts: isRef,
+            stringAdderParts: isRef,
+            boolAdderParts: isRef,
+            numberAdderParts: isRef,
+            copyToClipboardParts: isRef,
+            slotElements: isRef,
+            expandAllParts: isRef,
+            collapseAllParts: isRef,
+            editorParts: isRef,
+            childValues:{
+                parse: false,
+                notify: {
+                    dispatch: true
                 }
-            }));
-    }
-}
+            },
+            open:notifyProp,
+            expandAll:notifyProp,
+            collapseAll:notifyProp,
+            internalUpdateCount:notifyProp,
+        },
+        actions:{
+            ...tm.doInitTransform,
+            initSlotElement:{
+                ifAllOf:['slotElements'],
+                target:'slotElements'
+            },
+            parseValue:{
+                ifAllOf: ['value']
+            },
+            updateKey: {
+                ifAllOf:['key', 'keyParts'],
+                target: 'keyParts'
+            },
+            updateValue:{
+                ifKeyIn: ['value'],
+                ifAllOf: ['valueParts'],
+                target: 'valueParts'
+            },
+            updateType:{
+                ifAllOf: ['type', 'editorParts'],
+                target: 'editorParts',
+            },
+            setChildValues:{
+                ifAllOf: ['parsedObject', 'open']
+            },
+            initExpander:{
+                ifAllOf:['expanderParts'],
+                target:'expanderParts'
+            },
+            initExpandAll:{
+                ifAllOf:['expandAllParts'],
+                target:'expandAllParts'
+            },
+            initCollapseAll:{
+                ifAllOf: ['collapseAllParts'],
+                target:'collapseAllParts'
+            },
+            initValueParts:{
+                ifAllOf:['valueParts'],
+                target:'valueParts'
+            },
+            syncValueFromChildren:{
+                ifAllOf: ['upwardDataFlowInProgress']
+            },
+            initObjectAdderParts:{
+                ifAllOf:['objectAdderParts'],
+                target:'objectAdderParts'
+            },
+            initStringAdderParts:{
+                ifAllOf:['stringAdderParts'],
+                target: 'stringAdderParts'
+            },
+            initNumberAdderParts:{
+                ifAllOf:['numberAdderParts'],
+                target: 'numberAdderParts'
+            },
+            initBoolAdderParts:{
+                ifAllOf:['boolAdderParts'],
+                target: 'boolAdderParts'
+            },
+            addObject:{
+                ifAllOf:['objCounter']
+            },
+            addString:{
+                ifAllOf:['strCounter']
+            },
+            addBool:{
+                ifAllOf:['boolCounter']
+            },
+            addNumber:{
+                ifAllOf:['numberCounter']
+            },
+            initCopy:{
+                ifAllOf:['copyToClipboardParts'],
+                target:'copyToClipboardParts'
+            },
+            // initEvenLevel:{
+            //     ifKeyIn: ['rootEditor']
+            // },
+            // setEvenLevel:{
+            //     ifKeyIn: ['parentLevel']
+            // },
 
-const addEventHandlers = ({domCache, self}: X) => [
-    {
-        [refs.expanderPart]: [,{click:self.toggle}],
-        [refs.keyPart]: [,{change: [self.handleKeyChange, 'value'], focus: self.handleKeyFocus}],
-        [refs.valuePart]: [,{change: [self.handleValueChange, 'value'], focus: self.handleValueFocus}],
-        [refs.objectAdderPart]: [, {click: self.addObject}],
-        [refs.stringAdderPart]: [,{click: self.addString}],
-        [refs.boolAdderPart]: [, {click: self.addBool}],
-        [refs.numberAdderPart]: [, {click: self.addNumber}],
-        [refs.copyId]: [,{click: self.copyToClipboard}],
-        [refs.slotElement]: [,{slotchange: self.handleSlotChange}],
-        [refs.ibIdXtalEditorElement]: [{rootEditor: self.rootEditor, host: self}],
-        [refs.expandAllId]: [,{click:{collapseAll: false, expandAll: true}}],
-        [refs.collapseAllId]: [,{click:{expandAll: false, collapseAll: true}}]
+
+
+            // doKeyParts:{
+            //     ifAllOf:['clonedTemplate'],
+            //     target:'keyParts'
+            // },
+
+
+
+
+
+            // doCollapseAll:{
+            //     ifAllOf:['clonedTemplate'],
+            //     target: 'collapseAllIds'
+            // }
+        },
+        
     },
-    [{handlersAttached: true}] as PSettings<XtalEditor>
-];
-
-function toString(item: any){
-    switch(typeof item){
-        case 'string':
-            return item;
-        case 'number':
-        case 'boolean':
-            return item.toString();
-        case 'object':
-            return JSON.stringify(item);
-    }
-}
-
-const linkValueFromChildren = ({upwardDataFlowInProgress, self, type}: XtalEditor) => {
-    if(!upwardDataFlowInProgress) return;
-    const children = self.childEditors;
-    switch(type){
-        case 'object': {
-            const newVal: any = {}; //TODO: support array type
-            children.forEach(child =>{
-                newVal[child.key!] = child.parsedObject!;//TODO: support for none primitive
-            });
-            self.uiValue = JSON.stringify(newVal);
-        }
-        break;
-        case 'array':{
-            const newVal: any[] = [];
-            children.forEach(child =>{
-                newVal.push(child.parsedObject!);//TODO: support for none primitive
-            });
-            self.uiValue = JSON.stringify(newVal);
-        }
-        break;
-    }
-    
-    self.incrementUpdateCount();
-    self.upwardDataFlowInProgress = false;
-    
-}
-
-
-const addObject = ({objCounter, self}: X) => {
-    if(objCounter === undefined) return;
-    let newObj: any;
-    switch(self.type){
-        case 'object':    
-            newObj = {...self.parsedObject};
-            newObj['object' + objCounter] = {};
-            break;
-        case 'array':
-            newObj = [...self.parsedObject];
-            newObj.push({});
-    }
-    self.value = JSON.stringify(newObj);
-    self.open = true;
-    
-}
-
-const addString = ({strCounter, self}: X) => {
-    if(strCounter === undefined) return;
-    let newObj: any;
-    switch(self.type){
-        case 'object':
-            newObj = {...self.parsedObject};
-            newObj['string' + strCounter] = 'val' + strCounter;
-            break;
-        case 'array':
-            newObj = [...self.parsedObject];
-            newObj.push('string');
-            break;
-    }
-    self.value = JSON.stringify(newObj);
-    self.open = true;
-}
-
-const addBool = ({boolCounter, self}: X) => {
-    if(boolCounter === undefined) return;
-    let newObj: any;
-    switch(self.type){
-        case 'object':
-            newObj = {...self.parsedObject};
-            newObj['bool' + boolCounter] = 'false';
-            break;
-        case 'array':
-            newObj = [...self.parsedObject];
-            newObj.push(true);
-            break;
-    }
-    self.value = JSON.stringify(newObj);
-    self.open = true;
-}
-
-const addNumber = ({numberCounter, self}: X) => {
-    if(numberCounter === undefined) return;
-    let newObj: any;
-    switch(self.type){
-        case 'object':
-            newObj = {...self.parsedObject};
-            newObj['number' + numberCounter] = '0';
-            break;
-        case 'array':
-            newObj = [...self.parsedObject];
-            newObj.push(0);
-            break;
-    }
-
-    self.value = JSON.stringify(newObj);
-    self.open = true;
-}
-
-const initEvenLevel = ({rootEditor, self}: X) => {
-    if(rootEditor === self) self.evenLevel = true;
-}
-
-const linkEvenLevel = ({parentLevel, self}: X) => {
-    self.evenLevel = !parentLevel;
-}
-
-const onExpandAll = ({expandAll, self}: X) => {
-    self.open = true;
-}
-
-const onCollapseAll = ({collapseAll, self}: X) => {
-    self.open = false;
-}
-
-const updateTransforms = [
-    ({value}: X) => [{[refs.valuePart]: [{value: typeof value === 'string' ? value : JSON.stringify(value)}]}],
-    ({type}: X) => [{[refs.editorPart]: [{dataset: {type: type}}]}],
-    ({uiValue}: X) => [{[refs.valuePart]: [uiValue === undefined ? undefined : {value: uiValue}]}],
-    ({key}: X) => [{[refs.keyPart]: [{value: key}]}],
-    ({childValues, type, openEcho, self}: X) => [
-        {[refs.ibIdXtalEditorElement]: [{_rootEditor: self.rootEditor, list: childValues}]}
-    ],
-    ({open}: X) => [
-        {
-            [refs.expanderPart]: open ? '-' : '+',
-            [refs.childEditorsPart]: [{dataset: {open: (!!open).toString()}}]
-        }
-    ],
-    ({hasParent}: X) => [{
-        [refs.removePart]: [{style: {display: hasParent ? 'none' : 'block' }}],
-    }],
-    ({evenLevel}: X) =>[{
-        [refs.editorPart]: [{dataset:{evenLevel: evenLevel}}]
-    }]
-]
-
-const propActions = [
-    xp.manageMainTemplate,
-    onValueChange, 
-    linkChildValues, 
-    linkValueFromChildren, 
-    addObject, 
-    addString, 
-    addBool, 
-    addNumber, 
-    onUiValue,
-    xp.attachShadow,
-    addEventHandlers,
-    updateTransforms,
-    onExpandAll,
-    onCollapseAll,
-    initEvenLevel,
-    linkEvenLevel
-] as PropAction[];
-
-
+    complexPropDefaults:{
+        mainTemplate: mainTemplate,
+        styles: [style.default],
+    },
+    superclass: XtalEditorCore,
+    mixins:[tm.TemplMgmtMixin]
+});
 
 /**
  * @element xtal-editor
@@ -343,229 +531,6 @@ const propActions = [
  * @csspart child-editors - section containing child editors
  * 
  */
-export class XtalEditor extends HTMLElement implements XtalPattern, IInternals{
-    static is = 'xtal-editor';
-    constructor(){
-        super();
-        xc.initInternals(this);
-    }
-    /**
-     * @private
-     */
-    _internals: any;
-    /**
-     * @private
+const XtalEditor = xe.classDef!;
 
-     */
-    reactor: IReactor = new xp.RxSuppl(this, [
-        {
-            rhsType: Array,
-            ctor: DOMKeyPE
-        }
-    ]);
-    /**
-     * @private
-     */
-    styleImport = styles;
-    //styleTemplate = styleTemplate;
-    /**
-     * @private
-     */
-    self=this; 
-    /**
-     * @private
-     */
-    refs=refs; 
-    /**
-     * @private
-     */
-    propActions = propActions; 
-    /**
-     * @private
-     */
-    mainTemplate = mainTemplate; 
-    /**
-     * @private
-     */
-    clonedTemplate: DocumentFragment | undefined; domCache: any;
-
-
-    handleKeyChange(key: string){
-        if(key === ''){
-            this.remove();
-        }
-        this.value = key;
-    }
-    handleKeyFocus(e: Event){
-        (this.rootEditor!.domCache[refs.removePart] as HTMLElement).classList.add('editKey');
-    }
-    handleValueFocus(e: Event){
-        (this.rootEditor!.domCache[refs.removePart] as HTMLElement).classList.remove('editKey');
-    }
-    handleValueChange(val: string){
-        this.value = val;
-        this.incrementUpdateCount();
-    }
-    incrementUpdateCount(){
-        this.internalUpdateCount = this.internalUpdateCount === undefined ? 0 : this.internalUpdateCount + 1;
-    }
-    copyToClipboard(){
-        (<any>this.domCache)[refs.valuePart].select();
-        document.execCommand("copy");
-    }
-
-    toggle(){
-        this.open = !this.open;
-    }
-    /**
-     * @private
-     */
-    actionCount = 0;
-
-    addObject(){
-        this.objCounter = this.objCounter === undefined ? 1 : this.objCounter + 1;
-    }
-
-    addString(){
-        this.strCounter = this.strCounter === undefined ? 1 : this.strCounter + 1;
-    }
-    addBool(){
-        this.boolCounter = this.boolCounter === undefined ? 1: this.boolCounter + 1;
-    }
-    addNumber(){
-        this.numberCounter = this.numberCounter === undefined ? 1 : this.numberCounter + 1;
-    }
-    handleSlotChange(e: Event){
-        const slot = e.target as HTMLSlotElement;
-        const nodes = slot.assignedNodes();
-        nodes.forEach(node => {
-            const aNode = node as any;
-            if(aNode.value !== undefined){
-                this.value = aNode.value;
-            }
-        })
-        // console.log('Element in Slot "' + slots[1].name + '" changed to "' + nodes[0].outerHTML + '".');
-    }
-
-
-
-    /**
-     * @private
-     */
-    upwardDataFlowInProgress: boolean | undefined;
-
-    internalUpdateCount: number | undefined;
-
-    objCounter: number | undefined;
-    strCounter: number | undefined;
-    boolCounter: number | undefined;
-    numberCounter: number | undefined;
-    hasParent: boolean | undefined;
-    evenLevel: boolean | undefined;
-    parentLevel: boolean | undefined;
-
-    handlersAttached: boolean | undefined;
-
-    connectedCallback(){
-        xc.mergeProps<XtalEditorProps>(this, slicedPropDefs);
-        if(!this.hasParent){
-            this.rootEditor = this;
-        }
-    }
-    onPropChange(n: string, propDef: PropDef, newVal: any){
-        this.reactor.addToQueue(propDef, newVal);
-    }
-
-    get childEditors(){
-        return Array.from(this.shadowRoot!.querySelectorAll(XtalEditor.is)) as XtalEditor[]
-    }
-}
-export interface XtalEditor extends XtalEditorProps{}
-type X = XtalEditor;
-
-const baseProp: PropDef = {
-    dry: true,
-    async: true,
-}
-
-const num: PropDef = {
-    ...baseProp,
-    type: Number,
-};
-const bool: PropDef = {
-    ...baseProp,
-    type: Boolean,
-};
-const bool2: PropDef = {
-    ...bool,
-    stopReactionsIfFalsy: true,
-};
-const bool3: PropDef = {
-    ...bool2,
-    dry: false,
-};
-const bool4: PropDef = {
-    ...bool,
-    reflect: true,
-};
-const str: PropDef = {
-    ...baseProp,
-    type: String,
-};
-
-
-
-const propDefMap: PropDefMap<XtalEditor> = {
-    ...xp.props,
-    upwardDataFlowInProgress: bool, 
-    open: {
-        ...bool,
-        echoTo: 'openEcho'
-    },
-    expandAll: bool3,
-    collapseAll: bool3,
-    handlersAttached: bool2,
-    hasParent: bool,
-    objCounter: num, strCounter: num, boolCounter: num, numberCounter: num,
-    internalUpdateCount: {
-        ...num,
-        notify: true
-    },
-    type: str,
-    key: str, uiValue: str,
-    value: {
-        ...str,
-        parse: true
-    },
-    parsedObject: {
-        ...baseProp,
-        type: Object,
-        notify: true
-    },
-    childValues: {
-        ...baseProp,
-        stopReactionsIfFalsy: true,
-        type: Object
-    },
-    openEcho:  bool2,
-    rootEditor: {
-        ...baseProp,
-        type: Object,
-    },
-    evenLevel: bool4,
-    parentLevel: bool,
-};
-
-const slicedPropDefs = xc.getSlicedPropDefs(propDefMap);
-
-
-
-
-xc.letThereBeProps(XtalEditor, slicedPropDefs, 'onPropChange');
-xc.define(XtalEditor);
-
-declare global {
-    interface HTMLElementTagNameMap {
-        "xtal-editor": XtalEditor,
-    }
-}
+type X = XtalEditorCore;
