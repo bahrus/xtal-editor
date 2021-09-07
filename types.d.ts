@@ -41,11 +41,6 @@ export interface XtalEditorProps{
 
     collapseAll: boolean;
 
-
-    uiValue: string;
-
-
-
     childValues: string[] | NameValue[];
 
     upwardDataFlowInProgress: boolean;
@@ -113,7 +108,7 @@ export interface XtalEditorActions{
     //doOpen:(self: this) => any;
     doKeyParts:(self:this)=>any;
     initValueParts:(self:this)=>any;
-    doObjectAdderParts:(self:this)=>any;
+    initObjectAdderParts:(self:this)=>any;
     doStringAdderParts:(self:this)=>any;
     doBoolAdderParts:(self:this)=>any;
     doNumberAdderParts:(self:this)=>any;

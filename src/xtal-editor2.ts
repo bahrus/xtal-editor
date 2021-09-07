@@ -48,11 +48,14 @@ const mainTemplate = tm.html`
     
 </div>
 `;
-
-const initExpander = ({self}: X) => [{},{click:{open: !self.open}}];
+const toggleOpen = ({self}: X) =>{
+    self.open = !self.open;
+}
+const incObjCounter = ({self}: X) => self.objCounter++;
+const initExpander = ({self}: X) => [{},{click:[toggleOpen]}];
 const doKeyParts = ({self}: X) => [{}, {change:[self.handleKeyChange, 'value'], focus: self.handleKeyFocus}];
 const initValueParts = ({self}: X) => [{}, {change: [self.handleValueChange, 'value'], focus: self.handleValueFocus}];
-const doObjectAdderParts = ({self}: X) => [{}, {click: self.addObject}];
+const initObjectAdderParts = ({self}: X) => [{}, {click: [incObjCounter]}];
 const doStringAdderParts = ({self}: X) => [{}, {click: self.addString}];
 const doBoolAdderParts = ({self}: X) => [{}, {click: self.addBool}];
 const doNumberAdderParts = ({self}: X) => [{}, {click: self.addNumber}];
@@ -70,7 +73,7 @@ export class XtalEditorCore extends HTMLElement implements XtalEditorActions{
     initExpander = initExpander;
     doKeyParts = doKeyParts;
     initValueParts = initValueParts;
-    doObjectAdderParts = doObjectAdderParts;
+    initObjectAdderParts = initObjectAdderParts;
     doStringAdderParts = doStringAdderParts;
     doBoolAdderParts = doBoolAdderParts;
     doNumberAdderParts = doNumberAdderParts;
@@ -209,7 +212,7 @@ export class XtalEditorCore extends HTMLElement implements XtalEditorActions{
                 newObj.push({});
         }
         return {
-            value: JSON.stringify(newObj),
+            value: newObj,//JSON.stringify(newObj),
             open: true,
         };
 
@@ -339,8 +342,10 @@ const xe = new XE<XtalEditorProps & TemplMgmtProps, XtalEditorActions>({
             value: '',
             key: '',
             open: false,
-            uiValue: '',
             objCounter: 0,
+            strCounter: 0,
+            numberCounter: 0,
+            boolCounter: 0,
             evenLevel: false,
             parentLevel: false,
             expandAll: false,
@@ -418,6 +423,10 @@ const xe = new XE<XtalEditorProps & TemplMgmtProps, XtalEditorActions>({
             syncValueFromChildren:{
                 ifAllOf: ['upwardDataFlowInProgress']
             },
+            initObjectAdderParts:{
+                ifAllOf:['objectAdderParts'],
+                target:'objectAdderParts'
+            },
             // addObject:{
             //     ifAllOf:['objCounter']
             // },
@@ -444,10 +453,7 @@ const xe = new XE<XtalEditorProps & TemplMgmtProps, XtalEditorActions>({
             //     target:'keyParts'
             // },
 
-            // doObjectAdderParts:{
-            //     ifAllOf:['clonedTemplate'],
-            //     target:'objectAdderParts'
-            // },
+
             // doStringAdderParts:{
             //     ifAllOf:['clonedTemplate'],
             //     target:'stringAdderParts'

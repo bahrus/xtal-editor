@@ -47,10 +47,14 @@ const mainTemplate = tm.html `
     
 </div>
 `;
-const initExpander = ({ self }) => [{}, { click: { open: !self.open } }];
+const toggleOpen = ({ self }) => {
+    self.open = !self.open;
+};
+const incObjCounter = ({ self }) => self.objCounter++;
+const initExpander = ({ self }) => [{}, { click: [toggleOpen] }];
 const doKeyParts = ({ self }) => [{}, { change: [self.handleKeyChange, 'value'], focus: self.handleKeyFocus }];
 const initValueParts = ({ self }) => [{}, { change: [self.handleValueChange, 'value'], focus: self.handleValueFocus }];
-const doObjectAdderParts = ({ self }) => [{}, { click: self.addObject }];
+const initObjectAdderParts = ({ self }) => [{}, { click: [incObjCounter] }];
 const doStringAdderParts = ({ self }) => [{}, { click: self.addString }];
 const doBoolAdderParts = ({ self }) => [{}, { click: self.addBool }];
 const doNumberAdderParts = ({ self }) => [{}, { click: self.addNumber }];
@@ -67,7 +71,7 @@ export class XtalEditorCore extends HTMLElement {
     initExpander = initExpander;
     doKeyParts = doKeyParts;
     initValueParts = initValueParts;
-    doObjectAdderParts = doObjectAdderParts;
+    initObjectAdderParts = initObjectAdderParts;
     doStringAdderParts = doStringAdderParts;
     doBoolAdderParts = doBoolAdderParts;
     doNumberAdderParts = doNumberAdderParts;
@@ -205,7 +209,7 @@ export class XtalEditorCore extends HTMLElement {
                 newObj.push({});
         }
         return {
-            value: JSON.stringify(newObj),
+            value: newObj,
             open: true,
         };
     }
@@ -324,8 +328,10 @@ const xe = new XE({
             value: '',
             key: '',
             open: false,
-            uiValue: '',
             objCounter: 0,
+            strCounter: 0,
+            numberCounter: 0,
+            boolCounter: 0,
             evenLevel: false,
             parentLevel: false,
             expandAll: false,
@@ -403,6 +409,10 @@ const xe = new XE({
             syncValueFromChildren: {
                 ifAllOf: ['upwardDataFlowInProgress']
             },
+            initObjectAdderParts: {
+                ifAllOf: ['objectAdderParts'],
+                target: 'objectAdderParts'
+            },
             // addObject:{
             //     ifAllOf:['objCounter']
             // },
@@ -424,10 +434,6 @@ const xe = new XE({
             // doKeyParts:{
             //     ifAllOf:['clonedTemplate'],
             //     target:'keyParts'
-            // },
-            // doObjectAdderParts:{
-            //     ifAllOf:['clonedTemplate'],
-            //     target:'objectAdderParts'
             // },
             // doStringAdderParts:{
             //     ifAllOf:['clonedTemplate'],
