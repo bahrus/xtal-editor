@@ -161,7 +161,7 @@ export class XtalEditorCore extends HTMLElement {
             }
         }
     }
-    syncValueFromChildren({ upwardDataFlowInProgress, childEditors, type }) {
+    syncValueFromChildren({ childEditors, type }) {
         switch (type) {
             case 'object':
                 {
@@ -189,10 +189,6 @@ export class XtalEditorCore extends HTMLElement {
     get childEditors() {
         return Array.from(this.shadowRoot.querySelectorAll(tagName));
     }
-    //internalUpdateCount: number | undefined;
-    // incrementUpdateCount(){
-    //     this.internalUpdateCount = this.internalUpdateCount === undefined ? 0 : this.internalUpdateCount + 1;
-    // }
     addObject({ objCounter, parsedObject, type }) {
         let newObj;
         switch (type) {
@@ -400,9 +396,9 @@ const xe = new XE({
                 ifAllOf: ['valueParts'],
                 target: 'valueParts'
             },
-            // syncValueFromChildren:{
-            //     ifAllOf: ['upwardDataFlowInProgress']
-            // },
+            syncValueFromChildren: {
+                ifAllOf: ['upwardDataFlowInProgress']
+            },
             // addObject:{
             //     ifAllOf:['objCounter']
             // },

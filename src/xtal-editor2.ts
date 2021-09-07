@@ -163,7 +163,7 @@ export class XtalEditorCore extends HTMLElement implements XtalEditorActions{
         }        
     }
 
-    syncValueFromChildren({upwardDataFlowInProgress, childEditors, type}: this){
+    syncValueFromChildren({childEditors, type}: this){
         switch(type){
             case 'object': {
                 const newVal: any = {}; //TODO: support array type
@@ -191,10 +191,7 @@ export class XtalEditorCore extends HTMLElement implements XtalEditorActions{
     get childEditors(){
         return Array.from(this.shadowRoot!.querySelectorAll(tagName)) as (HTMLElement & XtalEditorProps)[]
     }
-    //internalUpdateCount: number | undefined;
-    // incrementUpdateCount(){
-    //     this.internalUpdateCount = this.internalUpdateCount === undefined ? 0 : this.internalUpdateCount + 1;
-    // }
+
     addObject({objCounter, parsedObject, type}: this){
         let newObj: any;
         switch(type){
@@ -413,9 +410,9 @@ const xe = new XE<XtalEditorProps & TemplMgmtProps, XtalEditorActions>({
                 ifAllOf:['valueParts'],
                 target:'valueParts'
             },
-            // syncValueFromChildren:{
-            //     ifAllOf: ['upwardDataFlowInProgress']
-            // },
+            syncValueFromChildren:{
+                ifAllOf: ['upwardDataFlowInProgress']
+            },
             // addObject:{
             //     ifAllOf:['objCounter']
             // },
