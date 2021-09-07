@@ -63,7 +63,7 @@ const incBoolCounter = ({self}: X) => self.boolCounter++;
 const initBoolAdderParts = ({self}: X) => [{}, {click: [incBoolCounter]}];
 const incNumCounter = ({self}: X) => self.numberCounter++;
 const initNumberAdderParts = ({self}: X) => [{}, {click: [incNumCounter]}];
-const doCopy = ({self}: X) => [{}, {click: self.copyToClipboard}];
+const initCopy = ({self}: X) => [{}, {click: self.copyToClipboard}];
 const initSlotElements = ({self}: X) => [{}, {slotchange: self.handleSlotChange}];
 const initExpandAll = ({self}: X) => [{}, {click:{collapseAll: false, expandAll: true, open: true}}];
 const initCollapseAll = ({self}: X) => [{}, {click:{expandAll: false, collapseAll: true, open: false}}];
@@ -81,7 +81,7 @@ export class XtalEditorCore extends HTMLElement implements XtalEditorActions{
     initStringAdderParts = initStringAdderParts;
     initBoolAdderParts = initBoolAdderParts;
     initNumberAdderParts = initNumberAdderParts;
-    initCopy = doCopy;
+    initCopy = initCopy;
     initSlotElement = initSlotElements;
     initExpandAll = initExpandAll;
     initCollapseAll = initCollapseAll;
@@ -371,7 +371,7 @@ const xe = new XE<XtalEditorProps & TemplMgmtProps, XtalEditorActions>({
             stringAdderParts: isRef,
             boolAdderParts: isRef,
             numberAdderParts: isRef,
-            copyIds: isRef,
+            copyToClipboardParts: isRef,
             slotElements: isRef,
             expandAllParts: isRef,
             collapseAllParts: isRef,
@@ -459,6 +459,10 @@ const xe = new XE<XtalEditorProps & TemplMgmtProps, XtalEditorActions>({
             addNumber:{
                 ifAllOf:['numberCounter']
             },
+            initCopy:{
+                ifAllOf:['copyToClipboardParts'],
+                target:'copyToClipboardParts'
+            },
             // initEvenLevel:{
             //     ifKeyIn: ['rootEditor']
             // },
@@ -475,10 +479,7 @@ const xe = new XE<XtalEditorProps & TemplMgmtProps, XtalEditorActions>({
 
 
 
-            // doCopy:{
-            //     ifAllOf:['clonedTemplate'],
-            //     target:'copyIds'
-            // },
+
 
             // doCollapseAll:{
             //     ifAllOf:['clonedTemplate'],

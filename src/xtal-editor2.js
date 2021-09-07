@@ -61,7 +61,7 @@ const incBoolCounter = ({ self }) => self.boolCounter++;
 const initBoolAdderParts = ({ self }) => [{}, { click: [incBoolCounter] }];
 const incNumCounter = ({ self }) => self.numberCounter++;
 const initNumberAdderParts = ({ self }) => [{}, { click: [incNumCounter] }];
-const doCopy = ({ self }) => [{}, { click: self.copyToClipboard }];
+const initCopy = ({ self }) => [{}, { click: self.copyToClipboard }];
 const initSlotElements = ({ self }) => [{}, { slotchange: self.handleSlotChange }];
 const initExpandAll = ({ self }) => [{}, { click: { collapseAll: false, expandAll: true, open: true } }];
 const initCollapseAll = ({ self }) => [{}, { click: { expandAll: false, collapseAll: true, open: false } }];
@@ -78,7 +78,7 @@ export class XtalEditorCore extends HTMLElement {
     initStringAdderParts = initStringAdderParts;
     initBoolAdderParts = initBoolAdderParts;
     initNumberAdderParts = initNumberAdderParts;
-    initCopy = doCopy;
+    initCopy = initCopy;
     initSlotElement = initSlotElements;
     initExpandAll = initExpandAll;
     initCollapseAll = initCollapseAll;
@@ -356,7 +356,7 @@ const xe = new XE({
             stringAdderParts: isRef,
             boolAdderParts: isRef,
             numberAdderParts: isRef,
-            copyIds: isRef,
+            copyToClipboardParts: isRef,
             slotElements: isRef,
             expandAllParts: isRef,
             collapseAllParts: isRef,
@@ -444,6 +444,10 @@ const xe = new XE({
             addNumber: {
                 ifAllOf: ['numberCounter']
             },
+            initCopy: {
+                ifAllOf: ['copyToClipboardParts'],
+                target: 'copyToClipboardParts'
+            },
             // initEvenLevel:{
             //     ifKeyIn: ['rootEditor']
             // },
@@ -453,10 +457,6 @@ const xe = new XE({
             // doKeyParts:{
             //     ifAllOf:['clonedTemplate'],
             //     target:'keyParts'
-            // },
-            // doCopy:{
-            //     ifAllOf:['clonedTemplate'],
-            //     target:'copyIds'
             // },
             // doCollapseAll:{
             //     ifAllOf:['clonedTemplate'],
