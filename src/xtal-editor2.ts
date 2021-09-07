@@ -427,9 +427,9 @@ const xe = new XE<XtalEditorProps & TemplMgmtProps, XtalEditorActions>({
                 ifAllOf:['objectAdderParts'],
                 target:'objectAdderParts'
             },
-            // addObject:{
-            //     ifAllOf:['objCounter']
-            // },
+            addObject:{
+                ifAllOf:['objCounter']
+            },
             // addString:{
             //     ifAllOf:['strCounter']
             // },
