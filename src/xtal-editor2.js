@@ -213,6 +213,7 @@ export class XtalEditorCore extends HTMLElement {
         }
         return {
             value: newObj,
+            internalUpdateCount: this.internalUpdateCount + 1,
             open: true,
         };
     }
@@ -230,6 +231,7 @@ export class XtalEditorCore extends HTMLElement {
         }
         return {
             value: JSON.stringify(newObj),
+            internalUpdateCount: this.internalUpdateCount + 1,
             open: true,
         };
     }
@@ -247,6 +249,7 @@ export class XtalEditorCore extends HTMLElement {
         }
         return {
             value: JSON.stringify(newObj),
+            internalUpdateCount: this.internalUpdateCount + 1,
             open: true,
         };
     }
@@ -264,6 +267,7 @@ export class XtalEditorCore extends HTMLElement {
         }
         return {
             value: JSON.stringify(newObj),
+            internalUpdateCount: this.internalUpdateCount + 1,
             open: true,
         };
     }
