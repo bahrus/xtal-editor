@@ -9,7 +9,7 @@ const style = await import('./theme.css', {
 const mainTemplate = tm.html `
 <slot part=slot name=initVal></slot>
 <p-d observe-host vft=hasParent to=[-data-has-parent] as=str-attr m=1></p-d>
-<div class="remove" part=remove -data-has-parent></div>
+<div class="remove" part=remove -data-has-parent data-has-parent=true></div>
 <div data-type=string part=editor class=editor>
     <div part=field class=field>
         <div class=text-editing>
