@@ -162,27 +162,31 @@ export class XtalEditorCore extends HTMLElement {
         }
     }
     syncValueFromChildren({ childEditors, type }) {
+        let newVal;
         switch (type) {
             case 'object':
                 {
-                    const newVal = {}; //TODO: support array type
+                    newVal = {}; //TODO: support array type
                     childEditors.forEach(child => {
                         newVal[child.key] = child.parsedObject; //TODO: support for none primitive
                     });
-                    this.uiValue = JSON.stringify(newVal);
                 }
                 break;
             case 'array':
                 {
-                    const newVal = [];
+                    newVal = [];
                     childEditors.forEach(child => {
                         newVal.push(child.parsedObject); //TODO: support for none primitive
                     });
-                    this.uiValue = JSON.stringify(newVal);
                 }
                 break;
         }
-        //this.incrementUpdateCount();
+        if (newVal !== undefined) {
+            this.setValsQuietly({ value: newVal, parsedObject: newVal });
+            const childValues = this.setChildValues(this);
+            this.setValsQuietly({ childValues });
+            this.valueParts[0].value = JSON.stringify(newVal);
+        }
         this.internalUpdateCount++;
         this.upwardDataFlowInProgress = false;
     }
