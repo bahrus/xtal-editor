@@ -50,14 +50,17 @@ const mainTemplate = tm.html `
 const toggleOpen = ({ self }) => {
     self.open = !self.open;
 };
-const incObjCounter = ({ self }) => self.objCounter++;
 const initExpander = ({ self }) => [{}, { click: [toggleOpen] }];
 const doKeyParts = ({ self }) => [{}, { change: [self.handleKeyChange, 'value'], focus: self.handleKeyFocus }];
 const initValueParts = ({ self }) => [{}, { change: [self.handleValueChange, 'value'], focus: self.handleValueFocus }];
+const incObjCounter = ({ self }) => self.objCounter++;
 const initObjectAdderParts = ({ self }) => [{}, { click: [incObjCounter] }];
-const doStringAdderParts = ({ self }) => [{}, { click: self.addString }];
-const doBoolAdderParts = ({ self }) => [{}, { click: self.addBool }];
-const doNumberAdderParts = ({ self }) => [{}, { click: self.addNumber }];
+const incStrCounter = ({ self }) => self.strCounter++;
+const initStringAdderParts = ({ self }) => [{}, { click: [incStrCounter] }];
+const incBoolCounter = ({ self }) => self.boolCounter++;
+const initBoolAdderParts = ({ self }) => [{}, { click: [incBoolCounter] }];
+const incNumCounter = ({ self }) => self.numberCounter++;
+const initNumberAdderParts = ({ self }) => [{}, { click: [incNumCounter] }];
 const doCopy = ({ self }) => [{}, { click: self.copyToClipboard }];
 const initSlotElements = ({ self }) => [{}, { slotchange: self.handleSlotChange }];
 const initExpandAll = ({ self }) => [{}, { click: { collapseAll: false, expandAll: true, open: true } }];
@@ -72,10 +75,10 @@ export class XtalEditorCore extends HTMLElement {
     doKeyParts = doKeyParts;
     initValueParts = initValueParts;
     initObjectAdderParts = initObjectAdderParts;
-    doStringAdderParts = doStringAdderParts;
-    doBoolAdderParts = doBoolAdderParts;
-    doNumberAdderParts = doNumberAdderParts;
-    doCopy = doCopy;
+    initStringAdderParts = initStringAdderParts;
+    initBoolAdderParts = initBoolAdderParts;
+    initNumberAdderParts = initNumberAdderParts;
+    initCopy = doCopy;
     initSlotElement = initSlotElements;
     initExpandAll = initExpandAll;
     initCollapseAll = initCollapseAll;
@@ -413,18 +416,30 @@ const xe = new XE({
                 ifAllOf: ['objectAdderParts'],
                 target: 'objectAdderParts'
             },
+            initStringAdderParts: {
+                ifAllOf: ['stringAdderParts'],
+                target: 'stringAdderParts'
+            },
+            initNumberAdderParts: {
+                ifAllOf: ['numberAdderParts'],
+                target: 'numberAdderParts'
+            },
+            initBoolAdderParts: {
+                ifAllOf: ['boolAdderParts'],
+                target: 'boolAdderParts'
+            },
             addObject: {
                 ifAllOf: ['objCounter']
             },
-            // addString:{
-            //     ifAllOf:['strCounter']
-            // },
-            // addBool:{
-            //     ifAllOf:['boolCounter']
-            // },
-            // addNumber:{
-            //     ifAllOf:['numberCounter']
-            // },
+            addString: {
+                ifAllOf: ['strCounter']
+            },
+            addBool: {
+                ifAllOf: ['boolCounter']
+            },
+            addNumber: {
+                ifAllOf: ['numberCounter']
+            },
             // initEvenLevel:{
             //     ifKeyIn: ['rootEditor']
             // },
@@ -434,18 +449,6 @@ const xe = new XE({
             // doKeyParts:{
             //     ifAllOf:['clonedTemplate'],
             //     target:'keyParts'
-            // },
-            // doStringAdderParts:{
-            //     ifAllOf:['clonedTemplate'],
-            //     target:'stringAdderParts'
-            // },
-            // doBoolAdderParts:{
-            //     ifAllOf:['clonedTemplate'],
-            //     target:'boolAdderParts'
-            // },
-            // doNumberAdderParts:{
-            //     ifAllOf:['clonedTemplate'],
-            //     target:'numberAdderParts'
             // },
             // doCopy:{
             //     ifAllOf:['clonedTemplate'],

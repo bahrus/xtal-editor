@@ -109,10 +109,10 @@ export interface XtalEditorActions{
     doKeyParts:(self:this)=>any;
     initValueParts:(self:this)=>any;
     initObjectAdderParts:(self:this)=>any;
-    doStringAdderParts:(self:this)=>any;
-    doBoolAdderParts:(self:this)=>any;
-    doNumberAdderParts:(self:this)=>any;
-    doCopy:(self:this)=>any;
+    initStringAdderParts:(self:this)=>any;
+    initBoolAdderParts:(self:this)=>any;
+    initNumberAdderParts:(self:this)=>any;
+    initCopy:(self:this)=>any;
     initSlotElement:(self:this)=>any;
     initExpandAll:(self:this)=>any;
     initCollapseAll:(self:this)=>any;

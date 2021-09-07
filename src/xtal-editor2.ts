@@ -51,14 +51,18 @@ const mainTemplate = tm.html`
 const toggleOpen = ({self}: X) =>{
     self.open = !self.open;
 }
-const incObjCounter = ({self}: X) => self.objCounter++;
+
 const initExpander = ({self}: X) => [{},{click:[toggleOpen]}];
 const doKeyParts = ({self}: X) => [{}, {change:[self.handleKeyChange, 'value'], focus: self.handleKeyFocus}];
 const initValueParts = ({self}: X) => [{}, {change: [self.handleValueChange, 'value'], focus: self.handleValueFocus}];
+const incObjCounter = ({self}: X) => self.objCounter++;
 const initObjectAdderParts = ({self}: X) => [{}, {click: [incObjCounter]}];
-const doStringAdderParts = ({self}: X) => [{}, {click: self.addString}];
-const doBoolAdderParts = ({self}: X) => [{}, {click: self.addBool}];
-const doNumberAdderParts = ({self}: X) => [{}, {click: self.addNumber}];
+const incStrCounter = ({self}: X) => self.strCounter++;
+const initStringAdderParts = ({self}: X) => [{}, {click: [incStrCounter]}];
+const incBoolCounter = ({self}: X) => self.boolCounter++;
+const initBoolAdderParts = ({self}: X) => [{}, {click: [incBoolCounter]}];
+const incNumCounter = ({self}: X) => self.numberCounter++;
+const initNumberAdderParts = ({self}: X) => [{}, {click: [incNumCounter]}];
 const doCopy = ({self}: X) => [{}, {click: self.copyToClipboard}];
 const initSlotElements = ({self}: X) => [{}, {slotchange: self.handleSlotChange}];
 const initExpandAll = ({self}: X) => [{}, {click:{collapseAll: false, expandAll: true, open: true}}];
@@ -74,10 +78,10 @@ export class XtalEditorCore extends HTMLElement implements XtalEditorActions{
     doKeyParts = doKeyParts;
     initValueParts = initValueParts;
     initObjectAdderParts = initObjectAdderParts;
-    doStringAdderParts = doStringAdderParts;
-    doBoolAdderParts = doBoolAdderParts;
-    doNumberAdderParts = doNumberAdderParts;
-    doCopy = doCopy;
+    initStringAdderParts = initStringAdderParts;
+    initBoolAdderParts = initBoolAdderParts;
+    initNumberAdderParts = initNumberAdderParts;
+    initCopy = doCopy;
     initSlotElement = initSlotElements;
     initExpandAll = initExpandAll;
     initCollapseAll = initCollapseAll;
@@ -427,18 +431,30 @@ const xe = new XE<XtalEditorProps & TemplMgmtProps, XtalEditorActions>({
                 ifAllOf:['objectAdderParts'],
                 target:'objectAdderParts'
             },
+            initStringAdderParts:{
+                ifAllOf:['stringAdderParts'],
+                target: 'stringAdderParts'
+            },
+            initNumberAdderParts:{
+                ifAllOf:['numberAdderParts'],
+                target: 'numberAdderParts'
+            },
+            initBoolAdderParts:{
+                ifAllOf:['boolAdderParts'],
+                target: 'boolAdderParts'
+            },
             addObject:{
                 ifAllOf:['objCounter']
             },
-            // addString:{
-            //     ifAllOf:['strCounter']
-            // },
-            // addBool:{
-            //     ifAllOf:['boolCounter']
-            // },
-            // addNumber:{
-            //     ifAllOf:['numberCounter']
-            // },
+            addString:{
+                ifAllOf:['strCounter']
+            },
+            addBool:{
+                ifAllOf:['boolCounter']
+            },
+            addNumber:{
+                ifAllOf:['numberCounter']
+            },
             // initEvenLevel:{
             //     ifKeyIn: ['rootEditor']
             // },
@@ -454,18 +470,7 @@ const xe = new XE<XtalEditorProps & TemplMgmtProps, XtalEditorActions>({
             // },
 
 
-            // doStringAdderParts:{
-            //     ifAllOf:['clonedTemplate'],
-            //     target:'stringAdderParts'
-            // },
-            // doBoolAdderParts:{
-            //     ifAllOf:['clonedTemplate'],
-            //     target:'boolAdderParts'
-            // },
-            // doNumberAdderParts:{
-            //     ifAllOf:['clonedTemplate'],
-            //     target:'numberAdderParts'
-            // },
+
             // doCopy:{
             //     ifAllOf:['clonedTemplate'],
             //     target:'copyIds'
