@@ -64,7 +64,6 @@ const initBoolAdderParts = ({ self }) => [{}, { click: [incBoolCounter] }];
 const incNumCounter = ({ self }) => self.numberCounter++;
 const initNumberAdderParts = ({ self }) => [{}, { click: [incNumCounter] }];
 const initCopy = ({ self }) => [{}, { click: self.copyToClipboard }];
-//const initSlotElements = ({self}: X) => [{}, {slotchange: self.handleSlotChange}];
 const updateValue = ({ value }) => [{ value: typeof value === 'string' ? value : JSON.stringify(value) }];
 const updateKey = ({ key }) => [{ value: key }];
 const updateType = ({ type }) => [{ dataset: { type: type } }];
@@ -77,7 +76,6 @@ export class XtalEditorCore extends HTMLElement {
     initBoolAdderParts = initBoolAdderParts;
     initNumberAdderParts = initNumberAdderParts;
     initCopy = initCopy;
-    //initSlotElement = initSlotElements;
     updateValue = updateValue;
     updateType = updateType;
     updateKey = updateKey;
