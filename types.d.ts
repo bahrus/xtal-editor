@@ -97,12 +97,7 @@ export interface XtalEditorActions{
     // setEvenLevel(self: this):{
     //     evenLevel: boolean,
     // }
-    // initExpandAll(self: this):{
-    //     open: boolean,
-    // }
-    // initCollapseAll(self: this):{
-    //     open: boolean,
-    // }
+
     onConnected(self: this):void;
     doKeyParts:(self:this)=>any;
     initValueParts:(self:this)=>any;
@@ -112,8 +107,7 @@ export interface XtalEditorActions{
     initNumberAdderParts:(self:this)=>any;
     initCopy:(self:this)=>any;
     initSlotElement:(self:this)=>any;
-    //initExpandAll:(self:this)=>any;
-    initCollapseAll:(self:this)=>any;
+    //initCollapseAll:(self:this)=>any;
     updateValue:(self:this)=>any;
     updateType:(self:this)=>any;
     updateKey:(self:this)=>any;

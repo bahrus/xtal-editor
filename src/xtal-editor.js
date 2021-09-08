@@ -62,15 +62,13 @@ const incNumCounter = ({ self }) => self.numberCounter++;
 const initNumberAdderParts = ({ self }) => [{}, { click: [incNumCounter] }];
 const initCopy = ({ self }) => [{}, { click: self.copyToClipboard }];
 const initSlotElements = ({ self }) => [{}, { slotchange: self.handleSlotChange }];
-//const initExpandAll = ({self}: X) => [{}, {click:{collapseAll: false, expandAll: true, open: true}}];
-const initCollapseAll = ({ self }) => [{}, { click: { expandAll: false, collapseAll: true, open: false } }];
+//const initCollapseAll = ({self}: X) => [{}, {click:{expandAll: false, collapseAll: true, open: false}}];
 const updateValue = ({ value }) => [{ value: typeof value === 'string' ? value : JSON.stringify(value) }];
 const updateKey = ({ key }) => [{ value: key }];
 const updateType = ({ type }) => [{ dataset: { type: type } }];
 const tagName = 'xtal-editor';
 export class XtalEditorCore extends HTMLElement {
     self = this;
-    //initExpander = initExpander;
     doKeyParts = doKeyParts;
     initValueParts = initValueParts;
     initObjectAdderParts = initObjectAdderParts;
@@ -79,8 +77,7 @@ export class XtalEditorCore extends HTMLElement {
     initNumberAdderParts = initNumberAdderParts;
     initCopy = initCopy;
     initSlotElement = initSlotElements;
-    //initExpandAll = initExpandAll;
-    initCollapseAll = initCollapseAll;
+    //initCollapseAll = initCollapseAll;
     updateValue = updateValue;
     updateType = updateType;
     updateKey = updateKey;
@@ -306,17 +303,6 @@ export class XtalEditorCore extends HTMLElement {
         }
     }
 }
-// function toString(item: any){
-//     switch(typeof item){
-//         case 'string':
-//             return item;
-//         case 'number':
-//         case 'boolean':
-//             return item.toString();
-//         case 'object':
-//             return JSON.stringify(item);
-//     }
-// }
 const isRef = {
     isRef: true,
     parse: false,
@@ -396,14 +382,6 @@ const xe = new XE({
             setChildValues: {
                 ifAllOf: ['parsedObject', 'open']
             },
-            // initExpandAll:{
-            //     ifAllOf:['expandAllParts'],
-            //     target:'expandAllParts'
-            // },
-            initCollapseAll: {
-                ifAllOf: ['collapseAllParts'],
-                target: 'collapseAllParts'
-            },
             initValueParts: {
                 ifAllOf: ['valueParts'],
                 target: 'valueParts'
@@ -464,7 +442,8 @@ const xe = new XE({
         styles: [style.default],
         initTransform: {
             expanderParts: [{}, { click: [toggleOpen] }],
-            expandAllParts: [{}, { click: { collapseAll: false, expandAll: true, open: true } }] //TODO:  this is serializable
+            expandAllParts: [{}, { click: { collapseAll: false, expandAll: true, open: true } }],
+            collapseAllParts: [{}, { click: { expandAll: false, collapseAll: true, open: false } }]
         }
     },
     superclass: XtalEditorCore,
