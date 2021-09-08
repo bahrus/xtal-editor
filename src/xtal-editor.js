@@ -48,13 +48,13 @@ const mainTemplate = tm.html `
 </div>
 `;
 const initTransform = {
-    expanderParts: [{}, { click: ['toggleOpen'] }],
+    expanderParts: [{}, { click: 'toggleOpen' }],
     expandAllParts: [{}, { click: { collapseAll: false, expandAll: true, open: true } }],
     collapseAllParts: [{}, { click: { expandAll: false, collapseAll: true, open: false } }],
-    valueParts: [{}, { change: ['handleValueChange', 'value'], focus: ['handleValueFocus'] }]
+    valueParts: [{}, { change: ['handleValueChange', 'value'], focus: ['handleValueFocus'] }],
+    slotElements: [{}, { slotchange: 'handleSlotChange' }],
 };
 const doKeyParts = ({ self }) => [{}, { change: [self.handleKeyChange, 'value'], focus: self.handleKeyFocus }];
-//const initValueParts = ({self}: X) => [{}, {change: [self.handleValueChange, 'value'], focus: self.handleValueFocus}];
 const incObjCounter = ({ self }) => self.objCounter++;
 const initObjectAdderParts = ({ self }) => [{}, { click: [incObjCounter] }];
 const incStrCounter = ({ self }) => self.strCounter++;
@@ -64,8 +64,7 @@ const initBoolAdderParts = ({ self }) => [{}, { click: [incBoolCounter] }];
 const incNumCounter = ({ self }) => self.numberCounter++;
 const initNumberAdderParts = ({ self }) => [{}, { click: [incNumCounter] }];
 const initCopy = ({ self }) => [{}, { click: self.copyToClipboard }];
-const initSlotElements = ({ self }) => [{}, { slotchange: self.handleSlotChange }];
-//const initCollapseAll = ({self}: X) => [{}, {click:{expandAll: false, collapseAll: true, open: false}}];
+//const initSlotElements = ({self}: X) => [{}, {slotchange: self.handleSlotChange}];
 const updateValue = ({ value }) => [{ value: typeof value === 'string' ? value : JSON.stringify(value) }];
 const updateKey = ({ key }) => [{ value: key }];
 const updateType = ({ type }) => [{ dataset: { type: type } }];
@@ -73,13 +72,12 @@ const tagName = 'xtal-editor';
 export class XtalEditorCore extends HTMLElement {
     self = this;
     doKeyParts = doKeyParts;
-    //initValueParts = initValueParts;
     initObjectAdderParts = initObjectAdderParts;
     initStringAdderParts = initStringAdderParts;
     initBoolAdderParts = initBoolAdderParts;
     initNumberAdderParts = initNumberAdderParts;
     initCopy = initCopy;
-    initSlotElement = initSlotElements;
+    //initSlotElement = initSlotElements;
     updateValue = updateValue;
     updateType = updateType;
     updateKey = updateKey;
@@ -366,10 +364,10 @@ const xe = new XE({
         },
         actions: {
             ...tm.doInitTransform,
-            initSlotElement: {
-                ifAllOf: ['slotElements'],
-                target: 'slotElements'
-            },
+            // initSlotElement:{
+            //     ifAllOf:['slotElements'],
+            //     target:'slotElements'
+            // },
             parseValue: {
                 ifAllOf: ['value']
             },

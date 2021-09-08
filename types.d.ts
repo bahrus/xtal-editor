@@ -100,13 +100,12 @@ export interface XtalEditorActions{
 
     onConnected(self: this):void;
     doKeyParts:(self:this)=>any;
-    //initValueParts:(self:this)=>any;
     initObjectAdderParts:(self:this)=>any;
     initStringAdderParts:(self:this)=>any;
     initBoolAdderParts:(self:this)=>any;
     initNumberAdderParts:(self:this)=>any;
     initCopy:(self:this)=>any;
-    initSlotElement:(self:this)=>any;
+    //initSlotElement:(self:this)=>any;
     updateValue:(self:this)=>any;
     updateType:(self:this)=>any;
     updateKey:(self:this)=>any;
