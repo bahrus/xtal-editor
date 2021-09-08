@@ -464,7 +464,7 @@ const xe = new XE({
         styles: [style.default],
         initTransform: {
             expanderParts: [{}, { click: [toggleOpen] }],
-            expandAllParts: [{}, { click: { collapseAll: false, expandAll: true, open: true } }]
+            expandAllParts: [{}, { click: { collapseAll: false, expandAll: true, open: true } }] //TODO:  this is serializable
         }
     },
     superclass: XtalEditorCore,
