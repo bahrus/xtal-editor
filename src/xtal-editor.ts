@@ -52,7 +52,7 @@ const toggleOpen = ({self}: X) =>{
     self.open = !self.open;
 }
 
-const initExpander = ({self}: X) => [{},{click:[toggleOpen]}];
+//const initExpander = ({self}: X) => [{},{click:[toggleOpen]}];
 const doKeyParts = ({self}: X) => [{}, {change:[self.handleKeyChange, 'value'], focus: self.handleKeyFocus}];
 const initValueParts = ({self}: X) => [{}, {change: [self.handleValueChange, 'value'], focus: self.handleValueFocus}];
 const incObjCounter = ({self}: X) => self.objCounter++;
@@ -74,7 +74,7 @@ const updateType = ({type}: X) => [{dataset: {type: type}}];
 const tagName = 'xtal-editor';
 export class XtalEditorCore extends HTMLElement implements XtalEditorActions{
     self = this;
-    initExpander = initExpander;
+    //initExpander = initExpander;
     doKeyParts = doKeyParts;
     initValueParts = initValueParts;
     initObjectAdderParts = initObjectAdderParts;
@@ -412,10 +412,10 @@ const xe = new XE<XtalEditorProps & TemplMgmtProps, XtalEditorActions>({
             setChildValues:{
                 ifAllOf: ['parsedObject', 'open']
             },
-            initExpander:{
-                ifAllOf:['expanderParts'],
-                target:'expanderParts'
-            },
+            // initExpander:{
+            //     ifAllOf:['expanderParts'],
+            //     target:'expanderParts'
+            // },
             initExpandAll:{
                 ifAllOf:['expandAllParts'],
                 target:'expandAllParts'
@@ -491,6 +491,9 @@ const xe = new XE<XtalEditorProps & TemplMgmtProps, XtalEditorActions>({
     complexPropDefaults:{
         mainTemplate: mainTemplate,
         styles: [style.default],
+        initTransform:{
+            expanderParts: [{},{click:[toggleOpen]}]
+        }
     },
     superclass: XtalEditorCore,
     mixins:[tm.TemplMgmtMixin]

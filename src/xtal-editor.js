@@ -50,7 +50,7 @@ const mainTemplate = tm.html `
 const toggleOpen = ({ self }) => {
     self.open = !self.open;
 };
-const initExpander = ({ self }) => [{}, { click: [toggleOpen] }];
+//const initExpander = ({self}: X) => [{},{click:[toggleOpen]}];
 const doKeyParts = ({ self }) => [{}, { change: [self.handleKeyChange, 'value'], focus: self.handleKeyFocus }];
 const initValueParts = ({ self }) => [{}, { change: [self.handleValueChange, 'value'], focus: self.handleValueFocus }];
 const incObjCounter = ({ self }) => self.objCounter++;
@@ -71,7 +71,7 @@ const updateType = ({ type }) => [{ dataset: { type: type } }];
 const tagName = 'xtal-editor';
 export class XtalEditorCore extends HTMLElement {
     self = this;
-    initExpander = initExpander;
+    //initExpander = initExpander;
     doKeyParts = doKeyParts;
     initValueParts = initValueParts;
     initObjectAdderParts = initObjectAdderParts;
@@ -397,10 +397,10 @@ const xe = new XE({
             setChildValues: {
                 ifAllOf: ['parsedObject', 'open']
             },
-            initExpander: {
-                ifAllOf: ['expanderParts'],
-                target: 'expanderParts'
-            },
+            // initExpander:{
+            //     ifAllOf:['expanderParts'],
+            //     target:'expanderParts'
+            // },
             initExpandAll: {
                 ifAllOf: ['expandAllParts'],
                 target: 'expandAllParts'
@@ -467,6 +467,9 @@ const xe = new XE({
     complexPropDefaults: {
         mainTemplate: mainTemplate,
         styles: [style.default],
+        initTransform: {
+            expanderParts: [{}, { click: [toggleOpen] }]
+        }
     },
     superclass: XtalEditorCore,
     mixins: [tm.TemplMgmtMixin]

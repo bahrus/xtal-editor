@@ -22,10 +22,11 @@
   ],
   "types": "types.d.ts",
   "dependencies": {
-    "ib-id": "0.0.62",
+    "ib-id": "0.0.63",
     "pass-down": "0.0.103",
     "pass-up": "0.0.6",
-    "xtal-element": "0.0.439",
+    "pass-prop": "0.0.26",
+    "xtal-element": "0.0.441",
     "trans-render": "0.0.387"
   },
   "devDependencies": {
