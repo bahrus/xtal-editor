@@ -50,7 +50,6 @@ const mainTemplate = tm.html `
 const toggleOpen = ({ self }) => {
     self.open = !self.open;
 };
-//const initExpander = ({self}: X) => [{},{click:[toggleOpen]}];
 const doKeyParts = ({ self }) => [{}, { change: [self.handleKeyChange, 'value'], focus: self.handleKeyFocus }];
 const initValueParts = ({ self }) => [{}, { change: [self.handleValueChange, 'value'], focus: self.handleValueFocus }];
 const incObjCounter = ({ self }) => self.objCounter++;
@@ -63,7 +62,7 @@ const incNumCounter = ({ self }) => self.numberCounter++;
 const initNumberAdderParts = ({ self }) => [{}, { click: [incNumCounter] }];
 const initCopy = ({ self }) => [{}, { click: self.copyToClipboard }];
 const initSlotElements = ({ self }) => [{}, { slotchange: self.handleSlotChange }];
-const initExpandAll = ({ self }) => [{}, { click: { collapseAll: false, expandAll: true, open: true } }];
+//const initExpandAll = ({self}: X) => [{}, {click:{collapseAll: false, expandAll: true, open: true}}];
 const initCollapseAll = ({ self }) => [{}, { click: { expandAll: false, collapseAll: true, open: false } }];
 const updateValue = ({ value }) => [{ value: typeof value === 'string' ? value : JSON.stringify(value) }];
 const updateKey = ({ key }) => [{ value: key }];
@@ -80,7 +79,7 @@ export class XtalEditorCore extends HTMLElement {
     initNumberAdderParts = initNumberAdderParts;
     initCopy = initCopy;
     initSlotElement = initSlotElements;
-    initExpandAll = initExpandAll;
+    //initExpandAll = initExpandAll;
     initCollapseAll = initCollapseAll;
     updateValue = updateValue;
     updateType = updateType;
@@ -397,14 +396,10 @@ const xe = new XE({
             setChildValues: {
                 ifAllOf: ['parsedObject', 'open']
             },
-            // initExpander:{
-            //     ifAllOf:['expanderParts'],
-            //     target:'expanderParts'
+            // initExpandAll:{
+            //     ifAllOf:['expandAllParts'],
+            //     target:'expandAllParts'
             // },
-            initExpandAll: {
-                ifAllOf: ['expandAllParts'],
-                target: 'expandAllParts'
-            },
             initCollapseAll: {
                 ifAllOf: ['collapseAllParts'],
                 target: 'collapseAllParts'
@@ -468,7 +463,8 @@ const xe = new XE({
         mainTemplate: mainTemplate,
         styles: [style.default],
         initTransform: {
-            expanderParts: [{}, { click: [toggleOpen] }]
+            expanderParts: [{}, { click: [toggleOpen] }],
+            expandAllParts: [{}, { click: { collapseAll: false, expandAll: true, open: true } }]
         }
     },
     superclass: XtalEditorCore,
