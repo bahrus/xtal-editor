@@ -52,10 +52,11 @@ const mainTemplate = tm.html`
 const initTransform = {
     expanderParts: [{},{click:['toggleOpen']}],
     expandAllParts: [{}, {click:{collapseAll: false, expandAll: true, open: true}}], 
-    collapseAllParts: [{}, {click:{expandAll: false, collapseAll: true, open: false}}]
+    collapseAllParts: [{}, {click:{expandAll: false, collapseAll: true, open: false}}],
+    valueParts: [{}, {change: ['handleValueChange', 'value'], focus: ['handleValueFocus']}]
 }
 const doKeyParts = ({self}: X) => [{}, {change:[self.handleKeyChange, 'value'], focus: self.handleKeyFocus}];
-const initValueParts = ({self}: X) => [{}, {change: [self.handleValueChange, 'value'], focus: self.handleValueFocus}];
+//const initValueParts = ({self}: X) => [{}, {change: [self.handleValueChange, 'value'], focus: self.handleValueFocus}];
 const incObjCounter = ({self}: X) => self.objCounter++;
 const initObjectAdderParts = ({self}: X) => [{}, {click: [incObjCounter]}];
 const incStrCounter = ({self}: X) => self.strCounter++;
@@ -75,14 +76,13 @@ const tagName = 'xtal-editor';
 export class XtalEditorCore extends HTMLElement implements XtalEditorActions{
     self = this;
     doKeyParts = doKeyParts;
-    initValueParts = initValueParts;
+    //initValueParts = initValueParts;
     initObjectAdderParts = initObjectAdderParts;
     initStringAdderParts = initStringAdderParts;
     initBoolAdderParts = initBoolAdderParts;
     initNumberAdderParts = initNumberAdderParts;
     initCopy = initCopy;
     initSlotElement = initSlotElements;
-    //initCollapseAll = initCollapseAll;
     updateValue = updateValue;
     updateType = updateType;
     updateKey = updateKey;
@@ -404,10 +404,6 @@ const xe = new XE<XtalEditorProps & TemplMgmtProps, XtalEditorActions>({
             },
             setChildValues:{
                 ifAllOf: ['parsedObject', 'open']
-            },
-            initValueParts:{
-                ifAllOf:['valueParts'],
-                target:'valueParts'
             },
             syncValueFromChildren:{
                 ifAllOf: ['upwardDataFlowInProgress']
