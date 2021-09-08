@@ -27,7 +27,7 @@
     "pass-up": "0.0.6",
     "pass-prop": "0.0.26",
     "xtal-element": "0.0.441",
-    "trans-render": "0.0.389"
+    "trans-render": "0.0.390"
   },
   "devDependencies": {
     "@skypack/package-check": "0.2.2",

@@ -47,8 +47,10 @@ const mainTemplate = tm.html `
     
 </div>
 `;
-const toggleOpen = ({ self }) => {
-    self.open = !self.open;
+const initTransform = {
+    expanderParts: [{}, { click: ['toggleOpen'] }],
+    expandAllParts: [{}, { click: { collapseAll: false, expandAll: true, open: true } }],
+    collapseAllParts: [{}, { click: { expandAll: false, collapseAll: true, open: false } }]
 };
 const doKeyParts = ({ self }) => [{}, { change: [self.handleKeyChange, 'value'], focus: self.handleKeyFocus }];
 const initValueParts = ({ self }) => [{}, { change: [self.handleValueChange, 'value'], focus: self.handleValueFocus }];
@@ -302,6 +304,9 @@ export class XtalEditorCore extends HTMLElement {
             }
         }
     }
+    toggleOpen = (e) => {
+        this.open = !this.open;
+    };
 }
 const isRef = {
     isRef: true,
@@ -314,6 +319,7 @@ const notifyProp = {
     }
 };
 const xe = new XE({
+    //config is JSON Serializable
     config: {
         tagName: 'xtal-editor',
         propDefaults: {
@@ -332,6 +338,7 @@ const xe = new XE({
             hasParent: false,
             upwardDataFlowInProgress: false,
             internalUpdateCount: 0,
+            initTransform: initTransform
         },
         propInfo: {
             expanderParts: isRef,
@@ -440,11 +447,6 @@ const xe = new XE({
     complexPropDefaults: {
         mainTemplate: mainTemplate,
         styles: [style.default],
-        initTransform: {
-            expanderParts: [{}, { click: [toggleOpen] }],
-            expandAllParts: [{}, { click: { collapseAll: false, expandAll: true, open: true } }],
-            collapseAllParts: [{}, { click: { expandAll: false, collapseAll: true, open: false } }]
-        }
     },
     superclass: XtalEditorCore,
     mixins: [tm.TemplMgmtMixin]

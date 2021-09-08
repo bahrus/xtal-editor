@@ -48,10 +48,12 @@ const mainTemplate = tm.html`
     
 </div>
 `;
-const toggleOpen = ({self}: X) =>{
-    self.open = !self.open;
-}
 
+const initTransform = {
+    expanderParts: [{},{click:['toggleOpen']}],
+    expandAllParts: [{}, {click:{collapseAll: false, expandAll: true, open: true}}], 
+    collapseAllParts: [{}, {click:{expandAll: false, collapseAll: true, open: false}}]
+}
 const doKeyParts = ({self}: X) => [{}, {change:[self.handleKeyChange, 'value'], focus: self.handleKeyFocus}];
 const initValueParts = ({self}: X) => [{}, {change: [self.handleValueChange, 'value'], focus: self.handleValueFocus}];
 const incObjCounter = ({self}: X) => self.objCounter++;
@@ -314,6 +316,9 @@ export class XtalEditorCore extends HTMLElement implements XtalEditorActions{
             }            
         }
     }
+    toggleOpen = (e: Event) =>{
+        this.open = !this.open;
+    }
 }
 
 export interface XtalEditorCore extends XtalEditorProps{} 
@@ -330,6 +335,7 @@ const notifyProp:PropInfoExt = {
     }
 }
 const xe = new XE<XtalEditorProps & TemplMgmtProps, XtalEditorActions>({
+    //config is JSON Serializable
     config:{
         tagName: 'xtal-editor',
         propDefaults:{
@@ -348,6 +354,7 @@ const xe = new XE<XtalEditorProps & TemplMgmtProps, XtalEditorActions>({
             hasParent: false,
             upwardDataFlowInProgress: false,
             internalUpdateCount: 0,
+            initTransform: initTransform
         },
         propInfo:{
             expanderParts: isRef,
@@ -465,11 +472,7 @@ const xe = new XE<XtalEditorProps & TemplMgmtProps, XtalEditorActions>({
     complexPropDefaults:{
         mainTemplate: mainTemplate,
         styles: [style.default],
-        initTransform:{
-            expanderParts: [{},{click:[toggleOpen]}],
-            expandAllParts: [{}, {click:{collapseAll: false, expandAll: true, open: true}}], //TODO:  this is serializable
-            collapseAllParts: [{}, {click:{expandAll: false, collapseAll: true, open: false}}]
-        }
+
     },
     superclass: XtalEditorCore,
     mixins:[tm.TemplMgmtMixin]
