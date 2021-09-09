@@ -89,6 +89,9 @@ slot{
 .remove::after{
     content: "JSON Editor";
 }
+.remove[data-ro="true"]::after{
+    content: "JSON Viewer";
+}
 .remove.editKey::after{
     content: "Remove item by deleting the property name.";
 }

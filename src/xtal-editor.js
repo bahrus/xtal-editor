@@ -10,16 +10,18 @@ const style = await import('./theme.css', {
 const mainTemplate = tm.html `
 <slot part=slot name=initVal></slot>
 <p-d observe-host vft=hasParent to=[-data-has-parent] as=str-attr m=1></p-d>
-<div class="remove" part=remove -data-has-parent data-has-parent=true></div>
+<pass-prop observe-host on=readOnly vft=readOnly to=[-data-ro] as=str-attr m=1></pass-prop>
+<div class="remove" part=remove -data-ro -data-has-parent data-has-parent=true></div>
 <div data-type=string part=editor class=editor>
     <div part=field class=field>
         <div class=text-editing>
             <p-d observe-host vft=open to=[-text-content] true-val=- false-val=+></p-d>
             <button part=expander class="expander nonPrimitive" -text-content></button>
             <input aria-label=key part=key class=key -value>
-            <input aria-label=value part=value class=value>
+            <pass-prop observe-host on=readOnly vft=readOnly to=[-read-only] m=1></pass-prop>
+            <input aria-label=value part=value -read-only class=value>
         </div>
-        <pass-prop observe-host on=readOnly vft=readOnly to=[-data-ro] as=str-attr></pass-prop>
+        <pass-prop observe-host on=readOnly vft=readOnly to=[-data-ro] as=str-attr m=1></pass-prop>
         <div part=child-inserters class="nonPrimitive child-inserters" data-open=false -data-ro>
             <button part=object-adder class="object adder">add object</button>
             <button part=string-adder class="string adder">add string</button>
@@ -36,7 +38,7 @@ const mainTemplate = tm.html `
         <template data-from=child-editors-list>
             <p-d observe-host vft=expandAll to=[-open] m=1></p-d>
             <p-d observe-host vft=expandAll to=[-expand-all] m=1></p-d>
-            <pass-prop observe-host on=readOnly vft=readOnly to=[-read-only] as=str-attr></pass-prop>
+            <pass-prop observe-host on=readOnly vft=readOnly to=[-read-only]></pass-prop>
             <xtal-editor -open has-parent -expand-all -read-only></xtal-editor>
             <p-u on=internal-update-count-changed to-host prop=upwardDataFlowInProgress parse-val-as=truthy></p-u>
         </template>
