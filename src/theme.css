@@ -53,6 +53,9 @@ slot{
 .editor[data-type="array"][data-even-level="false"]{
     background-color: var(--array-odd-level-editor-bg);
 }
+.child-inserters[data-ro="true"] .adder{
+    display: none;
+}
 .string.adder{
     background-color:var(--string-adder-bg);
 }

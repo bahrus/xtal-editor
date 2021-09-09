@@ -23,9 +23,9 @@
   "types": "types.d.ts",
   "dependencies": {
     "ib-id": "0.0.63",
-    "pass-down": "0.0.103",
+    "pass-down": "0.0.105",
     "pass-up": "0.0.6",
-    "pass-prop": "0.0.26",
+    "pass-prop": "0.0.28",
     "xtal-element": "0.0.441",
     "trans-render": "0.0.390"
   },

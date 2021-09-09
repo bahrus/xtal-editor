@@ -2,7 +2,8 @@ import { XE } from 'xtal-element/src/XE.js';
 import { tm } from 'trans-render/lib/mixins/TemplMgmtWithPEST.js';
 import('pass-down/p-d.js');
 import('pass-up/p-u.js');
-import('ib-id/i-bid.js');
+import('pass-prop/pass-prop.js'),
+    import('ib-id/i-bid.js');
 const style = await import('./theme.css', {
     assert: { type: 'css' }
 });
@@ -18,7 +19,8 @@ const mainTemplate = tm.html `
             <input aria-label=key part=key class=key -value>
             <input aria-label=value part=value class=value>
         </div>
-        <div part=child-inserters class="nonPrimitive child-inserters" data-open=false>
+        <pass-prop observe-host on=readOnly vft=readOnly to=[-data-ro] as=str-attr></pass-prop>
+        <div part=child-inserters class="nonPrimitive child-inserters" data-open=false -data-ro>
             <button part=object-adder class="object adder">add object</button>
             <button part=string-adder class="string adder">add string</button>
             <button part=bool-adder class="bool adder">add bool</button>
@@ -334,7 +336,8 @@ const xe = new XE({
             hasParent: false,
             upwardDataFlowInProgress: false,
             internalUpdateCount: 0,
-            initTransform: initTransform
+            initTransform: initTransform,
+            readOnly: false,
         },
         propInfo: {
             expanderParts: isRef,

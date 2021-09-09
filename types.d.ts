@@ -67,6 +67,7 @@ export interface XtalEditorProps{
     collapseAllParts: NodeListOf<HTMLButtonElement>;
     removeParts: NodeListOf<HTMLButtonElement>;
     editorParts: NodeListOf<HTMLDivElement>;
+    readOnly: boolean;
 }
 
 export interface XtalEditorActions{
