@@ -36,7 +36,8 @@ const mainTemplate = tm.html `
         <template data-from=child-editors-list>
             <p-d observe-host vft=expandAll to=[-open] m=1></p-d>
             <p-d observe-host vft=expandAll to=[-expand-all] m=1></p-d>
-            <xtal-editor -open has-parent -expand-all></xtal-editor>
+            <pass-prop observe-host on=readOnly vft=readOnly to=[-read-only] as=str-attr></pass-prop>
+            <xtal-editor -open has-parent -expand-all -read-only></xtal-editor>
             <p-u on=internal-update-count-changed to-host prop=upwardDataFlowInProgress parse-val-as=truthy></p-u>
         </template>
         <p-d observe-host vft=childValues to=[-list] m=1></p-d>
