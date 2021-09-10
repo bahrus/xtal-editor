@@ -60,6 +60,7 @@ const initTransform = {
     collapseAllParts: [{}, {click:{expandAll: false, collapseAll: true, open: false}}],
     valueParts: [{}, {change: ['handleValueChange', 'value'], focus: ['handleValueFocus']}],
     slotElements: [{}, {slotchange: 'handleSlotChange'}],
+    copyToClipboardParts: [{}, {click: 'copyToClipboard'}],
 }
 const doKeyParts = ({self}: X) => [{}, {change:[self.handleKeyChange, 'value'], focus: self.handleKeyFocus}];
 const incObjCounter = ({self}: X) => self.objCounter++;
@@ -70,7 +71,7 @@ const incBoolCounter = ({self}: X) => self.boolCounter++;
 const initBoolAdderParts = ({self}: X) => [{}, {click: [incBoolCounter]}];
 const incNumCounter = ({self}: X) => self.numberCounter++;
 const initNumberAdderParts = ({self}: X) => [{}, {click: [incNumCounter]}];
-const initCopy = ({self}: X) => [{}, {click: self.copyToClipboard}];
+//const initCopy = ({self}: X) => [{}, {click: self.copyToClipboard}];
 const updateValue = ({value}: X) => [{value: typeof value === 'string' ? value : JSON.stringify(value)}];
 const updateKey = ({key}: X) => [{value: key}];
 const updateType = ({type}: X) => [{dataset: {type: type}}];
@@ -83,7 +84,7 @@ export class XtalEditorCore extends HTMLElement implements XtalEditorActions{
     initStringAdderParts = initStringAdderParts;
     initBoolAdderParts = initBoolAdderParts;
     initNumberAdderParts = initNumberAdderParts;
-    initCopy = initCopy;
+    //initCopy = initCopy;
     updateValue = updateValue;
     updateType = updateType;
     updateKey = updateKey;
@@ -384,10 +385,6 @@ const xe = new XE<XtalEditorProps & TemplMgmtProps, XtalEditorActions>({
         },
         actions:{
             ...tm.doInitTransform,
-            // initSlotElement:{
-            //     ifAllOf:['slotElements'],
-            //     target:'slotElements'
-            // },
             parseValue:{
                 ifAllOf: ['value']
             },
@@ -437,10 +434,6 @@ const xe = new XE<XtalEditorProps & TemplMgmtProps, XtalEditorActions>({
             },
             addNumber:{
                 ifAllOf:['numberCounter']
-            },
-            initCopy:{
-                ifAllOf:['copyToClipboardParts'],
-                target:'copyToClipboardParts'
             },
             // initEvenLevel:{
             //     ifKeyIn: ['rootEditor']

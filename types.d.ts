@@ -105,7 +105,7 @@ export interface XtalEditorActions{
     initStringAdderParts:(self:this)=>any;
     initBoolAdderParts:(self:this)=>any;
     initNumberAdderParts:(self:this)=>any;
-    initCopy:(self:this)=>any;
+    //initCopy:(self:this)=>any;
     updateValue:(self:this)=>any;
     updateType:(self:this)=>any;
     updateKey:(self:this)=>any;
