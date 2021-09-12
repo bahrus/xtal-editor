@@ -24,8 +24,9 @@
   "dependencies": {
     "ib-id": "0.0.66",
     "pass-down": "0.0.107",
-    "pass-up": "0.0.12",
+    "pass-up": "0.0.13",
     "plus-equals": "0.0.5",
+    "pass-message": "0.0.1",
     "pass-prop": "0.0.31",
     "xtal-element": "0.0.442",
     "trans-render": "0.0.401"

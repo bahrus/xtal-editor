@@ -5,6 +5,7 @@ import('pass-down/p-d.js');
 import('pass-up/p-u.js');
 import('pass-prop/pass-prop.js');
 import('plus-equals/p-e.js');
+import('pass-message/p-m.js');
 import('ib-id/i-bid.js');
 const style = await import('./theme.css', {
     assert: { type: 'css' }
@@ -33,7 +34,8 @@ const mainTemplate = tm.html`
             <p-e on=click to-host prop=boolCounter val=target.dataset.d parse-val-as=int></p-e>
             <button disabled part=number-adder class="number adder" data-d=1>add number</button>
             <p-e on=click to-host prop=numCounter val=target.dataset.d parse-val-as=int></p-e>
-            <button id=copy class=action part=copy-to-clipboard title="Copy to Clipboard"></button>
+            <button disabled id=copy class=action part=copy-to-clipboard title="Copy to Clipboard"></button>
+            <p-m on=click to-host prop=copyToClipboard val=target.title></p-m>
             <button id=expand-all class=action part=expand-all title="Expand All" aria-label="Expand All"></button>
             <button id=collapse-all class=action part=collapse-all title="Collapse All" aria-label="Collapse All"></button>
         </div>
@@ -64,11 +66,10 @@ const initTransform = {
     expandAllParts: [{}, {click:{collapseAll: false, expandAll: true, open: true}}], 
     collapseAllParts: [{}, {click:{expandAll: false, collapseAll: true, open: false}}],
     valueParts: [{}, {change: ['handleValueChange', 'value'], focus: ['handleValueFocus']}],
-    slotElements: [{}, {slotchange: 'handleSlotChange'}],
-    copyToClipboardParts: [{}, {click: 'copyToClipboard'}],
+    slot: [{}, {slotchange: 'handleSlotChange'}],
+    // copyToClipboardParts: [{}, {click: 'copyToClipboard'}],
 }
 const doKeyParts = ({self}: X) => [{}, {change:[self.handleKeyChange, 'value'], focus: self.handleKeyFocus}];
-//const initCopy = ({self}: X) => [{}, {click: self.copyToClipboard}];
 const updateValue = ({value}: X) => [{value: typeof value === 'string' ? value : JSON.stringify(value)}];
 const updateKey = ({key}: X) => [{value: key}];
 const updateType = ({type}: X) => [{dataset: {type: type}}];
