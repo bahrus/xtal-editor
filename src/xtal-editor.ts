@@ -187,10 +187,27 @@ export class XtalEditorCore extends HTMLElement implements XtalEditorActions{
             const childValues = this.setChildValues(this);
             (<any>this).setValsQuietly({childValues});
             this.valueParts[0].value = JSON.stringify(newVal);
+            this.syncLightChild(this);
         }
+
+
         
         this.internalUpdateCount!++;
         this.upwardDataFlowInProgress = false;        
+    }
+
+    syncLightChild({hasParent, value}: this){
+        const lightChild = this.querySelector('textarea, input') as HTMLInputElement;
+        if(lightChild !== null){
+            switch(typeof value){
+                case 'string':
+                    lightChild.value = value;
+                    break;
+                case 'object':
+                    lightChild.value = JSON.stringify(value);
+                    break;
+            }
+        }
     }
 
     get childEditors(){
@@ -412,6 +429,10 @@ const xe = new XE<XtalEditorProps & TemplMgmtProps, XtalEditorActions>({
             addNumber:{
                 ifAllOf:['numCounter']
             },
+            syncLightChild:{
+                ifAllOf:['value'],
+                ifNoneOf: ['hasParent', 'readOnly'],
+            }
             // initEvenLevel:{
             //     ifKeyIn: ['rootEditor']
             // },

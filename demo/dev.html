@@ -6,22 +6,26 @@
     <title>Document</title>
 </head>
 <body>
-    <xtal-editor key=abc id=editor>
-        <textarea slot="initVal">
-            {
-                "string":"foo",
-                "number":5,
-                "array":[1,2,3],
-                "object":{
-                    "property":"value",
-                    "subobj":{
-                        "arr":["foo","ha"],
-                        "numero":1
+    <form action="dev.html" method="POST">
+        <xtal-editor key=abc id=editor>
+            <textarea name=jsonField slot="initVal">
+                {
+                    "string":"foo",
+                    "number":5,
+                    "array":[1,2,3],
+                    "object":{
+                        "property":"value",
+                        "subobj":{
+                            "arr":["foo","ha"],
+                            "numero":1
+                        }
                     }
                 }
-            }
-        </textarea>
-    </xtal-editor>
+            </textarea>
+        </xtal-editor>
+        <button type="submit">submit</button>
+    </form>
+
     <div id=target></div>
 
     <button onclick=moveTarget()>Move target</button>

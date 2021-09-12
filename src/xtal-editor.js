@@ -186,9 +186,23 @@ export class XtalEditorCore extends HTMLElement {
             const childValues = this.setChildValues(this);
             this.setValsQuietly({ childValues });
             this.valueParts[0].value = JSON.stringify(newVal);
+            this.syncLightChild(this);
         }
         this.internalUpdateCount++;
         this.upwardDataFlowInProgress = false;
+    }
+    syncLightChild({ hasParent, value }) {
+        const lightChild = this.querySelector('textarea, input');
+        if (lightChild !== null) {
+            switch (typeof value) {
+                case 'string':
+                    lightChild.value = value;
+                    break;
+                case 'object':
+                    lightChild.value = JSON.stringify(value);
+                    break;
+            }
+        }
     }
     get childEditors() {
         return Array.from(this.shadowRoot.querySelectorAll(tagName));
@@ -396,6 +410,10 @@ const xe = new XE({
             addNumber: {
                 ifAllOf: ['numCounter']
             },
+            syncLightChild: {
+                ifAllOf: ['value'],
+                ifNoneOf: ['hasParent', 'readOnly'],
+            }
             // initEvenLevel:{
             //     ifKeyIn: ['rootEditor']
             // },

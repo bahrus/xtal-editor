@@ -104,6 +104,7 @@ export interface XtalEditorActions{
     updateValue:(self:this)=>any;
     updateType:(self:this)=>any;
     updateKey:(self:this)=>any;
+    syncLightChild(self:this):void; 
 }
 
 export interface NameValue {
