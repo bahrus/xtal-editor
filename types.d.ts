@@ -101,8 +101,7 @@ export interface XtalEditorActions{
 
     onConnected(self: this):void;
     doKeyParts:(self:this)=>any;
-    //initObjectAdderParts:(self:this)=>any;
-    initStringAdderParts:(self:this)=>any;
+    // initStringAdderParts:(self:this)=>any;
     initBoolAdderParts:(self:this)=>any;
     initNumberAdderParts:(self:this)=>any;
     //initCopy:(self:this)=>any;

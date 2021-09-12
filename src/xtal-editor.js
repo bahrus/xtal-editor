@@ -26,7 +26,8 @@ const mainTemplate = tm.html `
         <div part=child-inserters class="nonPrimitive child-inserters" data-open=false -data-ro>
             <button disabled part=object-adder class="object adder" data-d=1>add object</button>
             <p-e on=click to-host prop=objCounter val=target.dataset.d parse-val-as=int></p-e>
-            <button part=string-adder class="string adder">add string</button>
+            <button disabled part=string-adder class="string adder" data-d=1>add string</button>
+            <p-e on=click to-host prop=strCounter val=target.dataset.d parse-val-as=int></p-e>
             <button part=bool-adder class="bool adder">add bool</button>
             <button part=number-adder class="number adder">add number</button>
             <button id=copy class=action part=copy-to-clipboard title="Copy to Clipboard"></button>
@@ -63,10 +64,8 @@ const initTransform = {
     copyToClipboardParts: [{}, { click: 'copyToClipboard' }],
 };
 const doKeyParts = ({ self }) => [{}, { change: [self.handleKeyChange, 'value'], focus: self.handleKeyFocus }];
-//const incObjCounter = ({self}: X) => self.objCounter++;
-//const initObjectAdderParts = ({self}: X) => [{}, {click: [incObjCounter]}];
-const incStrCounter = ({ self }) => self.strCounter++;
-const initStringAdderParts = ({ self }) => [{}, { click: [incStrCounter] }];
+// const incStrCounter = ({self}: X) => self.strCounter++;
+// const initStringAdderParts = ({self}: X) => [{}, {click: [incStrCounter]}];
 const incBoolCounter = ({ self }) => self.boolCounter++;
 const initBoolAdderParts = ({ self }) => [{}, { click: [incBoolCounter] }];
 const incNumCounter = ({ self }) => self.numberCounter++;
@@ -79,11 +78,9 @@ const tagName = 'xtal-editor';
 export class XtalEditorCore extends HTMLElement {
     self = this;
     doKeyParts = doKeyParts;
-    //initObjectAdderParts = initObjectAdderParts;
-    initStringAdderParts = initStringAdderParts;
+    // initStringAdderParts = initStringAdderParts;
     initBoolAdderParts = initBoolAdderParts;
     initNumberAdderParts = initNumberAdderParts;
-    //initCopy = initCopy;
     updateValue = updateValue;
     updateType = updateType;
     updateKey = updateKey;
@@ -392,14 +389,6 @@ const xe = new XE({
             },
             syncValueFromChildren: {
                 ifAllOf: ['upwardDataFlowInProgress']
-            },
-            // initObjectAdderParts:{
-            //     ifAllOf:['objectAdderParts'],
-            //     target:'objectAdderParts'
-            // },
-            initStringAdderParts: {
-                ifAllOf: ['stringAdderParts'],
-                target: 'stringAdderParts'
             },
             initNumberAdderParts: {
                 ifAllOf: ['numberAdderParts'],
