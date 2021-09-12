@@ -19,7 +19,8 @@ const mainTemplate = tm.html`
     <div part=field class=field>
         <div class=text-editing>
             <p-d observe-host vft=open to=[-text-content] true-val=- false-val=+></p-d>
-            <button part=expander class="expander nonPrimitive" -text-content></button>
+            <button disabled part=expander class="expander nonPrimitive" -text-content></button>
+            <p-m on=click to-host prop=toggleOpen val=target.textContent></p-m>
             <input aria-label=key part=key class=key -value>
             <pass-prop observe-host on=readOnly vft=readOnly to=[-read-only] m=1></pass-prop>
             <input aria-label=value part=value -read-only class=value>
@@ -62,7 +63,7 @@ const mainTemplate = tm.html`
 `;
 
 const initTransform = {
-    expanderParts: [{},{click:'toggleOpen'}],
+    //expanderParts: [{},{click:'toggleOpen'}],
     expandAllParts: [{}, {click:{collapseAll: false, expandAll: true, open: true}}], 
     collapseAllParts: [{}, {click:{expandAll: false, collapseAll: true, open: false}}],
     valueParts: [{}, {change: ['handleValueChange', 'value'], focus: ['handleValueFocus']}],
