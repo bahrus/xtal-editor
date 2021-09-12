@@ -45,7 +45,7 @@ const mainTemplate = tm.html `
         <p-d observe-host vft=childValues to=[-list] m=1></p-d>
         <i-bid -list id=child-editors-list updatable
               transform='{
-                  "xtal-editor":[{"value": ["value"], "key": ["key"]}]
+                  "xtal-editor":[{"value": "value", "key": "key"}]
               }'
         ></i-bid>
     </div>
