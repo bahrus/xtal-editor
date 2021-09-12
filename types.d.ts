@@ -101,10 +101,8 @@ export interface XtalEditorActions{
 
     onConnected(self: this):void;
     doKeyParts:(self:this)=>any;
-    // initStringAdderParts:(self:this)=>any;
-    initBoolAdderParts:(self:this)=>any;
+    // initBoolAdderParts:(self:this)=>any;
     initNumberAdderParts:(self:this)=>any;
-    //initCopy:(self:this)=>any;
     updateValue:(self:this)=>any;
     updateType:(self:this)=>any;
     updateKey:(self:this)=>any;
@@ -114,9 +112,4 @@ export interface NameValue {
     key: string, 
     value: string,
 }
-
-// export interface IbIdXtalEditorProps extends XtalEditor{
-//     _rootEditor: any;
-//     host: HTMLElement;
-// }
 

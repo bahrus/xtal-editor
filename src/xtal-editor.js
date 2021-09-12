@@ -28,7 +28,8 @@ const mainTemplate = tm.html `
             <p-e on=click to-host prop=objCounter val=target.dataset.d parse-val-as=int></p-e>
             <button disabled part=string-adder class="string adder" data-d=1>add string</button>
             <p-e on=click to-host prop=strCounter val=target.dataset.d parse-val-as=int></p-e>
-            <button part=bool-adder class="bool adder">add bool</button>
+            <button disabled part=bool-adder class="bool adder" data-d=1>add bool</button>
+            <p-e on=click to-host prop=boolCounter val=target.dataset.d parse-val-as=int></p-e>
             <button part=number-adder class="number adder">add number</button>
             <button id=copy class=action part=copy-to-clipboard title="Copy to Clipboard"></button>
             <button id=expand-all class=action part=expand-all title="Expand All" aria-label="Expand All"></button>
@@ -64,10 +65,8 @@ const initTransform = {
     copyToClipboardParts: [{}, { click: 'copyToClipboard' }],
 };
 const doKeyParts = ({ self }) => [{}, { change: [self.handleKeyChange, 'value'], focus: self.handleKeyFocus }];
-// const incStrCounter = ({self}: X) => self.strCounter++;
-// const initStringAdderParts = ({self}: X) => [{}, {click: [incStrCounter]}];
-const incBoolCounter = ({ self }) => self.boolCounter++;
-const initBoolAdderParts = ({ self }) => [{}, { click: [incBoolCounter] }];
+// const incBoolCounter = ({self}: X) => self.boolCounter++;
+// const initBoolAdderParts = ({self}: X) => [{}, {click: [incBoolCounter]}];
 const incNumCounter = ({ self }) => self.numberCounter++;
 const initNumberAdderParts = ({ self }) => [{}, { click: [incNumCounter] }];
 //const initCopy = ({self}: X) => [{}, {click: self.copyToClipboard}];
@@ -78,8 +77,7 @@ const tagName = 'xtal-editor';
 export class XtalEditorCore extends HTMLElement {
     self = this;
     doKeyParts = doKeyParts;
-    // initStringAdderParts = initStringAdderParts;
-    initBoolAdderParts = initBoolAdderParts;
+    // initBoolAdderParts = initBoolAdderParts;
     initNumberAdderParts = initNumberAdderParts;
     updateValue = updateValue;
     updateType = updateType;
@@ -393,10 +391,6 @@ const xe = new XE({
             initNumberAdderParts: {
                 ifAllOf: ['numberAdderParts'],
                 target: 'numberAdderParts'
-            },
-            initBoolAdderParts: {
-                ifAllOf: ['boolAdderParts'],
-                target: 'boolAdderParts'
             },
             addObject: {
                 ifAllOf: ['objCounter']
