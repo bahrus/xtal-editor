@@ -49,7 +49,7 @@ export interface XtalEditorProps{
     objCounter: number;
     strCounter: number;
     boolCounter: number;
-    numberCounter: number;
+    numCounter: number;
     hasParent: boolean;
     evenLevel: boolean;
     parentLevel: boolean;
@@ -101,8 +101,6 @@ export interface XtalEditorActions{
 
     onConnected(self: this):void;
     doKeyParts:(self:this)=>any;
-    // initBoolAdderParts:(self:this)=>any;
-    initNumberAdderParts:(self:this)=>any;
     updateValue:(self:this)=>any;
     updateType:(self:this)=>any;
     updateKey:(self:this)=>any;

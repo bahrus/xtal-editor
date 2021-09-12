@@ -31,7 +31,8 @@ const mainTemplate = tm.html`
             <p-e on=click to-host prop=strCounter val=target.dataset.d parse-val-as=int></p-e>
             <button disabled part=bool-adder class="bool adder" data-d=1>add bool</button>
             <p-e on=click to-host prop=boolCounter val=target.dataset.d parse-val-as=int></p-e>
-            <button part=number-adder class="number adder">add number</button>
+            <button disabled part=number-adder class="number adder" data-d=1>add number</button>
+            <p-e on=click to-host prop=numCounter val=target.dataset.d parse-val-as=int></p-e>
             <button id=copy class=action part=copy-to-clipboard title="Copy to Clipboard"></button>
             <button id=expand-all class=action part=expand-all title="Expand All" aria-label="Expand All"></button>
             <button id=collapse-all class=action part=collapse-all title="Collapse All" aria-label="Collapse All"></button>
@@ -67,10 +68,6 @@ const initTransform = {
     copyToClipboardParts: [{}, {click: 'copyToClipboard'}],
 }
 const doKeyParts = ({self}: X) => [{}, {change:[self.handleKeyChange, 'value'], focus: self.handleKeyFocus}];
-// const incBoolCounter = ({self}: X) => self.boolCounter++;
-// const initBoolAdderParts = ({self}: X) => [{}, {click: [incBoolCounter]}];
-const incNumCounter = ({self}: X) => self.numberCounter++;
-const initNumberAdderParts = ({self}: X) => [{}, {click: [incNumCounter]}];
 //const initCopy = ({self}: X) => [{}, {click: self.copyToClipboard}];
 const updateValue = ({value}: X) => [{value: typeof value === 'string' ? value : JSON.stringify(value)}];
 const updateKey = ({key}: X) => [{value: key}];
@@ -80,8 +77,6 @@ const tagName = 'xtal-editor';
 export class XtalEditorCore extends HTMLElement implements XtalEditorActions{
     self = this;
     doKeyParts = doKeyParts;
-    // initBoolAdderParts = initBoolAdderParts;
-    initNumberAdderParts = initNumberAdderParts;
     updateValue = updateValue;
     updateType = updateType;
     updateKey = updateKey;
@@ -259,12 +254,12 @@ export class XtalEditorCore extends HTMLElement implements XtalEditorActions{
 
     }
 
-    addNumber({numberCounter, parsedObject, type}: this){
+    addNumber({numCounter, parsedObject, type}: this){
         let newObj: any;
         switch(type){
             case 'object':
                 newObj = {...parsedObject};
-                newObj['number' + numberCounter] = '0';
+                newObj['number' + numCounter] = '0';
                 break;
             case 'array':
                 newObj = [...parsedObject];
@@ -343,7 +338,7 @@ const xe = new XE<XtalEditorProps & TemplMgmtProps, XtalEditorActions>({
             open: false,
             objCounter: 0,
             strCounter: 0,
-            numberCounter: 0,
+            numCounter: 0,
             boolCounter: 0,
             evenLevel: false,
             parentLevel: false,
@@ -404,10 +399,6 @@ const xe = new XE<XtalEditorProps & TemplMgmtProps, XtalEditorActions>({
             syncValueFromChildren:{
                 ifAllOf: ['upwardDataFlowInProgress']
             },
-            initNumberAdderParts:{
-                ifAllOf:['numberAdderParts'],
-                target: 'numberAdderParts'
-            },
             addObject:{
                 ifAllOf:['objCounter']
             },
@@ -418,7 +409,7 @@ const xe = new XE<XtalEditorProps & TemplMgmtProps, XtalEditorActions>({
                 ifAllOf:['boolCounter']
             },
             addNumber:{
-                ifAllOf:['numberCounter']
+                ifAllOf:['numCounter']
             },
             // initEvenLevel:{
             //     ifKeyIn: ['rootEditor']
