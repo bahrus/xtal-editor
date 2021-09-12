@@ -22,7 +22,9 @@ const mainTemplate = tm.html `
             <p-m on=click to-host prop=toggleOpen val=target.textContent></p-m>
             <input aria-label=key part=key class=key -value>
             <pass-prop observe-host on=readOnly vft=readOnly to=[-read-only] m=1></pass-prop>
-            <input aria-label=value part=value -read-only class=value>
+            <input disabled=2 aria-label=value part=value -read-only class=value>
+            <p-m to-host on=change prop=handleValueChange val=target.value></p-m>
+            <p-m to-host on=focus prop=handleValueFocus val=target></p-m>
         </div>
         <pass-prop observe-host on=readOnly vft=readOnly to=[-data-ro] as=str-attr m=1></pass-prop>
         <div part=child-inserters class="nonPrimitive child-inserters" data-open=false -data-ro>
@@ -61,12 +63,9 @@ const mainTemplate = tm.html `
 </div>
 `;
 const initTransform = {
-    //expanderParts: [{},{click:'toggleOpen'}],
     expandAllParts: [{}, { click: { collapseAll: false, expandAll: true, open: true } }],
     collapseAllParts: [{}, { click: { expandAll: false, collapseAll: true, open: false } }],
-    valueParts: [{}, { change: ['handleValueChange', 'value'], focus: ['handleValueFocus'] }],
     slot: [{}, { slotchange: 'handleSlotChange' }],
-    // copyToClipboardParts: [{}, {click: 'copyToClipboard'}],
 };
 const doKeyParts = ({ self }) => [{}, { change: [self.handleKeyChange, 'value'], focus: self.handleKeyFocus }];
 const updateValue = ({ value }) => [{ value: typeof value === 'string' ? value : JSON.stringify(value) }];
