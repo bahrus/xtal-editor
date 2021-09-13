@@ -7,10 +7,11 @@ import('pass-prop/pass-prop.js');
 import('plus-equals/p-e.js');
 import('pass-message/p-m.js');
 import('ib-id/i-bid.js');
-const style = await import('./theme.css', {
-    assert: { type: 'css' }
-});
+// const style = await import('./theme.css', {
+//     assert: { type: 'css' }
+// });
 const mainTemplate = tm.html`
+<link rel=stylesheet href=https://unpkg.com/xtal-editor@0.0.48/src/theme.css>
 <slot part=slot name=initVal></slot>
 <p-d observe-host vft=hasParent to=[-data-has-parent] as=str-attr m=1></p-d>
 <pass-prop observe-host on=readOnly vft=readOnly to=[-data-ro] as=str-attr m=1></pass-prop>
@@ -460,7 +461,7 @@ const xe = new XE<XtalEditorProps & TemplMgmtProps, XtalEditorActions>({
     },
     complexPropDefaults:{
         mainTemplate: mainTemplate,
-        styles: [style.default],
+        //styles: [style.default],
 
     },
     superclass: XtalEditorCore,
