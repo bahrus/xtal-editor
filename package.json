@@ -24,12 +24,14 @@
   "dependencies": {
     "ib-id": "0.0.66",
     "pass-down": "0.0.107",
-    "pass-up": "0.0.14",
-    "plus-equals": "0.0.6",
-    "pass-message": "0.0.2",
+    "pass-up": "0.0.15",
+    "plus-equals": "0.0.7",
+    "pass-message": "0.0.3",
     "pass-prop": "0.0.31",
     "xtal-element": "0.0.442",
-    "trans-render": "0.0.402"
+    "trans-render": "0.0.406",
+    "tran-sister": "0.0.2",
+    "on-to-me": "0.0.37"
   },
   "devDependencies": {
     "@skypack/package-check": "0.2.2",

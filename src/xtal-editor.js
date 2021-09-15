@@ -6,6 +6,7 @@ import('pass-prop/pass-prop.js');
 import('plus-equals/p-e.js');
 import('pass-message/p-m.js');
 import('ib-id/i-bid.js');
+import('tran-sister/tran-sister.js');
 // const style = await import('./theme.css', {
 //     assert: { type: 'css' }
 // });
@@ -39,8 +40,15 @@ const mainTemplate = tm.html `
             <p-e on=click to-host prop=numCounter val=target.dataset.d parse-val-as=int></p-e>
             <button disabled id=copy class=action part=copy-to-clipboard title="Copy to Clipboard"></button>
             <p-m on=click to-host prop=copyToClipboard val=target.title></p-m>
-            <button id=expand-all class=action part=expand-all title="Expand All" aria-label="Expand All"></button>
-            <button id=collapse-all class=action part=collapse-all title="Collapse All" aria-label="Collapse All"></button>
+            <button disabled id=expand-all class=action part=expand-all title="Expand All" aria-label="Expand All"></button>
+            <tran-sister on=click transform='{
+                ":host": [{"collapseAll": false, "expandAll": true, "open": true}]
+            }'></tran-sister>
+            <button disabled id=collapse-all class=action part=collapse-all title="Collapse All" aria-label="Collapse All"></button>
+            <tran-sister on=click transform='{
+                ":host": [{"collapseAll": true, "expandAll": false, "open": false}]
+            }'></tran-sister>
+
         </div>
         
     </div>
@@ -55,7 +63,7 @@ const mainTemplate = tm.html `
         </template>
         <p-d observe-host vft=childValues to=[-list] m=1></p-d>
         <i-bid -list id=child-editors-list updatable
-              transform='{
+            transform='{
                   "xtal-editor":[{"value": "value", "key": "key"}]
               }'
         ></i-bid>
@@ -64,8 +72,6 @@ const mainTemplate = tm.html `
 </div>
 `;
 const initTransform = {
-    expandAllParts: [{}, { click: { collapseAll: false, expandAll: true, open: true } }],
-    collapseAllParts: [{}, { click: { expandAll: false, collapseAll: true, open: false } }],
     slot: [{}, { slotchange: 'handleSlotChange' }],
 };
 const doKeyParts = ({ self }) => [{}, { change: [self.handleKeyChange, 'value'], focus: self.handleKeyFocus }];
