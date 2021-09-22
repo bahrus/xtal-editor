@@ -307,9 +307,10 @@ export class XtalEditorCore extends HTMLElement implements XtalEditorActions{
     handleKeyChange(self: this, key: string){
         if(key === ''){
             this.remove();
-            return;
+        }else{
+            this.key = key;
         }
-        this.key = key;
+        this.internalUpdateCount!++;
     }
     handleKeyFocus(e: Event){
         this.rootEditor!.removeParts.forEach(x => x.classList.add('editKey'));
