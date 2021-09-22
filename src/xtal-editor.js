@@ -307,8 +307,8 @@ export class XtalEditorCore extends HTMLElement {
         this.internalUpdateCount++;
     }
     copyToClipboard() {
-        this.valueParts[0].select();
-        document.execCommand("copy");
+        const json = JSON.stringify(this.value, null, 2);
+        navigator.clipboard.writeText(json);
     }
     handleSlotChange(e) {
         const slot = e.target;
