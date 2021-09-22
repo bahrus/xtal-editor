@@ -118,6 +118,12 @@ export class XtalEditorCore extends HTMLElement {
                         this.type = 'object';
                     }
                     break;
+                case 'number':
+                    this.type = 'number';
+                    break;
+                case 'boolean':
+                    this.type = 'boolean';
+                    break;
             }
         }
         return { parsedObject };

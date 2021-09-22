@@ -117,6 +117,12 @@ export class XtalEditorCore extends HTMLElement implements XtalEditorActions{
                     }
     
                     break;
+                case 'number':
+                    this.type = 'number';
+                    break;
+                case 'boolean':
+                    this.type = 'boolean';
+                    break;
             }
     
         }
