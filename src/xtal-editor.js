@@ -22,8 +22,9 @@ const mainTemplate = tm.html `
             <p-d observe-host vft=open to=[-text-content] true-val=- false-val=+></p-d>
             <button disabled part=expander class="expander nonPrimitive" -text-content></button>
             <p-m on=click to-host prop=toggleOpen val=target.textContent></p-m>
-            <input aria-label=key part=key class=key -value>
-            <pass-prop observe-host on=readOnly vft=readOnly to=[-read-only] m=1></pass-prop>
+            <pass-prop observe-host on=readOnly vft=readOnly to=[-read-only] m=2></pass-prop>
+            <input aria-label=key part=key class=key -value -read-only>
+            <p-m to-host on=change prop=handleKeyChange></p-m>
             <input disabled=2 aria-label=value part=value -read-only class=value>
             <p-m to-host on=change prop=handleValueChange val=target.value></p-m>
             <p-m to-host on=focus prop=handleValueFocus val=target></p-m>
@@ -74,14 +75,12 @@ const mainTemplate = tm.html `
 const initTransform = {
     slot: [{}, { slotchange: 'handleSlotChange' }],
 };
-const doKeyParts = ({ self }) => [{}, { change: [self.handleKeyChange, 'value'], focus: self.handleKeyFocus }];
 const updateValue = ({ value }) => [{ value: typeof value === 'string' ? value : JSON.stringify(value) }];
 const updateKey = ({ key }) => [{ value: key }];
 const updateType = ({ type }) => [{ dataset: { type: type } }];
 const tagName = 'xtal-editor';
 export class XtalEditorCore extends HTMLElement {
     self = this;
-    doKeyParts = doKeyParts;
     updateValue = updateValue;
     updateType = updateType;
     updateKey = updateKey;
@@ -293,8 +292,9 @@ export class XtalEditorCore extends HTMLElement {
     handleKeyChange(self, key) {
         if (key === '') {
             this.remove();
+            return;
         }
-        this.value = key;
+        this.key = key;
     }
     handleKeyFocus(e) {
         this.rootEditor.removeParts.forEach(x => x.classList.add('editKey'));

@@ -24,7 +24,7 @@
   "dependencies": {
     "ib-id": "0.0.79",
     "pass-down": "0.0.112",
-    "pass-up": "0.0.16",
+    "pass-up": "0.0.17",
     "plus-equals": "0.0.8",
     "pass-message": "0.0.4",
     "pass-prop": "0.0.35",
