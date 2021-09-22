@@ -29,7 +29,7 @@
     "pass-message": "0.0.4",
     "pass-prop": "0.0.35",
     "xtal-element": "0.0.442",
-    "trans-render": "0.0.409",
+    "trans-render": "0.0.411",
     "tran-sister": "0.0.4"
   },
   "devDependencies": {

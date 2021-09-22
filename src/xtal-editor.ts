@@ -11,8 +11,12 @@ import('tran-sister/tran-sister.js');
 // const style = await import('./theme.css', {
 //     assert: { type: 'css' }
 // });
+const splitPath = import.meta.url.split('/');
+splitPath.pop();
+const rel = splitPath.join('/');
+const cssPath = rel + '/theme.css';
 const mainTemplate = tm.html`
-<link rel=stylesheet href=https://unpkg.com/xtal-editor@0.0.48/src/theme.css>
+<link rel=stylesheet href=${cssPath}>
 <slot part=slot name=initVal></slot>
 <p-d observe-host vft=hasParent to=[-data-has-parent] as=str-attr m=1></p-d>
 <pass-prop observe-host on=readOnly vft=readOnly to=[-data-ro] as=str-attr m=1></pass-prop>
