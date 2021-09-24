@@ -23,13 +23,13 @@
   "types": "types.d.ts",
   "dependencies": {
     "ib-id": "0.0.79",
-    "pass-down": "0.0.112",
+    "pass-down": "0.0.116",
     "pass-up": "0.0.17",
     "plus-equals": "0.0.8",
-    "pass-message": "0.0.4",
+    "pass-message": "0.0.5",
     "pass-prop": "0.0.35",
     "xtal-element": "0.0.442",
-    "trans-render": "0.0.411",
+    "trans-render": "0.0.412",
     "tran-sister": "0.0.4"
   },
   "devDependencies": {
