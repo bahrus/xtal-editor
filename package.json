@@ -2,8 +2,10 @@
   "name": "xtal-editor",
   "version": "0.0.60",
   "keywords": [
-    "Web Components",
-    "Custom Elements",
+    "web-components",
+    "web-component",
+    "custom-element",
+    "custom-elements",
     "JSON",
     "Editor"
   ],
@@ -27,10 +29,11 @@
     "pass-up": "0.0.17",
     "plus-equals": "0.0.8",
     "pass-message": "0.0.5",
-    "pass-prop": "0.0.35",
+    "pass-prop": "0.0.37",
     "xtal-element": "0.0.442",
     "trans-render": "0.0.412",
-    "tran-sister": "0.0.4"
+    "tran-sister": "0.0.4",
+    "xtal-shell": "0.0.25"
   },
   "devDependencies": {
     "@skypack/package-check": "0.2.2",

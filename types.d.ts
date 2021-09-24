@@ -14,7 +14,7 @@ export interface XtalEditorProps{
      * @prop {string} [value] JSON data to edit
      * 
      */
-    value: string;
+    value: string | object;
     /**
      * @private
      */
