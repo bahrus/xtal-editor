@@ -42,7 +42,7 @@
   },
   "scripts": {
     "serve": "node node_modules/xtal-test/serve.js",
-    "test": "echo \"Error: no test specified\" && exit 1",
+    "test": "node test/test-all.js",
     "start": "web-dev-server --node-resolve --app-index demo/dev.html  --watch --open",
     "bundle": "rollup --config",
     "compress": "node minify",

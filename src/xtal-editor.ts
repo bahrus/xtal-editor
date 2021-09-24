@@ -371,6 +371,7 @@ export class XtalEditorCore extends HTMLElement implements XtalEditorActions{
         this.internalUpdateCount!++;
     }
     copyToClipboard(){
+        const preval = this.value;
         const val = typeof(this.value === 'string') ? JSON.parse(this.value) : this.value;
         const json = JSON.stringify(val, null, 2);
         navigator.clipboard.writeText(json);
