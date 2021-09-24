@@ -4,6 +4,8 @@
 
 <img src="https://badgen.net/bundlephobia/minzip/xtal-editor">
 
+[![Actions Status](https://github.com/bahrus/xtal-editor/workflows/CI/badge.svg)](https://github.com/bahrus/xtal-editor/actions?query=workflow%3ACI)
+
 Re-creation of [flexi-json](http://www.daviddurman.com/flexi-json-editor/jsoneditor.html), taking some liberties, but as a web component.
 
 ## [Demo](https://codepen.io/bahrus/pen/eYgxzor)
