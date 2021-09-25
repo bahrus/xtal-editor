@@ -29,7 +29,8 @@ const mainTemplate = tm.html `
             <pass-prop observe-host on=readOnly vft=readOnly to=[-read-only] m=2></pass-prop>
             <input aria-label=key part=key class=key -value -read-only>
             <p-u to-host on=change fn=handleKeyChange></p-u>
-            <input disabled=2 aria-label=value part=value -read-only class=value>
+            <input disabled=3 aria-label=value part=value -read-only class=value>
+            <p-u on-prop=disabled to-host fn=setFocus vft=disabled></p-u>
             <p-u to-host on=change fn=handleValueChange val=target.value></p-u>
             <p-u to-host on=focus fn=handleValueFocus val=target></p-u>
         </div>
@@ -337,6 +338,15 @@ export class XtalEditorCore extends HTMLElement {
     toggleOpen = (e) => {
         this.open = !this.open;
     };
+    setFocus(match, isDisabled, e) {
+        if (!isDisabled && !this.readOnly) {
+            const target = e.target;
+            setTimeout(() => {
+                target.focus();
+            }, 16);
+        }
+        //console.log(match, isDisabled, e);
+    }
 }
 const isRef = {
     isRef: true,
