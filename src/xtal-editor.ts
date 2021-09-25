@@ -28,7 +28,7 @@ const mainTemplate = tm.html`
             <p-d observe-host vft=open to=[-text-content] true-val=- false-val=+ m=1></p-d>
             <button disabled part=expander class="expander nonPrimitive" -text-content></button>
             <p-u on=click to-host fn=toggleOpen val=target.textContent></p-u>
-            <pass-prop observe-host on=readOnly vft=readOnly to=[-read-only] m=2></pass-prop>
+            <p-d observe-host on-prop=readOnly vft=readOnly to=[-read-only] m=2></p-d>
             <input aria-label=key part=key class=key -value -read-only>
             <p-u to-host on=change fn=handleKeyChange></p-u>
             <input disabled=3 aria-label=value part=value -read-only class=value>
