@@ -268,27 +268,9 @@ export class XtalEditorCore extends HTMLElement implements XtalEditorActions{
         return Array.from(this.shadowRoot!.querySelectorAll(tagName)) as (HTMLElement & XtalEditorProps)[]
     }
 
-    addEntity({parsedObject}: this, entityName: string, entityCount: number, type: editType){
+    addEntity({parsedObject, type}: this, entityName: string, entityCount: number, newVal: any){
         let newObj: any;
-        let newVal: any;
         switch(type){
-            case 'object':
-                newVal = {};
-                break;
-            case 'array':
-                newVal = [];
-                break;
-            case 'number':
-                newVal = 0;
-                break;
-            case 'string':
-                newVal = '';
-                break;
-            case 'boolean':
-                newVal = false;
-                break;
-        }
-        switch(this.type){
             case 'object':
                 newObj = {...parsedObject};
                 newObj[entityName + entityCount] = newVal;
@@ -307,23 +289,23 @@ export class XtalEditorCore extends HTMLElement implements XtalEditorActions{
     }
 
     addObject({objCounter}: this){
-        return this.addEntity(this, 'object', objCounter);
+        return this.addEntity(this, 'object', objCounter, {});
     }
 
     addString({strCounter}: this){
-        return this.addEntity(this, 'string', strCounter);
+        return this.addEntity(this, 'string', strCounter, '');
     }
 
     addBool({boolCounter}: this){
-        return this.addEntity(this, 'bool', boolCounter);
+        return this.addEntity(this, 'bool', boolCounter, false);
     }
 
     addNumber({numCounter}: this){
-        return this.addEntity(this, 'number', numCounter);
+        return this.addEntity(this, 'number', numCounter, 0);
     }
 
     addArr({arrCounter}: this){
-        return this.addEntity(this, 'arr', arrCounter);
+        return this.addEntity(this, 'arr', arrCounter, []);
     }
 
     onConnected({hasParent}: this){

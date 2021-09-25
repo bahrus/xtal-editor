@@ -261,27 +261,9 @@ export class XtalEditorCore extends HTMLElement {
     get childEditors() {
         return Array.from(this.shadowRoot.querySelectorAll(tagName));
     }
-    addEntity({ parsedObject }, entityName, entityCount, type) {
+    addEntity({ parsedObject, type }, entityName, entityCount, newVal) {
         let newObj;
-        let newVal;
         switch (type) {
-            case 'object':
-                newVal = {};
-                break;
-            case 'array':
-                newVal = [];
-                break;
-            case 'number':
-                newVal = 0;
-                break;
-            case 'string':
-                newVal = '';
-                break;
-            case 'boolean':
-                newVal = false;
-                break;
-        }
-        switch (this.type) {
             case 'object':
                 newObj = { ...parsedObject };
                 newObj[entityName + entityCount] = newVal;
@@ -299,19 +281,19 @@ export class XtalEditorCore extends HTMLElement {
         };
     }
     addObject({ objCounter }) {
-        return this.addEntity(this, 'object', objCounter);
+        return this.addEntity(this, 'object', objCounter, {});
     }
     addString({ strCounter }) {
-        return this.addEntity(this, 'string', strCounter);
+        return this.addEntity(this, 'string', strCounter, '');
     }
     addBool({ boolCounter }) {
-        return this.addEntity(this, 'bool', boolCounter);
+        return this.addEntity(this, 'bool', boolCounter, false);
     }
     addNumber({ numCounter }) {
-        return this.addEntity(this, 'number', numCounter);
+        return this.addEntity(this, 'number', numCounter, 0);
     }
     addArr({ arrCounter }) {
-        return this.addEntity(this, 'arr', arrCounter);
+        return this.addEntity(this, 'arr', arrCounter, []);
     }
     onConnected({ hasParent }) {
         if (!hasParent) {
