@@ -24,7 +24,7 @@ const mainTemplate = tm.html `
 <div data-type=string part=editor class=editor -data-ro>
     <div part=field class=field>
         <div class=text-editing>
-            <p-d observe-host vft=open to=[-text-content] true-val=- false-val=+></p-d>
+            <p-d observe-host vft=open to=[-text-content] true-val=- false-val=+ m=1></p-d>
             <button disabled part=expander class="expander nonPrimitive" -text-content></button>
             <p-m on=click to-host prop=toggleOpen val=target.textContent></p-m>
             <pass-prop observe-host on=readOnly vft=readOnly to=[-read-only] m=2></pass-prop>
@@ -261,12 +261,12 @@ export class XtalEditorCore extends HTMLElement {
     get childEditors() {
         return Array.from(this.shadowRoot.querySelectorAll(tagName));
     }
-    addObject({ objCounter, parsedObject, type }) {
+    addEntity({ parsedObject, type }, entityName, entityCount) {
         let newObj;
         switch (type) {
             case 'object':
                 newObj = { ...parsedObject };
-                newObj['object' + objCounter] = {};
+                newObj[entityName + entityCount] = {};
                 break;
             case 'array':
                 newObj = [...parsedObject];
@@ -278,59 +278,20 @@ export class XtalEditorCore extends HTMLElement {
             open: true,
         };
     }
-    addString({ strCounter, parsedObject, type }) {
-        let newObj;
-        switch (type) {
-            case 'object':
-                newObj = { ...parsedObject };
-                newObj['string' + strCounter] = 'val' + strCounter;
-                break;
-            case 'array':
-                newObj = [...parsedObject];
-                newObj.push('string');
-                break;
-        }
-        return {
-            value: JSON.stringify(newObj),
-            internalUpdateCount: this.internalUpdateCount + 1,
-            open: true,
-        };
+    addObject({ objCounter }) {
+        return this.addEntity(this, 'object', objCounter);
     }
-    addBool({ boolCounter, parsedObject, type }) {
-        let newObj;
-        switch (type) {
-            case 'object':
-                newObj = { ...parsedObject };
-                newObj['bool' + boolCounter] = 'false';
-                break;
-            case 'array':
-                newObj = [...parsedObject];
-                newObj.push(true);
-                break;
-        }
-        return {
-            value: JSON.stringify(newObj),
-            internalUpdateCount: this.internalUpdateCount + 1,
-            open: true,
-        };
+    addString({ strCounter }) {
+        return this.addEntity(this, 'string', strCounter);
     }
-    addNumber({ numCounter, parsedObject, type }) {
-        let newObj;
-        switch (type) {
-            case 'object':
-                newObj = { ...parsedObject };
-                newObj['number' + numCounter] = '0';
-                break;
-            case 'array':
-                newObj = [...parsedObject];
-                newObj.push(0);
-                break;
-        }
-        return {
-            value: JSON.stringify(newObj),
-            internalUpdateCount: this.internalUpdateCount + 1,
-            open: true,
-        };
+    addBool({ boolCounter }) {
+        return this.addEntity(this, 'bool', boolCounter);
+    }
+    addNumber({ numCounter }) {
+        return this.addEntity(this, 'number', numCounter);
+    }
+    addArr({ arrCounter }) {
+        return this.addEntity(this, 'arr', arrCounter);
     }
     onConnected({ hasParent }) {
         if (!hasParent) {

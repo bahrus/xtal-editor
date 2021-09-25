@@ -57,10 +57,10 @@ export interface XtalEditorProps{
     expanderParts: NodeListOf<HTMLButtonElement>;
     keyParts: NodeListOf<HTMLInputElement>;
     valueParts:NodeListOf<HTMLInputElement>;
-    objectAdderParts:NodeListOf<HTMLButtonElement>;
-    stringAdderParts:NodeListOf<HTMLButtonElement>;
-    boolAdderParts: NodeListOf<HTMLButtonElement>;
-    numberAdderParts: NodeListOf<HTMLButtonElement>;
+    // objectAdderParts:NodeListOf<HTMLButtonElement>;
+    // stringAdderParts:NodeListOf<HTMLButtonElement>;
+    // boolAdderParts: NodeListOf<HTMLButtonElement>;
+    // numberAdderParts: NodeListOf<HTMLButtonElement>;
     copyToClipboardParts: NodeListOf<HTMLButtonElement>;
     slotElements: NodeListOf<HTMLSlotElement>;
     expandAllParts: NodeListOf<HTMLButtonElement>;
@@ -91,6 +91,10 @@ export interface XtalEditorActions{
         open: boolean,
     }
     addNumber(self: this):{
+        value: any,
+        open: boolean,
+    }
+    addArr(self: this):{
         value: any,
         open: boolean,
     }
