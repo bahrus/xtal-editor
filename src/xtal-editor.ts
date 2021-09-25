@@ -46,6 +46,8 @@ const mainTemplate = tm.html`
             <p-e on=click to-host prop=boolCounter val=target.dataset.d parse-val-as=int></p-e>
             <button disabled part=number-adder class="number adder" data-d=1>+number</button>
             <p-e on=click to-host prop=numCounter val=target.dataset.d parse-val-as=int></p-e>
+            <button disabled part=array-adder class="array adder" data-d=1>+array</button>
+            <p-e on=click to-host prop=arrCounter val=target.dataset.d parse-val-as=int></p-e>
             <button disabled id=copy class=action part=copy-to-clipboard title="Copy to Clipboard"></button>
             <p-m on=click to-host prop=copyToClipboard val=target.title></p-m>
             <button disabled id=expand-all class=action part=expand-all title="Expand All" aria-label="Expand All"></button>
@@ -184,31 +186,29 @@ export class XtalEditorCore extends HTMLElement implements XtalEditorActions{
         }
         switch(type){
             case 'array':{
-                    const childValues: NameValue[] = [];
-                    let cnt = 0;
-                    for(const item of parsedObject){
-                        childValues.push({
-                            key: cnt.toString(),
-                            value: item
-                        });
-                        cnt++;
-                    }
-                    return{
-                        childValues,
-                    }
+                const childValues: NameValue[] = [];
+                let cnt = 0;
+                for(const item of parsedObject){
+                    childValues.push({
+                        key: cnt.toString(),
+                        value: item
+                    });
+                    cnt++;
                 }
-            case 'object':
-                {
-                    const childValues: NameValue[] = [];
-                    for(var key in parsedObject){
-                        childValues.push({
-                            key: key,
-                            value: parsedObject[key] //toString(parsedObject[key]),
-                        } as NameValue);
-                    }
-                    return {childValues};
+                return{
+                    childValues,
                 }
-
+            }
+            case 'object':{
+                const childValues: NameValue[] = [];
+                for(var key in parsedObject){
+                    childValues.push({
+                        key: key,
+                        value: parsedObject[key] //toString(parsedObject[key]),
+                    } as NameValue);
+                }
+                return {childValues};
+            }
             default:{
                 return {
                     childValues: undefined,
@@ -416,6 +416,7 @@ const xe = new XE<XtalEditorProps & TemplMgmtProps, XtalEditorActions>({
             strCounter: 0,
             numCounter: 0,
             boolCounter: 0,
+            arrCounter: 0,
             evenLevel: false,
             parentLevel: false,
             expandAll: false,
@@ -431,10 +432,10 @@ const xe = new XE<XtalEditorProps & TemplMgmtProps, XtalEditorActions>({
             expanderParts: isRef,
             keyParts: isRef,
             valueParts: isRef,
-            objectAdderParts: isRef,
-            stringAdderParts: isRef,
-            boolAdderParts: isRef,
-            numberAdderParts: isRef,
+            // objectAdderParts: isRef,
+            // stringAdderParts: isRef,
+            // boolAdderParts: isRef,
+            // numberAdderParts: isRef,
             copyToClipboardParts: isRef,
             slotElements: isRef,
             expandAllParts: isRef,

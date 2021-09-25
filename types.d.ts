@@ -45,7 +45,7 @@ export interface XtalEditorProps{
 
     upwardDataFlowInProgress: boolean;
     internalUpdateCount: number;
-
+    arrCounter: number;
     objCounter: number;
     strCounter: number;
     boolCounter: number;
