@@ -1,6 +1,6 @@
 import {PropInfoExt, XE} from 'xtal-element/src/XE.js';
 import {TemplMgmtActions, TemplMgmtProps, tm} from 'trans-render/lib/mixins/TemplMgmtWithPEST.js';
-import {XtalEditorActions, XtalEditorProps, NameValue} from '../types';
+import {XtalEditorActions, XtalEditorProps, NameValue, editType} from '../types';
 import('pass-down/p-d.js');
 import('pass-up/p-u.js');
 import('pass-prop/pass-prop.js');
@@ -268,16 +268,36 @@ export class XtalEditorCore extends HTMLElement implements XtalEditorActions{
         return Array.from(this.shadowRoot!.querySelectorAll(tagName)) as (HTMLElement & XtalEditorProps)[]
     }
 
-    addEntity({parsedObject, type}: this, entityName: string, entityCount: number){
+    addEntity({parsedObject}: this, entityName: string, entityCount: number, type: editType){
         let newObj: any;
+        let newVal: any;
         switch(type){
-            case 'object':    
-                newObj = {...parsedObject};
-                newObj[entityName + entityCount] = {};
+            case 'object':
+                newVal = {};
                 break;
             case 'array':
+                newVal = [];
+                break;
+            case 'number':
+                newVal = 0;
+                break;
+            case 'string':
+                newVal = '';
+                break;
+            case 'boolean':
+                newVal = false;
+                break;
+        }
+        switch(this.type){
+            case 'object':
+                newObj = {...parsedObject};
+                newObj[entityName + entityCount] = newVal;
+                break;
+            case 'array':{
                 newObj = [...parsedObject];
-                newObj.push({});
+                newObj.push(newVal);
+                break;
+            }
         }
         return {
             value: newObj,//JSON.stringify(newObj),
@@ -332,7 +352,7 @@ export class XtalEditorCore extends HTMLElement implements XtalEditorActions{
     }
     copyToClipboard(){
         const preval = this.value;
-        const val = typeof(this.value === 'string') ? JSON.parse(this.value) : this.value;
+        const val = typeof(this.value === 'string') ? JSON.parse(this.value as any as string) : this.value;
         const json = JSON.stringify(val, null, 2);
         navigator.clipboard.writeText(json);
     }
@@ -448,6 +468,9 @@ const xe = new XE<XtalEditorProps & TemplMgmtProps, XtalEditorActions>({
             addNumber:{
                 ifAllOf:['numCounter']
             },
+            addArr:{
+                ifAllOf:['arrCounter']
+            },
             syncLightChild:{
                 ifAllOf:['value'],
                 ifNoneOf: ['hasParent', 'readOnly'],
@@ -459,21 +482,6 @@ const xe = new XE<XtalEditorProps & TemplMgmtProps, XtalEditorActions>({
             //     ifKeyIn: ['parentLevel']
             // },
 
-
-
-            // doKeyParts:{
-            //     ifAllOf:['clonedTemplate'],
-            //     target:'keyParts'
-            // },
-
-
-
-
-
-            // doCollapseAll:{
-            //     ifAllOf:['clonedTemplate'],
-            //     target: 'collapseAllIds'
-            // }
         },
         
     },

@@ -261,16 +261,36 @@ export class XtalEditorCore extends HTMLElement {
     get childEditors() {
         return Array.from(this.shadowRoot.querySelectorAll(tagName));
     }
-    addEntity({ parsedObject, type }, entityName, entityCount) {
+    addEntity({ parsedObject }, entityName, entityCount, type) {
         let newObj;
+        let newVal;
         switch (type) {
             case 'object':
-                newObj = { ...parsedObject };
-                newObj[entityName + entityCount] = {};
+                newVal = {};
                 break;
             case 'array':
+                newVal = [];
+                break;
+            case 'number':
+                newVal = 0;
+                break;
+            case 'string':
+                newVal = '';
+                break;
+            case 'boolean':
+                newVal = false;
+                break;
+        }
+        switch (this.type) {
+            case 'object':
+                newObj = { ...parsedObject };
+                newObj[entityName + entityCount] = newVal;
+                break;
+            case 'array': {
                 newObj = [...parsedObject];
-                newObj.push({});
+                newObj.push(newVal);
+                break;
+            }
         }
         return {
             value: newObj,
@@ -431,6 +451,9 @@ const xe = new XE({
             addNumber: {
                 ifAllOf: ['numCounter']
             },
+            addArr: {
+                ifAllOf: ['arrCounter']
+            },
             syncLightChild: {
                 ifAllOf: ['value'],
                 ifNoneOf: ['hasParent', 'readOnly'],
@@ -441,14 +464,6 @@ const xe = new XE({
             // setEvenLevel:{
             //     ifKeyIn: ['parentLevel']
             // },
-            // doKeyParts:{
-            //     ifAllOf:['clonedTemplate'],
-            //     target:'keyParts'
-            // },
-            // doCollapseAll:{
-            //     ifAllOf:['clonedTemplate'],
-            //     target: 'collapseAllIds'
-            // }
         },
     },
     complexPropDefaults: {
