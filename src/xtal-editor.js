@@ -2,7 +2,6 @@ import { XE } from 'xtal-element/src/XE.js';
 import { tm } from 'trans-render/lib/mixins/TemplMgmtWithPEST.js';
 import('pass-down/p-d.js');
 import('pass-up/p-u.js');
-import('pass-prop/pass-prop.js');
 import('plus-equals/p-e.js');
 import('ib-id/i-bid.js');
 import('tran-sister/tran-sister.js');
@@ -34,7 +33,7 @@ const mainTemplate = tm.html `
             <p-u to-host on=change fn=handleValueChange val=target.value></p-u>
             <p-u to-host on=focus fn=handleValueFocus val=target></p-u>
         </div>
-        <pass-prop observe-host on=readOnly vft=readOnly to=[-data-ro] as=str-attr m=1></pass-prop>
+        <p-d observe-host on-prop=readOnly vft=readOnly to=[-data-ro] as=str-attr m=1></p-d>
         <div part=child-inserters class="nonPrimitive child-inserters" data-open=false -data-ro>
             <button disabled part=object-adder class="object adder" data-d=1>+object</button>
             <p-e on=click to-host prop=objCounter val=target.dataset.d parse-val-as=int></p-e>
@@ -65,7 +64,7 @@ const mainTemplate = tm.html `
         <template data-from=child-editors-list>
             <p-d observe-host vft=expandAll to=[-open] m=1></p-d>
             <p-d observe-host vft=expandAll to=[-expand-all] m=1></p-d>
-            <pass-prop observe-host on=readOnly vft=readOnly to=[-read-only]></pass-prop>
+            <p-d observe-host on-prop=readOnly vft=readOnly to=[-read-only]></p-d>
             <xtal-editor -open has-parent -expand-all -read-only></xtal-editor>
             <p-u on=internal-update-count-changed to-host prop=upwardDataFlowInProgress parse-val-as=truthy></p-u>
         </template>
