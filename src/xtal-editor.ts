@@ -5,7 +5,6 @@ import('pass-down/p-d.js');
 import('pass-up/p-u.js');
 import('pass-prop/pass-prop.js');
 import('plus-equals/p-e.js');
-import('pass-message/p-m.js');
 import('ib-id/i-bid.js');
 import('tran-sister/tran-sister.js');
 // const style = await import('./theme.css', {
@@ -49,7 +48,7 @@ const mainTemplate = tm.html`
             <button disabled part=arr-adder class="arr adder" data-d=1>+array</button>
             <p-e on=click to-host prop=arrCounter val=target.dataset.d parse-val-as=int></p-e>
             <button disabled id=copy class=action part=copy-to-clipboard title="Copy to Clipboard"></button>
-            <p-m on=click to-host prop=copyToClipboard val=target.title></p-m>
+            <p-u on=click to-host fn=copyToClipboard val=target.title></p-u>
             <button disabled id=expand-all class=action part=expand-all title="Expand All" aria-label="Expand All"></button>
             <tran-sister on=click transform='{
                 ":host": [{"collapseAll": false, "expandAll": true, "open": true}]
