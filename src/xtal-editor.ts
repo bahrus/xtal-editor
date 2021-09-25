@@ -38,13 +38,13 @@ const mainTemplate = tm.html`
         </div>
         <pass-prop observe-host on=readOnly vft=readOnly to=[-data-ro] as=str-attr m=1></pass-prop>
         <div part=child-inserters class="nonPrimitive child-inserters" data-open=false -data-ro>
-            <button disabled part=object-adder class="object adder" data-d=1>add object</button>
+            <button disabled part=object-adder class="object adder" data-d=1>+object</button>
             <p-e on=click to-host prop=objCounter val=target.dataset.d parse-val-as=int></p-e>
-            <button disabled part=string-adder class="string adder" data-d=1>add string</button>
+            <button disabled part=string-adder class="string adder" data-d=1>+string</button>
             <p-e on=click to-host prop=strCounter val=target.dataset.d parse-val-as=int></p-e>
-            <button disabled part=bool-adder class="bool adder" data-d=1>add bool</button>
+            <button disabled part=bool-adder class="bool adder" data-d=1>+bool</button>
             <p-e on=click to-host prop=boolCounter val=target.dataset.d parse-val-as=int></p-e>
-            <button disabled part=number-adder class="number adder" data-d=1>add number</button>
+            <button disabled part=number-adder class="number adder" data-d=1>+number</button>
             <p-e on=click to-host prop=numCounter val=target.dataset.d parse-val-as=int></p-e>
             <button disabled id=copy class=action part=copy-to-clipboard title="Copy to Clipboard"></button>
             <p-m on=click to-host prop=copyToClipboard val=target.title></p-m>
