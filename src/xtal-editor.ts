@@ -11,12 +11,12 @@ import('tran-sister/tran-sister.js');
 // const style = await import('./theme.css', {
 //     assert: { type: 'css' }
 // });
-// const splitPath = import.meta.url.split('/');
-// splitPath.pop();
-// const rel = splitPath.join('/');
-// const cssPath = rel + '/theme.css';
+const splitPath = import.meta.url.split('/');
+splitPath.pop();
+const rel = splitPath.join('/');
+const cssPath = rel + '/theme.css';
 
-const cssPath = 'https://unpkg.com/xtal-editor@0.0.58/src/theme.css'
+//const cssPath = 'https://unpkg.com/xtal-editor@0.0.58/src/theme.css'
 const mainTemplate = tm.html`
 <link rel=stylesheet href=${cssPath}>
 <slot part=slot name=initVal></slot>
@@ -46,7 +46,7 @@ const mainTemplate = tm.html`
             <p-e on=click to-host prop=boolCounter val=target.dataset.d parse-val-as=int></p-e>
             <button disabled part=number-adder class="number adder" data-d=1>+number</button>
             <p-e on=click to-host prop=numCounter val=target.dataset.d parse-val-as=int></p-e>
-            <button disabled part=array-adder class="array adder" data-d=1>+array</button>
+            <button disabled part=arr-adder class="arr adder" data-d=1>+array</button>
             <p-e on=click to-host prop=arrCounter val=target.dataset.d parse-val-as=int></p-e>
             <button disabled id=copy class=action part=copy-to-clipboard title="Copy to Clipboard"></button>
             <p-m on=click to-host prop=copyToClipboard val=target.title></p-m>
@@ -282,7 +282,7 @@ export class XtalEditorCore extends HTMLElement implements XtalEditorActions{
             }
         }
         return {
-            value: newObj,//JSON.stringify(newObj),
+            value: newObj,
             internalUpdateCount: this.internalUpdateCount + 1,
             open: true,
         };

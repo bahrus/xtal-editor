@@ -31,8 +31,8 @@ slot{
     background-color: #C15000;
 }
 .editor{
-    --obj-key-bg: rgb(225, 112, 0);
-    --array-key-bg: rgb(45, 91, 137);
+    --obj-key-bg: #e17000;
+    --array-key-bg: #2d5b89;
     --array-key-color: #D2A476;
     --obj-even-level-editor-bg: #F1E090;
     --obj-odd-level-editor-bg: #FFEFCC;
@@ -40,7 +40,8 @@ slot{
     --array-odd-level-editor-bg: #D9DBDD;
     --string-adder-bg: #007408;
     --bool-adder-bg: #516600;
-    --num-adder-bg:#497B8D
+    --num-adder-bg:#497B8D;
+    --arr-adder-bg: #2d5b89;
 }
 .editor[data-type="object"][data-even-level="true"]{
     background-color: var(--obj-even-level-editor-bg);
@@ -66,6 +67,9 @@ slot{
 }
 .number.adder{
     background-color: var(--num-adder-bg);
+}
+.arr.adder{
+    background-color: var(--arr-adder-bg);
 }
 .adder{
     color: white;
