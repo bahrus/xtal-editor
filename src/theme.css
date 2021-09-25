@@ -122,26 +122,50 @@ slot{
     width: 20px;
 }
 @media only screen and (max-width: 1000px) {
-    .field{
+    [data-ro="false"] .field{
         flex-direction: column;
     }
-    .child-inserters{
+    [data-ro="false"] .child-inserters{
         justify-content: flex-end;
         width: 100%;
     }
-    .text-editing{
+    [data-ro="false"] .text-editing{
         width: 100%;
     }
 }
 @media only screen and (min-width: 1001px){
-    .child-inserters{
+    [data-ro="false"] .child-inserters{
         justify-content: center;
     }
-    .field{
+    [data-ro="false"] .field{
         width: 100%;
         justify-content: space-evenly;
     }
-    .text-editing{
+    [data-ro="false"] .text-editing{
+        flex-grow: 1;
+    }
+}
+@media only screen and (max-width: 500px) {
+    [data-ro="true"] .field{
+        flex-direction: column;
+    }
+    [data-ro="true"] .child-inserters{
+        justify-content: flex-end;
+        width: 100%;
+    }
+    [data-ro="true"] .text-editing{
+        width: 100%;
+    }
+}
+@media only screen and (min-width: 501px){
+    [data-ro="true"] .child-inserters{
+        justify-content: center;
+    }
+    [data-ro="true"] .field{
+        width: 100%;
+        justify-content: space-evenly;
+    }
+    [data-ro="true"] .text-editing{
         flex-grow: 1;
     }
 }
