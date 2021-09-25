@@ -29,10 +29,10 @@ const mainTemplate = tm.html `
             <p-u on=click to-host fn=toggleOpen val=target.textContent></p-u>
             <pass-prop observe-host on=readOnly vft=readOnly to=[-read-only] m=2></pass-prop>
             <input aria-label=key part=key class=key -value -read-only>
-            <p-m to-host on=change prop=handleKeyChange></p-m>
+            <p-u to-host on=change fn=handleKeyChange></p-u>
             <input disabled=2 aria-label=value part=value -read-only class=value>
-            <p-m to-host on=change prop=handleValueChange val=target.value></p-m>
-            <p-m to-host on=focus prop=handleValueFocus val=target></p-m>
+            <p-u to-host on=change fn=handleValueChange val=target.value></p-u>
+            <p-u to-host on=focus fn=handleValueFocus val=target></p-u>
         </div>
         <pass-prop observe-host on=readOnly vft=readOnly to=[-data-ro] as=str-attr m=1></pass-prop>
         <div part=child-inserters class="nonPrimitive child-inserters" data-open=false -data-ro>
