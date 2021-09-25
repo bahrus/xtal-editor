@@ -25,7 +25,7 @@
   "types": "types.d.ts",
   "dependencies": {
     "ib-id": "0.0.79",
-    "pass-down": "0.0.116",
+    "pass-down": "0.0.117",
     "pass-up": "0.0.23",
     "plus-equals": "0.0.8",
     "pass-prop": "0.0.37",

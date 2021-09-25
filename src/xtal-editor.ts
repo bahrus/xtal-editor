@@ -20,7 +20,7 @@ const mainTemplate = tm.html`
 <link rel=stylesheet href=${cssPath}>
 <slot part=slot name=initVal></slot>
 <p-d observe-host vft=hasParent to=[-data-has-parent] as=str-attr m=1></p-d>
-<pass-prop observe-host on=readOnly vft=readOnly to=[-data-ro] as=str-attr m=2></pass-prop>
+<p-d observe-host on-prop=readOnly vft=readOnly to=[-data-ro] as=str-attr m=2></p-d>
 <div class="remove" part=remove -data-ro -data-has-parent data-has-parent=true></div>
 <div data-type=string part=editor class=editor -data-ro>
     <div part=field class=field>
