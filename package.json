@@ -27,12 +27,11 @@
     "ib-id": "0.0.79",
     "pass-down": "0.0.117",
     "pass-up": "0.0.23",
-    "plus-equals": "0.0.8",
+    "plus-equals": "0.0.9",
     "xtal-element": "0.0.442",
     "trans-render": "0.0.413",
-    "tran-sister": "0.0.4",
-    "xtal-shell": "0.0.25",
-    "on-to-me": "0.0.43"
+    "tran-sister": "0.0.5",
+    "xtal-shell": "0.0.25"
   },
   "devDependencies": {
     "@skypack/package-check": "0.2.2",
