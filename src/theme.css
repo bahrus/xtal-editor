@@ -10,6 +10,11 @@ slot{
     display: none;
 }
 
+@media (prefers-color-scheme: dark) {
+    :host{
+        background-color: black;
+    }
+}
 
 .expander{
     width: fit-content;
