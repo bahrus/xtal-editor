@@ -19,8 +19,8 @@ const cssPath = rel + '/theme.css';
 const mainTemplate = tm.html`
 <link rel=stylesheet href=${cssPath}>
 <slot part=slot name=initVal></slot>
-<p-d observe-host vft=hasParent to=[-data-has-parent] as=str-attr m=1></p-d>
-<p-d observe-host on-prop=readOnly vft=readOnly to=[-data-ro] as=str-attr m=2></p-d>
+    <p-d observe-host vft=hasParent to=[-data-has-parent] as=str-attr m=1></p-d>
+    <p-d observe-host on-prop=readOnly vft=readOnly to=[-data-ro] as=str-attr m=2></p-d>
 <header class=remove part=remove -data-ro -data-has-parent data-has-parent=true>
     <!-- <xtal-side-nav>
         <button class=view-selector part=view-selector></button>
@@ -29,21 +29,22 @@ const mainTemplate = tm.html`
 </header>
 <!-- <if-diff class=text-view -iff>
     <template> -->
-        <div data-type=string part=editor class=editor -data-ro>
+            <p-d observe-host on-prop=type vft=type to=[-data-type] as=str-attr m=1></p-d>
+        <div -data-type part=editor class=editor -data-ro>
             <div part=field class=field>
                 <div class=text-editing>
-                    <p-d observe-host vft=open to=[-text-content] true-val=- false-val=+ m=1></p-d>
+                        <p-d observe-host vft=open to=[-text-content] true-val=- false-val=+ m=1></p-d>
                     <button disabled part=expander class="expander nonPrimitive" -text-content></button>
-                    <p-u on=click to-host toggle-prop prop=open val=target.textContent></p-u>
-                    <p-d observe-host on-prop=readOnly vft=readOnly to=[-read-only] m=2></p-d>
-                    <p-d observe-host on-prop=key vft=key to=[-value] m=1></p-d>
+                        <p-u on=click to-host toggle-prop prop=open val=target.textContent></p-u>
+                        <p-d observe-host on-prop=readOnly vft=readOnly to=[-read-only] m=2></p-d>
+                        <p-d observe-host on-prop=key vft=key to=[-value] m=1></p-d>
                     <input aria-label=key part=key class=key -value -read-only>
-                    <p-u to-host on=change fn=handleKeyChange></p-u>
-                    <p-d observe-host on-prop=value vft=value to=[-value] parse-val-as=string m=1></p-d>
+                        <p-u to-host on=change fn=handleKeyChange></p-u>
+                        <p-d observe-host on-prop=value vft=value to=[-value] parse-val-as=string m=1></p-d>
                     <input disabled=3 aria-label=value part=value -read-only class=value -value>
-                    <p-u on-prop=disabled to-host fn=setFocus vft=disabled></p-u>
-                    <p-u to-host on=change fn=handleValueChange val=target.value></p-u>
-                    <p-u to-host on=focus fn=handleValueFocus val=target></p-u>
+                        <p-u on-prop=disabled to-host fn=setFocus vft=disabled></p-u>
+                        <p-u to-host on=change fn=handleValueChange val=target.value></p-u>
+                        <p-u to-host on=focus fn=handleValueFocus val=target></p-u>
                 </div>
                 <p-d observe-host on-prop=readOnly vft=readOnly to=[-data-ro] as=str-attr m=1></p-d>
                 <div part=child-inserters class="nonPrimitive child-inserters" data-open=false -data-ro>
@@ -97,8 +98,7 @@ const mainTemplate = tm.html`
 const initTransform = {
     slot: [{}, {slotchange: 'handleSlotChange'}],
 }
-//const updateKey = ({key}: X) => [{value: key}];
-const updateType = ({type}: X) => [{dataset: {type: type}}];
+//const updateType = ({type}: X) => [{dataset: {type: type}}];
 
 const tagName = 'xtal-editor';
 /**
@@ -139,7 +139,7 @@ const tagName = 'xtal-editor';
  */
 export class XtalEditorCore extends HTMLElement implements XtalEditorActions{
     self = this;
-    updateType = updateType;
+    //updateType = updateType;
     //updateKey = updateKey;
     parseValue({value}: this){
         let parsedObject = value;
@@ -366,7 +366,6 @@ export class XtalEditorCore extends HTMLElement implements XtalEditorActions{
                 target.focus();
             }, 16);
         }
-        //console.log(match, isDisabled, e);
     }
 }
 
@@ -407,6 +406,7 @@ const xe = new XE<XtalEditorProps & TemplMgmtProps, XtalEditorActions>({
             initTransform: initTransform,
             readOnly: false,
             textView: false,
+            type: 'string',
         },
         propInfo:{
             keyParts: isRef,
@@ -434,14 +434,10 @@ const xe = new XE<XtalEditorProps & TemplMgmtProps, XtalEditorActions>({
             parseValue:{
                 ifAllOf: ['value']
             },
-            // updateKey: {
-            //     ifAllOf:['key', 'keyParts'],
-            //     target: 'keyParts'
+            // updateType:{
+            //     ifAllOf: ['type', 'editorParts'],
+            //     target: 'editorParts',
             // },
-            updateType:{
-                ifAllOf: ['type', 'editorParts'],
-                target: 'editorParts',
-            },
             setChildValues:{
                 ifAllOf: ['parsedObject', 'open']
             },
