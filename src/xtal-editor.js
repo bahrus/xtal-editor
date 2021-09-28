@@ -25,8 +25,8 @@ const mainTemplate = tm.html `
     </xtal-side-nav> -->
     
 </header>
-<!-- <if-diff class=text-view -iff>
-    <template> -->
+<if-diff iff class=text-view -iff>
+    <template>
             <p-d observe-host on-prop=type vft=type to=[-data-type] as=str-attr m=1></p-d>
         <div -data-type part=editor class=editor -data-ro>
             <div part=field class=field>
@@ -47,17 +47,17 @@ const mainTemplate = tm.html `
                 <p-d observe-host on-prop=readOnly vft=readOnly to=[-data-ro] as=str-attr m=1></p-d>
                 <div part=child-inserters class="nonPrimitive child-inserters" data-open=false -data-ro>
                     <button disabled part=object-adder class="object adder" data-d=1>+object</button>
-                    <p-u on=click to-host prop=objCounter plus-eq val=target.dataset.d parse-val-as=int></p-u>
+                        <p-u on=click to-host prop=objCounter plus-eq val=target.dataset.d parse-val-as=int></p-u>
                     <button disabled part=string-adder class="string adder" data-d=1>+string</button>
-                    <p-u on=click to-host prop=strCounter plus-eq val=target.dataset.d parse-val-as=int></p-u>
+                        <p-u on=click to-host prop=strCounter plus-eq val=target.dataset.d parse-val-as=int></p-u>
                     <button disabled part=bool-adder class="bool adder" data-d=1>+bool</button>
-                    <p-u on=click to-host prop=boolCounter plus-eq val=target.dataset.d parse-val-as=int></p-u>
+                        <p-u on=click to-host prop=boolCounter plus-eq val=target.dataset.d parse-val-as=int></p-u>
                     <button disabled part=number-adder class="number adder" data-d=1>+number</button>
-                    <p-u on=click to-host prop=numCounter plus-eq val=target.dataset.d parse-val-as=int></p-u>
+                        <p-u on=click to-host prop=numCounter plus-eq val=target.dataset.d parse-val-as=int></p-u>
                     <button disabled part=arr-adder class="arr adder" data-d=1>+array</button>
-                    <p-u on=click to-host prop=arrCounter plus-eq val=target.dataset.d parse-val-as=int></p-u>
+                        <p-u on=click to-host prop=arrCounter plus-eq val=target.dataset.d parse-val-as=int></p-u>
                     <button disabled id=copy class=action part=copy-to-clipboard title="Copy to Clipboard"></button>
-                    <p-u on=click to-host fn=copyToClipboard val=target.title></p-u>
+                        <p-u on=click to-host fn=copyToClipboard val=target.title></p-u>
                     <button disabled id=expand-all class=action part=expand-all title="Expand All" aria-label="Expand All"></button>
                     <tran-sister on=click transform='{
                         ":host": [{"collapseAll": false, "expandAll": true, "open": true}]
@@ -73,13 +73,13 @@ const mainTemplate = tm.html `
             <p-d observe-host vft=open to=[-data-open] as=str-attr m=1></p-d>
             <div part=child-editors class="nonPrimitive child-editors" -data-open data-open=false>
                 <template data-from=child-editors-list>
-                    <p-d observe-host vft=expandAll to=[-open] m=1></p-d>
-                    <p-d observe-host vft=expandAll to=[-expand-all] m=1></p-d>
-                    <p-d observe-host on-prop=readOnly vft=readOnly to=[-read-only]></p-d>
+                        <p-d observe-host vft=expandAll to=[-open] m=1></p-d>
+                        <p-d observe-host vft=expandAll to=[-expand-all] m=1></p-d>
+                        <p-d observe-host on-prop=readOnly vft=readOnly to=[-read-only]></p-d>
                     <xtal-editor -open has-parent -expand-all -read-only></xtal-editor>
-                    <p-u on=internal-update-count-changed to-host prop=upwardDataFlowInProgress parse-val-as=truthy></p-u>
+                        <p-u on=internal-update-count-changed to-host prop=upwardDataFlowInProgress parse-val-as=truthy></p-u>
                 </template>
-                <p-d observe-host vft=childValues to=[-list] m=1></p-d>
+                    <p-d observe-host vft=childValues to=[-list] m=1></p-d>
                 <i-bid -list id=child-editors-list updatable
                     transform='{
                         "xtal-editor":[{"value": "value", "key": "key"}]
@@ -88,8 +88,8 @@ const mainTemplate = tm.html `
             </div>
             
         </div>
-    <!-- </template>
-</if-diff> -->
+    </template>
+</if-diff>
 
 `;
 const initTransform = {
