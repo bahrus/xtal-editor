@@ -391,7 +391,6 @@ const xe = new XE({
             textView: false,
         },
         propInfo: {
-            expanderParts: isRef,
             keyParts: isRef,
             valueParts: isRef,
             slotElements: isRef,

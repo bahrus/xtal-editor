@@ -409,7 +409,6 @@ const xe = new XE<XtalEditorProps & TemplMgmtProps, XtalEditorActions>({
             textView: false,
         },
         propInfo:{
-            expanderParts: isRef,
             keyParts: isRef,
             valueParts: isRef,
             slotElements: isRef,
