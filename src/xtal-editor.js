@@ -29,7 +29,7 @@ const mainTemplate = tm.html `
         <div class=text-editing>
             <p-d observe-host vft=open to=[-text-content] true-val=- false-val=+ m=1></p-d>
             <button disabled part=expander class="expander nonPrimitive" -text-content></button>
-            <p-u on=click to-host fn=toggleOpen val=target.textContent></p-u>
+            <p-u on=click to-host toggle-prop prop=open val=target.textContent></p-u>
             <p-d observe-host on-prop=readOnly vft=readOnly to=[-read-only] m=2></p-d>
             <input aria-label=key part=key class=key -value -read-only>
             <p-u to-host on=change fn=handleKeyChange></p-u>
@@ -339,9 +339,6 @@ export class XtalEditorCore extends HTMLElement {
             }
         }
     }
-    toggleOpen = (e) => {
-        this.open = !this.open;
-    };
     setFocus(match, isDisabled, e) {
         if (!isDisabled && !this.readOnly) {
             const target = e.target;
