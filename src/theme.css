@@ -84,15 +84,16 @@ slot{
     border: none;
 }
 .remove{
-    padding: 2px 4px;
+    display: flex;
+    justify-content: space-between;
+    /* padding: 0px 4px;
     -webkit-border-radius: 5px;
     -moz-border-radius: 5px;
-    border-radius: 5px;
+    border-radius: 5px; */
     color: white;
     font-weight: bold;
     text-shadow: 1px 1px 1px black;
     background-color: black;
-    
 }
 .remove[data-has-parent="true"]{
     display:none;
@@ -109,7 +110,9 @@ slot{
 .remove.editKey::after{
     content: "Remove item by deleting the property name.";
 }
-
+xtal-side-nav::part(opener){
+    font-size:12px;
+}
 .field{
     display:flex;
     flex-direction:row;
@@ -128,6 +131,9 @@ slot{
     background-repeat:no-repeat;
     background-position-y:center;
     height: 22px;
+}
+xtal-side-nav{
+    display: inline;
 }
 #collapse-all{
     background-image: url(https://cdn.jsdelivr.net/npm/xtal-editor/src/arrows-collapse.svg);

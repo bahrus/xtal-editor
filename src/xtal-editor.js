@@ -18,12 +18,12 @@ const mainTemplate = tm.html `
 <slot part=slot name=initVal></slot>
 <p-d observe-host vft=hasParent to=[-data-has-parent] as=str-attr m=1></p-d>
 <p-d observe-host on-prop=readOnly vft=readOnly to=[-data-ro] as=str-attr m=2></p-d>
-<span class=remove part=remove -data-ro -data-has-parent data-has-parent=true>
+<header class=remove part=remove -data-ro -data-has-parent data-has-parent=true>
     <xtal-side-nav>
         <button class=view-selector part=view-selector></button>
     </xtal-side-nav>
     
-</span>
+</header>
 <div data-type=string part=editor class=editor -data-ro>
     <div part=field class=field>
         <div class=text-editing>
