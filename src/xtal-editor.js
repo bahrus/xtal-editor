@@ -2,9 +2,9 @@ import { XE } from 'xtal-element/src/XE.js';
 import { tm } from 'trans-render/lib/mixins/TemplMgmtWithPEST.js';
 import('pass-down/p-d.js');
 import('pass-up/p-u.js');
-import('plus-equals/p-e.js');
 import('ib-id/i-bid.js');
 import('tran-sister/tran-sister.js');
+import('xtal-side-nav/xtal-side-nav.js');
 // const style = await import('./theme.css', {
 //     assert: { type: 'css' }
 // });
@@ -18,7 +18,12 @@ const mainTemplate = tm.html `
 <slot part=slot name=initVal></slot>
 <p-d observe-host vft=hasParent to=[-data-has-parent] as=str-attr m=1></p-d>
 <p-d observe-host on-prop=readOnly vft=readOnly to=[-data-ro] as=str-attr m=2></p-d>
-<div class="remove" part=remove -data-ro -data-has-parent data-has-parent=true></div>
+<span class=remove part=remove -data-ro -data-has-parent data-has-parent=true>
+    <xtal-side-nav>
+        <button class=view-selector part=view-selector></button>
+    </xtal-side-nav>
+    
+</span>
 <div data-type=string part=editor class=editor -data-ro>
     <div part=field class=field>
         <div class=text-editing>
@@ -36,15 +41,15 @@ const mainTemplate = tm.html `
         <p-d observe-host on-prop=readOnly vft=readOnly to=[-data-ro] as=str-attr m=1></p-d>
         <div part=child-inserters class="nonPrimitive child-inserters" data-open=false -data-ro>
             <button disabled part=object-adder class="object adder" data-d=1>+object</button>
-            <p-e on=click to-host prop=objCounter val=target.dataset.d parse-val-as=int></p-e>
+            <p-u on=click to-host prop=objCounter plus-eq val=target.dataset.d parse-val-as=int></p-u>
             <button disabled part=string-adder class="string adder" data-d=1>+string</button>
-            <p-e on=click to-host prop=strCounter val=target.dataset.d parse-val-as=int></p-e>
+            <p-u on=click to-host prop=strCounter plus-eq val=target.dataset.d parse-val-as=int></p-u>
             <button disabled part=bool-adder class="bool adder" data-d=1>+bool</button>
-            <p-e on=click to-host prop=boolCounter val=target.dataset.d parse-val-as=int></p-e>
+            <p-u on=click to-host prop=boolCounter plus-eq val=target.dataset.d parse-val-as=int></p-u>
             <button disabled part=number-adder class="number adder" data-d=1>+number</button>
-            <p-e on=click to-host prop=numCounter val=target.dataset.d parse-val-as=int></p-e>
+            <p-u on=click to-host prop=numCounter plus-eq val=target.dataset.d parse-val-as=int></p-u>
             <button disabled part=arr-adder class="arr adder" data-d=1>+array</button>
-            <p-e on=click to-host prop=arrCounter val=target.dataset.d parse-val-as=int></p-e>
+            <p-u on=click to-host prop=arrCounter plus-eq val=target.dataset.d parse-val-as=int></p-u>
             <button disabled id=copy class=action part=copy-to-clipboard title="Copy to Clipboard"></button>
             <p-u on=click to-host fn=copyToClipboard val=target.title></p-u>
             <button disabled id=expand-all class=action part=expand-all title="Expand All" aria-label="Expand All"></button>
