@@ -106,7 +106,6 @@ export interface XtalEditorActions{
     // }
 
     onConnected(self: this):void;
-    //updateType:(self:this)=>any;
     syncLightChild(self:this):void; 
 }
 

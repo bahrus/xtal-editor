@@ -98,7 +98,6 @@ const mainTemplate = tm.html`
 const initTransform = {
     slot: [{}, {slotchange: 'handleSlotChange'}],
 }
-//const updateType = ({type}: X) => [{dataset: {type: type}}];
 
 const tagName = 'xtal-editor';
 /**
@@ -139,8 +138,6 @@ const tagName = 'xtal-editor';
  */
 export class XtalEditorCore extends HTMLElement implements XtalEditorActions{
     self = this;
-    //updateType = updateType;
-    //updateKey = updateKey;
     parseValue({value}: this){
         let parsedObject = value;
         if(value !==  undefined){
@@ -434,10 +431,6 @@ const xe = new XE<XtalEditorProps & TemplMgmtProps, XtalEditorActions>({
             parseValue:{
                 ifAllOf: ['value']
             },
-            // updateType:{
-            //     ifAllOf: ['type', 'editorParts'],
-            //     target: 'editorParts',
-            // },
             setChildValues:{
                 ifAllOf: ['parsedObject', 'open']
             },
