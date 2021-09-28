@@ -34,9 +34,10 @@ const mainTemplate = tm.html `
                     <button disabled part=expander class="expander nonPrimitive" -text-content></button>
                     <p-u on=click to-host toggle-prop prop=open val=target.textContent></p-u>
                     <p-d observe-host on-prop=readOnly vft=readOnly to=[-read-only] m=2></p-d>
+                    <p-d observe-host on-prop=key vft=key to=[-value] m=1></p-d>
                     <input aria-label=key part=key class=key -value -read-only>
                     <p-u to-host on=change fn=handleKeyChange></p-u>
-                    <p-d observe-host on-prop=value vft=value to=[-value] parse-val-as=string></p-d>
+                    <p-d observe-host on-prop=value vft=value to=[-value] parse-val-as=string m=1></p-d>
                     <input disabled=3 aria-label=value part=value -read-only class=value -value>
                     <p-u on-prop=disabled to-host fn=setFocus vft=disabled></p-u>
                     <p-u to-host on=change fn=handleValueChange val=target.value></p-u>
@@ -93,8 +94,7 @@ const mainTemplate = tm.html `
 const initTransform = {
     slot: [{}, { slotchange: 'handleSlotChange' }],
 };
-//const updateValue = ({value}: X) => [{value: typeof value === 'string' ? value : JSON.stringify(value)}];
-const updateKey = ({ key }) => [{ value: key }];
+//const updateKey = ({key}: X) => [{value: key}];
 const updateType = ({ type }) => [{ dataset: { type: type } }];
 const tagName = 'xtal-editor';
 /**
@@ -135,9 +135,8 @@ const tagName = 'xtal-editor';
  */
 export class XtalEditorCore extends HTMLElement {
     self = this;
-    //updateValue = updateValue;
     updateType = updateType;
-    updateKey = updateKey;
+    //updateKey = updateKey;
     parseValue({ value }) {
         let parsedObject = value;
         if (value !== undefined) {
@@ -417,14 +416,9 @@ const xe = new XE({
             parseValue: {
                 ifAllOf: ['value']
             },
-            updateKey: {
-                ifAllOf: ['key', 'keyParts'],
-                target: 'keyParts'
-            },
-            // updateValue:{
-            //     ifKeyIn: ['value'],
-            //     ifAllOf: ['valueParts'],
-            //     target: 'valueParts'
+            // updateKey: {
+            //     ifAllOf:['key', 'keyParts'],
+            //     target: 'keyParts'
             // },
             updateType: {
                 ifAllOf: ['type', 'editorParts'],
