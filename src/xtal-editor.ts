@@ -27,7 +27,8 @@ const mainTemplate = tm.html`
     </xtal-side-nav> -->
     
 </header>
-<if-diff iff class=text-view -iff>
+    <p-d observe-host on-prop=fieldView to=.text-view[-iff] vft=fieldView m=1></p-d>
+<if-diff class=text-view -iff>
     <template>
             <p-d observe-host on-prop=type vft=type to=[-data-type] as=str-attr m=1></p-d>
         <div -data-type part=editor class=editor -data-ro>
@@ -403,13 +404,11 @@ const xe = new XE<XtalEditorProps & TemplMgmtProps, XtalEditorActions>({
             initTransform: initTransform,
             readOnly: false,
             textView: false,
+            fieldView: true,
             type: 'string',
         },
         propInfo:{
-            //keyParts: isRef,
-            //valueParts: isRef,
             slotElements: isRef,
-            //editorParts: isRef,
             childValues:{
                 parse: false,
                 notify: {
