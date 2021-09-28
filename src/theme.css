@@ -105,7 +105,7 @@ slot{
     content: "JSON Viewer";
 }
 .view-selector::after{
-    content: "Text"
+    content: "Text View"
 }
 .remove.editKey::after{
     content: "Remove item by deleting the property name.";

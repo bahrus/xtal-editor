@@ -68,6 +68,8 @@ export interface XtalEditorProps{
     removeParts: NodeListOf<HTMLButtonElement>;
     editorParts: NodeListOf<HTMLDivElement>;
     readOnly: boolean;
+    textView: boolean;
+    fieldView: boolean;
 }
 
 export interface XtalEditorActions{

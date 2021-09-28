@@ -6,6 +6,7 @@ import('pass-up/p-u.js');
 import('ib-id/i-bid.js');
 import('tran-sister/tran-sister.js');
 import('xtal-side-nav/xtal-side-nav.js');
+import('if-diff/if-diff.js');
 // const style = await import('./theme.css', {
 //     assert: { type: 'css' }
 // });
@@ -21,69 +22,74 @@ const mainTemplate = tm.html`
 <p-d observe-host vft=hasParent to=[-data-has-parent] as=str-attr m=1></p-d>
 <p-d observe-host on-prop=readOnly vft=readOnly to=[-data-ro] as=str-attr m=2></p-d>
 <header class=remove part=remove -data-ro -data-has-parent data-has-parent=true>
-    <xtal-side-nav>
+    <!-- <xtal-side-nav>
         <button class=view-selector part=view-selector></button>
-    </xtal-side-nav>
+    </xtal-side-nav> -->
     
 </header>
-<div data-type=string part=editor class=editor -data-ro>
-    <div part=field class=field>
-        <div class=text-editing>
-            <p-d observe-host vft=open to=[-text-content] true-val=- false-val=+ m=1></p-d>
-            <button disabled part=expander class="expander nonPrimitive" -text-content></button>
-            <p-u on=click to-host toggle-prop prop=open val=target.textContent></p-u>
-            <p-d observe-host on-prop=readOnly vft=readOnly to=[-read-only] m=2></p-d>
-            <input aria-label=key part=key class=key -value -read-only>
-            <p-u to-host on=change fn=handleKeyChange></p-u>
-            <input disabled=3 aria-label=value part=value -read-only class=value>
-            <p-u on-prop=disabled to-host fn=setFocus vft=disabled></p-u>
-            <p-u to-host on=change fn=handleValueChange val=target.value></p-u>
-            <p-u to-host on=focus fn=handleValueFocus val=target></p-u>
-        </div>
-        <p-d observe-host on-prop=readOnly vft=readOnly to=[-data-ro] as=str-attr m=1></p-d>
-        <div part=child-inserters class="nonPrimitive child-inserters" data-open=false -data-ro>
-            <button disabled part=object-adder class="object adder" data-d=1>+object</button>
-            <p-u on=click to-host prop=objCounter plus-eq val=target.dataset.d parse-val-as=int></p-u>
-            <button disabled part=string-adder class="string adder" data-d=1>+string</button>
-            <p-u on=click to-host prop=strCounter plus-eq val=target.dataset.d parse-val-as=int></p-u>
-            <button disabled part=bool-adder class="bool adder" data-d=1>+bool</button>
-            <p-u on=click to-host prop=boolCounter plus-eq val=target.dataset.d parse-val-as=int></p-u>
-            <button disabled part=number-adder class="number adder" data-d=1>+number</button>
-            <p-u on=click to-host prop=numCounter plus-eq val=target.dataset.d parse-val-as=int></p-u>
-            <button disabled part=arr-adder class="arr adder" data-d=1>+array</button>
-            <p-u on=click to-host prop=arrCounter plus-eq val=target.dataset.d parse-val-as=int></p-u>
-            <button disabled id=copy class=action part=copy-to-clipboard title="Copy to Clipboard"></button>
-            <p-u on=click to-host fn=copyToClipboard val=target.title></p-u>
-            <button disabled id=expand-all class=action part=expand-all title="Expand All" aria-label="Expand All"></button>
-            <tran-sister on=click transform='{
-                ":host": [{"collapseAll": false, "expandAll": true, "open": true}]
-            }'></tran-sister>
-            <button disabled id=collapse-all class=action part=collapse-all title="Collapse All" aria-label="Collapse All"></button>
-            <tran-sister on=click transform='{
-                ":host": [{"collapseAll": true, "expandAll": false, "open": false}]
-            }'></tran-sister>
+<!-- <if-diff class=text-view -iff>
+    <template> -->
+        <div data-type=string part=editor class=editor -data-ro>
+            <div part=field class=field>
+                <div class=text-editing>
+                    <p-d observe-host vft=open to=[-text-content] true-val=- false-val=+ m=1></p-d>
+                    <button disabled part=expander class="expander nonPrimitive" -text-content></button>
+                    <p-u on=click to-host toggle-prop prop=open val=target.textContent></p-u>
+                    <p-d observe-host on-prop=readOnly vft=readOnly to=[-read-only] m=2></p-d>
+                    <input aria-label=key part=key class=key -value -read-only>
+                    <p-u to-host on=change fn=handleKeyChange></p-u>
+                    <input disabled=3 aria-label=value part=value -read-only class=value>
+                    <p-u on-prop=disabled to-host fn=setFocus vft=disabled></p-u>
+                    <p-u to-host on=change fn=handleValueChange val=target.value></p-u>
+                    <p-u to-host on=focus fn=handleValueFocus val=target></p-u>
+                </div>
+                <p-d observe-host on-prop=readOnly vft=readOnly to=[-data-ro] as=str-attr m=1></p-d>
+                <div part=child-inserters class="nonPrimitive child-inserters" data-open=false -data-ro>
+                    <button disabled part=object-adder class="object adder" data-d=1>+object</button>
+                    <p-u on=click to-host prop=objCounter plus-eq val=target.dataset.d parse-val-as=int></p-u>
+                    <button disabled part=string-adder class="string adder" data-d=1>+string</button>
+                    <p-u on=click to-host prop=strCounter plus-eq val=target.dataset.d parse-val-as=int></p-u>
+                    <button disabled part=bool-adder class="bool adder" data-d=1>+bool</button>
+                    <p-u on=click to-host prop=boolCounter plus-eq val=target.dataset.d parse-val-as=int></p-u>
+                    <button disabled part=number-adder class="number adder" data-d=1>+number</button>
+                    <p-u on=click to-host prop=numCounter plus-eq val=target.dataset.d parse-val-as=int></p-u>
+                    <button disabled part=arr-adder class="arr adder" data-d=1>+array</button>
+                    <p-u on=click to-host prop=arrCounter plus-eq val=target.dataset.d parse-val-as=int></p-u>
+                    <button disabled id=copy class=action part=copy-to-clipboard title="Copy to Clipboard"></button>
+                    <p-u on=click to-host fn=copyToClipboard val=target.title></p-u>
+                    <button disabled id=expand-all class=action part=expand-all title="Expand All" aria-label="Expand All"></button>
+                    <tran-sister on=click transform='{
+                        ":host": [{"collapseAll": false, "expandAll": true, "open": true}]
+                    }'></tran-sister>
+                    <button disabled id=collapse-all class=action part=collapse-all title="Collapse All" aria-label="Collapse All"></button>
+                    <tran-sister on=click transform='{
+                        ":host": [{"collapseAll": true, "expandAll": false, "open": false}]
+                    }'></tran-sister>
 
+                </div>
+                
+            </div>
+            <p-d observe-host vft=open to=[-data-open] as=str-attr m=1></p-d>
+            <div part=child-editors class="nonPrimitive child-editors" -data-open data-open=false>
+                <template data-from=child-editors-list>
+                    <p-d observe-host vft=expandAll to=[-open] m=1></p-d>
+                    <p-d observe-host vft=expandAll to=[-expand-all] m=1></p-d>
+                    <p-d observe-host on-prop=readOnly vft=readOnly to=[-read-only]></p-d>
+                    <xtal-editor -open has-parent -expand-all -read-only></xtal-editor>
+                    <p-u on=internal-update-count-changed to-host prop=upwardDataFlowInProgress parse-val-as=truthy></p-u>
+                </template>
+                <p-d observe-host vft=childValues to=[-list] m=1></p-d>
+                <i-bid -list id=child-editors-list updatable
+                    transform='{
+                        "xtal-editor":[{"value": "value", "key": "key"}]
+                    }'
+                ></i-bid>
+            </div>
+            
         </div>
-        
-    </div>
-    <p-d observe-host vft=open to=[-data-open] as=str-attr m=1></p-d>
-    <div part=child-editors class="nonPrimitive child-editors" -data-open data-open=false>
-        <template data-from=child-editors-list>
-            <p-d observe-host vft=expandAll to=[-open] m=1></p-d>
-            <p-d observe-host vft=expandAll to=[-expand-all] m=1></p-d>
-            <p-d observe-host on-prop=readOnly vft=readOnly to=[-read-only]></p-d>
-            <xtal-editor -open has-parent -expand-all -read-only></xtal-editor>
-            <p-u on=internal-update-count-changed to-host prop=upwardDataFlowInProgress parse-val-as=truthy></p-u>
-        </template>
-        <p-d observe-host vft=childValues to=[-list] m=1></p-d>
-        <i-bid -list id=child-editors-list updatable
-            transform='{
-                  "xtal-editor":[{"value": "value", "key": "key"}]
-              }'
-        ></i-bid>
-    </div>
-    
-</div>
+    <!-- </template>
+</if-diff> -->
+
 `;
 
 const initTransform = {
@@ -400,6 +406,7 @@ const xe = new XE<XtalEditorProps & TemplMgmtProps, XtalEditorActions>({
             internalUpdateCount: 0,
             initTransform: initTransform,
             readOnly: false,
+            textView: false,
         },
         propInfo:{
             expanderParts: isRef,
@@ -424,6 +431,11 @@ const xe = new XE<XtalEditorProps & TemplMgmtProps, XtalEditorActions>({
             expandAll:notifyProp,
             collapseAll:notifyProp,
             internalUpdateCount:notifyProp,
+            textView:{
+                notify:{
+                    toggleTo: 'fieldView'
+                }
+            }
         },
         actions:{
             ...tm.doInitTransform,
