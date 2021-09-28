@@ -395,8 +395,6 @@ const xe = new XE({
             keyParts: isRef,
             valueParts: isRef,
             slotElements: isRef,
-            expandAllParts: isRef,
-            collapseAllParts: isRef,
             editorParts: isRef,
             childValues: {
                 parse: false,

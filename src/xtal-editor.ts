@@ -413,8 +413,6 @@ const xe = new XE<XtalEditorProps & TemplMgmtProps, XtalEditorActions>({
             keyParts: isRef,
             valueParts: isRef,
             slotElements: isRef,
-            expandAllParts: isRef,
-            collapseAllParts: isRef,
             editorParts: isRef,
             childValues:{
                 parse: false,
