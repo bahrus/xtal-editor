@@ -388,10 +388,10 @@ const xe = new XE({
             type: 'string',
         },
         propInfo: {
-            keyParts: isRef,
-            valueParts: isRef,
+            //keyParts: isRef,
+            //valueParts: isRef,
             slotElements: isRef,
-            editorParts: isRef,
+            //editorParts: isRef,
             childValues: {
                 parse: false,
                 notify: {
