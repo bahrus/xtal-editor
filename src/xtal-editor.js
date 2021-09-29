@@ -17,6 +17,7 @@ const cssPath = rel + '/theme.css';
 const mainTemplate = tm.html `
 <link rel=stylesheet href=${cssPath}>
 <slot part=slot name=initVal></slot>
+    <p-u on=slotchange vft=assignedNodes| to-host fn=handleSlotChange></p-u>
     <p-d observe-host vft=hasParent to=[-data-has-parent] as=str-attr m=1></p-d>
     <p-d observe-host on-prop=readOnly vft=readOnly to=[-data-ro] as=str-attr m=2></p-d>
 <header class=remove part=remove -data-ro -data-has-parent data-has-parent=true>
@@ -60,13 +61,13 @@ const mainTemplate = tm.html `
                     <button disabled id=copy class=action part=copy-to-clipboard title="Copy to Clipboard"></button>
                         <p-u on=click to-host fn=copyToClipboard val=target.title></p-u>
                     <button disabled id=expand-all class=action part=expand-all title="Expand All" aria-label="Expand All"></button>
-                    <tran-sister on=click transform='{
-                        ":host": [{"collapseAll": false, "expandAll": true, "open": true}]
-                    }'></tran-sister>
+                        <tran-sister on=click transform='{
+                            ":host": [{"collapseAll": false, "expandAll": true, "open": true}]
+                        }'></tran-sister>
                     <button disabled id=collapse-all class=action part=collapse-all title="Collapse All" aria-label="Collapse All"></button>
-                    <tran-sister on=click transform='{
-                        ":host": [{"collapseAll": true, "expandAll": false, "open": false}]
-                    }'></tran-sister>
+                        <tran-sister on=click transform='{
+                            ":host": [{"collapseAll": true, "expandAll": false, "open": false}]
+                        }'></tran-sister>
 
                 </div>
                 
@@ -93,9 +94,9 @@ const mainTemplate = tm.html `
 </if-diff>
 
 `;
-const initTransform = {
-    slot: [{}, { slotchange: 'handleSlotChange' }],
-};
+// const initTransform = {
+//     slot: [{}, {slotchange: 'handleSlotChange'}],
+// }
 const tagName = 'xtal-editor';
 /**
  * @element xtal-editor
@@ -333,9 +334,7 @@ export class XtalEditorCore extends HTMLElement {
         const json = JSON.stringify(val, null, 2);
         navigator.clipboard.writeText(json);
     }
-    handleSlotChange(e) {
-        const slot = e.target;
-        const nodes = slot.assignedNodes();
+    handleSlotChange(slot, nodes, e) {
         for (const node of nodes) {
             const aNode = node;
             if (aNode.value !== undefined) {
@@ -383,7 +382,7 @@ const xe = new XE({
             hasParent: false,
             upwardDataFlowInProgress: false,
             internalUpdateCount: 0,
-            initTransform: initTransform,
+            //initTransform: initTransform,
             readOnly: false,
             textView: false,
             fieldView: true,

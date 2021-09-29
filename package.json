@@ -27,13 +27,13 @@
     "ib-id": "0.0.79",
     "xtal-side-nav": "0.0.5",
     "pass-down": "0.0.117",
-    "pass-up": "0.0.26",
+    "pass-up": "0.0.28",
     "xtal-element": "0.0.442",
     "trans-render": "0.0.414",
     "tran-sister": "0.0.8",
     "xtal-shell": "0.0.25",
     "if-diff": "0.0.117",
-    "on-to-me": "0.0.44"
+    "on-to-me": "0.0.47"
   },
   "devDependencies": {
     "@skypack/package-check": "0.2.2",
