@@ -21,13 +21,16 @@ const mainTemplate = tm.html `
     <p-d observe-host vft=hasParent to=[-data-has-parent] as=str-attr m=1></p-d>
     <p-d observe-host on-prop=readOnly vft=readOnly to=[-data-ro] as=str-attr m=1></p-d>
 <header class=remove part=remove -data-ro -data-has-parent data-has-parent=true>
-    <!-- <xtal-side-nav>
+    <xtal-side-nav>
         <button class=view-selector part=view-selector></button>
-    </xtal-side-nav> -->
+        <tran-sister on=click transform='{
+            ":host": [{"fieldView": false, "textView": true}]
+        }'></tran-sister>
+    </xtal-side-nav>
     
 </header>
-    <p-d observe-host on-prop=fieldView to=.text-view[-iff] vft=fieldView m=1></p-d>
-<if-diff class=text-view -iff>
+    <p-d observe-host on-prop=fieldView to=.field-view[-iff] vft=fieldView m=1></p-d>
+<if-diff class=field-view -iff>
     <template>
             <p-d observe-host on-prop=type vft=type to=[-data-type] as=str-attr m=1></p-d>
             <p-d observe-host on-prop=readOnly vft=readOnly to=[-data-ro] as=str-attr m=1></p-d>
@@ -93,7 +96,10 @@ const mainTemplate = tm.html `
         </div>
     </template>
 </if-diff>
-
+    <p-d observe-host on-prop=textView to=.text-view[-iff] vft=textView m=1></p-d>
+<if-diff class=text-view -iff>
+    <template><div style="color:white;">In Text View</div></template>
+</if-diff>
 `;
 const tagName = 'xtal-editor';
 /**
@@ -392,11 +398,11 @@ const xe = new XE({
             expandAll: notifyProp,
             collapseAll: notifyProp,
             internalUpdateCount: notifyProp,
-            textView: {
-                notify: {
-                    toggleTo: 'fieldView'
-                }
-            }
+            // textView:{
+            //     notify:{
+            //         toggleTo: 'fieldView'
+            //     }
+            // }
         },
         actions: {
             ...tm.doInitTransform,
