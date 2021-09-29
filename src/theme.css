@@ -11,7 +11,7 @@ slot{
 }
 
 @media (prefers-color-scheme: dark) {
-    :host{
+    .editor{
         background-color: black;
     }
 }
