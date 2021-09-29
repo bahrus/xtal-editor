@@ -21,7 +21,7 @@ const mainTemplate = tm.html`
 <slot part=slot name=initVal></slot>
     <p-u on=slotchange vft=assignedNodes| to-host fn=handleSlotChange></p-u>
     <p-d observe-host vft=hasParent to=[-data-has-parent] as=str-attr m=1></p-d>
-    <p-d observe-host on-prop=readOnly vft=readOnly to=[-data-ro] as=str-attr m=2></p-d>
+    <p-d observe-host on-prop=readOnly vft=readOnly to=[-data-ro] as=str-attr m=1></p-d>
 <header class=remove part=remove -data-ro -data-has-parent data-has-parent=true>
     <!-- <xtal-side-nav>
         <button class=view-selector part=view-selector></button>
@@ -32,6 +32,7 @@ const mainTemplate = tm.html`
 <if-diff class=text-view -iff>
     <template>
             <p-d observe-host on-prop=type vft=type to=[-data-type] as=str-attr m=1></p-d>
+            <p-d observe-host on-prop=readOnly vft=readOnly to=[-data-ro] as=str-attr m=1></p-d>
         <div -data-type part=editor class=editor -data-ro>
             <div part=field class=field>
                 <div class=text-editing>
