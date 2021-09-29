@@ -26,14 +26,13 @@
   "dependencies": {
     "ib-id": "0.0.79",
     "xtal-side-nav": "0.0.5",
-    "pass-down": "0.0.117",
+    "pass-down": "0.0.118",
     "pass-up": "0.0.29",
     "xtal-element": "0.0.442",
     "trans-render": "0.0.414",
     "tran-sister": "0.0.8",
     "xtal-shell": "0.0.25",
-    "if-diff": "0.0.118",
-    "on-to-me": "0.0.48",
+    "if-diff": "0.0.120",
     "@power-elements/json-viewer": "2.1.1"
   },
   "devDependencies": {
