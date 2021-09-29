@@ -97,9 +97,6 @@ const mainTemplate = tm.html`
 
 `;
 
-// const initTransform = {
-//     slot: [{}, {slotchange: 'handleSlotChange'}],
-// }
 
 const tagName = 'xtal-editor';
 /**

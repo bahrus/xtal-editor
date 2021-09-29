@@ -94,9 +94,6 @@ const mainTemplate = tm.html `
 </if-diff>
 
 `;
-// const initTransform = {
-//     slot: [{}, {slotchange: 'handleSlotChange'}],
-// }
 const tagName = 'xtal-editor';
 /**
  * @element xtal-editor

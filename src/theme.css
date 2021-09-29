@@ -21,7 +21,7 @@ slot{
     height: fit-content;
     padding-left: 0px;
     padding-right: 0px;
-    width:20px;
+    width:25px;
 }
 .copyBtn{
     width: fit-content;
@@ -197,7 +197,7 @@ xtal-side-nav{
     display: flex;
 }
 .child-editors{
-    margin-left: 25px;
+    margin-left: 15px;
 }
 div[part="child-editors"][data-open="false"]{
     display: none;
