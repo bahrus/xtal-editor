@@ -104,8 +104,11 @@ slot{
 .remove[data-ro="true"]::after{
     content: "JSON Viewer";
 }
-.view-selector::after{
+.text-view-selector::after{
     content: "Text View"
+}
+.field-view-selector::after{
+    content: "Field View"
 }
 .remove.editKey::after{
     content: "Remove item by deleting the property name.";
