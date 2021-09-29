@@ -1,12 +1,13 @@
-import {PropInfoExt, XE} from 'xtal-element/src/XE.js';
-import {TemplMgmtActions, TemplMgmtProps, tm} from 'trans-render/lib/mixins/TemplMgmtWithPEST.js';
-import {XtalEditorActions, XtalEditorProps, NameValue, editType} from '../types';
+import { PropInfoExt, XE } from 'xtal-element/src/XE.js';
+import { TemplMgmtActions, TemplMgmtProps, tm } from 'trans-render/lib/mixins/TemplMgmtWithPEST.js';
+import { XtalEditorActions, XtalEditorProps, NameValue, editType } from '../types';
 import('pass-down/p-d.js');
 import('pass-up/p-u.js');
 import('ib-id/i-bid.js');
 import('tran-sister/tran-sister.js');
 import('xtal-side-nav/xtal-side-nav.js');
 import('if-diff/if-diff.js');
+import('@power-elements/json-viewer/json-viewer.js');
 // const style = await import('./theme.css', {
 //     assert: { type: 'css' }
 // });
@@ -19,9 +20,9 @@ const cssPath = rel + '/theme.css';
 const mainTemplate = tm.html`
 <link rel=stylesheet href=${cssPath}>
 <slot part=slot name=initVal></slot>
-    <p-u on=slotchange vft=assignedNodes| to-host fn=handleSlotChange></p-u>
-    <p-d observe-host vft=hasParent to=[-data-has-parent] as=str-attr m=1></p-d>
-    <p-d observe-host on-prop=readOnly vft=readOnly to=[-data-ro] as=str-attr m=1></p-d>
+<p-u on=slotchange vft=assignedNodes| to-host fn=handleSlotChange></p-u>
+<p-d observe-host vft=hasParent to=[-data-has-parent] as=str-attr m=1></p-d>
+<p-d observe-host on-prop=readOnly vft=readOnly to=[-data-ro] as=str-attr m=1></p-d>
 <header class=remove part=remove -data-ro -data-has-parent data-has-parent=true>
     <xtal-side-nav>
         <button class=view-selector part=view-selector></button>
@@ -29,78 +30,82 @@ const mainTemplate = tm.html`
             ":host": [{"fieldView": false, "textView": true}]
         }'></tran-sister>
     </xtal-side-nav>
-    
+
 </header>
-    <p-d observe-host on-prop=fieldView to=.field-view[-iff] vft=fieldView m=1></p-d>
+<p-d observe-host on-prop=fieldView to=.field-view[-iff] vft=fieldView m=1></p-d>
 <if-diff class=field-view -iff>
     <template>
-            <p-d observe-host on-prop=type vft=type to=[-data-type] as=str-attr m=1></p-d>
-            <p-d observe-host on-prop=readOnly vft=readOnly to=[-data-ro] as=str-attr m=1></p-d>
+        <p-d observe-host on-prop=type vft=type to=[-data-type] as=str-attr m=1></p-d>
+        <p-d observe-host on-prop=readOnly vft=readOnly to=[-data-ro] as=str-attr m=1></p-d>
         <div -data-type part=editor class=editor -data-ro>
             <div part=field class=field>
                 <div class=text-editing>
-                        <p-d observe-host vft=open to=[-text-content] true-val=- false-val=+ m=1></p-d>
+                    <p-d observe-host vft=open to=[-text-content] true-val=- false-val=+ m=1></p-d>
                     <button disabled part=expander class="expander nonPrimitive" -text-content></button>
-                        <p-u on=click to-host toggle-prop prop=open val=target.textContent></p-u>
-                        <p-d observe-host on-prop=readOnly vft=readOnly to=[-read-only] m=2></p-d>
-                        <p-d observe-host on-prop=key vft=key to=[-value] m=1></p-d>
+                    <p-u on=click to-host toggle-prop prop=open val=target.textContent></p-u>
+                    <p-d observe-host on-prop=readOnly vft=readOnly to=[-read-only] m=2></p-d>
+                    <p-d observe-host on-prop=key vft=key to=[-value] m=1></p-d>
                     <input aria-label=key part=key class=key -value -read-only>
-                        <p-u to-host on=change fn=handleKeyChange></p-u>
-                        <p-d observe-host on-prop=value vft=value to=[-value] parse-val-as=string m=1></p-d>
+                    <p-u to-host on=change fn=handleKeyChange></p-u>
+                    <p-d observe-host on-prop=value vft=value to=[-value] parse-val-as=string m=1></p-d>
                     <input disabled=3 aria-label=value part=value -read-only class=value -value>
-                        <p-u on-prop=disabled to-host fn=setFocus vft=disabled></p-u>
-                        <p-u to-host on=change fn=handleValueChange val=target.value></p-u>
-                        <p-u to-host on=focus fn=handleValueFocus val=target></p-u>
+                    <p-u on-prop=disabled to-host fn=setFocus vft=disabled></p-u>
+                    <p-u to-host on=change fn=handleValueChange val=target.value></p-u>
+                    <p-u to-host on=focus fn=handleValueFocus val=target></p-u>
                 </div>
                 <p-d observe-host on-prop=readOnly vft=readOnly to=[-data-ro] as=str-attr m=1></p-d>
                 <div part=child-inserters class="nonPrimitive child-inserters" data-open=false -data-ro>
                     <button disabled part=object-adder class="object adder" data-d=1>+object</button>
-                        <p-u on=click to-host prop=objCounter plus-eq val=target.dataset.d parse-val-as=int></p-u>
+                    <p-u on=click to-host prop=objCounter plus-eq val=target.dataset.d parse-val-as=int></p-u>
                     <button disabled part=string-adder class="string adder" data-d=1>+string</button>
-                        <p-u on=click to-host prop=strCounter plus-eq val=target.dataset.d parse-val-as=int></p-u>
+                    <p-u on=click to-host prop=strCounter plus-eq val=target.dataset.d parse-val-as=int></p-u>
                     <button disabled part=bool-adder class="bool adder" data-d=1>+bool</button>
-                        <p-u on=click to-host prop=boolCounter plus-eq val=target.dataset.d parse-val-as=int></p-u>
+                    <p-u on=click to-host prop=boolCounter plus-eq val=target.dataset.d parse-val-as=int></p-u>
                     <button disabled part=number-adder class="number adder" data-d=1>+number</button>
-                        <p-u on=click to-host prop=numCounter plus-eq val=target.dataset.d parse-val-as=int></p-u>
+                    <p-u on=click to-host prop=numCounter plus-eq val=target.dataset.d parse-val-as=int></p-u>
                     <button disabled part=arr-adder class="arr adder" data-d=1>+array</button>
-                        <p-u on=click to-host prop=arrCounter plus-eq val=target.dataset.d parse-val-as=int></p-u>
+                    <p-u on=click to-host prop=arrCounter plus-eq val=target.dataset.d parse-val-as=int></p-u>
                     <button disabled id=copy class=action part=copy-to-clipboard title="Copy to Clipboard"></button>
-                        <p-u on=click to-host fn=copyToClipboard val=target.title></p-u>
-                    <button disabled id=expand-all class=action part=expand-all title="Expand All" aria-label="Expand All"></button>
-                        <tran-sister on=click transform='{
+                    <p-u on=click to-host fn=copyToClipboard val=target.title></p-u>
+                    <button disabled id=expand-all class=action part=expand-all title="Expand All"
+                        aria-label="Expand All"></button>
+                    <tran-sister on=click transform='{
                             ":host": [{"collapseAll": false, "expandAll": true, "open": true}]
                         }'></tran-sister>
-                    <button disabled id=collapse-all class=action part=collapse-all title="Collapse All" aria-label="Collapse All"></button>
-                        <tran-sister on=click transform='{
+                    <button disabled id=collapse-all class=action part=collapse-all title="Collapse All"
+                        aria-label="Collapse All"></button>
+                    <tran-sister on=click transform='{
                             ":host": [{"collapseAll": true, "expandAll": false, "open": false}]
                         }'></tran-sister>
 
                 </div>
-                
+
             </div>
             <p-d observe-host vft=open to=[-data-open] as=str-attr m=1></p-d>
             <div part=child-editors class="nonPrimitive child-editors" -data-open data-open=false>
                 <template data-from=child-editors-list>
-                        <p-d observe-host vft=expandAll to=[-open] m=1></p-d>
-                        <p-d observe-host vft=expandAll to=[-expand-all] m=1></p-d>
-                        <p-d observe-host on-prop=readOnly vft=readOnly to=[-read-only]></p-d>
+                    <p-d observe-host vft=expandAll to=[-open] m=1></p-d>
+                    <p-d observe-host vft=expandAll to=[-expand-all] m=1></p-d>
+                    <p-d observe-host on-prop=readOnly vft=readOnly to=[-read-only]></p-d>
                     <xtal-editor -open has-parent -expand-all -read-only></xtal-editor>
-                        <p-u on=internal-update-count-changed to-host prop=upwardDataFlowInProgress parse-val-as=truthy></p-u>
+                    <p-u on=internal-update-count-changed to-host prop=upwardDataFlowInProgress parse-val-as=truthy>
+                    </p-u>
                 </template>
-                    <p-d observe-host vft=childValues to=[-list] m=1></p-d>
-                <i-bid -list id=child-editors-list updatable
-                    transform='{
+                <p-d observe-host vft=childValues to=[-list] m=1></p-d>
+                <i-bid -list id=child-editors-list updatable transform='{
                         "xtal-editor":[{"value": "value", "key": "key"}]
-                    }'
-                ></i-bid>
+                    }'></i-bid>
             </div>
-            
+
         </div>
     </template>
 </if-diff>
-    <p-d observe-host on-prop=textView to=.text-view[-iff] vft=textView m=1></p-d>
+<p-d observe-host on-prop=textView to=.text-view[-iff] vft=textView m=1></p-d>
 <if-diff class=text-view -iff>
-    <template><div style="color:white;">In Text View</div></template>
+    <template>
+        <p-d observe-host vft to=[-object] parse-val-as=object></p-d>
+        <json-viewer -object></json-viewer>
+    </template>
 </if-diff>
 `;
 
@@ -142,37 +147,37 @@ const tagName = 'xtal-editor';
  * @csspart child-editors - section containing child editors
  * 
  */
-export class XtalEditorCore extends HTMLElement implements XtalEditorActions{
+export class XtalEditorCore extends HTMLElement implements XtalEditorActions {
     self = this;
-    parseValue({value}: this){
+    parseValue({ value }: this) {
         let parsedObject = value;
-        if(value !==  undefined){
-            switch(typeof value){
+        if (value !== undefined) {
+            switch (typeof value) {
                 case 'string':
-                    if(value === 'true' || value === 'false'){
+                    if (value === 'true' || value === 'false') {
                         this.type = 'boolean';
-                    }else if(!isNaN(value as any as number)){
+                    } else if (!isNaN(value as any as number)) {
                         this.type = 'number';
-                    }else{
-                        try{
+                    } else {
+                        try {
                             parsedObject = JSON.parse(value);
-                            if(Array.isArray(parsedObject)){
+                            if (Array.isArray(parsedObject)) {
                                 this.type = 'array';
-                            }else{
+                            } else {
                                 this.type = 'object';
                             }
-                        }catch(e){
+                        } catch (e) {
                             this.type = 'string';
                         }
                     }
                     break;
                 case 'object':
-                    if(Array.isArray(parsedObject)){
+                    if (Array.isArray(parsedObject)) {
                         this.type = 'array';
-                    }else{
+                    } else {
                         this.type = 'object';
                     }
-    
+
                     break;
                 case 'number':
                     this.type = 'number';
@@ -181,92 +186,92 @@ export class XtalEditorCore extends HTMLElement implements XtalEditorActions{
                     this.type = 'boolean';
                     break;
             }
-    
+
         }
-        return {parsedObject};
-           
+        return { parsedObject };
+
     }
     #lastParsedObject: any;
-    setChildValues({parsedObject, type}: this){
-        if(parsedObject === this.#lastParsedObject) return {
+    setChildValues({ parsedObject, type }: this) {
+        if (parsedObject === this.#lastParsedObject) return {
             childValues: this.childValues
         };
         this.#lastParsedObject = parsedObject;
-        if(parsedObject === undefined) {
+        if (parsedObject === undefined) {
             return {
                 childValues: undefined
             }
         }
-        switch(type){
-            case 'array':{
+        switch (type) {
+            case 'array': {
                 const childValues: NameValue[] = [];
                 let cnt = 0;
-                for(const item of parsedObject){
+                for (const item of parsedObject) {
                     childValues.push({
                         key: cnt.toString(),
                         value: item
                     });
                     cnt++;
                 }
-                return{
+                return {
                     childValues,
                 }
             }
-            case 'object':{
+            case 'object': {
                 const childValues: NameValue[] = [];
-                for(var key in parsedObject){
+                for (var key in parsedObject) {
                     childValues.push({
                         key: key,
                         value: parsedObject[key] //toString(parsedObject[key]),
                     } as NameValue);
                 }
-                return {childValues};
+                return { childValues };
             }
-            default:{
+            default: {
                 return {
                     childValues: undefined,
                 }
             }
-        }        
+        }
     }
 
-    syncValueFromChildren({childEditors, type}: this){
+    syncValueFromChildren({ childEditors, type }: this) {
         let newVal: any;
-        switch(type){
+        switch (type) {
             case 'object': {
                 newVal = {}; //TODO: support array type
-                childEditors.forEach(child =>{
+                childEditors.forEach(child => {
                     newVal[child.key!] = child.parsedObject!;//TODO: support for none primitive
                 });
 
             }
-            break;
-            case 'array':{
+                break;
+            case 'array': {
                 newVal = [];
-                childEditors.forEach(child =>{
+                childEditors.forEach(child => {
                     newVal.push(child.parsedObject!);//TODO: support for none primitive
                 });
             }
-            break;
+                break;
         }
-        if(newVal !== undefined){
-            (<any>this).setValsQuietly({value: newVal, parsedObject: newVal});
+        if (newVal !== undefined) {
+            (<any>this).setValsQuietly({ value: newVal, parsedObject: newVal });
             const childValues = this.setChildValues(this);
-            (<any>this).setValsQuietly({childValues});
+            (<any>this).setValsQuietly({ childValues });
             this.valueParts[0].value = JSON.stringify(newVal);
             this.syncLightChild(this);
         }
 
 
-        
+
         this.internalUpdateCount!++;
-        this.upwardDataFlowInProgress = false;        
+        this.upwardDataFlowInProgress = false;
     }
 
-    syncLightChild({hasParent, value}: this){
+    syncLightChild({ hasParent, value }: this) {
         const lightChild = this.querySelector('textarea, input') as HTMLInputElement;
-        if(lightChild !== null){
-            switch(typeof value){
+        if (lightChild !== null) {
+            switch (typeof value) {
                 case 'string':
                     lightChild.value = value;
                     break;
@@ -277,18 +282,18 @@ export class XtalEditorCore extends HTMLElement implements XtalEditorActions{
         }
     }
 
-    get childEditors(){
+    get childEditors() {
         return Array.from(this.shadowRoot!.querySelectorAll(tagName)) as (HTMLElement & XtalEditorProps)[]
     }
 
-    addEntity({parsedObject, type}: this, entityName: string, entityCount: number, newVal: any){
+    addEntity({ parsedObject, type }: this, entityName: string, entityCount: number, newVal: any) {
         let newObj: any;
-        switch(type){
+        switch (type) {
             case 'object':
-                newObj = {...parsedObject};
+                newObj = { ...parsedObject };
                 newObj[entityName + entityCount] = newVal;
                 break;
-            case 'array':{
+            case 'array': {
                 newObj = [...parsedObject];
                 newObj.push(newVal);
                 break;
@@ -301,67 +306,67 @@ export class XtalEditorCore extends HTMLElement implements XtalEditorActions{
         };
     }
 
-    addObject({objCounter}: this){
+    addObject({ objCounter }: this) {
         return this.addEntity(this, 'object', objCounter, {});
     }
 
-    addString({strCounter}: this){
+    addString({ strCounter }: this) {
         return this.addEntity(this, 'string', strCounter, '');
     }
 
-    addBool({boolCounter}: this){
+    addBool({ boolCounter }: this) {
         return this.addEntity(this, 'bool', boolCounter, false);
     }
 
-    addNumber({numCounter}: this){
+    addNumber({ numCounter }: this) {
         return this.addEntity(this, 'number', numCounter, 0);
     }
 
-    addArr({arrCounter}: this){
+    addArr({ arrCounter }: this) {
         return this.addEntity(this, 'arr', arrCounter, []);
     }
 
-    onConnected({hasParent}: this){
-        if(!hasParent){
+    onConnected({ hasParent }: this) {
+        if (!hasParent) {
             this.rootEditor = this;
         }
     }
 
-    handleKeyChange(self: this, key: string){
-        if(key === ''){
+    handleKeyChange(self: this, key: string) {
+        if (key === '') {
             this.remove();
-        }else{
+        } else {
             this.key = key;
         }
         this.internalUpdateCount!++;
     }
-    handleKeyFocus(e: Event){
+    handleKeyFocus(e: Event) {
         this.rootEditor!.removeParts.forEach(x => x.classList.add('editKey'));
     }
-    handleValueFocus(e: Event){
+    handleValueFocus(e: Event) {
         //this.rootEditor!.removeParts.forEach(x => x.classList.remove('editKey'));
     }
-    handleValueChange(self: this, val: string, e: InputEvent){
+    handleValueChange(self: this, val: string, e: InputEvent) {
         this.value = val;
         this.internalUpdateCount!++;
     }
-    copyToClipboard(){
+    copyToClipboard() {
         const preval = this.value;
-        const val = typeof(this.value === 'string') ? JSON.parse(this.value as any as string) : this.value;
+        const val = typeof (this.value === 'string') ? JSON.parse(this.value as any as string) : this.value;
         const json = JSON.stringify(val, null, 2);
         navigator.clipboard.writeText(json);
     }
-    handleSlotChange(slot: HTMLSlotElement, nodes: Node[], e: Event){
-        for(const node of nodes){
+    handleSlotChange(slot: HTMLSlotElement, nodes: Node[], e: Event) {
+        for (const node of nodes) {
             const aNode = node as any;
-            if(aNode.value !== undefined){
+            if (aNode.value !== undefined) {
                 this.value = aNode.value;
-            }            
+            }
         }
     }
 
-    setFocus(match:any, isDisabled: boolean, e: Event){
-        if(!isDisabled && !this.readOnly){
+    setFocus(match: any, isDisabled: boolean, e: Event) {
+        if (!isDisabled && !this.readOnly) {
             const target = (<any>e).target!;
             setTimeout(() => {
                 target.focus();
@@ -370,19 +375,19 @@ export class XtalEditorCore extends HTMLElement implements XtalEditorActions{
     }
 }
 
-export interface XtalEditorCore extends XtalEditorProps{} 
+export interface XtalEditorCore extends XtalEditorProps { }
 
-const notifyProp:PropInfoExt = {
-    notify:{
-        dispatch:true,
-        reflect:{asAttr:true}
+const notifyProp: PropInfoExt = {
+    notify: {
+        dispatch: true,
+        reflect: { asAttr: true }
     }
 }
 const xe = new XE<XtalEditorProps & TemplMgmtProps, XtalEditorActions>({
     //config is JSON Serializable
-    config:{
+    config: {
         tagName: 'xtal-editor',
-        propDefaults:{
+        propDefaults: {
             value: '',
             key: '',
             open: false,
@@ -404,51 +409,51 @@ const xe = new XE<XtalEditorProps & TemplMgmtProps, XtalEditorActions>({
             fieldView: true,
             type: 'string',
         },
-        propInfo:{
-            childValues:{
+        propInfo: {
+            childValues: {
                 parse: false,
                 notify: {
                     dispatch: true
                 }
             },
-            open:notifyProp,
-            expandAll:notifyProp,
-            collapseAll:notifyProp,
-            internalUpdateCount:notifyProp,
+            open: notifyProp,
+            expandAll: notifyProp,
+            collapseAll: notifyProp,
+            internalUpdateCount: notifyProp,
             // textView:{
             //     notify:{
             //         toggleTo: 'fieldView'
             //     }
             // }
         },
-        actions:{
+        actions: {
             ...tm.doInitTransform,
-            parseValue:{
+            parseValue: {
                 ifAllOf: ['value']
             },
-            setChildValues:{
+            setChildValues: {
                 ifAllOf: ['parsedObject', 'open']
             },
-            syncValueFromChildren:{
+            syncValueFromChildren: {
                 ifAllOf: ['upwardDataFlowInProgress']
             },
-            addObject:{
-                ifAllOf:['objCounter']
+            addObject: {
+                ifAllOf: ['objCounter']
             },
-            addString:{
-                ifAllOf:['strCounter']
+            addString: {
+                ifAllOf: ['strCounter']
             },
-            addBool:{
-                ifAllOf:['boolCounter']
+            addBool: {
+                ifAllOf: ['boolCounter']
             },
-            addNumber:{
-                ifAllOf:['numCounter']
+            addNumber: {
+                ifAllOf: ['numCounter']
             },
-            addArr:{
-                ifAllOf:['arrCounter']
+            addArr: {
+                ifAllOf: ['arrCounter']
             },
-            syncLightChild:{
-                ifAllOf:['value'],
+            syncLightChild: {
+                ifAllOf: ['value'],
                 ifNoneOf: ['hasParent', 'readOnly'],
             }
             // initEvenLevel:{
@@ -459,15 +464,15 @@ const xe = new XE<XtalEditorProps & TemplMgmtProps, XtalEditorActions>({
             // },
 
         },
-        
+
     },
-    complexPropDefaults:{
+    complexPropDefaults: {
         mainTemplate: mainTemplate,
         //styles: [style.default],
 
     },
     superclass: XtalEditorCore,
-    mixins:[tm.TemplMgmtMixin]
+    mixins: [tm.TemplMgmtMixin]
 });
 
 

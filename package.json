@@ -33,7 +33,8 @@
     "tran-sister": "0.0.8",
     "xtal-shell": "0.0.25",
     "if-diff": "0.0.117",
-    "on-to-me": "0.0.47"
+    "on-to-me": "0.0.48",
+    "@power-elements/json-viewer": "2.1.1"
   },
   "devDependencies": {
     "@skypack/package-check": "0.2.2",
