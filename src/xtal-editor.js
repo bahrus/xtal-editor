@@ -351,10 +351,6 @@ export class XtalEditorCore extends HTMLElement {
         }
     }
 }
-const isRef = {
-    isRef: true,
-    parse: false,
-};
 const notifyProp = {
     notify: {
         dispatch: true,
@@ -382,14 +378,12 @@ const xe = new XE({
             hasParent: false,
             upwardDataFlowInProgress: false,
             internalUpdateCount: 0,
-            //initTransform: initTransform,
             readOnly: false,
             textView: false,
             fieldView: true,
             type: 'string',
         },
         propInfo: {
-            slotElements: isRef,
             childValues: {
                 parse: false,
                 notify: {
