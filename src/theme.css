@@ -116,6 +116,12 @@ slot{
 xtal-side-nav::part(opener){
     font-size:12px;
 }
+xtal-side-nav::part(side-nav){
+    left: inherit;
+    top:initial;
+    height: 400px;
+    /* top: inherit; */
+}
 .field{
     display:flex;
     flex-direction:row;
