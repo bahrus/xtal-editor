@@ -102,6 +102,11 @@ slot{
     margin-left: 12px;
     background-color: rgb(182, 197, 114);
 } */
+.download{
+    color: rgb(29, 155, 240);
+    margin-left: 11px;
+    
+}
 .remove{
     display: flex;
     justify-content: space-between;
@@ -138,7 +143,9 @@ xtal-side-nav::part(opener), xtal-side-nav::part(close-btn){
 xtal-side-nav::part(side-nav){
     left: inherit;
     top:initial;
-    height: 400px;
+    height: 40px;
+    padding-top:20px;
+    justify-content: space-evenly;
     /* top: inherit; */
 }
 .field{
@@ -162,7 +169,7 @@ xtal-side-nav::part(side-nav){
 }
 xtal-side-nav{
     display: inline;
-    --drawer-width:100px;
+    --drawer-width:140px;
 }
 #collapse-all{
     background-image: url(https://cdn.jsdelivr.net/npm/xtal-editor/src/arrows-collapse.svg);
