@@ -70,6 +70,7 @@ export interface XtalEditorProps{
     readOnly: boolean;
     textView: boolean;
     fieldView: boolean;
+    downloadHref: string;
 }
 
 export interface XtalEditorActions{
@@ -107,6 +108,7 @@ export interface XtalEditorActions{
 
     onConnected(self: this):void;
     syncLightChild(self:this):void; 
+    makeDownloadBlob(self:this): void;
 }
 
 export interface NameValue {

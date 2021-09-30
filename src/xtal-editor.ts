@@ -37,6 +37,8 @@ const mainTemplate = tm.html`
             ".field-view-selector":[{"style": {"display":"none"}}],
             ".text-view-selector": [{"style": {"display":"inline-block"}}]
         }'></tran-sister>
+        <p-d observe-host on-prop=downloadHref vft=downloadHref to=[-href] m=1></p-d>
+        <a -href -download download="file.json">Download</a>
     </xtal-side-nav>
 
 </header>
@@ -381,6 +383,11 @@ export class XtalEditorCore extends HTMLElement implements XtalEditorActions {
             }, 16);
         }
     }
+
+    makeDownloadBlob({parsedObject}: this){
+        const file = new Blob([JSON.stringify(parsedObject, null, 2)], {type: 'text/json'});
+        this.downloadHref = URL.createObjectURL(file);
+    }
 }
 
 export interface XtalEditorCore extends XtalEditorProps { }
@@ -421,6 +428,7 @@ const xe = new XE<XtalEditorProps & TemplMgmtProps, XtalEditorActions>({
             textView: false,
             fieldView: true,
             type: 'string',
+            downloadHref:'',
         },
         propInfo: {
             childValues: {
@@ -469,6 +477,9 @@ const xe = new XE<XtalEditorProps & TemplMgmtProps, XtalEditorActions>({
             syncLightChild: {
                 ifAllOf: ['value'],
                 ifNoneOf: ['hasParent', 'readOnly'],
+            },
+            makeDownloadBlob: {
+                ifKeyIn: ['parsedObject'],
             }
             // initEvenLevel:{
             //     ifKeyIn: ['rootEditor']
