@@ -23,13 +23,13 @@ const mainTemplate = tm.html `
 <p-d observe-host on-prop=readOnly vft=readOnly to=[-data-ro] as=str-attr m=1></p-d>
 <header class=remove part=remove -data-ro -data-has-parent data-has-parent=true>
     <xtal-side-nav>
-        <button class=text-view-selector part=text-view-selector></button>
+        <button class="selector text-view-selector" part=text-view-selector></button>
         <tran-sister on=click transform='{
             ":host": [{"fieldView": false, "textView": true}],
             ".field-view-selector":[{"style": {"display":"inline-block"}}],
             ".text-view-selector": [{"style": {"display":"none"}}]
         }'></tran-sister>
-        <button style="display:none"  class=field-view-selector part=field-view-selector></button>
+        <button style="display:none"  class="selector field-view-selector" part=field-view-selector></button>
         <tran-sister on=click transform='{
             ":host": [{"fieldView": true, "textView": false}],
             ".field-view-selector":[{"style": {"display":"none"}}],
