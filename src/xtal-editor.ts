@@ -266,7 +266,7 @@ export class XtalEditorCore extends HTMLElement implements XtalEditorActions {
             (<any>this).setValsQuietly({ value: newVal, parsedObject: newVal });
             const childValues = this.setChildValues(this);
             (<any>this).setValsQuietly({ childValues });
-            this.valueParts[0].value = JSON.stringify(newVal);
+            this.value = JSON.stringify(newVal);
             this.syncLightChild(this);
         }
 
@@ -349,7 +349,7 @@ export class XtalEditorCore extends HTMLElement implements XtalEditorActions {
         this.internalUpdateCount!++;
     }
     handleKeyFocus(e: Event) {
-        this.rootEditor!.removeParts.forEach(x => x.classList.add('editKey'));
+        //this.rootEditor!.removeParts.forEach(x => x.classList.add('editKey'));
     }
     handleValueFocus(e: Event) {
         //this.rootEditor!.removeParts.forEach(x => x.classList.remove('editKey'));
@@ -384,6 +384,11 @@ export class XtalEditorCore extends HTMLElement implements XtalEditorActions {
 }
 
 export interface XtalEditorCore extends XtalEditorProps { }
+
+// const isRef:PropInfoExt = {
+//     isRef: true,
+//     parse: false,
+// };
 
 const notifyProp: PropInfoExt = {
     notify: {
@@ -428,6 +433,7 @@ const xe = new XE<XtalEditorProps & TemplMgmtProps, XtalEditorActions>({
             expandAll: notifyProp,
             collapseAll: notifyProp,
             internalUpdateCount: notifyProp,
+            //valueParts: isRef,
             // textView:{
             //     notify:{
             //         toggleTo: 'fieldView'

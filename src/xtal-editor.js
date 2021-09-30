@@ -265,7 +265,7 @@ export class XtalEditorCore extends HTMLElement {
             this.setValsQuietly({ value: newVal, parsedObject: newVal });
             const childValues = this.setChildValues(this);
             this.setValsQuietly({ childValues });
-            this.valueParts[0].value = JSON.stringify(newVal);
+            this.value = JSON.stringify(newVal);
             this.syncLightChild(this);
         }
         this.internalUpdateCount++;
@@ -336,7 +336,7 @@ export class XtalEditorCore extends HTMLElement {
         this.internalUpdateCount++;
     }
     handleKeyFocus(e) {
-        this.rootEditor.removeParts.forEach(x => x.classList.add('editKey'));
+        //this.rootEditor!.removeParts.forEach(x => x.classList.add('editKey'));
     }
     handleValueFocus(e) {
         //this.rootEditor!.removeParts.forEach(x => x.classList.remove('editKey'));
@@ -368,6 +368,10 @@ export class XtalEditorCore extends HTMLElement {
         }
     }
 }
+// const isRef:PropInfoExt = {
+//     isRef: true,
+//     parse: false,
+// };
 const notifyProp = {
     notify: {
         dispatch: true,
@@ -411,6 +415,7 @@ const xe = new XE({
             expandAll: notifyProp,
             collapseAll: notifyProp,
             internalUpdateCount: notifyProp,
+            //valueParts: isRef,
             // textView:{
             //     notify:{
             //         toggleTo: 'fieldView'
