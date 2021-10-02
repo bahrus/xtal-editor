@@ -8,6 +8,7 @@ import('tran-sister/tran-sister.js');
 import('xtal-side-nav/xtal-side-nav.js');
 import('if-diff/if-diff.js');
 import('@power-elements/json-viewer/json-viewer.js');
+import('be-observant/be-observant.js');
 // const style = await import('./theme.css', {
 //     assert: { type: 'css' }
 // });
@@ -56,6 +57,9 @@ const mainTemplate = tm.html`
         <p-d observe-host on-prop=type vft=type to=[-data-type] as=str-attr m=1></p-d>
         <p-d observe-host on-prop=readOnly vft=readOnly to=[-data-ro] as=str-attr m=1></p-d>
         <div -data-type part=editor class=editor -data-ro>
+            <tran-sister observe-host on-prop=readOnly vft=readOnly transform-from-closest=.editor transform='
+                "input": [{"readOnly": true}]
+            '></tran-sister>
             <div part=field class=field>
                 <div class=text-editing>
                     <p-d observe-host vft=open to=[-text-content] true-val=- false-val=+ m=1></p-d>
@@ -109,10 +113,13 @@ const mainTemplate = tm.html`
                     <p-u on=internal-update-count-changed to-host prop=upwardDataFlowInProgress parse-val-as=truthy>
                     </p-u>
                 </template>
-                <p-d observe-host vft=childValues to=[-list] m=1></p-d>
                 <i-bid -list id=child-editors-list updatable transform='{
                         "xtal-editor":[{"value": "value", "key": "key"}]
-                    }'></i-bid>
+                    }'
+                    be-observant='{
+                        "list": {"observeHost": true, "vft": "childValues"}
+                    }'
+                ></i-bid>
             </div>
 
         </div>
@@ -125,6 +132,7 @@ const mainTemplate = tm.html`
         <json-viewer -object></json-viewer>
     </template>
 </if-diff>
+<be-observant></be-observant>
 `;
 
 
