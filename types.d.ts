@@ -69,7 +69,7 @@ export interface XtalEditorProps{
     //editorParts: NodeListOf<HTMLDivElement>;
     readOnly: boolean;
     textView: boolean;
-    fieldView: boolean;
+    treeView: boolean;
     downloadHref: string;
 }
 

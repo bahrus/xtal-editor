@@ -131,8 +131,8 @@ slot{
 .text-view-selector::after{
     content: "Text View"
 }
-.field-view-selector::after{
-    content: "Field View"
+.tree-view-selector::after{
+    content: "Tree View"
 }
 .remove.editKey::after{
     content: "Remove item by deleting the property name.";

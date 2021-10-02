@@ -11,11 +11,11 @@ import('be-observant/be-observant.js');
 // const style = await import('./theme.css', {
 //     assert: { type: 'css' }
 // });
-// const splitPath = import.meta.url.split('/');
-// splitPath.pop();
-// const rel = splitPath.join('/');
-// const cssPath = rel + '/theme.css';
-const cssPath = 'https://unpkg.com/xtal-editor@0.0.69/src/theme.css';
+const splitPath = import.meta.url.split('/');
+splitPath.pop();
+const rel = splitPath.join('/');
+const cssPath = rel + '/theme.css';
+//const cssPath = 'https://unpkg.com/xtal-editor@0.0.69/src/theme.css'
 const mainTemplate = tm.html `
 <link rel=stylesheet href=${cssPath}>
 <slot part=slot name=initVal></slot>
@@ -27,14 +27,14 @@ const mainTemplate = tm.html `
     <xtal-side-nav>
         <button class="selector text-view-selector" part=text-view-selector></button>
         <tran-sister on=click transform='{
-            ":host": [{"fieldView": false, "textView": true}],
-            ".field-view-selector":[{"style": {"display":"inline-block"}}],
+            ":host": [{"treeView": false, "textView": true}],
+            ".tree-view-selector":[{"style": {"display":"inline-block"}}],
             ".text-view-selector": [{"style": {"display":"none"}}]
         }'></tran-sister>
-        <button style="display:none"  class="selector field-view-selector" part=field-view-selector></button>
+        <button style="display:none"  class="selector tree-view-selector" part=tree-view-selector></button>
         <tran-sister on=click transform='{
-            ":host": [{"fieldView": true, "textView": false}],
-            ".field-view-selector":[{"style": {"display":"none"}}],
+            ":host": [{"treeView": true, "textView": false}],
+            ".tree-view-selector":[{"style": {"display":"none"}}],
             ".text-view-selector": [{"style": {"display":"inline-block"}}]
         }'></tran-sister>
         <p-d observe-host on-prop=downloadHref vft=downloadHref to=[-href] m=1></p-d>
@@ -53,8 +53,8 @@ const mainTemplate = tm.html `
     </xtal-side-nav>
 
 </header>
-<p-d observe-host on-prop=fieldView to=.field-view[-iff] vft=fieldView m=1></p-d>
-<if-diff class=field-view -iff>
+<p-d observe-host on-prop=treeView to=.tree-view[-iff] vft=treeView m=1></p-d>
+<if-diff class=tree-view -iff>
     <template>
         <div -data-type part=editor class=editor -data-ro be-observant='{
             "data-type": {"observeHost": true, "onProp": "type", "vft": "type", "as": "str-attr" },
@@ -429,7 +429,7 @@ const xe = new XE({
             internalUpdateCount: 0,
             readOnly: false,
             textView: false,
-            fieldView: true,
+            treeView: true,
             type: 'string',
             downloadHref: '',
         },
