@@ -54,9 +54,12 @@ const mainTemplate = tm.html`
 <p-d observe-host on-prop=fieldView to=.field-view[-iff] vft=fieldView m=1></p-d>
 <if-diff class=field-view -iff>
     <template>
-        <p-d observe-host on-prop=type vft=type to=[-data-type] as=str-attr m=1></p-d>
+        <!-- <p-d observe-host on-prop=type vft=type to=[-data-type] as=str-attr m=1></p-d> -->
         <p-d observe-host on-prop=readOnly vft=readOnly to=[-data-ro] as=str-attr m=1></p-d>
-        <div -data-type part=editor class=editor -data-ro>
+        <div -data-type part=editor class=editor -data-ro be-observant='{
+            "data-type": {"observeHost": true, "onProp": "type", "vft": "type", "as": "str-attr" }
+
+        }'>
             <tran-sister observe-host on-prop=readOnly vft=readOnly transform-from-closest=.editor transform='
                 "input": [{"readOnly": true}]
             '></tran-sister>
@@ -106,9 +109,6 @@ const mainTemplate = tm.html`
             <p-d observe-host vft=open to=[-data-open] as=str-attr m=1></p-d>
             <div part=child-editors class="nonPrimitive child-editors" -data-open data-open=false>
                 <template data-from=child-editors-list>
-                    <!-- <p-d observe-host vft=expandAll to=[-open] m=1></p-d> -->
-                    <!-- <p-d observe-host vft=expandAll to=[-expand-all] m=1></p-d> -->
-                    <!-- <p-d observe-host on-prop=readOnly vft=readOnly to=[-read-only]></p-d> -->
                     <xtal-editor has-parent be-observant='{
                         "open": {"observeHost": true, "vft": "expandAll"},
                         "expandAll": {"observeHost": true, "vft": "expandAll"},
