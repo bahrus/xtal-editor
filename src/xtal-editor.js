@@ -20,9 +20,10 @@ const mainTemplate = tm.html `
 <link rel=stylesheet href=${cssPath}>
 <slot part=slot name=initVal></slot>
 <p-u on=slotchange vft=assignedNodes| to-host fn=handleSlotChange></p-u>
-<p-d observe-host vft=hasParent to=[-data-has-parent] as=str-attr m=1></p-d>
-<p-d observe-host on-prop=readOnly vft=readOnly to=[-data-ro] as=str-attr m=1></p-d>
-<header class=remove part=remove -data-ro -data-has-parent data-has-parent=true>
+<header class=remove part=remove -data-ro -data-has-parent data-has-parent=true be-observant='{
+    "data-has-parent": {"observeHost": true, "vft": "hasParent", "as": "str-attr"},
+    "data-ro": {"observeHost": true, "vft": "readOnly", "as": "str-attr"}
+}'>
     <xtal-side-nav>
         <button class="selector text-view-selector" part=text-view-selector></button>
         <tran-sister on=click transform='{
