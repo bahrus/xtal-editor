@@ -71,12 +71,16 @@ const mainTemplate = tm.html`
                         "textContent": {"observeHost": true, "vft": "open", "trueVal": "-", "falseVal": "+"}
                     }'></button>
                     <p-u on=click to-host toggle-prop prop=open val=target.textContent></p-u>
-                    <p-d observe-host on-prop=readOnly vft=readOnly to=[-read-only] m=2></p-d>
+                    <!-- <p-d observe-host on-prop=readOnly vft=readOnly to=[-read-only] m=2></p-d> -->
                     <p-d observe-host on-prop=key vft=key to=[-value] m=1></p-d>
-                    <input aria-label=key part=key class=key -value -read-only>
+                    <input aria-label=key part=key class=key -value -read-only be-observant='{
+                        "readOnly": {"observeHost": true, "onProp": "readOnly", "vft": "readOnly"}
+                    }'>
                     <p-u to-host on=change fn=handleKeyChange></p-u>
                     <p-d observe-host on-prop=value vft=value to=[-value] parse-val-as=string m=1></p-d>
-                    <input disabled=3 aria-label=value part=value -read-only class=value -value>
+                    <input disabled=3 aria-label=value part=value -read-only class=value -value  be-observant='{
+                        "readOnly": {"observeHost": true, "onProp": "readOnly", "vft": "readOnly"}
+                    }'>
                     <p-u on-prop=disabled to-host fn=setFocus vft=disabled></p-u>
                     <p-u to-host on=change fn=handleValueChange val=target.value></p-u>
                     <p-u to-host on=focus fn=handleValueFocus val=target></p-u>
