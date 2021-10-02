@@ -52,11 +52,9 @@ const mainTemplate = tm.html `
 <p-d observe-host on-prop=fieldView to=.field-view[-iff] vft=fieldView m=1></p-d>
 <if-diff class=field-view -iff>
     <template>
-        <!-- <p-d observe-host on-prop=type vft=type to=[-data-type] as=str-attr m=1></p-d> -->
-        <p-d observe-host on-prop=readOnly vft=readOnly to=[-data-ro] as=str-attr m=1></p-d>
         <div -data-type part=editor class=editor -data-ro be-observant='{
-            "data-type": {"observeHost": true, "onProp": "type", "vft": "type", "as": "str-attr" }
-
+            "data-type": {"observeHost": true, "onProp": "type", "vft": "type", "as": "str-attr" },
+            "data-ro": {"observeHost": true, "onProp": "readOnly", "vft": "readOnly", "as": "str-attr"}
         }'>
             <tran-sister observe-host on-prop=readOnly vft=readOnly transform-from-closest=.editor transform='
                 "input": [{"readOnly": true}]
