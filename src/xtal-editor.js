@@ -104,10 +104,14 @@ const mainTemplate = tm.html `
             <p-d observe-host vft=open to=[-data-open] as=str-attr m=1></p-d>
             <div part=child-editors class="nonPrimitive child-editors" -data-open data-open=false>
                 <template data-from=child-editors-list>
-                    <p-d observe-host vft=expandAll to=[-open] m=1></p-d>
-                    <p-d observe-host vft=expandAll to=[-expand-all] m=1></p-d>
-                    <p-d observe-host on-prop=readOnly vft=readOnly to=[-read-only]></p-d>
-                    <xtal-editor -open has-parent -expand-all -read-only></xtal-editor>
+                    <!-- <p-d observe-host vft=expandAll to=[-open] m=1></p-d> -->
+                    <!-- <p-d observe-host vft=expandAll to=[-expand-all] m=1></p-d> -->
+                    <!-- <p-d observe-host on-prop=readOnly vft=readOnly to=[-read-only]></p-d> -->
+                    <xtal-editor has-parent be-observant='{
+                        "open": {"observeHost": true, "vft": "expandAll"},
+                        "expandAll": {"observeHost": true, "vft": "expandAll"},
+                        "readOnly": {"observeHost": true, "vft": "readOnly"}
+                    }'></xtal-editor>
                     <p-u on=internal-update-count-changed to-host prop=upwardDataFlowInProgress parse-val-as=truthy>
                     </p-u>
                 </template>
