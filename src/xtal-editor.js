@@ -65,8 +65,9 @@ const mainTemplate = tm.html `
             '></tran-sister>
             <div part=field class=field>
                 <div class=text-editing>
-                    <p-d observe-host vft=open to=[-text-content] true-val=- false-val=+ m=1></p-d>
-                    <button disabled part=expander class="expander nonPrimitive" -text-content></button>
+                    <button disabled part=expander class="expander nonPrimitive" be-observant='{
+                        "textContent": {"observeHost": true, "vft": "open", "trueVal": "-", "falseVal": "+"}
+                    }'></button>
                     <p-u on=click to-host toggle-prop prop=open val=target.textContent></p-u>
                     <p-d observe-host on-prop=readOnly vft=readOnly to=[-read-only] m=2></p-d>
                     <p-d observe-host on-prop=key vft=key to=[-value] m=1></p-d>
