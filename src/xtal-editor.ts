@@ -8,6 +8,7 @@ import('xtal-side-nav/xtal-side-nav.js');
 import('if-diff/if-diff.js');
 import('@power-elements/json-viewer/json-viewer.js');
 import('be-observant/be-observant.js');
+import('be-noticed/be-noticed.js');
 // const style = await import('./theme.css', {
 //     assert: { type: 'css' }
 // });
@@ -19,8 +20,9 @@ const cssPath = rel + '/theme.css';
 //const cssPath = 'https://unpkg.com/xtal-editor@0.0.69/src/theme.css'
 const mainTemplate = tm.html`
 <link rel=stylesheet href=${cssPath}>
-<slot part=slot name=initVal></slot>
-<p-u on=slotchange vft=assignedNodes| to-host fn=handleSlotChange></p-u>
+<slot part=slot name=initVal be-noticed='{
+    "slotchange": {"vft": "assignedNodes|", "toHost": true, "fn": "handleSlotChange", "doInit": true}
+}'></slot>
 <header class=remove part=remove data-has-parent=true be-observant='{
     "data-has-parent": {"observeHost": true, "vft": "hasParent", "as": "str-attr"},
     "data-ro": {"observeHost": true, "vft": "readOnly", "as": "str-attr"}
@@ -66,10 +68,12 @@ const mainTemplate = tm.html`
             '></tran-sister>
             <div part=field class=field>
                 <div class=text-editing>
-                    <button disabled part=expander class="expander nonPrimitive" be-observant='{
+                    <button part=expander class="expander nonPrimitive" be-observant='{
                         "textContent": {"observeHost": true, "vft": "open", "trueVal": "-", "falseVal": "+"}
-                    }'></button>
-                    <p-u on=click to-host toggle-prop prop=open val=target.textContent></p-u>
+                    }' be-noticed='{
+                        "click": {"toHost": true, "toggleProp": true, "prop": "open", "vft": "textContent"}
+                    }'
+                    ></button>
                     <input aria-label=key part=key class=key be-observant='{
                         "readOnly": {"observeHost": true, "onProp": "readOnly", "vft": "readOnly"},
                         "value": {"observeHost": true, "onProp": "key", "vft": "key"}
@@ -146,6 +150,7 @@ const mainTemplate = tm.html`
     </template>
 </if-diff>
 <be-observant></be-observant>
+<be-noticed></be-noticed>
 `;
 
 

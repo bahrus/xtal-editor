@@ -26,7 +26,6 @@
   "dependencies": {
     "ib-id": "0.0.79",
     "xtal-side-nav": "0.0.10",
-    "pass-down": "0.0.119",
     "pass-up": "0.0.30",
     "xtal-element": "0.0.442",
     "trans-render": "0.0.414",
@@ -34,7 +33,8 @@
     "xtal-shell": "0.0.25",
     "if-diff": "0.0.120",
     "@power-elements/json-viewer": "2.1.1",
-    "be-observant": "0.0.7"
+    "be-observant": "0.0.7",
+    "be-noticed": "0.0.2"
   },
   "devDependencies": {
     "@skypack/package-check": "0.2.2",
