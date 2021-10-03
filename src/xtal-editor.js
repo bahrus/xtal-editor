@@ -100,12 +100,15 @@ const mainTemplate = tm.html `
                     <button disabled part=bool-adder class="bool adder" data-d=1 be-noticed='{
                         "click": {"prop": "boolCounter", "plusEq": true, "vft": "dataset.d", "parseValAs": "int"}
                     }'>+bool</button>
-                    <button disabled part=number-adder class="number adder" data-d=1>+number</button>
-                    <p-u on=click to-host prop=numCounter plus-eq val=target.dataset.d parse-val-as=int></p-u>
-                    <button disabled part=arr-adder class="arr adder" data-d=1>+array</button>
-                    <p-u on=click to-host prop=arrCounter plus-eq val=target.dataset.d parse-val-as=int></p-u>
-                    <button disabled id=copy class=action part=copy-to-clipboard title="Copy to Clipboard"></button>
-                    <p-u on=click to-host fn=copyToClipboard val=target.title></p-u>
+                    <button disabled part=number-adder class="number adder" data-d=1 be-noticed='{
+                        "click": {"prop": "numCounter", "plusEq": true, "vft": "dataset.d", "parseValAs": "int"}
+                    }'>+number</button>
+                    <button disabled part=arr-adder class="arr adder" data-d=1 be-noticed='{
+                        "click": {"prop": "arrCounter", "plusEq": true, "vft": "dataset.d", "parseValAs": "int"}
+                    }'>+array</button>
+                    <button disabled id=copy class=action part=copy-to-clipboard title="Copy to Clipboard" be-noticed='{
+                        "click": "copyToClipboard"
+                    }'></button>
                     <button disabled id=expand-all class=action part=expand-all title="Expand All"
                         aria-label="Expand All"></button>
                     <tran-sister on=click transform='{
