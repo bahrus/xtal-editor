@@ -53,8 +53,10 @@ const mainTemplate = tm.html `
     </xtal-side-nav>
 
 </header>
-<p-d observe-host on-prop=treeView to=.tree-view[-iff] vft=treeView m=1></p-d>
-<if-diff class=tree-view -iff>
+<!-- <p-d observe-host on-prop=treeView to=.tree-view[-iff] vft=treeView m=1></p-d> -->
+<if-diff class=tree-view -iff be-observant='{
+    "iff": {"observeHost": true, "onProp": "treeView", "vft": "treeView"}
+}'>
     <template>
         <div -data-type part=editor class=editor -data-ro be-observant='{
             "data-type": {"observeHost": true, "onProp": "type", "vft": "type", "as": "str-attr" },
@@ -74,7 +76,6 @@ const mainTemplate = tm.html `
                         "value": {"observeHost": true, "onProp": "key", "vft": "key"}
                     }'>
                     <p-u to-host on=change fn=handleKeyChange></p-u>
-                    <!-- <p-d observe-host on-prop=value vft=value to=[-value] parse-val-as=string m=1></p-d> -->
                     <input disabled=3 aria-label=value part=value -read-only class=value -value  be-observant='{
                         "readOnly": {"observeHost": true, "onProp": "readOnly", "vft": "readOnly"},
                         "value": {"observeHost": true, "onProp": "value", "vft": "value", "parseValAs": "string"}
