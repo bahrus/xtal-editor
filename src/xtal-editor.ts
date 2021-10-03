@@ -78,7 +78,7 @@ const mainTemplate = tm.html`
                         "readOnly": {"observeHost": true, "onProp": "readOnly", "vft": "readOnly"},
                         "value": {"observeHost": true, "onProp": "key", "vft": "key"}
                     }' be-noticed='{
-                        "change": {"toHost": true, "fn": "handleKeyChange", "vft": "value"}
+                        "change": {"toHost": true, "fn": "handleKeyChange"}
                     }'>
                     <!-- <p-u to-host on=change fn=handleKeyChange></p-u> -->
                     <input disabled=3 aria-label=value part=value -read-only class=value -value  be-observant='{
