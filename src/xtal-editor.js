@@ -72,13 +72,12 @@ const mainTemplate = tm.html `
                         "click": {"toHost": true, "toggleProp": true, "prop": "open", "vft": "textContent"}
                     }'
                     ></button>
-                    <input aria-label=key part=key class=key be-observant='{
+                    <input disabled aria-label=key part=key class=key be-observant='{
                         "readOnly": {"observeHost": true, "onProp": "readOnly", "vft": "readOnly"},
                         "value": {"observeHost": true, "onProp": "key", "vft": "key"}
                     }' be-noticed='{
                         "change": {"toHost": true, "fn": "handleKeyChange"}
                     }'>
-                    <!-- <p-u to-host on=change fn=handleKeyChange></p-u> -->
                     <input disabled=3 aria-label=value part=value -read-only class=value -value  be-observant='{
                         "readOnly": {"observeHost": true, "onProp": "readOnly", "vft": "readOnly"},
                         "value": {"observeHost": true, "onProp": "value", "vft": "value", "parseValAs": "string"}
