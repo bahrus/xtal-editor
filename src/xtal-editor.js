@@ -131,9 +131,9 @@ const mainTemplate = tm.html `
                         "open": {"observeHost": true, "vft": "expandAll"},
                         "expandAll": {"observeHost": true, "vft": "expandAll"},
                         "readOnly": {"observeHost": true, "vft": "readOnly"}
+                    }' be-noticed='{
+                        "internal-update-count-changed": {"prop": "upwardDataFlowInProgress", "parseValAs": "truthy"}
                     }'></xtal-editor>
-                    <p-u on=internal-update-count-changed to-host prop=upwardDataFlowInProgress parse-val-as=truthy>
-                    </p-u>
                 </template>
                 <i-bid -list id=child-editors-list updatable transform='{
                         "xtal-editor":[{"value": "value", "key": "key"}]
