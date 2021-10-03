@@ -113,8 +113,7 @@ const mainTemplate = tm.html `
                 </div>
 
             </div>
-            <!-- <p-d observe-host vft=open to=[-data-open] as=str-attr m=1></p-d> -->
-            <div part=child-editors class="nonPrimitive child-editors" -data-open data-open=false be-observant='{
+            <div part=child-editors class="nonPrimitive child-editors" data-open=false be-observant='{
                 "data-open":{"observeHost": true, "vft": "open", "as": "str-attr"}
             }'>
                 <template data-from=child-editors-list>
@@ -138,8 +137,10 @@ const mainTemplate = tm.html `
         </div>
     </template>
 </if-diff>
-<p-d observe-host on-prop=textView to=.text-view[-iff] vft=textView m=1></p-d>
-<if-diff class=text-view -iff>
+<!-- <p-d observe-host on-prop=textView to=.text-view[-iff] vft=textView m=1></p-d> -->
+<if-diff class=text-view be-observant='{
+    "iff": {"observeHost": true, "onProp": "textView", "vft": "textView"}
+}'>
     <template>
         <p-d observe-host vft to=[-object] parse-val-as=object></p-d>
         <json-viewer -object></json-viewer>
