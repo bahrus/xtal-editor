@@ -141,7 +141,7 @@ const mainTemplate = tm.html`
                         "xtal-editor":[{"value": "value", "key": "key"}]
                     }'
                     be-observant='{
-                        "list": {"vft": "childValues"}
+                        "list": "childValues"
                     }'
                 ></i-bid>
             </div>
