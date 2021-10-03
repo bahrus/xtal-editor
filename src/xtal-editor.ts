@@ -84,7 +84,7 @@ const mainTemplate = tm.html`
                         "readOnly": {"observeHost": true, "onProp": "readOnly", "vft": "readOnly"},
                         "value": {"observeHost": true, "onProp": "value", "vft": "value", "parseValAs": "string"}
                     }' be-noticed='{
-                        "change": {"toHost": true, "fn": "handleValueChange"}
+                        "change": "handleValueChange"
                     }'>
                     <p-u on-prop=disabled to-host fn=setFocus vft=disabled></p-u>
                     <!-- <p-u to-host on=change fn=handleValueChange val=target.value></p-u>

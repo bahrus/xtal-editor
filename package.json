@@ -34,7 +34,7 @@
     "if-diff": "0.0.120",
     "@power-elements/json-viewer": "2.1.1",
     "be-observant": "0.0.7",
-    "be-noticed": "0.0.6"
+    "be-noticed": "0.0.7"
   },
   "devDependencies": {
     "@skypack/package-check": "0.2.2",
