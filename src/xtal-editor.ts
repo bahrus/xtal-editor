@@ -1,7 +1,6 @@
 import { PropInfoExt, XE } from 'xtal-element/src/XE.js';
 import { TemplMgmtActions, TemplMgmtProps, tm } from 'trans-render/lib/mixins/TemplMgmtWithPEST.js';
 import { XtalEditorActions, XtalEditorProps, NameValue, editType } from '../types';
-import('pass-up/p-u.js');
 import('ib-id/i-bid.js');
 import('tran-sister/tran-sister.js');
 import('xtal-side-nav/xtal-side-nav.js');
@@ -87,7 +86,6 @@ const mainTemplate = tm.html`
                         "disabled:onSet": {"vft": "disabled", "fn": "setFocus"},
                         "change": "handleValueChange"
                     }'>
-                    <!-- <p-u on-prop=disabled to-host fn=setFocus vft=disabled></p-u> -->
 
                 </div>
                 <div part=child-inserters class="nonPrimitive child-inserters" data-open=false -data-ro be-observant='{
