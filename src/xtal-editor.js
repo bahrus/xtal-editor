@@ -82,11 +82,11 @@ const mainTemplate = tm.html `
                         "readOnly": {"onProp": "readOnly", "vft": "readOnly"},
                         "value": {"onProp": "value", "vft": "value", "parseValAs": "string"}
                     }' be-noticed='{
+                        "disabled:onSet": {"vft": "disabled", "fn": "setFocus"},
                         "change": "handleValueChange"
                     }'>
-                    <p-u on-prop=disabled to-host fn=setFocus vft=disabled></p-u>
-                    <!-- <p-u to-host on=change fn=handleValueChange val=target.value></p-u>
-                    <p-u to-host on=focus fn=handleValueFocus val=target></p-u> -->
+                    <!-- <p-u on-prop=disabled to-host fn=setFocus vft=disabled></p-u> -->
+
                 </div>
                 <div part=child-inserters class="nonPrimitive child-inserters" data-open=false -data-ro be-observant='{
                     "data-ro": {"onProp": "readOnly", "vft": "readOnly", "as": "str-attr"}
