@@ -1,6 +1,5 @@
 import { XE } from 'xtal-element/src/XE.js';
 import { tm } from 'trans-render/lib/mixins/TemplMgmtWithPEST.js';
-import('pass-down/p-d.js');
 import('pass-up/p-u.js');
 import('ib-id/i-bid.js');
 import('tran-sister/tran-sister.js');
