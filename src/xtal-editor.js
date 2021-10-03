@@ -53,7 +53,6 @@ const mainTemplate = tm.html `
     </xtal-side-nav>
 
 </header>
-<!-- <p-d observe-host on-prop=treeView to=.tree-view[-iff] vft=treeView m=1></p-d> -->
 <if-diff class=tree-view -iff be-observant='{
     "iff": {"observeHost": true, "onProp": "treeView", "vft": "treeView"}
 }'>
@@ -137,13 +136,13 @@ const mainTemplate = tm.html `
         </div>
     </template>
 </if-diff>
-<!-- <p-d observe-host on-prop=textView to=.text-view[-iff] vft=textView m=1></p-d> -->
 <if-diff class=text-view be-observant='{
     "iff": {"observeHost": true, "onProp": "textView", "vft": "textView"}
 }'>
     <template>
-        <p-d observe-host vft to=[-object] parse-val-as=object></p-d>
-        <json-viewer -object></json-viewer>
+        <json-viewer -object be-observant='{
+            "object": {"observeHost": true, "vft": "value", "parseValAs": "object"} 
+        }'></json-viewer>
     </template>
 </if-diff>
 <be-observant></be-observant>
