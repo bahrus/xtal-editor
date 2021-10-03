@@ -39,7 +39,6 @@ const mainTemplate = tm.html`
             ".tree-view-selector":[{"style": {"display":"none"}}],
             ".text-view-selector": [{"style": {"display":"inline-block"}}]
         }'></tran-sister>
-        <p-d observe-host on-prop=downloadHref vft=downloadHref to=[-href] m=1></p-d>
         <!-- TODO:  set download property dynamically -->
         <a class=download part=download download="file.json" be-observant='{
             "href": {"observeHost": true, "onProp": "downloadHref", "vft": "downloadHref"}
@@ -142,7 +141,7 @@ const mainTemplate = tm.html`
     "iff": {"observeHost": true, "onProp": "textView", "vft": "textView"}
 }'>
     <template>
-        <json-viewer -object be-observant='{
+        <json-viewer be-observant='{
             "object": {"observeHost": true, "vft": "value", "parseValAs": "object"} 
         }'></json-viewer>
     </template>
