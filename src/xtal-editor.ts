@@ -115,8 +115,10 @@ const mainTemplate = tm.html`
                 </div>
 
             </div>
-            <p-d observe-host vft=open to=[-data-open] as=str-attr m=1></p-d>
-            <div part=child-editors class="nonPrimitive child-editors" -data-open data-open=false>
+            <!-- <p-d observe-host vft=open to=[-data-open] as=str-attr m=1></p-d> -->
+            <div part=child-editors class="nonPrimitive child-editors" -data-open data-open=false be-observant='{
+                "data-open":{"observeHost": true, "vft": "open", "as": "str-attr"}
+            }'>
                 <template data-from=child-editors-list>
                     <xtal-editor has-parent be-observant='{
                         "open": {"observeHost": true, "vft": "expandAll"},
