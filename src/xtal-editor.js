@@ -19,7 +19,7 @@ const cssPath = rel + '/theme.css';
 const mainTemplate = tm.html `
 <link rel=stylesheet href=${cssPath}>
 <slot part=slot name=initVal be-noticed='{
-    "slotchange": {"vft": "assignedNodes|", "toHost": true, "fn": "handleSlotChange", "doInit": true}
+    "slotchange": {"vft": "assignedNodes|", "fn": "handleSlotChange", "doInit": true}
 }'></slot>
 <header class=remove part=remove data-has-parent=true be-observant='{
     "data-has-parent": {"observeHost": true, "vft": "hasParent", "as": "str-attr"},
@@ -66,7 +66,7 @@ const mainTemplate = tm.html `
             '></tran-sister>
             <div part=field class=field>
                 <div class=text-editing>
-                    <button part=expander class="expander nonPrimitive" be-observant='{
+                    <button disabled part=expander class="expander nonPrimitive" be-observant='{
                         "textContent": {"observeHost": true, "vft": "open", "trueVal": "-", "falseVal": "+"}
                     }' be-noticed='{
                         "click": {"toHost": true, "toggleProp": true, "prop": "open", "vft": "textContent"}
@@ -76,15 +76,17 @@ const mainTemplate = tm.html `
                         "readOnly": {"observeHost": true, "onProp": "readOnly", "vft": "readOnly"},
                         "value": {"observeHost": true, "onProp": "key", "vft": "key"}
                     }' be-noticed='{
-                        "change": {"toHost": true, "fn": "handleKeyChange"}
+                        "change": "handleKeyChange"
                     }'>
-                    <input disabled=3 aria-label=value part=value -read-only class=value -value  be-observant='{
+                    <input disabled=2 aria-label=value part=value -read-only class=value -value  be-observant='{
                         "readOnly": {"observeHost": true, "onProp": "readOnly", "vft": "readOnly"},
                         "value": {"observeHost": true, "onProp": "value", "vft": "value", "parseValAs": "string"}
+                    }' be-noticed='{
+                        "change": {"toHost": true, "fn": "handleValueChange"}
                     }'>
                     <p-u on-prop=disabled to-host fn=setFocus vft=disabled></p-u>
-                    <p-u to-host on=change fn=handleValueChange val=target.value></p-u>
-                    <p-u to-host on=focus fn=handleValueFocus val=target></p-u>
+                    <!-- <p-u to-host on=change fn=handleValueChange val=target.value></p-u>
+                    <p-u to-host on=focus fn=handleValueFocus val=target></p-u> -->
                 </div>
                 <div part=child-inserters class="nonPrimitive child-inserters" data-open=false -data-ro be-observant='{
                     "data-ro": {"observeHost": true, "onProp": "readOnly", "vft": "readOnly", "as": "str-attr"}
