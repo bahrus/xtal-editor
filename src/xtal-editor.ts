@@ -130,9 +130,9 @@ const mainTemplate = tm.html`
             }'>
                 <template data-from=child-editors-list>
                     <xtal-editor has-parent be-observant='{
-                        "open": {"vft": "expandAll"},
-                        "expandAll": {"vft": "expandAll"},
-                        "readOnly": {"vft": "readOnly"}
+                        "open": "expandAll",
+                        "expandAll": "expandAll",
+                        "readOnly": "readOnly"
                     }' be-noticed='{
                         "internal-update-count-changed": {"prop": "upwardDataFlowInProgress", "parseValAs": "truthy"}
                     }'></xtal-editor>
