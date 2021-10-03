@@ -93,8 +93,10 @@ const mainTemplate = tm.html`
                 <div part=child-inserters class="nonPrimitive child-inserters" data-open=false -data-ro be-observant='{
                     "data-ro": {"observeHost": true, "onProp": "readOnly", "vft": "readOnly", "as": "str-attr"}
                 }'>
-                    <button disabled part=object-adder class="object adder" data-d=1>+object</button>
-                    <p-u on=click to-host prop=objCounter plus-eq val=target.dataset.d parse-val-as=int></p-u>
+                    <button disabled part=object-adder class="object adder" data-d=1 be-noticed='{
+                        "click": {"prop": "objCounter", "plusEq": true, "vft": "dataset.d", "parseValAs": "int"}
+                    }'>+object</button>
+                    <!-- <p-u on=click to-host prop=objCounter plus-eq val=target.dataset.d parse-val-as=int></p-u> -->
                     <button disabled part=string-adder class="string adder" data-d=1>+string</button>
                     <p-u on=click to-host prop=strCounter plus-eq val=target.dataset.d parse-val-as=int></p-u>
                     <button disabled part=bool-adder class="bool adder" data-d=1>+bool</button>
