@@ -22,8 +22,8 @@ const mainTemplate = tm.html `
     "slotchange": {"vft": "assignedNodes|", "fn": "handleSlotChange", "doInit": true}
 }'></slot>
 <header class=remove part=remove data-has-parent=true be-observant='{
-    "data-has-parent": {"observeHost": true, "vft": "hasParent", "as": "str-attr"},
-    "data-ro": {"observeHost": true, "vft": "readOnly", "as": "str-attr"}
+    "data-has-parent": {"vft": "hasParent", "as": "str-attr"},
+    "data-ro": {"vft": "readOnly", "as": "str-attr"}
 }'>
     <xtal-side-nav>
         <button class="selector text-view-selector" part=text-view-selector></button>
@@ -40,7 +40,7 @@ const mainTemplate = tm.html `
         }'></tran-sister>
         <!-- TODO:  set download property dynamically -->
         <a class=download part=download download="file.json" be-observant='{
-            "href": {"observeHost": true, "onProp": "downloadHref", "vft": "downloadHref"}
+            "href": {"onProp": "downloadHref", "vft": "downloadHref"}
         }'>
             <svg viewBox="0 0 24 24" style="width:16.25px;height:16.25px">
                 <g color="rgb(29, 155, 240)">
@@ -54,12 +54,12 @@ const mainTemplate = tm.html `
 
 </header>
 <if-diff class=tree-view -iff be-observant='{
-    "iff": {"observeHost": true, "onProp": "treeView", "vft": "treeView"}
+    "iff": {"onProp": "treeView", "vft": "treeView"}
 }'>
     <template>
         <div -data-type part=editor class=editor -data-ro be-observant='{
-            "data-type": {"observeHost": true, "onProp": "type", "vft": "type", "as": "str-attr" },
-            "data-ro": {"observeHost": true, "onProp": "readOnly", "vft": "readOnly", "as": "str-attr"}
+            "data-type": {"onProp": "type", "vft": "type", "as": "str-attr" },
+            "data-ro": {"onProp": "readOnly", "vft": "readOnly", "as": "str-attr"}
         }'>
             <tran-sister observe-host on-prop=readOnly vft=readOnly transform-from-closest=.editor transform='
                 "input": [{"readOnly": true}]
@@ -67,20 +67,20 @@ const mainTemplate = tm.html `
             <div part=field class=field>
                 <div class=text-editing>
                     <button disabled part=expander class="expander nonPrimitive" be-observant='{
-                        "textContent": {"observeHost": true, "vft": "open", "trueVal": "-", "falseVal": "+"}
+                        "textContent": {"vft": "open", "trueVal": "-", "falseVal": "+"}
                     }' be-noticed='{
                         "click": {"toHost": true, "toggleProp": true, "prop": "open", "vft": "textContent"}
                     }'
                     ></button>
                     <input disabled aria-label=key part=key class=key be-observant='{
-                        "readOnly": {"observeHost": true, "onProp": "readOnly", "vft": "readOnly"},
-                        "value": {"observeHost": true, "onProp": "key", "vft": "key"}
+                        "readOnly": {"onProp": "readOnly", "vft": "readOnly"},
+                        "value": {"onProp": "key", "vft": "key"}
                     }' be-noticed='{
                         "change": "handleKeyChange"
                     }'>
                     <input disabled=2 aria-label=value part=value -read-only class=value -value  be-observant='{
-                        "readOnly": {"observeHost": true, "onProp": "readOnly", "vft": "readOnly"},
-                        "value": {"observeHost": true, "onProp": "value", "vft": "value", "parseValAs": "string"}
+                        "readOnly": {"onProp": "readOnly", "vft": "readOnly"},
+                        "value": {"onProp": "value", "vft": "value", "parseValAs": "string"}
                     }' be-noticed='{
                         "change": "handleValueChange"
                     }'>
@@ -89,7 +89,7 @@ const mainTemplate = tm.html `
                     <p-u to-host on=focus fn=handleValueFocus val=target></p-u> -->
                 </div>
                 <div part=child-inserters class="nonPrimitive child-inserters" data-open=false -data-ro be-observant='{
-                    "data-ro": {"observeHost": true, "onProp": "readOnly", "vft": "readOnly", "as": "str-attr"}
+                    "data-ro": {"onProp": "readOnly", "vft": "readOnly", "as": "str-attr"}
                 }'>
                     <button disabled part=object-adder class="object adder" data-d=1 be-noticed='{
                         "click": {"prop": "objCounter", "plusEq": true, "vft": "dataset.d", "parseValAs": "int"}
@@ -124,13 +124,13 @@ const mainTemplate = tm.html `
 
             </div>
             <div part=child-editors class="nonPrimitive child-editors" data-open=false be-observant='{
-                "data-open":{"observeHost": true, "vft": "open", "as": "str-attr"}
+                "data-open":{"vft": "open", "as": "str-attr"}
             }'>
                 <template data-from=child-editors-list>
                     <xtal-editor has-parent be-observant='{
-                        "open": {"observeHost": true, "vft": "expandAll"},
-                        "expandAll": {"observeHost": true, "vft": "expandAll"},
-                        "readOnly": {"observeHost": true, "vft": "readOnly"}
+                        "open": {"vft": "expandAll"},
+                        "expandAll": {"vft": "expandAll"},
+                        "readOnly": {"vft": "readOnly"}
                     }' be-noticed='{
                         "internal-update-count-changed": {"prop": "upwardDataFlowInProgress", "parseValAs": "truthy"}
                     }'></xtal-editor>
@@ -139,7 +139,7 @@ const mainTemplate = tm.html `
                         "xtal-editor":[{"value": "value", "key": "key"}]
                     }'
                     be-observant='{
-                        "list": {"observeHost": true, "vft": "childValues"}
+                        "list": {"vft": "childValues"}
                     }'
                 ></i-bid>
             </div>
@@ -148,11 +148,11 @@ const mainTemplate = tm.html `
     </template>
 </if-diff>
 <if-diff class=text-view be-observant='{
-    "iff": {"observeHost": true, "onProp": "textView", "vft": "textView"}
+    "iff": {"onProp": "textView", "vft": "textView"}
 }'>
     <template>
         <json-viewer be-observant='{
-            "object": {"observeHost": true, "vft": "value", "parseValAs": "object"} 
+            "object": {"vft": "value", "parseValAs": "object"} 
         }'></json-viewer>
     </template>
 </if-diff>
