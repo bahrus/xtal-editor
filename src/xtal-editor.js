@@ -10,11 +10,11 @@ import('be-noticed/be-noticed.js');
 // const style = await import('./theme.css', {
 //     assert: { type: 'css' }
 // });
-const splitPath = import.meta.url.split('/');
-splitPath.pop();
-const rel = splitPath.join('/');
-const cssPath = rel + '/theme.css';
-//const cssPath = 'https://unpkg.com/xtal-editor@0.0.69/src/theme.css'
+// const splitPath = import.meta.url.split('/');
+// splitPath.pop();
+// const rel = splitPath.join('/');
+// const cssPath = rel + '/theme.css';
+const cssPath = 'https://unpkg.com/xtal-editor@0.0.69/src/theme.css';
 const mainTemplate = tm.html `
 <link rel=stylesheet href=${cssPath}>
 <slot part=slot name=initVal be-noticed='{
