@@ -86,8 +86,9 @@ const mainTemplate = tm.html`
                     <p-u to-host on=change fn=handleValueChange val=target.value></p-u>
                     <p-u to-host on=focus fn=handleValueFocus val=target></p-u>
                 </div>
-                <p-d observe-host on-prop=readOnly vft=readOnly to=[-data-ro] as=str-attr m=1></p-d>
-                <div part=child-inserters class="nonPrimitive child-inserters" data-open=false -data-ro>
+                <div part=child-inserters class="nonPrimitive child-inserters" data-open=false -data-ro be-observant='{
+                    "data-ro": {"observeHost": true, "onProp": "readOnly", "vft": "readOnly", "as": "str-attr"}
+                }'>
                     <button disabled part=object-adder class="object adder" data-d=1>+object</button>
                     <p-u on=click to-host prop=objCounter plus-eq val=target.dataset.d parse-val-as=int></p-u>
                     <button disabled part=string-adder class="string adder" data-d=1>+string</button>
