@@ -14,9 +14,307 @@ import('be-noticed/be-noticed.js');
 // splitPath.pop();
 // const rel = splitPath.join('/');
 // const cssPath = rel + '/theme.css';
-const cssPath = 'https://unpkg.com/xtal-editor@0.0.73/src/theme.css';
+//const cssPath = 'https://unpkg.com/xtal-editor@0.0.73/src/theme.css'
 const mainTemplate = tm.html `
-<link rel=stylesheet href=${cssPath}>
+
+<!-- <link rel=stylesheet href={cssPath}> -->
+<style>
+    :host{
+    display:block;
+}
+:host[hidden]{
+    display:none;
+}
+
+
+slot{
+    display: none;
+}
+
+@media (prefers-color-scheme: dark) {
+    .editor{
+        background-color: black;
+    }
+}
+
+.expander{
+    width: fit-content;
+    height: fit-content;
+    padding-left: 0px;
+    padding-right: 0px;
+    width:25px;
+}
+.copyBtn{
+    width: fit-content;
+    height: fit-content;
+    padding-left: 0px;
+    padding-right: 0px;
+    padding-top: 0px;
+    padding-bottom: 0px;
+    border: 0;
+}
+.object.adder{
+    background-color: #C15000;
+}
+.editor{
+    --obj-key-bg: #e17000;
+    --array-key-bg: #2d5b89;
+    --array-key-color: #D2A476;
+    --obj-even-level-editor-bg: #F1E090;
+    --obj-odd-level-editor-bg: #FFEFCC;
+    --array-even-level-editor-bg: #A9DBDD;
+    --array-odd-level-editor-bg: #D9DBDD;
+    --string-adder-bg: #007408;
+    --bool-adder-bg: #516600;
+    --num-adder-bg:#497B8D;
+    --arr-adder-bg: #2d5b89;
+}
+.editor[data-type="object"][data-even-level="true"]{
+    background-color: var(--obj-even-level-editor-bg);
+}
+.editor[data-type="object"][data-even-level="false"]{
+    background-color: var(--obj-odd-level-editor-bg);
+}
+.editor[data-type="array"][data-even-level="true"]{
+    background-color: var(--array-even-level-editor-bg);
+    
+}
+.editor[data-type="array"][data-even-level="false"]{
+    background-color: var(--array-odd-level-editor-bg);
+}
+.child-inserters[data-ro="true"] .adder{
+    display: none;
+}
+.string.adder{
+    background-color:var(--string-adder-bg);
+}
+.bool.adder{
+    background-color: var(--bool-adder-bg);
+}
+.number.adder{
+    background-color: var(--num-adder-bg);
+}
+.arr.adder{
+    background-color: var(--arr-adder-bg);
+}
+.adder{
+    color: white;
+    text-shadow:1px 1px 1px black;
+    border-radius: 5px;
+    padding: 2;
+    border: none;
+}
+.selector{
+    color: white;
+    text-shadow:1px 1px 1px black;
+    border-radius: 5px;
+    padding: 2;
+    border: none;
+    margin-left: 12px;
+    background-color: hotpink;   
+}
+/* .download{
+    color: white;
+    text-shadow:1px 1px 1px black;
+    border-radius: 5px;
+    padding: 2;
+    font-size:14px;
+    border: none;
+    margin-left: 12px;
+    background-color: rgb(182, 197, 114);
+} */
+.download{
+    color: rgb(29, 155, 240);
+    margin-left: 11px;
+    
+}
+.remove{
+    display: flex;
+    justify-content: space-between;
+    /* padding: 0px 4px;
+    -webkit-border-radius: 5px;
+    -moz-border-radius: 5px;
+    border-radius: 5px; */
+    color: white;
+    font-weight: bold;
+    text-shadow: 1px 1px 1px black;
+    background-color: black;
+}
+.remove[data-has-parent="true"]{
+    display:none;
+}
+.remove::after{
+    content: "JSON Editor";
+}
+.remove[data-ro="true"]::after{
+    content: "JSON Viewer";
+}
+.text-view-selector::after{
+    content: "Text View"
+}
+.tree-view-selector::after{
+    content: "Tree View"
+}
+.remove.editKey::after{
+    content: "Remove item by deleting the property name.";
+}
+xtal-side-nav::part(opener), xtal-side-nav::part(close-btn){
+    font-size:12px;
+}
+xtal-side-nav::part(side-nav){
+    left: inherit;
+    top:initial;
+    height: 40px;
+    padding-top:20px;
+    justify-content: space-evenly;
+    /* top: inherit; */
+}
+.field{
+    display:flex;
+    flex-direction:row;
+    line-height: 20px;
+    align-items: center;
+}
+#copy{
+    background-image: url(https://cdn.jsdelivr.net/npm/xtal-editor/src/copy.svg);
+    
+}
+#expand-all{
+    background-image: url(https://cdn.jsdelivr.net/npm/xtal-editor/src/arrows-expand.svg);
+    width: 20px;
+}
+.action{
+    background-repeat:no-repeat;
+    background-position-y:center;
+    height: 22px;
+}
+xtal-side-nav{
+    display: inline;
+    --drawer-width:140px;
+}
+#collapse-all{
+    background-image: url(https://cdn.jsdelivr.net/npm/xtal-editor/src/arrows-collapse.svg);
+    width: 20px;
+}
+@media only screen and (max-width: 1000px) {
+    [data-ro="false"] .field{
+        flex-direction: column;
+    }
+    [data-ro="false"] .child-inserters{
+        justify-content: flex-end;
+        width: 100%;
+    }
+    [data-ro="false"] .text-editing{
+        width: 100%;
+    }
+}
+@media only screen and (min-width: 1001px){
+    [data-ro="false"] .child-inserters{
+        justify-content: center;
+    }
+    [data-ro="false"] .field{
+        width: 100%;
+        justify-content: space-evenly;
+    }
+    [data-ro="false"] .text-editing{
+        flex-grow: 1;
+    }
+}
+@media only screen and (max-width: 500px) {
+    [data-ro="true"] .field{
+        flex-direction: column;
+    }
+    [data-ro="true"] .child-inserters{
+        justify-content: flex-end;
+        width: 100%;
+    }
+    [data-ro="true"] .text-editing{
+        width: 100%;
+    }
+}
+@media only screen and (min-width: 501px){
+    [data-ro="true"] .child-inserters{
+        justify-content: center;
+    }
+    [data-ro="true"] .field{
+        width: 100%;
+        justify-content: space-evenly;
+    }
+    [data-ro="true"] .text-editing{
+        flex-grow: 1;
+    }
+}
+.text-editing{
+    display: flex;
+    flex-direction: row;
+    padding-top:1px;
+    padding-bottom:1px;
+}
+.child-inserters{
+    display: flex;
+}
+.child-editors{
+    margin-left: 15px;
+}
+div[part="child-editors"][data-open="false"]{
+    display: none;
+}
+[data-type="object"] button.nonPrimitive{
+    display: inline;
+}
+[data-type="object"] div.nonPrimitive[data-open="true"]{
+    display: block;
+}
+[data-type="array"] button.nonPrimitive{
+    display: inline;
+}
+[data-type="array"] div.nonPrimitive[data-open="true"]{
+    display: block;
+}
+[data-type="string"] .nonPrimitive{
+    display: none;
+}
+[data-type="number"] .nonPrimitive{
+    display: none;
+}
+[data-type="boolean"] .nonPrimitive{
+    display: none;
+}
+[data-type="string"] [part="key"]{
+    background-color: rgb(0, 148, 8);
+}
+[data-type="boolean"] [part="key"]{
+    background-color: #B1C639;
+}
+[data-type="object"] [part="key"]{
+    background-color: var(--obj-key-bg);
+    color: color-contrast(var(--obj-key-bg) vs white, black);
+}
+[data-type="number"] [part="key"]{
+    background-color: rgb(73, 123, 141);
+}
+[data-type="array"] [part="key"]{
+    background-color: var(--array-key-bg);
+    /* color: color-contrast(var(--array-key-bg) vs white, black); */
+    color: var(--array-key-color);
+}
+.value{
+    background-color: #ECF3C3;
+    width: 100%;
+    flex-grow:5;
+}
+input.key {
+    
+    -webkit-border-radius: 5px;
+    -moz-border-radius: 5px;
+    border-radius: 5px;
+    margin-right: 2px;
+}
+input {
+    border: none;
+    padding: 3px;
+}
+</style>
 <slot part=slot name=initVal be-noticed='{
     "slotchange": {"vft": "assignedNodes|", "fn": "handleSlotChange", "doInit": true}
 }'></slot>
