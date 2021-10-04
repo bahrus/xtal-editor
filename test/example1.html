@@ -16,27 +16,36 @@
                 "ib-id/": "../node_modules/ib-id/",
                 "on-to-me/": "../node_modules/on-to-me/",
                 "tran-sister/": "../node_modules/tran-sister/",
-                "pass-down/": "../node_modules/pass-down/",
-                "pass-up/": "../node_modules/pass-up/",
-                "pass-prop/": "../node_modules/pass-prop/",
-                "plus-equals/": "../node_modules/plus-equals/",
-                "pass-message/": "../node_modules/pass-message/"
+                "xtal-side-nav/": "../node_modules/xtal-side-nav/",
+                "d-fine/": "../node_modules/d-fine/",
+                "xodus/": "../node_modules/xodus/",
+                "if-diff/": "../node_modules/if-diff/",
+                "lazy-mt/": "../node_modules/lazy-mt/",
+                "mut-obs/": "../node_modules/mut-obs/",
+                "@power-elements/": "../node_modules/@power-elements/",
+                "be-observant/": "../node_modules/be-observant/",
+                "be-noticed/": "../node_modules/be-noticed/",
+                "xtal-decor/": "../node_modules/xtal-decor/",
+                "css-observe/": "../node_modules/css-observe/"
             }
         }
     </script>
     <button onclick="runScript()">runScript</button>
     <script>
         function runScript(){
-            $hell.cd('/xtal-editor-example1/div[1]/div[0]/div[0]/button');
+            $hell.cd('/xtal-editor-example1/div/div[0]/div[0]/button');
             $hell.$0.click();
-            $hell.cd('/xtal-editor-example1/div[1]/div[1]/xtal-editor[0]/div[1]/div[0]/div[0]/input[1]');
-            $hell.$0.value = 'jethro tull';
-            const event = new Event('change');
-            $hell.$0.dispatchEvent(event);
-            $hell.cd('/xtal-editor-example1');
-            if($hell.$0.value.string === 'jethro tull'){
-                $hell.$0.setAttribute('mark', '');
-            }
+            setTimeout(() => {
+                $hell.cd('/xtal-editor-example1/div/div[1]/xtal-editor[0]/div/div[0]/div[0]/input[1]');
+                $hell.$0.value = 'jethro tull';
+                const event = new Event('change');
+                $hell.$0.dispatchEvent(event);
+                $hell.cd('/xtal-editor-example1');
+                if($hell.$0.parsedObject.string === 'jethro tull'){
+                    $hell.$0.setAttribute('mark', '');
+                }
+            }, 500);
+
         }
         setTimeout(() => {
             runScript();
