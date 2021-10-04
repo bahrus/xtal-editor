@@ -337,7 +337,7 @@ input {
         }'></tran-sister>
         <!-- TODO:  set download property dynamically -->
         <a class=download part=download download="file.json" be-observant='{
-            "href": {"onProp": "downloadHref", "vft": "downloadHref"}
+            "href": {"onSet": "downloadHref", "vft": "downloadHref"}
         }'>
             <svg viewBox="0 0 24 24" style="width:16.25px;height:16.25px">
                 <g color="rgb(29, 155, 240)">
@@ -351,12 +351,12 @@ input {
 
 </header>
 <if-diff class=tree-view -iff be-observant='{
-    "iff": {"onProp": "treeView", "vft": "treeView"}
+    "iff": {"onSet": "treeView", "vft": "treeView"}
 }'>
     <template>
         <div -data-type part=editor class=editor -data-ro be-observant='{
-            "data-type": {"onProp": "type", "vft": "type", "as": "str-attr" },
-            "data-ro": {"onProp": "readOnly", "vft": "readOnly", "as": "str-attr"}
+            "data-type": {"onSet": "type", "vft": "type", "as": "str-attr" },
+            "data-ro": {"onSet": "readOnly", "vft": "readOnly", "as": "str-attr"}
         }'>
             <tran-sister observe-host on-prop=readOnly vft=readOnly transform-from-closest=.editor transform='
                 "input": [{"readOnly": true}]
@@ -366,18 +366,18 @@ input {
                     <button disabled part=expander class="expander nonPrimitive" be-observant='{
                         "textContent": {"vft": "open", "trueVal": "-", "falseVal": "+"}
                     }' be-noticed='{
-                        "click": {"toHost": true, "toggleProp": true, "prop": "open", "vft": "textContent"}
+                        "click": {"toggleProp": true, "prop": "open"}
                     }'
                     ></button>
                     <input disabled aria-label=key part=key class=key be-observant='{
-                        "readOnly": {"onProp": "readOnly", "vft": "readOnly"},
-                        "value": {"onProp": "key", "vft": "key"}
+                        "readOnly": {"onSet": "readOnly", "vft": "readOnly"},
+                        "value": {"onSet": "key", "vft": "key"}
                     }' be-noticed='{
                         "change": "handleKeyChange"
                     }'>
                     <input disabled=2 aria-label=value part=value -read-only class=value -value  be-observant='{
-                        "readOnly": {"onProp": "readOnly", "vft": "readOnly"},
-                        "value": {"onProp": "value", "vft": "value", "parseValAs": "string"}
+                        "readOnly": {"onSet": "readOnly", "vft": "readOnly"},
+                        "value": {"onSet": "value", "vft": "value", "parseValAs": "string"}
                     }' be-noticed='{
                         "disabled:onSet": {"vft": "disabled", "fn": "setFocus"},
                         "change": "handleValueChange"
@@ -385,7 +385,7 @@ input {
 
                 </div>
                 <div part=child-inserters class="nonPrimitive child-inserters" data-open=false -data-ro be-observant='{
-                    "data-ro": {"onProp": "readOnly", "vft": "readOnly", "as": "str-attr"}
+                    "data-ro": {"onSet": "readOnly", "vft": "readOnly", "as": "str-attr"}
                 }'>
                     <button disabled part=object-adder class="object adder" data-d=1 be-noticed='{
                         "click": {"prop": "objCounter", "plusEq": true, "vft": "dataset.d", "parseValAs": "int"}
@@ -444,7 +444,7 @@ input {
     </template>
 </if-diff>
 <if-diff class=text-view be-observant='{
-    "iff": {"onProp": "textView", "vft": "textView"}
+    "iff": {"onSet": "textView", "vft": "textView"}
 }'>
     <template>
         <json-viewer be-observant='{
