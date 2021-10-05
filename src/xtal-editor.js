@@ -143,10 +143,10 @@ slot{
 .remove[data-has-parent="true"]{
     display:none;
 }
-.remove::after{
+.remove[data-has-parent="false"]::after{
     content: "JSON Editor";
 }
-.remove[data-ro="true"]::after{
+.remove[data-has-parent="false"][data-ro="true"]::after{
     content: "JSON Viewer";
 }
 .text-view-selector::after{
