@@ -19,6 +19,9 @@ const mainTemplate = tm.html `
 
 <!-- <link rel=stylesheet href={cssPath}> -->
 <style>
+header[data-has-parent="true"]{
+    display: none;
+}
     :host{
     display:block;
 }
@@ -128,7 +131,8 @@ slot{
     margin-left: 11px;
     
 }
-.remove{
+
+.remove[data-has-parent="false"]{
     display: flex;
     justify-content: space-between;
     /* padding: 0px 4px;
@@ -139,9 +143,6 @@ slot{
     font-weight: bold;
     text-shadow: 1px 1px 1px black;
     background-color: black;
-}
-.remove[data-has-parent="true"]{
-    display:none;
 }
 .remove[data-has-parent="false"]::after{
     content: "JSON Editor";
@@ -192,6 +193,7 @@ xtal-side-nav{
     display: inline;
     --drawer-width:140px;
 }
+
 #collapse-all{
     background-image: url(https://cdn.jsdelivr.net/npm/xtal-editor/src/arrows-collapse.svg);
     width: 20px;
