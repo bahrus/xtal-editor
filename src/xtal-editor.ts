@@ -430,12 +430,17 @@ input {
                                     ":host": [{"collapseAll": false, "expandAll": true, "open": true}]
                                 }
                             }
-                        }'></button>
+                        }'>
+                    </button>
                     <button disabled id=collapse-all class=action part=collapse-all title="Collapse All"
-                        aria-label="Collapse All"></button>
-                    <tran-sister on=click transform='{
-                            ":host": [{"collapseAll": true, "expandAll": false, "open": false}]
-                        }'></tran-sister>
+                        aria-label="Collapse All" be-transformative='{
+                            "click":{
+                                "transform":{
+                                    ":host": [{"collapseAll": true, "expandAll": false, "open": false}]
+                                }
+                            }
+                        }'>
+                    </button>
 
                 </div>
 
