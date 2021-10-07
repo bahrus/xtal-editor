@@ -339,17 +339,15 @@ input {
                         }
                     }
                 }'></button>
-                <!-- <tran-sister on=click transform='{
-                    ":host": [{"treeView": false, "textView": true}],
-                    ".tree-view-selector":[{"style": {"display":"inline-block"}}],
-                    ".text-view-selector": [{"style": {"display":"none"}}]
-                }'></tran-sister> -->
-                <button style="display:none"  class="selector tree-view-selector" part=tree-view-selector></button>
-                <tran-sister on=click transform='{
-                    ":host": [{"treeView": true, "textView": false}],
-                    ".tree-view-selector":[{"style": {"display":"none"}}],
-                    ".text-view-selector": [{"style": {"display":"inline-block"}}]
-                }'></tran-sister>
+                <button style="display:none"  class="selector tree-view-selector" part=tree-view-selector be-transformative='{
+                    "click": {
+                        "transform":{
+                            ":host": [{"treeView": true, "textView": false}],
+                            ".tree-view-selector":[{"style": {"display":"none"}}],
+                            ".text-view-selector": [{"style": {"display":"inline-block"}}]
+                        }
+                    }
+                }'></button>
                 <!-- TODO:  set download property dynamically -->
                 <a class=download part=download download="file.json" be-observant='{
                     "href": {"onSet": "downloadHref", "vft": "downloadHref"}
