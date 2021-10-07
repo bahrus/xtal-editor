@@ -8,6 +8,7 @@ import('if-diff/if-diff.js');
 import('@power-elements/json-viewer/json-viewer.js');
 import('be-observant/be-observant.js');
 import('be-noticed/be-noticed.js');
+import('be-transformative/be-transformative.js');
 // const style = await import('./theme.css', {
 //     assert: { type: 'css' }
 // });
@@ -331,12 +332,20 @@ input {
             "data-ro": {"vft": "readOnly", "as": "str-attr"}
         }'>
             <xtal-side-nav>
-                <button class="selector text-view-selector" part=text-view-selector></button>
-                <tran-sister on=click transform='{
+                <button class="selector text-view-selector" part=text-view-selector be-transformative='{
+                    "click": {
+                        "transform":{
+                            ":host": [{"treeView": false, "textView": true}],
+                            ".tree-view-selector":[{"style": {"display":"inline-block"}}],
+                            ".text-view-selector": [{"style": {"display":"none"}}]                            
+                        }
+                    }
+                }'></button>
+                <!-- <tran-sister on=click transform='{
                     ":host": [{"treeView": false, "textView": true}],
                     ".tree-view-selector":[{"style": {"display":"inline-block"}}],
                     ".text-view-selector": [{"style": {"display":"none"}}]
-                }'></tran-sister>
+                }'></tran-sister> -->
                 <button style="display:none"  class="selector tree-view-selector" part=tree-view-selector></button>
                 <tran-sister on=click transform='{
                     ":host": [{"treeView": true, "textView": false}],
@@ -465,6 +474,7 @@ input {
 </if-diff>
 <be-observant></be-observant>
 <be-noticed></be-noticed>
+<be-transformative></be-transformative>
 `;
 
 
