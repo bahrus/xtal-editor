@@ -374,9 +374,6 @@ input {
             "data-type": {"onSet": "type", "vft": "type", "as": "str-attr" },
             "data-ro": {"onSet": "readOnly", "vft": "readOnly", "as": "str-attr"}
         }'>
-            <!-- <tran-sister observe-host on-prop=readOnly vft=readOnly transform-from-closest=.editor transform='{
-                "input": [{"readOnly": true}]
-            }'></tran-sister> -->
             <div part=field class=field>
                 <div class=text-editing>
                     <button disabled part=expander class="expander nonPrimitive" be-observant='{
