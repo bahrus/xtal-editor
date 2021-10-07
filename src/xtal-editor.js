@@ -422,10 +422,13 @@ input {
                         "click": "copyToClipboard"
                     }'></button>
                     <button disabled id=expand-all class=action part=expand-all title="Expand All"
-                        aria-label="Expand All"></button>
-                    <tran-sister on=click transform='{
-                            ":host": [{"collapseAll": false, "expandAll": true, "open": true}]
-                        }'></tran-sister>
+                        aria-label="Expand All" be-transformative='{
+                            "click":{
+                                "transform":{
+                                    ":host": [{"collapseAll": false, "expandAll": true, "open": true}]
+                                }
+                            }
+                        }'></button>
                     <button disabled id=collapse-all class=action part=collapse-all title="Collapse All"
                         aria-label="Collapse All"></button>
                     <tran-sister on=click transform='{
