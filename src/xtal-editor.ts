@@ -2,13 +2,13 @@ import { PropInfoExt, XE } from 'xtal-element/src/XE.js';
 import { TemplMgmtActions, TemplMgmtProps, tm } from 'trans-render/lib/mixins/TemplMgmtWithPEST.js';
 import { XtalEditorActions, XtalEditorProps, NameValue, editType } from '../types';
 import('ib-id/i-bid.js');
-import('tran-sister/tran-sister.js');
 import('xtal-side-nav/xtal-side-nav.js');
 import('if-diff/if-diff.js');
 import('@power-elements/json-viewer/json-viewer.js');
 import('be-observant/be-observant.js');
 import('be-noticed/be-noticed.js');
 import('be-transformative/be-transformative.js');
+import('be-switched/be-switched.js');
 // const style = await import('./theme.css', {
 //     assert: { type: 'css' }
 // });
@@ -323,10 +323,15 @@ input {
 <slot part=slot name=initVal be-noticed='{
     "slotchange": {"vft": "assignedNodes|", "fn": "handleSlotChange", "doInit": true}
 }'></slot>
-<if-diff iff lhs=true not-equals rhs=true be-observant='{
+<!-- <if-diff iff lhs=true not-equals rhs=true be-observant='{
     "lhs": "hasParent"
-}'>
-    <template>
+}'> -->
+    <template be-switched='{
+        "iff": true,
+        "lhs": {"vft": "hasParent"},
+        "op":  "===",
+        "rhs": false
+    }'>
         <header class=remove part=remove data-has-parent=true be-observant='{
             "data-has-parent": {"vft": "hasParent", "as": "str-attr"},
             "data-ro": {"vft": "readOnly", "as": "str-attr"}
@@ -366,13 +371,13 @@ input {
 
         </header>
     </template>
-</if-diff>
+<!-- </if-diff> -->
 
 <if-diff class=tree-view -iff be-observant='{
     "iff": {"onSet": "treeView", "vft": "treeView"}
 }'>
     <template>
-        <div -data-type part=editor class=editor -data-ro be-observant='{
+        <div part=editor class=editor be-observant='{
             "data-type": {"onSet": "type", "vft": "type", "as": "str-attr" },
             "data-ro": {"onSet": "readOnly", "vft": "readOnly", "as": "str-attr"}
         }'>
@@ -478,6 +483,7 @@ input {
 <be-observant></be-observant>
 <be-noticed></be-noticed>
 <be-transformative></be-transformative>
+<be-switched></be-switched>
 `;
 
 
