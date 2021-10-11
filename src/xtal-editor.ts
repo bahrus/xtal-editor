@@ -370,9 +370,6 @@ input {
     </header>
 </template>
 
-<!-- <if-diff class=tree-view -iff be-observant='{
-    "iff": {"onSet": "treeView", "vft": "treeView"}
-}'> -->
 <template be-switched='{
     "iff": {"onSet": "treeView", "vft": "treeView"}
 }'>
@@ -469,16 +466,17 @@ input {
 
     </div>
 </template>
-<!-- </if-diff> -->
-<if-diff class=text-view be-observant='{
+<!-- <if-diff class=text-view be-observant='{
+    "iff": {"onSet": "textView", "vft": "textView"}
+}'> -->
+<template be-switched='{
     "iff": {"onSet": "textView", "vft": "textView"}
 }'>
-    <template>
-        <json-viewer be-observant='{
-            "object": {"vft": "value", "parseValAs": "object"} 
-        }'></json-viewer>
-    </template>
-</if-diff>
+    <json-viewer be-observant='{
+        "object": {"vft": "value", "parseValAs": "object"} 
+    }'></json-viewer>
+</template>
+<!-- </if-diff> -->
 <be-observant></be-observant>
 <be-noticed></be-noticed>
 <be-transformative></be-transformative>
