@@ -323,154 +323,153 @@ input {
 <slot part=slot name=initVal be-noticed='{
     "slotchange": {"vft": "assignedNodes|", "fn": "handleSlotChange", "doInit": true}
 }'></slot>
-<!-- <if-diff iff lhs=true not-equals rhs=true be-observant='{
-    "lhs": "hasParent"
-}'> -->
-    <template be-switched='{
-        "iff": true,
-        "lhs": {"vft": "hasParent"},
-        "op":  "===",
-        "rhs": false
+
+<template be-switched='{
+    "iff": true,
+    "lhs": {"vft": "hasParent"},
+    "op":  "===",
+    "rhs": false
+}'>
+    <header class=remove part=remove data-has-parent=true be-observant='{
+        "data-has-parent": {"vft": "hasParent", "as": "str-attr"},
+        "data-ro": {"vft": "readOnly", "as": "str-attr"}
     }'>
-        <header class=remove part=remove data-has-parent=true be-observant='{
-            "data-has-parent": {"vft": "hasParent", "as": "str-attr"},
-            "data-ro": {"vft": "readOnly", "as": "str-attr"}
-        }'>
-            <xtal-side-nav>
-                <button class="selector text-view-selector" part=text-view-selector be-transformative='{
-                    "click": {
-                        "transform":{
-                            ":host": [{"treeView": false, "textView": true}],
-                            ".tree-view-selector":[{"style": {"display":"inline-block"}}],
-                            ".text-view-selector": [{"style": {"display":"none"}}]                            
-                        }
+        <xtal-side-nav>
+            <button class="selector text-view-selector" part=text-view-selector be-transformative='{
+                "click": {
+                    "transform":{
+                        ":host": [{"treeView": false, "textView": true}],
+                        ".tree-view-selector":[{"style": {"display":"inline-block"}}],
+                        ".text-view-selector": [{"style": {"display":"none"}}]                            
                     }
-                }'></button>
-                <button style="display:none"  class="selector tree-view-selector" part=tree-view-selector be-transformative='{
-                    "click": {
-                        "transform":{
-                            ":host": [{"treeView": true, "textView": false}],
-                            ".tree-view-selector":[{"style": {"display":"none"}}],
-                            ".text-view-selector": [{"style": {"display":"inline-block"}}]
-                        }
+                }
+            }'></button>
+            <button style="display:none"  class="selector tree-view-selector" part=tree-view-selector be-transformative='{
+                "click": {
+                    "transform":{
+                        ":host": [{"treeView": true, "textView": false}],
+                        ".tree-view-selector":[{"style": {"display":"none"}}],
+                        ".text-view-selector": [{"style": {"display":"inline-block"}}]
                     }
-                }'></button>
-                <!-- TODO:  set download property dynamically -->
-                <a class=download part=download download="file.json" be-observant='{
-                    "href": {"onSet": "downloadHref", "vft": "downloadHref"}
-                }'>
-                    <svg viewBox="0 0 24 24" style="width:16.25px;height:16.25px">
-                        <g color="rgb(29, 155, 240)">
-                            <path stroke="currentcolor" d="M11.96 14.945c-.067 0-.136-.01-.203-.027-1.13-.318-2.097-.986-2.795-1.932-.832-1.125-1.176-2.508-.968-3.893s.942-2.605 2.068-3.438l3.53-2.608c2.322-1.716 5.61-1.224 7.33 1.1.83 1.127 1.175 2.51.967 3.895s-.943 2.605-2.07 3.438l-1.48 1.094c-.333.246-.804.175-1.05-.158-.246-.334-.176-.804.158-1.05l1.48-1.095c.803-.592 1.327-1.463 1.476-2.45.148-.988-.098-1.975-.69-2.778-1.225-1.656-3.572-2.01-5.23-.784l-3.53 2.608c-.802.593-1.326 1.464-1.475 2.45-.15.99.097 1.975.69 2.778.498.675 1.187 1.15 1.992 1.377.4.114.633.528.52.928-.092.33-.394.547-.722.547z"></path>
-                            <path stroke="currentcolor" d="M7.27 22.054c-1.61 0-3.197-.735-4.225-2.125-.832-1.127-1.176-2.51-.968-3.894s.943-2.605 2.07-3.438l1.478-1.094c.334-.245.805-.175 1.05.158s.177.804-.157 1.05l-1.48 1.095c-.803.593-1.326 1.464-1.475 2.45-.148.99.097 1.975.69 2.778 1.225 1.657 3.57 2.01 5.23.785l3.528-2.608c1.658-1.225 2.01-3.57.785-5.23-.498-.674-1.187-1.15-1.992-1.376-.4-.113-.633-.527-.52-.927.112-.4.528-.63.926-.522 1.13.318 2.096.986 2.794 1.932 1.717 2.324 1.224 5.612-1.1 7.33l-3.53 2.608c-.933.693-2.023 1.026-3.105 1.026z"></path>
-                        </g>
-                    </svg>
-                    Download
-                </a>
-            </xtal-side-nav>
+                }
+            }'></button>
+            <!-- TODO:  set download property dynamically -->
+            <a class=download part=download download="file.json" be-observant='{
+                "href": {"onSet": "downloadHref", "vft": "downloadHref"}
+            }'>
+                <svg viewBox="0 0 24 24" style="width:16.25px;height:16.25px">
+                    <g color="rgb(29, 155, 240)">
+                        <path stroke="currentcolor" d="M11.96 14.945c-.067 0-.136-.01-.203-.027-1.13-.318-2.097-.986-2.795-1.932-.832-1.125-1.176-2.508-.968-3.893s.942-2.605 2.068-3.438l3.53-2.608c2.322-1.716 5.61-1.224 7.33 1.1.83 1.127 1.175 2.51.967 3.895s-.943 2.605-2.07 3.438l-1.48 1.094c-.333.246-.804.175-1.05-.158-.246-.334-.176-.804.158-1.05l1.48-1.095c.803-.592 1.327-1.463 1.476-2.45.148-.988-.098-1.975-.69-2.778-1.225-1.656-3.572-2.01-5.23-.784l-3.53 2.608c-.802.593-1.326 1.464-1.475 2.45-.15.99.097 1.975.69 2.778.498.675 1.187 1.15 1.992 1.377.4.114.633.528.52.928-.092.33-.394.547-.722.547z"></path>
+                        <path stroke="currentcolor" d="M7.27 22.054c-1.61 0-3.197-.735-4.225-2.125-.832-1.127-1.176-2.51-.968-3.894s.943-2.605 2.07-3.438l1.478-1.094c.334-.245.805-.175 1.05.158s.177.804-.157 1.05l-1.48 1.095c-.803.593-1.326 1.464-1.475 2.45-.148.99.097 1.975.69 2.778 1.225 1.657 3.57 2.01 5.23.785l3.528-2.608c1.658-1.225 2.01-3.57.785-5.23-.498-.674-1.187-1.15-1.992-1.376-.4-.113-.633-.527-.52-.927.112-.4.528-.63.926-.522 1.13.318 2.096.986 2.794 1.932 1.717 2.324 1.224 5.612-1.1 7.33l-3.53 2.608c-.933.693-2.023 1.026-3.105 1.026z"></path>
+                    </g>
+                </svg>
+                Download
+            </a>
+        </xtal-side-nav>
 
-        </header>
-    </template>
-<!-- </if-diff> -->
+    </header>
+</template>
 
-<if-diff class=tree-view -iff be-observant='{
+<!-- <if-diff class=tree-view -iff be-observant='{
+    "iff": {"onSet": "treeView", "vft": "treeView"}
+}'> -->
+<template be-switched='{
     "iff": {"onSet": "treeView", "vft": "treeView"}
 }'>
-    <template>
-        <div part=editor class=editor be-observant='{
-            "data-type": {"onSet": "type", "vft": "type", "as": "str-attr" },
-            "data-ro": {"onSet": "readOnly", "vft": "readOnly", "as": "str-attr"}
-        }'>
-            <div part=field class=field>
-                <div class=text-editing>
-                    <button disabled part=expander class="expander nonPrimitive" be-observant='{
-                        "textContent": {"vft": "open", "trueVal": "-", "falseVal": "+"}
-                    }' be-noticed='{
-                        "click": {"toggleProp": true, "prop": "open"}
-                    }'
-                    ></button>
-                    <input disabled aria-label=key part=key class=key be-observant='{
-                        "readOnly": {"onSet": "readOnly", "vft": "readOnly"},
-                        "value": {"onSet": "key", "vft": "key"}
-                    }' be-noticed='{
-                        "change": "handleKeyChange"
-                    }'>
-                    <input disabled=2 aria-label=value part=value -read-only class=value -value  be-observant='{
-                        "readOnly": {"onSet": "readOnly", "vft": "readOnly"},
-                        "value": {"onSet": "value", "vft": "value", "parseValAs": "string"}
-                    }' be-noticed='{
-                        "disabled:onSet": {"vft": "disabled", "fn": "setFocus"},
-                        "change": "handleValueChange"
-                    }'>
-
-                </div>
-                <div part=child-inserters class="nonPrimitive child-inserters" data-open=false -data-ro be-observant='{
-                    "data-ro": {"onSet": "readOnly", "vft": "readOnly", "as": "str-attr"}
+    <div part=editor class=editor be-observant='{
+        "data-type": {"onSet": "type", "vft": "type", "as": "str-attr" },
+        "data-ro": {"onSet": "readOnly", "vft": "readOnly", "as": "str-attr"}
+    }'>
+        <div part=field class=field>
+            <div class=text-editing>
+                <button disabled part=expander class="expander nonPrimitive" be-observant='{
+                    "textContent": {"vft": "open", "trueVal": "-", "falseVal": "+"}
+                }' be-noticed='{
+                    "click": {"toggleProp": true, "prop": "open"}
+                }'
+                ></button>
+                <input disabled aria-label=key part=key class=key be-observant='{
+                    "readOnly": {"onSet": "readOnly", "vft": "readOnly"},
+                    "value": {"onSet": "key", "vft": "key"}
+                }' be-noticed='{
+                    "change": "handleKeyChange"
                 }'>
-                    <button disabled part=object-adder class="object adder" data-d=1 be-noticed='{
-                        "click": {"prop": "objCounter", "plusEq": true, "vft": "dataset.d", "parseValAs": "int"}
-                    }'>+object</button>
-                    <button disabled part=string-adder class="string adder" data-d=1 be-noticed='{
-                        "click": {"prop": "strCounter", "plusEq": true, "vft": "dataset.d", "parseValAs": "int"}
-                    }'>+string</button>
-                    <button disabled part=bool-adder class="bool adder" data-d=1 be-noticed='{
-                        "click": {"prop": "boolCounter", "plusEq": true, "vft": "dataset.d", "parseValAs": "int"}
-                    }'>+bool</button>
-                    <button disabled part=number-adder class="number adder" data-d=1 be-noticed='{
-                        "click": {"prop": "numCounter", "plusEq": true, "vft": "dataset.d", "parseValAs": "int"}
-                    }'>+number</button>
-                    <button disabled part=arr-adder class="arr adder" data-d=1 be-noticed='{
-                        "click": {"prop": "arrCounter", "plusEq": true, "vft": "dataset.d", "parseValAs": "int"}
-                    }'>+array</button>
-                    <button disabled id=copy class=action part=copy-to-clipboard title="Copy to Clipboard" be-noticed='{
-                        "click": "copyToClipboard"
-                    }'></button>
-                    <button disabled id=expand-all class=action part=expand-all title="Expand All"
-                        aria-label="Expand All" be-transformative='{
-                            "click":{
-                                "transform":{
-                                    ":host": [{"collapseAll": false, "expandAll": true, "open": true}]
-                                }
-                            }
-                        }'>
-                    </button>
-                    <button disabled id=collapse-all class=action part=collapse-all title="Collapse All"
-                        aria-label="Collapse All" be-transformative='{
-                            "click":{
-                                "transform":{
-                                    ":host": [{"collapseAll": true, "expandAll": false, "open": false}]
-                                }
-                            }
-                        }'>
-                    </button>
-
-                </div>
+                <input disabled=2 aria-label=value part=value -read-only class=value -value  be-observant='{
+                    "readOnly": {"onSet": "readOnly", "vft": "readOnly"},
+                    "value": {"onSet": "value", "vft": "value", "parseValAs": "string"}
+                }' be-noticed='{
+                    "disabled:onSet": {"vft": "disabled", "fn": "setFocus"},
+                    "change": "handleValueChange"
+                }'>
 
             </div>
-            <div part=child-editors class="nonPrimitive child-editors" data-open=false be-observant='{
-                "data-open":{"vft": "open", "as": "str-attr"}
+            <div part=child-inserters class="nonPrimitive child-inserters" data-open=false -data-ro be-observant='{
+                "data-ro": {"onSet": "readOnly", "vft": "readOnly", "as": "str-attr"}
             }'>
-                <template data-from=child-editors-list>
-                    <xtal-editor has-parent be-observant='{
-                        "open": "expandAll",
-                        "expandAll": "expandAll",
-                        "readOnly": "readOnly"
-                    }' be-noticed='{
-                        "internal-update-count-changed": {"prop": "upwardDataFlowInProgress", "parseValAs": "truthy"}
-                    }'></xtal-editor>
-                </template>
-                <i-bid -list id=child-editors-list updatable transform='{
-                        "xtal-editor":[{"value": "value", "key": "key"}]
-                    }'
-                    be-observant='{
-                        "list": "childValues"
-                    }'
-                ></i-bid>
+                <button disabled part=object-adder class="object adder" data-d=1 be-noticed='{
+                    "click": {"prop": "objCounter", "plusEq": true, "vft": "dataset.d", "parseValAs": "int"}
+                }'>+object</button>
+                <button disabled part=string-adder class="string adder" data-d=1 be-noticed='{
+                    "click": {"prop": "strCounter", "plusEq": true, "vft": "dataset.d", "parseValAs": "int"}
+                }'>+string</button>
+                <button disabled part=bool-adder class="bool adder" data-d=1 be-noticed='{
+                    "click": {"prop": "boolCounter", "plusEq": true, "vft": "dataset.d", "parseValAs": "int"}
+                }'>+bool</button>
+                <button disabled part=number-adder class="number adder" data-d=1 be-noticed='{
+                    "click": {"prop": "numCounter", "plusEq": true, "vft": "dataset.d", "parseValAs": "int"}
+                }'>+number</button>
+                <button disabled part=arr-adder class="arr adder" data-d=1 be-noticed='{
+                    "click": {"prop": "arrCounter", "plusEq": true, "vft": "dataset.d", "parseValAs": "int"}
+                }'>+array</button>
+                <button disabled id=copy class=action part=copy-to-clipboard title="Copy to Clipboard" be-noticed='{
+                    "click": "copyToClipboard"
+                }'></button>
+                <button disabled id=expand-all class=action part=expand-all title="Expand All"
+                    aria-label="Expand All" be-transformative='{
+                        "click":{
+                            "transform":{
+                                ":host": [{"collapseAll": false, "expandAll": true, "open": true}]
+                            }
+                        }
+                    }'>
+                </button>
+                <button disabled id=collapse-all class=action part=collapse-all title="Collapse All"
+                    aria-label="Collapse All" be-transformative='{
+                        "click":{
+                            "transform":{
+                                ":host": [{"collapseAll": true, "expandAll": false, "open": false}]
+                            }
+                        }
+                    }'>
+                </button>
+
             </div>
 
         </div>
-    </template>
-</if-diff>
+        <div part=child-editors class="nonPrimitive child-editors" data-open=false be-observant='{
+            "data-open":{"vft": "open", "as": "str-attr"}
+        }'>
+            <template data-from=child-editors-list>
+                <xtal-editor has-parent be-observant='{
+                    "open": "expandAll",
+                    "expandAll": "expandAll",
+                    "readOnly": "readOnly"
+                }' be-noticed='{
+                    "internal-update-count-changed": {"prop": "upwardDataFlowInProgress", "parseValAs": "truthy"}
+                }'></xtal-editor>
+            </template>
+            <i-bid -list id=child-editors-list updatable transform='{
+                    "xtal-editor":[{"value": "value", "key": "key"}]
+                }'
+                be-observant='{
+                    "list": "childValues"
+                }'
+            ></i-bid>
+        </div>
+
+    </div>
+</template>
+<!-- </if-diff> -->
 <if-diff class=text-view be-observant='{
     "iff": {"onSet": "textView", "vft": "textView"}
 }'>
