@@ -2,7 +2,6 @@ import { XE } from 'xtal-element/src/XE.js';
 import { tm } from 'trans-render/lib/mixins/TemplMgmtWithPEST.js';
 import('ib-id/i-bid.js');
 import('xtal-side-nav/xtal-side-nav.js');
-import('if-diff/if-diff.js');
 import('@power-elements/json-viewer/json-viewer.js');
 import('be-observant/be-observant.js');
 import('be-noticed/be-noticed.js');
@@ -322,6 +321,7 @@ input {
     "slotchange": {"vft": "assignedNodes|", "fn": "handleSlotChange", "doInit": true}
 }'></slot>
 
+<!-- Header -->
 <template be-switched='{
     "iff": true,
     "lhs": {"vft": "hasParent"},
@@ -368,6 +368,7 @@ input {
     </header>
 </template>
 
+<!-- Tree View -->
 <template be-switched='{
     "iff": {"onSet": "treeView", "vft": "treeView"}
 }'>
@@ -464,9 +465,8 @@ input {
 
     </div>
 </template>
-<!-- <if-diff class=text-view be-observant='{
-    "iff": {"onSet": "textView", "vft": "textView"}
-}'> -->
+
+<!-- Text View -->
 <template be-switched='{
     "iff": {"onSet": "textView", "vft": "textView"}
 }'>
@@ -474,7 +474,6 @@ input {
         "object": {"vft": "value", "parseValAs": "object"} 
     }'></json-viewer>
 </template>
-<!-- </if-diff> -->
 <be-observant></be-observant>
 <be-noticed></be-noticed>
 <be-transformative></be-transformative>

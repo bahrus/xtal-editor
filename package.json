@@ -29,7 +29,6 @@
     "xtal-element": "0.0.443",
     "trans-render": "0.0.419",
     "xtal-shell": "0.0.25",
-    "if-diff": "0.0.122",
     "@power-elements/json-viewer": "2.1.1",
     "be-observant": "0.0.15",
     "be-noticed": "0.0.17",
