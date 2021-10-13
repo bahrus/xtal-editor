@@ -447,20 +447,18 @@ input {
         <div part=child-editors class="nonPrimitive child-editors" data-open=false be-observant='{
             "data-open":{"vft": "open", "as": "str-attr"}
         }'>
-            <template be-repeated='{
+            <xtal-editor has-parent be-observant='{
+                "open": "expandAll",
+                "expandAll": "expandAll",
+                "readOnly": "readOnly"
+            }' be-noticed='{
+                "internal-update-count-changed": {"prop": "upwardDataFlowInProgress", "parseValAs": "truthy"}
+            }' be-repeated='{
                 "list": "childValues",
                 "transform": {
                     "xtal-editor": [{"value": "value", "key": "key"}]
                 }
-            }'>
-                <xtal-editor has-parent be-observant='{
-                    "open": "expandAll",
-                    "expandAll": "expandAll",
-                    "readOnly": "readOnly"
-                }' be-noticed='{
-                    "internal-update-count-changed": {"prop": "upwardDataFlowInProgress", "parseValAs": "truthy"}
-                }'></xtal-editor>
-            </template>
+            }'></xtal-editor>
         </div>
 
     </div>
