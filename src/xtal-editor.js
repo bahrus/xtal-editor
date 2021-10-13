@@ -1,6 +1,5 @@
 import { XE } from 'xtal-element/src/XE.js';
 import { tm } from 'trans-render/lib/mixins/TemplMgmtWithPEST.js';
-import('ib-id/i-bid.js');
 import('xtal-side-nav/xtal-side-nav.js');
 import('@power-elements/json-viewer/json-viewer.js');
 import('be-observant/be-observant.js');
