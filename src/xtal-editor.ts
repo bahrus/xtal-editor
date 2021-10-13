@@ -8,6 +8,7 @@ import('be-observant/be-observant.js');
 import('be-noticed/be-noticed.js');
 import('be-transformative/be-transformative.js');
 import('be-switched/be-switched.js');
+import('be-repeated/be-repeated.js');
 // const style = await import('./theme.css', {
 //     assert: { type: 'css' }
 // });
@@ -447,7 +448,12 @@ input {
         <div part=child-editors class="nonPrimitive child-editors" data-open=false be-observant='{
             "data-open":{"vft": "open", "as": "str-attr"}
         }'>
-            <template data-from=child-editors-list>
+            <template be-repeated='{
+                "list": "childValues",
+                "transform": {
+                    "xtal-editor": [{"value": "value", "key": "key"}]
+                }
+            }'>
                 <xtal-editor has-parent be-observant='{
                     "open": "expandAll",
                     "expandAll": "expandAll",
@@ -456,13 +462,6 @@ input {
                     "internal-update-count-changed": {"prop": "upwardDataFlowInProgress", "parseValAs": "truthy"}
                 }'></xtal-editor>
             </template>
-            <i-bid -list id=child-editors-list updatable transform='{
-                    "xtal-editor":[{"value": "value", "key": "key"}]
-                }'
-                be-observant='{
-                    "list": "childValues"
-                }'
-            ></i-bid>
         </div>
 
     </div>
@@ -480,6 +479,7 @@ input {
 <be-noticed></be-noticed>
 <be-transformative></be-transformative>
 <be-switched></be-switched>
+<be-repeated></be-repeated>
 `;
 
 
