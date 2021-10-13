@@ -42,6 +42,8 @@
                 $hell.cd('/xtal-editor-example1');
                 if($hell.$0.parsedObject.string === 'jethro tull'){
                     $hell.$0.setAttribute('mark', '');
+                }else{
+                    console.error('jethro tull not found in higher nodes.');
                 }
             }, 500);
 
