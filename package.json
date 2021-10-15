@@ -28,12 +28,13 @@
     "be-noticed": "0.0.17",
     "be-transformative": "0.0.4",
     "be-switched": "0.0.1",
-    "be-repeated": "0.0.6",
+    "be-repeated": "0.0.8",
     "xtal-side-nav": "0.0.15",
     "xtal-element": "0.0.443",
     "trans-render": "0.0.419",
     "@power-elements/json-viewer": "2.1.1",
-    "xtal-decor": "0.0.52"
+    "xtal-decor": "0.0.52",
+    "be-decorated": "0.0.9"
   },
   "devDependencies": {
     "@skypack/package-check": "0.2.2",
