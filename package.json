@@ -24,8 +24,8 @@
   ],
   "types": "types.d.ts",
   "dependencies": {
-    "trans-render": "0.0.419",
-    "xtal-element": "0.0.444",
+    "trans-render": "0.0.420",
+    "xtal-element": "0.0.445",
     "be-decorated": "0.0.13",
     "be-observant": "0.0.18",
     "be-noticed": "0.0.21",
