@@ -7,6 +7,7 @@ import('be-noticed/be-noticed.js');
 import('be-transformative/be-transformative.js');
 import('be-switched/be-switched.js');
 import('be-repeated/be-repeated.js');
+import('be-hive/be-hive.js');
 // const style = await import('./theme.css', {
 //     assert: { type: 'css' }
 // });
@@ -470,7 +471,8 @@ input {
         "object": {"vft": "value", "parseValAs": "object"} 
     }'></json-viewer>
 </template>
-<be-observant></be-observant>
+<!-- <be-observant></be-observant> -->
+<be-hive></be-hive>
 <be-noticed></be-noticed>
 <be-transformative></be-transformative>
 <be-switched></be-switched>

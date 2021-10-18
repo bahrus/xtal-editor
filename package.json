@@ -26,8 +26,9 @@
   "dependencies": {
     "trans-render": "0.0.421",
     "xtal-element": "0.0.446",
+    "be-hive": "0.0.2",
     "be-decorated": "0.0.18",
-    "be-observant": "0.0.19",
+    "be-observant": "0.0.20",
     "be-noticed": "0.0.22",
     "be-transformative": "0.0.6",
     "be-switched": "0.0.6",
