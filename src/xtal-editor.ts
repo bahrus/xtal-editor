@@ -474,7 +474,6 @@ input {
     }'></json-viewer>
 </template>
 <be-hive></be-hive>
-<be-transformative></be-transformative>
 <be-switched></be-switched>
 <be-repeated></be-repeated>
 `;
