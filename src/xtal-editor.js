@@ -471,9 +471,7 @@ input {
         "object": {"vft": "value", "parseValAs": "object"} 
     }'></json-viewer>
 </template>
-<!-- <be-observant></be-observant> -->
 <be-hive></be-hive>
-<be-noticed></be-noticed>
 <be-transformative></be-transformative>
 <be-switched></be-switched>
 <be-repeated></be-repeated>
