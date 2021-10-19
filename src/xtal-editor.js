@@ -86,6 +86,22 @@ slot{
 .editor[data-type="array"][data-even-level="false"]{
     background-color: var(--array-odd-level-editor-bg);
 }
+/* .editor{
+    transition-timing-function: ease;
+} */
+@keyframes fadeIn {
+    0% {opacity: 0;}
+    100% {opacity: 1;}
+}
+.animated {
+    animation-duration: 1s;
+    animation-fill-mode: both;
+}
+.editor,json-viewer {
+    animation-name: fadeIn;
+}
+
+
 .child-inserters[data-ro="true"] .adder{
     display: none;
 }
@@ -380,7 +396,7 @@ input {
 <template be-switched='{
     "iff": {"onSet": "treeView", "vft": "treeView"}
 }'>
-    <div part=editor class=editor be-observant='{
+    <div part=editor class="animated editor" be-observant='{
         "data-type": {"onSet": "type", "vft": "type", "as": "str-attr" },
         "data-ro": {"onSet": "readOnly", "vft": "readOnly", "as": "str-attr"}
     }'>
@@ -474,7 +490,7 @@ input {
 <template be-switched='{
     "iff": {"onSet": "textView", "vft": "textView"}
 }'>
-    <json-viewer be-observant='{
+    <json-viewer class=animated be-observant='{
         "object": {"vft": "value", "parseValAs": "object"} 
     }'></json-viewer>
 </template>
