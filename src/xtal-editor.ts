@@ -159,6 +159,12 @@ slot{
 .tree-view-selector::after{
     content: "Tree View"
 }
+.tree-view-selector.inactive{
+    display:none;
+}
+.text-view-selector.inactive{
+    display:none;
+}
 .remove.editKey::after{
     content: "Remove item by deleting the property name.";
 }
@@ -319,9 +325,7 @@ input {
     border: none;
     padding: 3px;
 }
-.tree-view-selector.inactive{
-    display:none;
-}
+
 </style>
 <slot part=slot name=initVal be-noticed='{
     "slotchange": {"vft": "assignedNodes|", "fn": "handleSlotChange", "doInit": true}
@@ -344,7 +348,7 @@ input {
                     "transform":{
                         ":host": [{"treeView": false, "textView": true}],
                         ".tree-view-selector":[{},{},{".inactive": false}],
-                        ".text-view-selector": [{"style": {"display":"none"}}]                            
+                        ".text-view-selector": [{}, {}, {".inactive": true}]                            
                     }
                 }
             }'></button>
@@ -353,7 +357,7 @@ input {
                     "transform":{
                         ":host": [{"treeView": true, "textView": false}],
                         ".tree-view-selector":[{},{},{".inactive": true}],
-                        ".text-view-selector": [{"style": {"display":"inline-block"}}]
+                        ".text-view-selector": [{},{}, {".inactive": false}]
                     }
                 }
             }'></button>
