@@ -317,6 +317,9 @@ input {
     border: none;
     padding: 3px;
 }
+.tree-view-selector.inactive{
+    display:none;
+}
 </style>
 <slot part=slot name=initVal be-noticed='{
     "slotchange": {"vft": "assignedNodes|", "fn": "handleSlotChange", "doInit": true}
@@ -338,16 +341,16 @@ input {
                 "click": {
                     "transform":{
                         ":host": [{"treeView": false, "textView": true}],
-                        ".tree-view-selector":[{"style": {"display":"inline-block"}}],
+                        ".tree-view-selector":[{},{},{".inactive": false}],
                         ".text-view-selector": [{"style": {"display":"none"}}]                            
                     }
                 }
             }'></button>
-            <button style="display:none"  class="selector tree-view-selector" part=tree-view-selector be-transformative='{
+            <button class="selector tree-view-selector inactive" part=tree-view-selector be-transformative='{
                 "click": {
                     "transform":{
                         ":host": [{"treeView": true, "textView": false}],
-                        ".tree-view-selector":[{"style": {"display":"none"}}],
+                        ".tree-view-selector":[{},{},{".inactive": true}],
                         ".text-view-selector": [{"style": {"display":"inline-block"}}]
                     }
                 }
