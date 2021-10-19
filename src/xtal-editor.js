@@ -472,7 +472,6 @@ input {
     }'></json-viewer>
 </template>
 <be-hive></be-hive>
-<be-repeated></be-repeated>
 `;
 const tagName = 'xtal-editor';
 /**
