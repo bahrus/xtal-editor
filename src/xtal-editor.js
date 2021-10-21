@@ -858,3 +858,6 @@ const xe = new XE({
     mixins: [tm.TemplMgmtMixin]
 });
 export const XtalEditor = xe.classDef;
+if (document.querySelector('be-hive') === null) {
+    document.head.appendChild(document.createElement('be-hive'));
+}

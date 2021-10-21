@@ -884,3 +884,7 @@ const xe = new XE<XtalEditorProps & TemplMgmtProps, XtalEditorActions>({
 export const XtalEditor = xe.classDef!;
 
 type X = XtalEditorCore;
+
+if(document.querySelector('be-hive') === null){
+    document.head.appendChild(document.createElement('be-hive'));
+}
