@@ -347,7 +347,7 @@ input {
 
 <!-- Header -->
 <template be-switched='{
-    "iff": true,
+    "if": true,
     "lhs": {"vft": "hasParent"},
     "op":  "===",
     "rhs": false
@@ -394,7 +394,8 @@ input {
 
 <!-- Tree View -->
 <template be-switched='{
-    "iff": {"onSet": "treeView", "vft": "treeView"}
+    "if": {"onSet": "treeView", "vft": "treeView"},
+    "debug": true
 }'>
     <div part=editor class="animated editor" be-observant='{
         "data-type": {"onSet": "type", "vft": "type", "as": "str-attr" },
@@ -488,7 +489,7 @@ input {
 
 <!-- Text View -->
 <template be-switched='{
-    "iff": {"onSet": "textView", "vft": "textView"}
+    "if": {"onSet": "textView", "vft": "textView"}
 }'>
     <json-viewer class=animated be-observant='{
         "object": {"vft": "value", "parseValAs": "object"} 
