@@ -396,8 +396,7 @@ input {
 
 <!-- Tree View -->
 <template be-switched='{
-    "if": {"onSet": "treeView", "vft": "treeView"},
-    "debug": true
+    "if": {"onSet": "treeView", "vft": "treeView"}
 }'>
     <div part=editor class="animated editor" be-observant='{
         "data-type": {"onSet": "type", "vft": "type", "as": "str-attr" },
