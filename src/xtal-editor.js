@@ -376,7 +376,7 @@ input {
             }'>Tree View</button>
             <!-- TODO:  set download property dynamically -->
             <a class=download part=download download="file.json" be-observant='{
-                "href": {"onSet": "downloadHref", "vft": "downloadHref"}
+                "href": ".downloadHref"
             }'>
                 <svg viewBox="0 0 24 24" style="width:16.25px;height:16.25px">
                     <g color="rgb(29, 155, 240)">
@@ -408,13 +408,13 @@ input {
                 }'
                 ></button>
                 <input disabled aria-label=key part=key class=key be-observant='{
-                    "readOnly": {"onSet": "readOnly", "vft": "readOnly"},
-                    "value": {"onSet": "key", "vft": "key"}
+                    "readOnly": ".readOnly",
+                    "value": ".key"
                 }' be-noticed='{
                     "change": "handleKeyChange"
                 }'>
                 <input disabled=2 aria-label=value part=value -read-only class=value -value  be-observant='{
-                    "readOnly": {"onSet": "readOnly", "vft": "readOnly"},
+                    "readOnly": ".readOnly",
                     "value": {"onSet": "value", "vft": "value", "parseValAs": "string"}
                 }' be-noticed='{
                     "disabled:onSet": {"vft": "disabled", "fn": "setFocus"},
