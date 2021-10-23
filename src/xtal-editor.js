@@ -57,21 +57,26 @@ slot{
     padding-bottom: 0px;
     border: 0;
 }
-.object.adder{
-    background-color: #C15000;
-}
+
 .editor{
-    --obj-key-bg: #e17000;
+    --obj-key-bg: #FFD4B8;
+    --obj-key-color: #ffffff;
+    --str-key-bg: #B8FFBB;
+    --str-key-color: #000000;
+    --num-key-bg: #BCD3DC;
+    --num-key-color: #000000;
     --array-key-bg: #2d5b89;
     --array-key-color: #D2A476;
     --obj-even-level-editor-bg: #F1E090;
     --obj-odd-level-editor-bg: #FFEFCC;
     --array-even-level-editor-bg: #A9DBDD;
     --array-odd-level-editor-bg: #D9DBDD;
+    --obj-adder-bg: #C15000;
     --string-adder-bg: #007408;
     --bool-adder-bg: #516600;
     --num-adder-bg:#497B8D;
     --arr-adder-bg: #2d5b89;
+    
 }
 .editor[data-type="object"][data-even-level="true"]{
     background-color: var(--obj-even-level-editor-bg);
@@ -104,6 +109,9 @@ slot{
 
 .child-inserters[data-ro="true"] .adder{
     display: none;
+}
+.object.adder{
+    background-color: var(--obj-adder-bg);
 }
 .string.adder{
     background-color:var(--string-adder-bg);
@@ -166,12 +174,6 @@ slot{
 }
 .remove[data-has-parent="false"][data-ro="true"]::after{
     content: "JSON Viewer";
-}
-.text-view-selector::after{
-    content: "Text View"
-}
-.tree-view-selector::after{
-    content: "Tree View"
 }
 .tree-view-selector.inactive{
     display:none;
@@ -305,20 +307,22 @@ div[part="child-editors"][data-open="false"]{
 [data-type="boolean"] .nonPrimitive{
     display: none;
 }
-[data-type="string"] [part="key"]{
-    background-color: rgb(0, 148, 8);
+[data-type="string"] .key{
+    background-color: var(--str-key-bg);
+    color: var(--str-key-color);
 }
-[data-type="boolean"] [part="key"]{
+[data-type="boolean"] .key{
     background-color: #B1C639;
 }
-[data-type="object"] [part="key"]{
+[data-type="object"] .key{
     background-color: var(--obj-key-bg);
     color: color-contrast(var(--obj-key-bg) vs white, black);
 }
-[data-type="number"] [part="key"]{
-    background-color: rgb(73, 123, 141);
+[data-type="number"] .key{
+    background-color: var(--num-key-bg);
+    color: var(--num-key-color);
 }
-[data-type="array"] [part="key"]{
+[data-type="array"] .key{
     background-color: var(--array-key-bg);
     /* color: color-contrast(var(--array-key-bg) vs white, black); */
     color: var(--array-key-color);
@@ -365,7 +369,7 @@ input {
                         ".text-view-selector": [{}, {}, {".inactive": true}]                            
                     }
                 }
-            }'></button>
+            }'>Text View</button>
             <button class="selector tree-view-selector inactive" part=tree-view-selector be-transformative='{
                 "click": {
                     "transform":{
@@ -374,7 +378,7 @@ input {
                         ".text-view-selector": [{},{}, {".inactive": false}]
                     }
                 }
-            }'></button>
+            }'>Tree View</button>
             <!-- TODO:  set download property dynamically -->
             <a class=download part=download download="file.json" be-observant='{
                 "href": {"onSet": "downloadHref", "vft": "downloadHref"}
