@@ -757,6 +757,13 @@ export class XtalEditorCore extends HTMLElement {
         const file = new Blob([JSON.stringify(parsedObject, null, 2)], { type: 'text/json' });
         this.downloadHref = URL.createObjectURL(file);
     }
+    async awaitKeyDepdencies() {
+        await customElements.whenDefined('be-switched');
+        await customElements.whenDefined('be-observant');
+        return {
+            waitToInit: false
+        };
+    }
 }
 // const isRef:PropInfoExt = {
 //     isRef: true,
@@ -794,6 +801,7 @@ const xe = new XE({
             treeView: true,
             type: 'string',
             downloadHref: '',
+            waitToInit: true,
         },
         propInfo: {
             childValues: {
@@ -845,6 +853,10 @@ const xe = new XE({
             },
             makeDownloadBlob: {
                 ifKeyIn: ['parsedObject'],
+            },
+            awaitKeyDepdencies: {
+                ifAllOf: ['waitToInit'],
+                async: true,
             }
             // initEvenLevel:{
             //     ifKeyIn: ['rootEditor']

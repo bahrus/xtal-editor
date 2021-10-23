@@ -772,9 +772,19 @@ export class XtalEditorCore extends HTMLElement implements XtalEditorActions {
         const file = new Blob([JSON.stringify(parsedObject, null, 2)], {type: 'text/json'});
         this.downloadHref = URL.createObjectURL(file);
     }
+
+    async awaitKeyDepdencies(){
+        await customElements.whenDefined('be-switched');
+        await customElements.whenDefined('be-observant');
+        return {
+            waitToInit: false
+        } as Partial<this>
+    }
 }
 
-export interface XtalEditorCore extends XtalEditorProps { }
+type t = XtalEditorProps & TemplMgmtProps
+
+export interface XtalEditorCore extends t { }
 
 // const isRef:PropInfoExt = {
 //     isRef: true,
@@ -813,6 +823,7 @@ const xe = new XE<XtalEditorProps & TemplMgmtProps, XtalEditorActions>({
             treeView: true,
             type: 'string',
             downloadHref:'',
+            waitToInit: true,
         },
         propInfo: {
             childValues: {
@@ -864,6 +875,10 @@ const xe = new XE<XtalEditorProps & TemplMgmtProps, XtalEditorActions>({
             },
             makeDownloadBlob: {
                 ifKeyIn: ['parsedObject'],
+            },
+            awaitKeyDepdencies:{
+                ifAllOf: ['waitToInit'],
+                async: true,
             }
             // initEvenLevel:{
             //     ifKeyIn: ['rootEditor']
