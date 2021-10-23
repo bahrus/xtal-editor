@@ -1,12 +1,7 @@
 import { XE } from 'xtal-element/src/XE.js';
 import { tm } from 'trans-render/lib/mixins/TemplMgmtWithPEST.js';
-import('xtal-side-nav/xtal-side-nav.js');
-import('@power-elements/json-viewer/json-viewer.js');
 import('be-observant/be-observant.js');
-import('be-noticed/be-noticed.js');
-import('be-transformative/be-transformative.js');
 import('be-switched/be-switched.js');
-import('be-repeated/be-repeated.js');
 import('be-hive/be-hive.js');
 // const style = await import('./theme.css', {
 //     assert: { type: 'css' }
@@ -760,6 +755,11 @@ export class XtalEditorCore extends HTMLElement {
     async awaitKeyDepdencies() {
         await customElements.whenDefined('be-switched');
         await customElements.whenDefined('be-observant');
+        import('be-noticed/be-noticed.js');
+        import('be-transformative/be-transformative.js');
+        import('xtal-side-nav/xtal-side-nav.js');
+        import('@power-elements/json-viewer/json-viewer.js');
+        import('be-repeated/be-repeated.js');
         return {
             waitToInit: false
         };
