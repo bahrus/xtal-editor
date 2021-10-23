@@ -60,15 +60,15 @@ slot{
     border: 0;
 }
 
-.editor{
+:host{
     --obj-key-bg: #FFD4B8;
     --obj-key-color: #ffffff;
     --str-key-bg: #B8FFBB;
     --str-key-color: #000000;
     --num-key-bg: #BCD3DC;
     --num-key-color: #000000;
-    --array-key-bg: #2d5b89;
-    --array-key-color: #D2A476;
+    --array-key-bg: #AAC7E4;
+    --array-key-color: #000000;
     --obj-even-level-editor-bg: #F1E090;
     --obj-odd-level-editor-bg: #FFEFCC;
     --array-even-level-editor-bg: #A9DBDD;
@@ -78,7 +78,7 @@ slot{
     --bool-adder-bg: #516600;
     --num-adder-bg:#497B8D;
     --arr-adder-bg: #2d5b89;
-    
+    --selector-bg: #CD138F;
 }
 .editor[data-type="object"][data-even-level="true"]{
     background-color: var(--obj-even-level-editor-bg);
@@ -141,7 +141,7 @@ slot{
     padding: 2;
     border: none;
     margin-left: 12px;
-    background-color: hotpink;   
+    background-color: var(--selector-bg);   
 }
 /* .download{
     color: white;
@@ -709,7 +709,7 @@ export class XtalEditorCore extends HTMLElement implements XtalEditorActions {
     }
 
     addBool({ boolCounter }: this) {
-        return this.addEntity(this, 'bool', boolCounter, false);
+        return this.addEntity(this, 'boolean', boolCounter, false);
     }
 
     addNumber({ numCounter }: this) {
