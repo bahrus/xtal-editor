@@ -27,13 +27,13 @@
     "trans-render": "0.0.427",
     "xtal-element": "0.0.452",
     "be-hive": "0.0.8",
-    "be-decorated": "0.0.33",
-    "be-observant": "0.0.36",
+    "be-decorated": "0.0.35",
+    "be-observant": "0.0.47",
     "be-noticed": "0.0.27",
     "be-transformative": "0.0.10",
-    "be-switched": "0.0.22",
-    "be-repeated": "0.0.18",
-    "xtal-side-nav": "0.0.27",
+    "be-switched": "0.0.37",
+    "be-repeated": "0.0.24",
+    "xtal-side-nav": "0.0.28",
     "@power-elements/json-viewer": "2.1.1"
   },
   "devDependencies": {
