@@ -71,6 +71,7 @@ export interface XtalEditorProps{
     textView: boolean;
     treeView: boolean;
     downloadHref: string;
+    isObject: boolean;
 }
 
 export interface XtalEditorActions{
@@ -111,6 +112,10 @@ export interface XtalEditorActions{
     makeDownloadBlob(self:this): void;
 
     awaitKeyDepdencies(self:this): Promise<Partial<this>>
+
+    updateIsObject(self: this):{
+        isObject: boolean;
+    }
 }
 
 export interface NameValue {

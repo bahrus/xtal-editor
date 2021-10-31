@@ -430,21 +430,25 @@ input {
             <div part=child-inserters class="nonPrimitive child-inserters" data-open=false -data-ro be-observant='{
                 "data-ro": {"onSet": "readOnly", "vft": "readOnly", "as": "str-attr"}
             }'>
-                <button disabled part=object-adder class="object adder" data-d=1 be-noticed='{
-                    "click": {"prop": "objCounter", "plusEq": true, "vft": "dataset.d", "parseValAs": "int"}
-                }'>+object</button>
-                <button disabled part=string-adder class="string adder" data-d=1 be-noticed='{
-                    "click": {"prop": "strCounter", "plusEq": true, "vft": "dataset.d", "parseValAs": "int"}
-                }'>+string</button>
-                <button disabled part=bool-adder class="bool adder" data-d=1 be-noticed='{
-                    "click": {"prop": "boolCounter", "plusEq": true, "vft": "dataset.d", "parseValAs": "int"}
-                }'>+bool</button>
-                <button disabled part=number-adder class="number adder" data-d=1 be-noticed='{
-                    "click": {"prop": "numCounter", "plusEq": true, "vft": "dataset.d", "parseValAs": "int"}
-                }'>+number</button>
-                <button disabled part=arr-adder class="arr adder" data-d=1 be-noticed='{
-                    "click": {"prop": "arrCounter", "plusEq": true, "vft": "dataset.d", "parseValAs": "int"}
-                }'>+array</button>
+                <template be-switched='{
+                    "if": ".isObject"
+                }'>
+                    <button disabled part=object-adder class="object adder" data-d=1 be-noticed='{
+                        "click": {"prop": "objCounter", "plusEq": true, "vft": "dataset.d", "parseValAs": "int"}
+                    }'>+object</button>
+                    <button disabled part=string-adder class="string adder" data-d=1 be-noticed='{
+                        "click": {"prop": "strCounter", "plusEq": true, "vft": "dataset.d", "parseValAs": "int"}
+                    }'>+string</button>
+                    <button disabled part=bool-adder class="bool adder" data-d=1 be-noticed='{
+                        "click": {"prop": "boolCounter", "plusEq": true, "vft": "dataset.d", "parseValAs": "int"}
+                    }'>+bool</button>
+                    <button disabled part=number-adder class="number adder" data-d=1 be-noticed='{
+                        "click": {"prop": "numCounter", "plusEq": true, "vft": "dataset.d", "parseValAs": "int"}
+                    }'>+number</button>
+                    <button disabled part=arr-adder class="arr adder" data-d=1 be-noticed='{
+                        "click": {"prop": "arrCounter", "plusEq": true, "vft": "dataset.d", "parseValAs": "int"}
+                    }'>+array</button>
+                </template>
                 <button disabled id=copy class=action part=copy-to-clipboard title="Copy to Clipboard" be-noticed='{
                     "click": "copyToClipboard"
                 }'></button>
@@ -783,6 +787,10 @@ export class XtalEditorCore extends HTMLElement implements XtalEditorActions {
             waitToInit: false
         } as Partial<this>
     }
+
+    updateIsObject({type, readOnly}: this){
+        return {isObject: !readOnly && (type === 'object' || type === 'array')};
+    }
 }
 
 type t = XtalEditorProps & TemplMgmtProps
@@ -827,6 +835,7 @@ const xe = new XE<XtalEditorProps & TemplMgmtProps, XtalEditorActions>({
             type: 'string',
             downloadHref:'',
             waitToInit: true,
+            isObject: false,
         },
         propInfo: {
             childValues: {
@@ -882,6 +891,9 @@ const xe = new XE<XtalEditorProps & TemplMgmtProps, XtalEditorActions>({
             awaitKeyDepdencies:{
                 ifAllOf: ['waitToInit'],
                 async: true,
+            },
+            updateIsObject:{
+                ifAllOf: ['type']
             }
             // initEvenLevel:{
             //     ifKeyIn: ['rootEditor']
