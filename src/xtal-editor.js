@@ -1,5 +1,6 @@
 import { XE } from 'xtal-element/src/XE.js';
 import { tm } from 'trans-render/lib/mixins/TemplMgmtWithPEST.js';
+import('be-deslotted/be-deslotted.js');
 import('be-observant/be-observant.js');
 import('be-switched/be-switched.js');
 import('be-hive/be-hive.js');
@@ -340,9 +341,7 @@ input {
 }
 
 </style>
-<slot part=slot name=initVal be-noticed='{
-    "slotchange": {"vft": "assignedNodes|", "fn": "handleSlotChange", "doInit": true}
-}'></slot>
+<slot name=initVal be-deslotted='["value", "readOnly"]'></slot>
 
 <!-- Header -->
 <template be-switched='{
@@ -735,14 +734,6 @@ export class XtalEditorCore extends HTMLElement {
         const val = typeof (this.value === 'string') ? JSON.parse(this.value) : this.value;
         const json = JSON.stringify(val, null, 2);
         navigator.clipboard.writeText(json);
-    }
-    handleSlotChange(slot, nodes, e) {
-        for (const node of nodes) {
-            const aNode = node;
-            if (aNode.value !== undefined) {
-                this.value = aNode.value;
-            }
-        }
     }
     setFocus(match, isDisabled, e) {
         if (!isDisabled && !this.readOnly) {

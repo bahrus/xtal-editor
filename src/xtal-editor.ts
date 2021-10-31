@@ -2,11 +2,11 @@ import { PropInfoExt, XE } from 'xtal-element/src/XE.js';
 import { TemplMgmtActions, TemplMgmtProps, tm } from 'trans-render/lib/mixins/TemplMgmtWithPEST.js';
 import { XtalEditorActions, XtalEditorProps, NameValue, editType } from '../types';
 
+import('be-deslotted/be-deslotted.js');
 import('be-observant/be-observant.js');
-
 import('be-switched/be-switched.js');
-
 import('be-hive/be-hive.js');
+
 // const style = await import('./theme.css', {
 //     assert: { type: 'css' }
 // });
@@ -345,9 +345,7 @@ input {
 }
 
 </style>
-<slot part=slot name=initVal be-noticed='{
-    "slotchange": {"vft": "assignedNodes|", "fn": "handleSlotChange", "doInit": true}
-}'></slot>
+<slot name=initVal be-deslotted='["value", "readOnly"]'></slot>
 
 <!-- Header -->
 <template be-switched='{
@@ -752,14 +750,6 @@ export class XtalEditorCore extends HTMLElement implements XtalEditorActions {
         const json = JSON.stringify(val, null, 2);
         navigator.clipboard.writeText(json);
     }
-    handleSlotChange(slot: HTMLSlotElement, nodes: Node[], e: Event) {
-        for (const node of nodes) {
-            const aNode = node as any;
-            if (aNode.value !== undefined) {
-                this.value = aNode.value;
-            }
-        }
-    }
 
     setFocus(match: any, isDisabled: boolean, e: Event) {
         if (!isDisabled && !this.readOnly) {
@@ -783,6 +773,7 @@ export class XtalEditorCore extends HTMLElement implements XtalEditorActions {
         import('xtal-side-nav/xtal-side-nav.js');
         import('@power-elements/json-viewer/json-viewer.js');
         import('be-repeated/be-repeated.js');
+        
         return {
             waitToInit: false
         } as Partial<this>
