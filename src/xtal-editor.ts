@@ -475,7 +475,7 @@ input {
         <div part=child-editors class="nonPrimitive child-editors" data-open=false be-observant='{
             "data-open":{"vft": "open", "as": "str-attr"}
         }'>
-            <xtal-editor has-parent be-observant='{
+            <xtal-editor data-is-hostish has-parent be-observant='{
                 "open": "expandAll",
                 "expandAll": "expandAll",
                 "readOnly": "readOnly"
@@ -752,12 +752,12 @@ export class XtalEditorCore extends HTMLElement implements XtalEditorActions {
     }
 
     setFocus(match: any, isDisabled: boolean, e: Event) {
-        if (!isDisabled && !this.readOnly) {
-            const target = (<any>e).target!;
-            setTimeout(() => {
-                target.focus();
-            }, 16);
-        }
+        // if (!isDisabled && !this.readOnly) {
+        //     const target = (<any>e).target!;
+        //     setTimeout(() => {
+        //         target.focus();
+        //     }, 16);
+        // }
     }
 
     makeDownloadBlob({parsedObject}: this){
@@ -826,6 +826,7 @@ const xe = new XE<XtalEditorProps & TemplMgmtProps, XtalEditorActions>({
             type: 'string',
             downloadHref:'',
             waitToInit: true,
+            noshadow: false,
             isObject: false,
         },
         propInfo: {

@@ -471,7 +471,7 @@ input {
         <div part=child-editors class="nonPrimitive child-editors" data-open=false be-observant='{
             "data-open":{"vft": "open", "as": "str-attr"}
         }'>
-            <xtal-editor has-parent be-observant='{
+            <xtal-editor data-is-hostish has-parent be-observant='{
                 "open": "expandAll",
                 "expandAll": "expandAll",
                 "readOnly": "readOnly"
@@ -736,12 +736,12 @@ export class XtalEditorCore extends HTMLElement {
         navigator.clipboard.writeText(json);
     }
     setFocus(match, isDisabled, e) {
-        if (!isDisabled && !this.readOnly) {
-            const target = e.target;
-            setTimeout(() => {
-                target.focus();
-            }, 16);
-        }
+        // if (!isDisabled && !this.readOnly) {
+        //     const target = (<any>e).target!;
+        //     setTimeout(() => {
+        //         target.focus();
+        //     }, 16);
+        // }
     }
     makeDownloadBlob({ parsedObject }) {
         const file = new Blob([JSON.stringify(parsedObject, null, 2)], { type: 'text/json' });
@@ -800,6 +800,7 @@ const xe = new XE({
             type: 'string',
             downloadHref: '',
             waitToInit: true,
+            noshadow: false,
             isObject: false,
         },
         propInfo: {
