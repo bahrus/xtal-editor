@@ -30,7 +30,7 @@ const mainTemplate = html`
                 "readOnly": ".readOnly",
                 "value": {"onSet": "value", "vft": "value", "parseValAs": "string"}
             }' be-noticed='{
-                "disabled:onSet": {"vft": "disabled", "fn": "setFocus"},
+                "disabled:onSet": {"vft": "disabled", "fn": "setFocus", "ocoho": "xtal-editor-field"},
                 "change": "handleValueChange"
             }'>
 
