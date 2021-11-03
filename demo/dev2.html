@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <form action="dev.html" method="POST">
+        <xtal-editor key=abc id=editor>
+            <textarea name=jsonField slot="initVal">
+                {
+                    "string":"foo",
+                    "number":5,
+                    "array":[
+                        1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16,17,18,19,20,21,22,23,24,25,26,27,28,29,30,31,31,32,33,34,35,36,37,38,39,40,
+                        1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16,17,18,19,20,21,22,23,24,25,26,27,28,29,30,31,31,32,33,34,35,36,37,38,39,40,
+                        1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16,17,18,19,20,21,22,23,24,25,26,27,28,29,30,31,31,32,33,34,35,36,37,38,39,40,
+                        1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16,17,18,19,20,21,22,23,24,25,26,27,28,29,30,31,31,32,33,34,35,36,37,38,39,40,
+                        1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16,17,18,19,20,21,22,23,24,25,26,27,28,29,30,31,31,32,33,34,35,36,37,38,39,40
+                    ],
+                    "object":{
+                        "property":"value",
+                        "subobj":{
+                            "arr":["foo","ha"],
+                            "numero":1
+                        }
+                    }
+                }
+            </textarea>
+        </xtal-editor>
+        <button type="submit">submit</button>
+    </form>
+
+    <div id=target></div>
+
+    <button onclick=moveTarget()>Move target</button>
+
+    <script>
+        function moveTarget(){
+            target.appendChild(editor);
+        }
+    </script>
+
+    <script type=importmap>
+        {
+            "imports": {
+                "xtal-element/": "../node_modules/xtal-element/",
+                "trans-render/": "../../node_modules/trans-render/",
+                "on-to-me/": "../node_modules/on-to-me/",
+                "tran-sister/": "../node_modules/tran-sister/",
+                "xtal-side-nav/": "../node_modules/xtal-side-nav/",
+                "d-fine/": "../node_modules/d-fine/",
+                "xodus/": "../node_modules/xodus/",
+                "@power-elements/": "../node_modules/@power-elements/",
+                "be-definitive/": "../node_modules/be-definitive/",
+                "be-deslotted/": "../node_modules/be-deslotted/",
+                "be-observant/": "../node_modules/be-observant/",
+                "be-noticed/": "../node_modules/be-noticed/",
+                "be-decorated/": "../node_modules/be-decorated/",
+                "css-observe/": "../node_modules/css-observe/",
+                "be-transformative/": "../node_modules/be-transformative/",
+                "be-switched/": "../node_modules/be-switched/",
+                "be-repeated/": "../node_modules/be-repeated/",
+                "be-hive/": "../node_modules/be-hive/"
+            }
+        }
+    </script>
+    <script type=module>
+        import '../src/xtal-editor2.js';
+    </script>
+</body>
+</html>

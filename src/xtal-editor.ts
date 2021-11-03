@@ -446,8 +446,7 @@ input {
                     <button disabled part=arr-adder class="arr adder" data-d=1 be-noticed='{
                         "click": {"prop": "arrCounter", "plusEq": true, "vft": "dataset.d", "parseValAs": "int"}
                     }'>+array</button>
-                </template>
-                <button disabled id=copy class=action part=copy-to-clipboard title="Copy to Clipboard" be-noticed='{
+                                    <button disabled id=copy class=action part=copy-to-clipboard title="Copy to Clipboard" be-noticed='{
                     "click": "copyToClipboard"
                 }'></button>
                 <button disabled id=expand-all class=action part=expand-all title="Expand All"
@@ -468,6 +467,8 @@ input {
                         }
                     }'>
                 </button>
+                </template>
+
 
             </div>
 
