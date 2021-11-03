@@ -4,6 +4,8 @@ import {DefineArgs} from 'trans-render/lib/types';
 import ('be-definitive/be-definitive.js');
 import('be-observant/be-observant.js');
 import('be-switched/be-switched.js');
+import('xtal-side-nav/xtal-side-nav.js');
+import('@power-elements/json-viewer/json-viewer.js');
 
 if(document.querySelector('be-hive')===null){
     document.body.appendChild(document.createElement('be-hive'));
@@ -160,10 +162,10 @@ slot{
     text-shadow: 1px 1px 1px black;
     background-color: black;
 }
-.remove[data-has-parent="false"]::after{
+header::after{
     content: "JSON Editor";
 }
-.remove[data-has-parent="false"][data-ro="true"]::after{
+header[data-ro="true"]::after{
     content: "JSON Viewer";
 }
 .tree-view-selector.inactive{
@@ -337,9 +339,7 @@ input {
 
 </style>
 <slot name=initVal be-deslotted='["value", "readOnly"]'></slot>
-<header class=remove part=remove data-has-parent=true be-observant='{
-        "data-ro": {"vft": "readOnly", "as": "str-attr"}
-    }'>
+<header part=header>
     <xtal-side-nav>
         <button class="selector text-view-selector" part=text-view-selector be-transformative='{
             "click": {
