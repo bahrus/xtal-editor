@@ -4,30 +4,30 @@ import('be-definitive/be-definitive.js');
 import('be-observant/be-observant.js');
 import('be-switched/be-switched.js');
 import('xtal-side-nav/xtal-side-nav.js');
+import('be-transformative/be-transformative.js');
+import('be-deslotted/be-deslotted.js');
 import('@power-elements/json-viewer/json-viewer.js');
 if (document.querySelector('be-hive') === null) {
     document.body.appendChild(document.createElement('be-hive'));
 }
 const mainTemplate = html `
 <style>
-header[data-has-parent="true"]{
-    display: none;
-}
-    :host{
+
+:host{
     display:block;
 }
 :host[hidden]{
     display:none;
 }
 
-
 slot{
     display: none;
 }
 
 @media (prefers-color-scheme: dark) {
-    .editor{
+    .editor, header{
         background-color: black;
+        color: white;
     }
 }
 
