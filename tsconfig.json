@@ -9,7 +9,8 @@
 		"watch": true
 	},
 	"files":[
-		"src/xtal-editor2.ts"
+		"src/xtal-editor2.ts",
+		"src/xtal-editor-field.ts",
 	],
 	"exclude":[
 		"node_modules"
