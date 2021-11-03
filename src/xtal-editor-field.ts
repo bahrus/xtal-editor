@@ -2,6 +2,8 @@ import {html} from 'trans-render/lib/html.js';
 import { PropInfoExt, XE } from 'xtal-element/src/XE.js';
 import { TemplMgmtActions, TemplMgmtProps, tm } from 'trans-render/lib/mixins/TemplMgmtWithPEST.js';
 import { XtalEditorActions, XtalEditorProps, NameValue, editType } from '../types';
+import('be-observant/be-observant.js');
+import('be-hive/be-hive.js')
 
 const tagName = 'xtal-editor-field';
 
@@ -13,7 +15,7 @@ const mainTemplate = html`
     <div part=field class=field>
         <div class=text-editing>
             <button disabled part=expander class="expander nonPrimitive" be-observant='{
-                "textContent": {"vft": "open", "trueVal": "-", "falseVal": "+"}
+                "textContent": {"vft": "open", "trueVal": "-", "falseVal": "+", "ocoho": "xtal-editor-field"}
             }' be-noticed='{
                 "click": {"toggleProp": true, "prop": "open"}
             }'
@@ -34,7 +36,7 @@ const mainTemplate = html`
 
         </div>
         <div part=child-inserters class="nonPrimitive child-inserters" data-open=false -data-ro be-observant='{
-            "data-ro": {"onSet": "readOnly", "vft": "readOnly", "as": "str-attr"}
+            "data-ro": {"onSet": "readOnly", "vft": "readOnly", "as": "str-attr", "ocoho": "xtal-editor-field"}
         }'>
             <template be-switched='{
                 "if": ".isObject"
