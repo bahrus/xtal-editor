@@ -9,8 +9,8 @@ import('be-switched/be-switched.js');
 const tagName = 'xtal-editor-field';
 const mainTemplate = html `
 <div part=editor class="animated editor" be-observant='{
-    "data-type": {"onSet": "type", "vft": "type", "as": "str-attr" },
-    "data-ro": {"onSet": "readOnly", "vft": "readOnly", "as": "str-attr"}
+    "data-type": {"onSet": "type", "vft": "type", "as": "str-attr", "ocoho": true },
+    "data-ro": {"onSet": "readOnly", "vft": "readOnly", "as": "str-attr", "ocoho": true}
 }'>
     <div part=field class=field>
         <div class=text-editing>
@@ -33,8 +33,8 @@ const mainTemplate = html `
             }'>
             <input disabled=2 aria-label=value part=value -read-only class=value -value  be-observant='{
                 "readOnly": ".readOnly",
-                "value": {"onSet": "value", "vft": "value", "parseValAs": "string"}
-            }' be-noticed='{
+                "value": {"onSet": "value", "vft": "value", "parseValAs": "string", "ocoho": true}
+            }' be-noticedx='{
                 "disabled:onSet": {"vft": "disabled", "fn": "setFocus", "ocoho": true},
                 "change": "handleValueChange"
             }'>

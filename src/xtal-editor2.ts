@@ -8,6 +8,7 @@ import('xtal-side-nav/xtal-side-nav.js');
 import('be-transformative/be-transformative.js');
 import('be-deslotted/be-deslotted.js');
 import('@power-elements/json-viewer/json-viewer.js');
+import('./xtal-editor-field.js');
 
 if(document.querySelector('be-hive')===null){
     document.body.appendChild(document.createElement('be-hive'));
@@ -377,7 +378,12 @@ input {
 <!-- Tree View -->
 <template be-switched='{
     "if": {"onSet": "treeView", "vft": "treeView"}
-}'><div>treeview</div></template>
+}'>
+    <xtal-editor-field data-is-hostish be-observant='{
+        "value": {"ocoho": "xtal-editor", "vft": ".value"},
+        "key": {"ocoho": "xtal-editor", "vft": ".key"}
+    }'></xtal-editor-field>
+</template>
 </template>
 <!-- Text View -->
 <template be-switched='{
@@ -395,8 +401,11 @@ const beDefinitiveProps: DefineArgs = {
         propDefaults: {
             readOnly: false,
             value: '',
+            key: '',
             treeView: true,
-            textView: false,
+            textView: false
+        },
+        propInfo:{
         }
     }
 }
