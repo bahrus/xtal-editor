@@ -377,7 +377,7 @@ input {
 }'>
     <xtal-editor-field data-is-hostish be-observant='{
         "value": ".value",
-        "key": {"ocoho": "xtal-editor", "onSet": "key", "vft": ".key", "debug": true}
+        "key": {"ocoho": "xtal-editor", "onSet": "key", "vft": ".key"}
     }'
     be-noticed='{
         "download-href-changed": {"prop": "downloadHref", "vft": "downloadHref", "doInit": true}
