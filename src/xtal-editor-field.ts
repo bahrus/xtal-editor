@@ -108,7 +108,7 @@ const mainTemplate = html`
                     "readOnly": "readOnly",
                     "ocoho": true
                 }' be-noticed='{
-                    "internal-update-count-changed": {"prop": "upwardDataFlowInProgress", "parseValAs": "truthy"}
+                    "internal-update-count-changed": {"prop": "upwardDataFlowInProgress", "parseValAs": "truthy", "tocoho": true}
                 }' ></xtal-editor-field>
             </template>
         </div>
@@ -254,7 +254,8 @@ export class XtalEditorField extends HTMLElement implements XtalEditorActions {
     }
 
     get childEditors() {
-        return Array.from(this.shadowRoot!.querySelectorAll(tagName)) as (HTMLElement & XtalEditorProps)[]
+        const selfRoot = this.shadowRoot || this as Element;
+        return Array.from(selfRoot.querySelectorAll(tagName)) as (HTMLElement & XtalEditorProps)[]
     }
 
     addEntity({ parsedObject, type }: this, entityName: string, entityCount: number, newVal: any) {
