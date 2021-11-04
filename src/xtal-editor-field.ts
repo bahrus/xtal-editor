@@ -91,32 +91,33 @@ const mainTemplate = html`
         </div>
 
     </div>
-    <div part=child-editors class="nonPrimitive child-editors" data-open=false be-observant='{
-        "data-open":{"vft": "open", "as": "str-attr"}
+    
+    <template be-switched='{
+        "if": {"ocoho": true, "vft": "open"},
+        "ifNonEmptyArray": {"ocoho": true, "vft": "childValues"}
     }'>
-        <template be-switched='{
-            "if": {"ocoho": true, "vft": "open"},
-            "ifNonEmptyArray": {"ocoho": true, "vft": "childValues"}
-        }'>
-            <template be-repeated='{
-                    "list": "childValues",
-                    "debug": true,
-                    "transform": {
-                        "xtal-editor-field": [{"value": "value", "key": "key"}]
-                    }
-                }'>
-                <xtal-editor-field data-is-hostish has-parent be-observant='{
-                    "open": "expandAll",
-                    "expandAll": "expandAll",
-                    "readOnly": "readOnly",
-                    "ocoho": true
-                }' be-noticed='{
-                    "internal-update-count-changed": {"prop": "upwardDataFlowInProgress", "parseValAs": "truthy"}
-                }' ></xtal-editor-field>
-            </template>
-
+        <div part=child-editors class="nonPrimitive child-editors" data-open=false be-observant='{
+            "data-open":{"vft": "open", "as": "str-attr"}
+        }'></div>
+        <template be-repeated='{
+                "list": "childValues",
+                "debug": true,
+                "transform": {
+                    "xtal-editor-field": [{"value": "value", "key": "key"}]
+                }
+            }'>
+            <xtal-editor-field data-is-hostish has-parent be-observant='{
+                "open": "expandAll",
+                "expandAll": "expandAll",
+                "readOnly": "readOnly",
+                "ocoho": true
+            }' be-noticed='{
+                "internal-update-count-changed": {"prop": "upwardDataFlowInProgress", "parseValAs": "truthy"}
+            }' ></xtal-editor-field>
         </template>
-    </div>
+        </div>
+    </template>
+    
 
 </div>
 `;
