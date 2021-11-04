@@ -109,7 +109,7 @@ export interface XtalEditorActions{
     // }
 
     onConnected(self: this):void;
-    syncLightChild(self:this):void; 
+    //syncLightChild(self:this):void; 
     makeDownloadBlob(self:this): void;
 
     awaitKeyDepdencies(self:this): Promise<Partial<this>>

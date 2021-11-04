@@ -229,24 +229,24 @@ export class XtalEditorField extends HTMLElement {
             const childValues = this.setChildValues(this);
             this.setValsQuietly({ childValues });
             this.value = JSON.stringify(newVal);
-            this.syncLightChild(this);
+            //this.syncLightChild(this);
         }
         this.internalUpdateCount++;
         this.upwardDataFlowInProgress = false;
     }
-    syncLightChild({ hasParent, value }) {
-        const lightChild = this.querySelector('textarea, input');
-        if (lightChild !== null) {
-            switch (typeof value) {
-                case 'string':
-                    lightChild.value = value;
-                    break;
-                case 'object':
-                    lightChild.value = JSON.stringify(value);
-                    break;
-            }
-        }
-    }
+    // syncLightChild({ hasParent, value }: this) {
+    //     const lightChild = this.querySelector('textarea, input') as HTMLInputElement;
+    //     if (lightChild !== null) {
+    //         switch (typeof value) {
+    //             case 'string':
+    //                 lightChild.value = value;
+    //                 break;
+    //             case 'object':
+    //                 lightChild.value = JSON.stringify(value);
+    //                 break;
+    //         }
+    //     }
+    // }
     get childEditors() {
         const selfRoot = this.shadowRoot || this;
         return Array.from(selfRoot.querySelectorAll(tagName));
@@ -433,10 +433,10 @@ const xe = new XE({
             addArr: {
                 ifAllOf: ['arrCounter']
             },
-            syncLightChild: {
-                ifAllOf: ['value'],
-                ifNoneOf: ['hasParent', 'readOnly'],
-            },
+            // syncLightChild: {
+            //     ifAllOf: ['value'],
+            //     ifNoneOf: ['hasParent', 'readOnly'],
+            // },
             makeDownloadBlob: {
                 ifAllOf: ['isRoot'],
                 ifKeyIn: ['parsedObject'],

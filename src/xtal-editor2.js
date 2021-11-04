@@ -376,8 +376,8 @@ input {
     "if": {"onSet": "treeView", "vft": "treeView"}
 }'>
     <xtal-editor-field data-is-hostish be-observant='{
-        "value": {"ocoho": "xtal-editor", "vft": ".value"},
-        "key": {"ocoho": "xtal-editor", "vft": ".key"}
+        "value": ".value",
+        "key": {"ocoho": "xtal-editor", "onSet": "key", "vft": ".key", "debug": true}
     }'
     be-noticed='{
         "download-href-changed": {"prop": "downloadHref", "vft": "downloadHref", "doInit": true}
