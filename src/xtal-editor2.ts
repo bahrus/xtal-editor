@@ -54,7 +54,7 @@ slot{
 
 :host{
     --obj-key-bg: #FFD4B8;
-    --obj-key-color: #ffffff;
+    --obj-key-color: #000000;
     --str-key-bg: #B8FFBB;
     --str-key-color: #000000;
     --num-key-bg: #BCD3DC;
@@ -84,6 +84,23 @@ slot{
 }
 .editor[data-type="array"][data-even-level="false"]{
     background-color: var(--array-odd-level-editor-bg);
+}
+.editor[data-type="object"] .key{
+    background-color: var(--obj-key-bg);
+    color: var(--obj-key-color);
+}
+.editor[data-type="number"] .key{
+    background-color: var(--num-key-bg);
+    color: var(--num-key-color);
+}
+.editor[data-type="string"] .key{
+    background-color: var(--str-key-bg);
+    color: var(--str-key-color);
+}
+.editor[data-type="array"] .key{
+    background-color: var(--array-key-bg);
+    /* color: color-contrast(var(--array-key-bg) vs white, black); */
+    color: var(--array-key-color);
 }
 /* .editor{
     transition-timing-function: ease;
@@ -308,19 +325,7 @@ xtal-side-nav{
 [data-type="boolean"] .key{
     background-color: #B1C639;
 }
-[data-type="object"] .key{
-    background-color: var(--obj-key-bg);
-    color: color-contrast(var(--obj-key-bg) vs white, black);
-}
-[data-type="number"] .key{
-    background-color: var(--num-key-bg);
-    color: var(--num-key-color);
-}
-[data-type="array"] .key{
-    background-color: var(--array-key-bg);
-    /* color: color-contrast(var(--array-key-bg) vs white, black); */
-    color: var(--array-key-color);
-}
+
 .value{
     background-color: #ECF3C3;
     width: 100%;
