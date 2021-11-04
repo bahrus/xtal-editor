@@ -24,7 +24,7 @@
   ],
   "types": "types.d.ts",
   "dependencies": {
-    "trans-render": "0.0.427",
+    "trans-render": "0.0.428",
     "xtal-element": "0.0.452",
     "be-decorated": "0.0.37",
     "be-deslotted": "0.0.5",
@@ -33,7 +33,7 @@
     "be-noticed": "0.0.31",
     "be-repeated": "0.0.26",
     "be-switched": "0.0.38",
-    "be-transformative": "0.0.13",
+    "be-transformative": "0.0.14",
     "xtal-side-nav": "0.0.29",
     "@power-elements/json-viewer": "2.1.1"
   },
