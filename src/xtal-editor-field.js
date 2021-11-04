@@ -21,7 +21,7 @@ const mainTemplate = html `
                 <button disabled part=expander class=expander be-observant='{
                     "textContent": {"vft": "open", "trueVal": "-", "falseVal": "+", "ocoho": true}
                 }' be-noticed='{
-                    "click": {"toggleProp": true, "prop": "open"}
+                    "click": {"tocoho": true, "toggleProp": true, "prop": "open"}
                 }'
                 ></button>
             </template>
@@ -95,19 +95,23 @@ const mainTemplate = html `
             "if": {"ocoho": true, "vft": "open"},
             "ifNonEmptyArray": {"ocoho": true, "vft": "childValues"}
         }'>
-            <xtal-editor-field data-is-hostish has-parent be-observant='{
-                "open": "expandAll",
-                "expandAll": "expandAll",
-                "readOnly": "readOnly",
-                "ocoho": true
-            }' be-noticed='{
-                "internal-update-count-changed": {"prop": "upwardDataFlowInProgress", "parseValAs": "truthy"}
-            }' be-repeated='{
-                "list": "childValues",
-                "transform": {
-                    "xtal-editor-field": [{"value": "value", "key": "key"}]
-                }
-            }'></xtal-editor-field>
+            <template be-repeated='{
+                    "list": "childValues",
+                    "debug": true,
+                    "transform": {
+                        "xtal-editor-field": [{"value": "value", "key": "key"}]
+                    }
+                }'>
+                <xtal-editor-field data-is-hostish has-parent be-observant='{
+                    "open": "expandAll",
+                    "expandAll": "expandAll",
+                    "readOnly": "readOnly",
+                    "ocoho": true
+                }' be-noticed='{
+                    "internal-update-count-changed": {"prop": "upwardDataFlowInProgress", "parseValAs": "truthy"}
+                }' ></xtal-editor-field>
+            </template>
+
         </template>
     </div>
 

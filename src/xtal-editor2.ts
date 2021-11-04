@@ -151,7 +151,7 @@ slot{
     
 }
 
-.remove[data-has-parent="false"]{
+.header{
     display: flex;
     justify-content: space-between;
     /* padding: 0px 4px;
@@ -277,9 +277,9 @@ xtal-side-nav{
 .child-editors{
     margin-left: 15px;
 }
-div[part="child-editors"][data-open="false"]{
+/* div[part="child-editors"][data-open="false"]{
     display: none;
-}
+} */
 [data-type="object"] button.nonPrimitive{
     display: inline;
 }
