@@ -294,21 +294,15 @@ xtal-side-nav{
 .child-editors{
     margin-left: 15px;
 }
-/* div[part="child-editors"][data-open="false"]{
-    display: none;
-} */
+
 [data-type="object"] button.nonPrimitive{
     display: inline;
 }
-[data-type="object"] div.nonPrimitive[data-open="true"]{
-    display: block;
-}
+
 [data-type="array"] button.nonPrimitive{
     display: inline;
 }
-[data-type="array"] div.nonPrimitive[data-open="true"]{
-    display: block;
-}
+
 [data-type="string"] .nonPrimitive{
     display: none;
 }
