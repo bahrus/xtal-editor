@@ -42,7 +42,7 @@
         const frag = document.createDocumentFragment();
         for(let i = 0; i < 200; i++){
             const el = document.createElement('xtal-editor-field');
-            el.value = 'hello ' + i;
+            el.value = {"hello": "world" + i};
             el.dataset.isHostish = '';
             el.key = 'key ' + i;
             frag.appendChild(el);

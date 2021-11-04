@@ -14,12 +14,17 @@ const mainTemplate = html `
 }'>
     <div part=field class=field>
         <div class=text-editing>
-            <button disabled part=expander class="expander nonPrimitive" be-observant='{
-                "textContent": {"vft": "open", "trueVal": "-", "falseVal": "+", "ocoho": true}
-            }' be-noticed='{
-                "click": {"toggleProp": true, "prop": "open"}
-            }'
-            ></button>
+            <template be-switched='{
+                "if": true,
+                "ifNonEmptyArray": {"ocoho": true, "vft": "childValues"}
+            }'>
+                <button disabled part=expander class=expander be-observant='{
+                    "textContent": {"vft": "open", "trueVal": "-", "falseVal": "+", "ocoho": true}
+                }' be-noticed='{
+                    "click": {"toggleProp": true, "prop": "open"}
+                }'
+                ></button>
+            </template>
             <input disabled aria-label=key part=key class=key be-observant='{
                 "readOnly": ".readOnly",
                 "value": ".key"
@@ -88,8 +93,7 @@ const mainTemplate = html `
     }'>
         <template be-switched='{
             "if": {"ocoho": true, "vft": "open"},
-            "ifNonEmptyArray": {"ocoho": true, "vft": "childValues"},
-            "debug": true
+            "ifNonEmptyArray": {"ocoho": true, "vft": "childValues"}
         }'>
             <xtal-editor-field data-is-hostish has-parent be-observant='{
                 "open": "expandAll",
@@ -397,7 +401,7 @@ const xe = new XE({
                 ifAllOf: ['value']
             },
             setChildValues: {
-                ifAllOf: ['parsedObject', 'open']
+                ifAllOf: ['parsedObject']
             },
             syncValueFromChildren: {
                 ifAllOf: ['upwardDataFlowInProgress']
