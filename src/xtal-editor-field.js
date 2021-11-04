@@ -105,7 +105,7 @@ const mainTemplate = html `
             }' be-repeated='{
                 "list": "childValues",
                 "transform": {
-                    "xtal-editor": [{"value": "value", "key": "key"}]
+                    "xtal-editor-field": [{"value": "value", "key": "key"}]
                 }
             }'></xtal-editor-field>
         </template>
