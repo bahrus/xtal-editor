@@ -3,6 +3,8 @@ import { XE } from 'xtal-element/src/XE.js';
 import { tm } from 'trans-render/lib/mixins/TemplMgmtWithPEST.js';
 import('be-observant/be-observant.js');
 import('be-hive/be-hive.js');
+import('be-repeated/be-repeated.js');
+import('be-noticed/be-noticed.js');
 const tagName = 'xtal-editor-field';
 const mainTemplate = html `
 <div part=editor class="animated editor" be-observant='{
@@ -12,7 +14,7 @@ const mainTemplate = html `
     <div part=field class=field>
         <div class=text-editing>
             <button disabled part=expander class="expander nonPrimitive" be-observant='{
-                "textContent": {"vft": "open", "trueVal": "-", "falseVal": "+", "ocoho": "xtal-editor-field"}
+                "textContent": {"vft": "open", "trueVal": "-", "falseVal": "+", "ocoho": true}
             }' be-noticed='{
                 "click": {"toggleProp": true, "prop": "open"}
             }'
@@ -27,13 +29,13 @@ const mainTemplate = html `
                 "readOnly": ".readOnly",
                 "value": {"onSet": "value", "vft": "value", "parseValAs": "string"}
             }' be-noticed='{
-                "disabled:onSet": {"vft": "disabled", "fn": "setFocus", "ocoho": "xtal-editor-field"},
+                "disabled:onSet": {"vft": "disabled", "fn": "setFocus", "ocoho": true},
                 "change": "handleValueChange"
             }'>
 
         </div>
         <div part=child-inserters class="nonPrimitive child-inserters" data-open=false -data-ro be-observant='{
-            "data-ro": {"onSet": "readOnly", "vft": "readOnly", "as": "str-attr", "ocoho": "xtal-editor-field"}
+            "data-ro": {"onSet": "readOnly", "vft": "readOnly", "as": "str-attr", "ocoho": true}
         }'>
             <template be-switched='{
                 "if": ".isObject"
@@ -83,18 +85,21 @@ const mainTemplate = html `
     <div part=child-editors class="nonPrimitive child-editors" data-open=false be-observant='{
         "data-open":{"vft": "open", "as": "str-attr"}
     }'>
-        <xtal-editor data-is-hostish has-parent be-observant='{
-            "open": "expandAll",
-            "expandAll": "expandAll",
-            "readOnly": "readOnly"
-        }' be-noticed='{
-            "internal-update-count-changed": {"prop": "upwardDataFlowInProgress", "parseValAs": "truthy"}
-        }' be-repeated='{
-            "list": "childValues",
-            "transform": {
-                "xtal-editor": [{"value": "value", "key": "key"}]
-            }
-        }'></xtal-editor>
+        <template>
+            <xtal-editor-field data-is-hostish has-parent be-observant='{
+                "open": "expandAll",
+                "expandAll": "expandAll",
+                "readOnly": "readOnly",
+                "ocoho": true
+            }' be-noticed='{
+                "internal-update-count-changed": {"prop": "upwardDataFlowInProgress", "parseValAs": "truthy"}
+            }' be-repeated='{
+                "list": "childValues",
+                "transform": {
+                    "xtal-editor": [{"value": "value", "key": "key"}]
+                }
+            }'></xtal-editor-field>
+        </template>
     </div>
 
 </div>

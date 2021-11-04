@@ -7,7 +7,9 @@
     <title>Document</title>
 </head>
 <body>
-    <!-- <xtal-editor-field value=hello data-is-hostish key=key></xtal-editor-field> -->
+    <xtal-editor-field value='{
+        "hello": "world"
+    }' data-is-hostish key=key></xtal-editor-field>
     <div id=target></div>
     <script type=importmap>
         {
@@ -36,9 +38,9 @@
     <script type=module>
         import '../src/xtal-editor-field.js';
     </script>
-    <script>
+    <!-- <script>
         const frag = document.createDocumentFragment();
-        for(let i = 0; i < 1000; i++){
+        for(let i = 0; i < 200; i++){
             const el = document.createElement('xtal-editor-field');
             el.value = 'hello ' + i;
             el.dataset.isHostish = '';
@@ -46,6 +48,6 @@
             frag.appendChild(el);
         }
         target.appendChild(frag);
-    </script>
+    </script> -->
 </body>
 </html>
