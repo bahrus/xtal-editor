@@ -31,11 +31,10 @@ const mainTemplate = html `
             }' be-noticed='{
                 "change": "handleKeyChange"
             }'>
-            <input disabled=2 aria-label=value part=value -read-only class=value -value  be-observant='{
+            <input disabled aria-label=value part=value -read-only class=value -value  be-observant='{
                 "readOnly": ".readOnly",
                 "value": {"onSet": "value", "vft": "value", "parseValAs": "string", "ocoho": true}
-            }' be-noticedx='{
-                "disabled:onSet": {"vft": "disabled", "fn": "setFocus", "ocoho": true},
+            }' be-noticed='{
                 "change": "handleValueChange"
             }'>
 
