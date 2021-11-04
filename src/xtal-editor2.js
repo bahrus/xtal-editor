@@ -378,7 +378,11 @@ input {
     <xtal-editor-field data-is-hostish be-observant='{
         "value": {"ocoho": "xtal-editor", "vft": ".value"},
         "key": {"ocoho": "xtal-editor", "vft": ".key"}
-    }'></xtal-editor-field>
+    }'
+    be-noticed='{
+        "download-href-changed": {"prop": "downloadHref", "vft": "downloadHref"}
+    }'
+    ></xtal-editor-field>
 </template>
 </template>
 <!-- Text View -->
@@ -399,7 +403,8 @@ const beDefinitiveProps = {
             value: '',
             key: '',
             treeView: true,
-            textView: false
+            textView: false,
+            downloadHref: '',
         },
         propInfo: {}
     }
