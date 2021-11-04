@@ -96,7 +96,7 @@ const mainTemplate = html`
         "if": {"ocoho": true, "vft": "open"},
         "ifNonEmptyArray": {"ocoho": true, "vft": "childValues"}
     }'>
-        <div part=child-editors class="nonPrimitive child-editors" data-open=false></div>
+        <div part=child-editors class="nonPrimitive child-editors" data-open=false>
             <template be-repeated='{
                     "list": "childValues",
                     "transform": {
