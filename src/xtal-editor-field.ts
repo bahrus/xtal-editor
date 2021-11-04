@@ -324,7 +324,7 @@ export class XtalEditorField extends HTMLElement implements XtalEditorActions {
     }
     copyToClipboard() {
         const preval = this.value;
-        const val = typeof (this.value === 'string') ? JSON.parse(this.value as any as string) : this.value;
+        const val = (typeof this.value === 'string') ? JSON.parse(this.value as any as string) : this.value;
         const json = JSON.stringify(val, null, 2);
         navigator.clipboard.writeText(json);
     }
