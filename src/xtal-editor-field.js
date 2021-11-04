@@ -323,7 +323,7 @@ export class XtalEditorField extends HTMLElement {
         //     }, 16);
         // }
     }
-    makeDownloadBlob({ parsedObject }) {
+    makeDownloadBlob({ parsedObject, isRoot }) {
         const file = new Blob([JSON.stringify(parsedObject, null, 2)], { type: 'text/json' });
         this.downloadHref = URL.createObjectURL(file);
     }
@@ -386,6 +386,16 @@ const xe = new XE({
                     dispatch: true
                 }
             },
+            hasParent: {
+                notify: {
+                    toggleTo: 'isRoot'
+                }
+            },
+            downloadHref: {
+                notify: {
+                    dispatch: true,
+                }
+            },
             open: notifyProp,
             expandAll: notifyProp,
             collapseAll: notifyProp,
@@ -428,6 +438,7 @@ const xe = new XE({
                 ifNoneOf: ['hasParent', 'readOnly'],
             },
             makeDownloadBlob: {
+                ifAllOf: ['isRoot'],
                 ifKeyIn: ['parsedObject'],
             },
             awaitKeyDepdencies: {

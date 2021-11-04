@@ -357,7 +357,7 @@ input {
             }
         }'>Tree View</button>
         <!-- TODO:  set download property dynamically -->
-        <a class=download part=download download="file.json" be-observantx='{
+        <a class=download part=download download="file.json" be-observant='{
             "href": ".downloadHref"
         }'>
             <svg viewBox="0 0 24 24" style="width:16.25px;height:16.25px">
@@ -380,7 +380,7 @@ input {
         "key": {"ocoho": "xtal-editor", "vft": ".key"}
     }'
     be-noticed='{
-        "download-href-changed": {"prop": "downloadHref", "vft": "downloadHref"}
+        "download-href-changed": {"prop": "downloadHref", "vft": "downloadHref", "doInit": true}
     }'
     ></xtal-editor-field>
 </template>

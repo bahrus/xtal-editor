@@ -51,6 +51,7 @@ export interface XtalEditorProps{
     boolCounter: number;
     numCounter: number;
     hasParent: boolean;
+    isRoot: boolean;
     evenLevel: boolean;
     parentLevel: boolean;
     isC: boolean;

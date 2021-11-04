@@ -338,7 +338,7 @@ export class XtalEditorField extends HTMLElement implements XtalEditorActions {
         // }
     }
 
-    makeDownloadBlob({parsedObject}: this){
+    makeDownloadBlob({parsedObject, isRoot}: this){
         const file = new Blob([JSON.stringify(parsedObject, null, 2)], {type: 'text/json'});
         this.downloadHref = URL.createObjectURL(file);
     }
@@ -411,6 +411,17 @@ const xe = new XE<XtalEditorProps & TemplMgmtProps, XtalEditorActions>({
                     dispatch: true
                 }
             },
+            hasParent:{
+                notify: {
+                    toggleTo: 'isRoot'
+                }
+
+            },
+            downloadHref:{
+                notify: {
+                    dispatch: true,
+                }
+            },
             open: notifyProp,
             expandAll: notifyProp,
             collapseAll: notifyProp,
@@ -453,6 +464,7 @@ const xe = new XE<XtalEditorProps & TemplMgmtProps, XtalEditorActions>({
                 ifNoneOf: ['hasParent', 'readOnly'],
             },
             makeDownloadBlob: {
+                ifAllOf: ['isRoot'],
                 ifKeyIn: ['parsedObject'],
             },
             awaitKeyDepdencies:{
