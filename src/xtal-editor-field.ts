@@ -6,6 +6,7 @@ import('be-observant/be-observant.js');
 import('be-hive/be-hive.js');
 import('be-repeated/be-repeated.js');
 import('be-noticed/be-noticed.js');
+import('be-switched/be-switched.js');
 
 const tagName = 'xtal-editor-field';
 
@@ -88,7 +89,11 @@ const mainTemplate = html`
     <div part=child-editors class="nonPrimitive child-editors" data-open=false be-observant='{
         "data-open":{"vft": "open", "as": "str-attr"}
     }'>
-        <template>
+        <template be-switched='{
+            "if": {"ocoho": true, "vft": "open"},
+            "ifNonEmptyArray": {"ocoho": true, "vft": "childValues"},
+            "debug": true
+        }'>
             <xtal-editor-field data-is-hostish has-parent be-observant='{
                 "open": "expandAll",
                 "expandAll": "expandAll",
