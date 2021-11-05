@@ -10,7 +10,7 @@
 	},
 	"files":[
 		"xtal-editor.ts",
-		"src/xtal-editor-field.ts",
+		"xtal-editor-field.ts",
 	],
 	"exclude":[
 		"node_modules"
