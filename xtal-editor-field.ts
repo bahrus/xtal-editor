@@ -1,7 +1,7 @@
 import {html} from 'trans-render/lib/html.js';
 import { PropInfoExt, XE } from 'xtal-element/src/XE.js';
 import { TemplMgmtActions, TemplMgmtProps, tm } from 'trans-render/lib/mixins/TemplMgmtWithPEST.js';
-import { XtalEditorActions, XtalEditorProps, NameValue, editType } from './types';
+import { XtalEditorFieldActions, XtalEditorFieldProps, NameValue, editType } from './types';
 import('be-observant/be-observant.js');
 import('be-hive/be-hive.js');
 import('be-repeated/be-repeated.js');
@@ -118,7 +118,7 @@ const mainTemplate = html`
 </div>
 `;
 
-export class XtalEditorField extends HTMLElement implements XtalEditorActions {
+export class XtalEditorField extends HTMLElement implements XtalEditorFieldActions {
     self = this;
     parseValue({ value }: this) {
         if(this.dontReparse) return;
@@ -260,7 +260,7 @@ export class XtalEditorField extends HTMLElement implements XtalEditorActions {
 
     get childEditors() {
         const selfRoot = this.shadowRoot || this as Element;
-        return Array.from(selfRoot.querySelectorAll(tagName)) as (HTMLElement & XtalEditorProps)[]
+        return Array.from(selfRoot.querySelectorAll(tagName)) as (HTMLElement & XtalEditorFieldProps)[]
     }
 
     addEntity({ parsedObject, type }: this, entityName: string, entityCount: number, newVal: any) {
@@ -358,7 +358,7 @@ export class XtalEditorField extends HTMLElement implements XtalEditorActions {
 }
 
 
-type t = XtalEditorProps & TemplMgmtProps
+type t = XtalEditorFieldProps & TemplMgmtProps
 
 export interface XtalEditorField extends t { }
 
@@ -368,7 +368,7 @@ const notifyProp: PropInfoExt = {
         reflect: { asAttr: true }
     }
 }
-const xe = new XE<XtalEditorProps & TemplMgmtProps, XtalEditorActions>({
+const xe = new XE<XtalEditorFieldProps & TemplMgmtProps, XtalEditorFieldActions>({
     //config is JSON Serializable
     config: {
         tagName: 'xtal-editor-field',

@@ -4,7 +4,7 @@ import { PEUnionSettings } from '../trans-render/lib/types.js';
 
 export type editType = 'string' | 'number' | 'boolean' | 'object' | 'array';
 
-export interface XtalEditorProps{
+export interface XtalEditorFieldProps{
     /**
      * @prop {string} key - Root node name to display
      * @attr {string} key - Root node name to display
@@ -56,18 +56,6 @@ export interface XtalEditorProps{
     parentLevel: boolean;
     isC: boolean;
     expanderParts: NodeListOf<HTMLButtonElement>;
-    //keyParts: NodeListOf<HTMLInputElement>;
-    //valueParts:NodeListOf<HTMLInputElement>;
-    // objectAdderParts:NodeListOf<HTMLButtonElement>;
-    // stringAdderParts:NodeListOf<HTMLButtonElement>;
-    // boolAdderParts: NodeListOf<HTMLButtonElement>;
-    // numberAdderParts: NodeListOf<HTMLButtonElement>;
-    //copyToClipboardParts: NodeListOf<HTMLButtonElement>;
-    //slotElements: NodeListOf<HTMLSlotElement>;
-    //expandAllParts: NodeListOf<HTMLButtonElement>;
-    //collapseAllParts: NodeListOf<HTMLButtonElement>;
-    //removeParts: NodeListOf<HTMLButtonElement>;
-    //editorParts: NodeListOf<HTMLDivElement>;
     readOnly: boolean;
     textView: boolean;
     treeView: boolean;
@@ -76,7 +64,7 @@ export interface XtalEditorProps{
     dontReparse: boolean;
 }
 
-export interface XtalEditorActions{
+export interface XtalEditorFieldActions{
     parseValue(self: this): {
         parsedObject: string | object | number | boolean | null;
     } | undefined;
