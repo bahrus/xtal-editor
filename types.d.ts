@@ -78,8 +78,8 @@ export interface XtalEditorProps{
 
 export interface XtalEditorActions{
     parseValue(self: this): {
-        parsedObject: any
-    }
+        parsedObject: string | object | number | boolean | null;
+    } | undefined;
     setChildValues(self: this):{
         childValues: string[] | NameValue[] | undefined,
     }
@@ -113,7 +113,6 @@ export interface XtalEditorActions{
     //syncLightChild(self:this):void; 
     makeDownloadBlob(self:this): void;
 
-    awaitKeyDepdencies(self:this): Promise<Partial<this>>
 
     updateIsObject(self: this):{
         isObject: boolean;

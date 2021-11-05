@@ -1,7 +1,7 @@
 import {html} from 'trans-render/lib/html.js';
 import { PropInfoExt, XE } from 'xtal-element/src/XE.js';
 import { TemplMgmtActions, TemplMgmtProps, tm } from 'trans-render/lib/mixins/TemplMgmtWithPEST.js';
-import { XtalEditorActions, XtalEditorProps, NameValue, editType } from '../types';
+import { XtalEditorActions, XtalEditorProps, NameValue, editType } from './types';
 import('be-observant/be-observant.js');
 import('be-hive/be-hive.js');
 import('be-repeated/be-repeated.js');
@@ -355,19 +355,6 @@ export class XtalEditorField extends HTMLElement implements XtalEditorActions {
         return {isObject: !readOnly && (type === 'object' || type === 'array')};
     }
 
-    async awaitKeyDepdencies(){
-        // await customElements.whenDefined('be-switched');
-        // await customElements.whenDefined('be-observant');
-        // import('be-noticed/be-noticed.js');
-        // import('be-transformative/be-transformative.js');
-        // import('xtal-side-nav/xtal-side-nav.js');
-        // import('@power-elements/json-viewer/json-viewer.js');
-        // import('be-repeated/be-repeated.js');
-        
-        return {
-            waitToInit: false
-        } as Partial<this>
-    }
 }
 
 
@@ -474,10 +461,6 @@ const xe = new XE<XtalEditorProps & TemplMgmtProps, XtalEditorActions>({
             makeDownloadBlob: {
                 ifAllOf: ['isRoot'],
                 ifKeyIn: ['parsedObject'],
-            },
-            awaitKeyDepdencies:{
-                ifAllOf: ['waitToInit'],
-                async: true,
             },
             updateIsObject:{
                 ifAllOf: ['type']

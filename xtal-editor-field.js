@@ -338,18 +338,6 @@ export class XtalEditorField extends HTMLElement {
     updateIsObject({ type, readOnly }) {
         return { isObject: !readOnly && (type === 'object' || type === 'array') };
     }
-    async awaitKeyDepdencies() {
-        // await customElements.whenDefined('be-switched');
-        // await customElements.whenDefined('be-observant');
-        // import('be-noticed/be-noticed.js');
-        // import('be-transformative/be-transformative.js');
-        // import('xtal-side-nav/xtal-side-nav.js');
-        // import('@power-elements/json-viewer/json-viewer.js');
-        // import('be-repeated/be-repeated.js');
-        return {
-            waitToInit: false
-        };
-    }
 }
 const notifyProp = {
     notify: {
@@ -448,10 +436,6 @@ const xe = new XE({
             makeDownloadBlob: {
                 ifAllOf: ['isRoot'],
                 ifKeyIn: ['parsedObject'],
-            },
-            awaitKeyDepdencies: {
-                ifAllOf: ['waitToInit'],
-                async: true,
             },
             updateIsObject: {
                 ifAllOf: ['type']
