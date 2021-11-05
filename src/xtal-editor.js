@@ -335,7 +335,7 @@ input {
 }
 
 </style>
-<slot name=initVal be-deslotted='["value", "readOnly"]'></slot>
+<slot name=initVal be-deslotted='["value"]'></slot>
 <header part=header>
     <xtal-side-nav>
         <button class="selector text-view-selector" part=text-view-selector be-transformative='{
@@ -377,7 +377,8 @@ input {
 }'>
     <xtal-editor-field data-is-hostish be-observant='{
         "value": ".value",
-        "key": {"ocoho": "xtal-editor", "onSet": "key", "vft": ".key"}
+        "key": {"ocoho": "xtal-editor", "onSet": "key", "vft": ".key"},
+        "readOnly": ".readOnly"
     }'
     be-noticed='{
         "download-href-changed": {"prop": "downloadHref", "vft": "downloadHref", "doInit": true},
