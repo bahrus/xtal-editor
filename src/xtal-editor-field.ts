@@ -426,6 +426,7 @@ const xe = new XE<XtalEditorProps & TemplMgmtProps, XtalEditorActions>({
             expandAll: notifyProp,
             collapseAll: notifyProp,
             internalUpdateCount: notifyProp,
+
             //valueParts: isRef,
             // textView:{
             //     notify:{
