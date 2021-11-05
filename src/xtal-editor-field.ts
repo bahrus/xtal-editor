@@ -127,8 +127,10 @@ export class XtalEditorField extends HTMLElement implements XtalEditorActions {
                 case 'string':
                     if (value === 'true' || value === 'false') {
                         this.type = 'boolean';
+                        parsedObject = value === 'true';
                     } else if (!isNaN(value as any as number)) {
                         this.type = 'number';
+                        parsedObject = Number(value);
                     } else {
                         try {
                             parsedObject = JSON.parse(value);
@@ -319,7 +321,29 @@ export class XtalEditorField extends HTMLElement implements XtalEditorActions {
         //this.rootEditor!.removeParts.forEach(x => x.classList.remove('editKey'));
     }
     handleValueChange(self: this, val: string, e: InputEvent) {
-        this.value = val;
+        // switch(this.type) {
+        //     case 'string':
+        //         this.value = val;
+        //         break;
+        //     case 'number':
+        //         const num = Number(val);
+        //         if(!isNaN(num)) {
+        //             this.value = num;
+        //         }else{
+        //             this.value = val;
+        //         }
+        //         break;
+        //     case 'boolean':
+        //         this.value = val;
+        //         break;
+        //     case 'object':
+        //     case 'array':
+        //         this.value = val;
+        //         break;
+        // }
+        const futureSelf = {...this, value: val};
+        const parsed = this.parseValue(futureSelf);
+        this.value = parsed.parsedObject;
         this.internalUpdateCount!++;
     }
     copyToClipboard() {
