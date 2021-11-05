@@ -121,6 +121,7 @@ const mainTemplate = html`
 export class XtalEditorField extends HTMLElement implements XtalEditorActions {
     self = this;
     parseValue({ value }: this) {
+        if(this.dontReparse) return;
         let parsedObject = value;
         if (value !== undefined) {
             switch (typeof value) {
@@ -231,7 +232,9 @@ export class XtalEditorField extends HTMLElement implements XtalEditorActions {
             (<any>this).setValsQuietly({ value: newVal, parsedObject: newVal });
             const childValues = this.setChildValues(this);
             (<any>this).setValsQuietly({ childValues });
+            this.dontReparse = true;
             this.value = JSON.stringify(newVal);
+            this.dontReparse = false;
             //this.syncLightChild(this);
         }
 

@@ -73,6 +73,7 @@ export interface XtalEditorProps{
     treeView: boolean;
     downloadHref: string;
     isObject: boolean;
+    dontReparse: boolean;
 }
 
 export interface XtalEditorActions{
