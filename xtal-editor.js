@@ -177,11 +177,12 @@ slot{
     text-shadow: 1px 1px 1px black;
     background-color: black;
 }
-header::after{
-    content: "JSON Editor";
-}
-header[data-ro="true"]::after{
-    content: "JSON Viewer";
+
+header h1{
+    display: inline-block;
+    margin-top: 0px;
+    margin-bottom: 0px;
+    font-size: small;
 }
 .tree-view-selector.inactive{
     display:none;
@@ -369,7 +370,14 @@ input {
             Download
         </a>
     </xtal-side-nav>
-
+    <h1 part=title be-observant='{
+        "textContent":{
+            "onSet": "readOnly",
+            "vft": "readOnly",
+            "trueVal": "JSON Viewer",
+            "falseVal": "JSON Editor"
+        }
+    }'></h1>
 </header>
 <!-- Tree View -->
 <template be-switched='{
