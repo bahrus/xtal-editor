@@ -394,7 +394,7 @@ const xe = new XE<XtalEditorFieldProps & TemplMgmtProps, XtalEditorFieldActions>
             treeView: true,
             type: 'string',
             downloadHref:'',
-            waitToInit: true,
+            waitToInit: false,
             noshadow: true,
             isObject: false,
         },

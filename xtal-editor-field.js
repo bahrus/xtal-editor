@@ -371,7 +371,7 @@ const xe = new XE({
             treeView: true,
             type: 'string',
             downloadHref: '',
-            waitToInit: true,
+            waitToInit: false,
             noshadow: true,
             isObject: false,
         },
