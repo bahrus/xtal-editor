@@ -18,7 +18,7 @@
     "./xtal-editor-field.js": "./xtal-editor-field.js"
   },
   "files": [
-    "src/*",
+    "*",
     "custom-elements.json",
     "types.d.ts"
   ],
