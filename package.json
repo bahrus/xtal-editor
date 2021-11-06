@@ -10,8 +10,8 @@
     "Editor"
   ],
   "description": "Edit JSON",
-  "main": "src/xtal-editor.js",
-  "module": "src/xtal-editor.js",
+  "main": "xtal-editor.js",
+  "module": "xtal-editor.js",
   "exports": {
     ".": "./xtal-editor.js",
     "./xtal-editor.js": "./xtal-editor.js",
