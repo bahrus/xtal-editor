@@ -1,6 +1,6 @@
 import {html} from 'trans-render/lib/html.js';
 import ('be-hive/be-hive.js');
-import {DefineArgs} from 'trans-render/lib/types';
+import {DefineArgs} from 'xtal-element/src/types';
 import ('be-definitive/be-definitive.js');
 import('be-observant/be-observant.js');
 import('be-switched/be-switched.js');
@@ -85,19 +85,19 @@ slot{
 .editor[data-type="array"][data-even-level="false"]{
     background-color: var(--array-odd-level-editor-bg);
 }
-.editor[data-type="object"] .key{
+.editor[data-type="object"]>.field>.text-editing>.key{
     background-color: var(--obj-key-bg);
     color: var(--obj-key-color);
 }
-.editor[data-type="number"] .key{
+.editor[data-type="number"]>.field>.text-editing>.key{
     background-color: var(--num-key-bg);
     color: var(--num-key-color);
 }
-.editor[data-type="string"] .key{
+.editor[data-type="string"]>.field>.text-editing.key{
     background-color: var(--str-key-bg);
     color: var(--str-key-color);
 }
-.editor[data-type="array"] .key{
+.editor[data-type="array"]>.field>.text-editing>.key{
     background-color: var(--array-key-bg);
     /* color: color-contrast(var(--array-key-bg) vs white, black); */
     color: var(--array-key-color);
@@ -421,6 +421,16 @@ const beDefinitiveProps: DefineArgs = {
             editedValue: '',
         },
         propInfo:{
+            treeView:{
+                notify:{
+                    dispatch: true
+                }
+            },
+            textView:{
+                notify:{
+                    dispatch: true
+                }
+            },
         }
     }
 }

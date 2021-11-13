@@ -7,7 +7,19 @@
 </head>
 <body>
     <form action="dev.html" method="POST">
-        <xtal-editor key=ab id=editor>
+        <xtal-editor key=ab id=editor be-persistent='{
+            "what":{
+                "textView": true,
+                "treeView": true
+            },
+            "when":{
+                "text-view-changed": true,
+                "tree-view-changed": true
+            },
+            "where": {
+                "idb": true
+            }
+        }'>
             <textarea name=jsonField slot="initVal">
                 {
                     "string":"foo",
@@ -53,21 +65,25 @@
                 "d-fine/": "../node_modules/d-fine/",
                 "xodus/": "../node_modules/xodus/",
                 "@power-elements/": "../node_modules/@power-elements/",
+                "be-decorated/": "../node_modules/be-decorated/",
                 "be-definitive/": "../node_modules/be-definitive/",
                 "be-deslotted/": "../node_modules/be-deslotted/",
-                "be-observant/": "../node_modules/be-observant/",
+                "be-hive/": "../node_modules/be-hive/",
                 "be-noticed/": "../node_modules/be-noticed/",
-                "be-decorated/": "../node_modules/be-decorated/",
-                "css-observe/": "../node_modules/css-observe/",
-                "be-transformative/": "../node_modules/be-transformative/",
-                "be-switched/": "../node_modules/be-switched/",
+                "be-observant/": "../node_modules/be-observant/",
+                "be-persistent/": "../node_modules/be-persistent/",
                 "be-repeated/": "../node_modules/be-repeated/",
-                "be-hive/": "../node_modules/be-hive/"
+                "be-switched/": "../node_modules/be-switched/",
+                "be-transformative/": "../node_modules/be-transformative/",
+                "xtal-shell/": "../node_modules/xtal-shell/",
+                "idb-keyval/": "../node_modules/idb-keyval/",
+                "safari-14-idb-fix": "../node_modules/safari-14-idb-fix/dist/index.js"
             }
         }
     </script>
     <script type=module>
         import '../xtal-editor.js';
+        import 'be-persistent/be-persistent.js';
     </script>
 </body>
 </html>
