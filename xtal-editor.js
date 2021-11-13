@@ -25,11 +25,10 @@ slot{
     display: none;
 }
 
-@media (prefers-color-scheme: dark) {
-    .editor, header{
-        background-color: black;
-        color: white;
-    }
+
+.editor, header{
+    background-color: black;
+    color: white;
 }
 
 .expander{
