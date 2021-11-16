@@ -438,7 +438,8 @@ const xe = new XE({
                 ifKeyIn: ['parsedObject'],
             },
             updateIsObject: {
-                ifAllOf: ['type']
+                ifAllOf: ['type'],
+                ifKeyIn: ['readOnly']
             }
             // initEvenLevel:{
             //     ifKeyIn: ['rootEditor']

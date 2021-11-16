@@ -463,7 +463,8 @@ const xe = new XE<XtalEditorFieldProps & TemplMgmtProps, XtalEditorFieldActions>
                 ifKeyIn: ['parsedObject'],
             },
             updateIsObject:{
-                ifAllOf: ['type']
+                ifAllOf: ['type'],
+                ifKeyIn: ['readOnly']
             }
             // initEvenLevel:{
             //     ifKeyIn: ['rootEditor']
