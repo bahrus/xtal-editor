@@ -116,10 +116,6 @@ slot{
     animation-name: fadeIn;
 }
 
-
-/* .child-inserters[data-ro="true"] .adder{
-    display: none;
-} */
 .object.adder{
     background-color: var(--obj-adder-bg);
 }

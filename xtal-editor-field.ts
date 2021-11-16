@@ -42,9 +42,13 @@ const mainTemplate = html`
             }'>
 
         </div>
+        <button disabled id=copy class=action part=copy-to-clipboard title="Copy to Clipboard" be-noticed='{
+            "click": "copyToClipboard"
+            }'></button>
         <div part=child-inserters class="nonPrimitive child-inserters" data-open=false -data-ro be-observant='{
             "data-ro": {"onSet": "readOnly", "vft": "readOnly", "as": "str-attr", "ocoho": true}
         }'>
+
             <template be-switched='{
                 "if": ".isWritableObject"
             }'>
@@ -88,9 +92,7 @@ const mainTemplate = html`
             </template>
 
             
-            <button disabled id=copy class=action part=copy-to-clipboard title="Copy to Clipboard" be-noticed='{
-            "click": "copyToClipboard"
-            }'></button>
+
 
         </div>
 
