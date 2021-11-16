@@ -60,6 +60,7 @@ export interface XtalEditorFieldProps{
     textView: boolean;
     treeView: boolean;
     downloadHref: string;
+    isWritableObject: boolean;
     isObject: boolean;
     dontReparse: boolean;
 }
@@ -103,6 +104,7 @@ export interface XtalEditorFieldActions{
 
 
     updateIsObject(self: this):{
+        isWritableObject: boolean;
         isObject: boolean;
     }
 }

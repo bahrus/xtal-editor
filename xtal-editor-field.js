@@ -43,7 +43,7 @@ const mainTemplate = html `
             "data-ro": {"onSet": "readOnly", "vft": "readOnly", "as": "str-attr", "ocoho": true}
         }'>
             <template be-switched='{
-                "if": ".isObject"
+                "if": ".isWritableObject"
             }'>
                 <button disabled part=object-adder class="object adder" data-d=1 be-noticed='{
                     "click": {"prop": "objCounter", "plusEq": true, "vft": "dataset.d", "parseValAs": "int", "tocoho": true}
@@ -60,29 +60,34 @@ const mainTemplate = html `
                 <button disabled part=arr-adder class="arr adder" data-d=1 be-noticed='{
                     "click": {"prop": "arrCounter", "plusEq": true, "vft": "dataset.d", "parseValAs": "int", "tocoho": true}
                 }'>+array</button>
-                <button disabled id=copy class=action part=copy-to-clipboard title="Copy to Clipboard" be-noticed='{
-                "click": "copyToClipboard"
-            }'></button>
-            <button disabled id=expand-all class=action part=expand-all title="Expand All"
-                aria-label="Expand All" be-transformative='{
-                    "click":{
-                        "transform":{
-                            ":host": [{"collapseAll": false, "expandAll": true, "open": true}]
-                        }
-                    }
-                }'>
-            </button>
-            <button disabled id=collapse-all class=action part=collapse-all title="Collapse All"
-                aria-label="Collapse All" be-transformative='{
-                    "click":{
-                        "transform":{
-                            ":host": [{"collapseAll": true, "expandAll": false, "open": false}]
-                        }
-                    }
-                }'>
-            </button>
+            </template>
+            <template be-switched='{
+                "if": ".isObject"
+            }'>
+                <button disabled id=expand-all class=action part=expand-all title="Expand All"
+                        aria-label="Expand All" be-transformative='{
+                            "click":{
+                                "transform":{
+                                    ":host": [{"collapseAll": false, "expandAll": true, "open": true}]
+                                }
+                            }
+                        }'>
+                    </button>
+                    <button disabled id=collapse-all class=action part=collapse-all title="Collapse All"
+                        aria-label="Collapse All" be-transformative='{
+                            "click":{
+                                "transform":{
+                                    ":host": [{"collapseAll": true, "expandAll": false, "open": false}]
+                                }
+                            }
+                        }'>
+                    </button>
             </template>
 
+            
+            <button disabled id=copy class=action part=copy-to-clipboard title="Copy to Clipboard" be-noticed='{
+            "click": "copyToClipboard"
+            }'></button>
 
         </div>
 
@@ -336,7 +341,10 @@ export class XtalEditorField extends HTMLElement {
         this.downloadHref = URL.createObjectURL(file);
     }
     updateIsObject({ type, readOnly }) {
-        return { isObject: !readOnly && (type === 'object' || type === 'array') };
+        return {
+            isWritableObject: !readOnly && (type === 'object' || type === 'array'),
+            isObject: type === 'object' || type === 'array',
+        };
     }
 }
 const notifyProp = {
@@ -373,6 +381,7 @@ const xe = new XE({
             downloadHref: '',
             waitToInit: false,
             noshadow: true,
+            isWritableObject: false,
             isObject: false,
         },
         propInfo: {
