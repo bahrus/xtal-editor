@@ -114,9 +114,9 @@ slot{
 }
 
 
-.child-inserters[data-ro="true"] .adder{
+/* .child-inserters[data-ro="true"] .adder{
     display: none;
-}
+} */
 .object.adder{
     background-color: var(--obj-adder-bg);
 }
