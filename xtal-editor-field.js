@@ -37,11 +37,11 @@ const mainTemplate = html `
             }' be-noticed='{
                 "change": "handleValueChange"
             }'>
-
-        </div>
-        <button disabled id=copy class=action part=copy-to-clipboard title="Copy to Clipboard" be-noticed='{
-            "click": "copyToClipboard"
+            <button disabled id=copy class=action part=copy-to-clipboard title="Copy to Clipboard" be-noticed='{
+                "click": "copyToClipboard"
             }'></button>
+        </div>
+
         <div part=child-inserters class="nonPrimitive child-inserters" data-open=false -data-ro be-observant='{
             "data-ro": {"onSet": "readOnly", "vft": "readOnly", "as": "str-attr", "ocoho": true}
         }'>
