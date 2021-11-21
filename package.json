@@ -35,7 +35,7 @@
     "be-persistent": "0.0.2",
     "be-repeated": "0.0.31",
     "be-switched": "0.0.43",
-    "be-transformative": "0.0.16",
+    "be-transformative": "0.0.17",
     "xtal-side-nav": "0.0.34",
     "@power-elements/json-viewer": "2.1.1"
   },
