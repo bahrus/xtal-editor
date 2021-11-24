@@ -1,5 +1,4 @@
 import { html } from 'trans-render/lib/html.js';
-import('be-hive/be-hive.js');
 import('be-definitive/be-definitive.js');
 import('be-observant/be-observant.js');
 import('be-switched/be-switched.js');
@@ -8,9 +7,6 @@ import('be-transformative/be-transformative.js');
 import('be-deslotted/be-deslotted.js');
 import('@power-elements/json-viewer/json-viewer.js');
 import('./xtal-editor-field.js');
-if (document.querySelector('be-hive') === null) {
-    document.body.appendChild(document.createElement('be-hive'));
-}
 const mainTemplate = html `
 <style>
 
