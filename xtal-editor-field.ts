@@ -109,7 +109,7 @@ const mainTemplate = html`
                         "xtal-editor-field": [{"value": "value", "key": "key"}]
                     }
                 }'>
-                <xtal-editor-field data-is-hostish has-parent be-observant='{
+                <xtal-editor-field itemscope has-parent be-observant='{
                     "open": "expandAll",
                     "expandAll": "expandAll",
                     "readOnly": "readOnly",

@@ -377,7 +377,7 @@ input {
 <template be-switched='{
     "if": {"onSet": "treeView", "vft": "treeView"}
 }'>
-    <xtal-editor-field data-is-hostish be-observant='{
+    <xtal-editor-field itemscope be-observant='{
         "value": ".value",
         "key": {"ocoho": "xtal-editor", "onSet": "key", "vft": ".key"},
         "readOnly": ".readOnly"
