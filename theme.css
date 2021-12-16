@@ -5,15 +5,14 @@
     display:none;
 }
 
-
 slot{
     display: none;
 }
 
-@media (prefers-color-scheme: dark) {
-    .editor{
-        background-color: black;
-    }
+
+.editor, header{
+    background-color: black;
+    color: white;
 }
 
 .expander{
@@ -32,21 +31,26 @@ slot{
     padding-bottom: 0px;
     border: 0;
 }
-.object.adder{
-    background-color: #C15000;
-}
-.editor{
-    --obj-key-bg: #e17000;
-    --array-key-bg: #2d5b89;
-    --array-key-color: #D2A476;
+
+:host{
+    --obj-key-bg: #FFD4B8;
+    --obj-key-color: #000000;
+    --str-key-bg: #B8FFBB;
+    --str-key-color: #000000;
+    --num-key-bg: #BCD3DC;
+    --num-key-color: #000000;
+    --array-key-bg: #AAC7E4;
+    --array-key-color: #000000;
     --obj-even-level-editor-bg: #F1E090;
     --obj-odd-level-editor-bg: #FFEFCC;
     --array-even-level-editor-bg: #A9DBDD;
     --array-odd-level-editor-bg: #D9DBDD;
+    --obj-adder-bg: #C15000;
     --string-adder-bg: #007408;
     --bool-adder-bg: #516600;
     --num-adder-bg:#497B8D;
     --arr-adder-bg: #2d5b89;
+    --selector-bg: #CD138F;
 }
 .editor[data-type="object"][data-even-level="true"]{
     background-color: var(--obj-even-level-editor-bg);
@@ -61,8 +65,40 @@ slot{
 .editor[data-type="array"][data-even-level="false"]{
     background-color: var(--array-odd-level-editor-bg);
 }
-.child-inserters[data-ro="true"] .adder{
-    display: none;
+.editor[data-type="object"]>.field>.text-editing>.key{
+    background-color: var(--obj-key-bg);
+    color: var(--obj-key-color);
+}
+.editor[data-type="number"]>.field>.text-editing>.key{
+    background-color: var(--num-key-bg);
+    color: var(--num-key-color);
+}
+.editor[data-type="string"]>.field>.text-editing.key{
+    background-color: var(--str-key-bg);
+    color: var(--str-key-color);
+}
+.editor[data-type="array"]>.field>.text-editing>.key{
+    background-color: var(--array-key-bg);
+    /* color: color-contrast(var(--array-key-bg) vs white, black); */
+    color: var(--array-key-color);
+}
+/* .editor{
+    transition-timing-function: ease;
+} */
+@keyframes fadeIn {
+    0% {opacity: 0;}
+    100% {opacity: 1;}
+}
+.animated {
+    animation-duration: 1s;
+    animation-fill-mode: both;
+}
+.editor,json-viewer {
+    animation-name: fadeIn;
+}
+
+.object.adder{
+    background-color: var(--obj-adder-bg);
 }
 .string.adder{
     background-color:var(--string-adder-bg);
@@ -90,7 +126,7 @@ slot{
     padding: 2;
     border: none;
     margin-left: 12px;
-    background-color: hotpink;   
+    background-color: var(--selector-bg);   
 }
 /* .download{
     color: white;
@@ -107,7 +143,8 @@ slot{
     margin-left: 11px;
     
 }
-.remove{
+
+.header{
     display: flex;
     justify-content: space-between;
     /* padding: 0px 4px;
@@ -119,20 +156,18 @@ slot{
     text-shadow: 1px 1px 1px black;
     background-color: black;
 }
-.remove[data-has-parent="true"]{
+
+header h1{
+    display: inline-block;
+    margin-top: 0px;
+    margin-bottom: 0px;
+    font-size: small;
+}
+.tree-view-selector.inactive{
     display:none;
 }
-.remove::after{
-    content: "JSON Editor";
-}
-.remove[data-ro="true"]::after{
-    content: "JSON Viewer";
-}
-.text-view-selector::after{
-    content: "Text View"
-}
-.tree-view-selector::after{
-    content: "Tree View"
+.text-view-selector.inactive{
+    display:none;
 }
 .remove.editKey::after{
     content: "Remove item by deleting the property name.";
@@ -171,6 +206,7 @@ xtal-side-nav{
     display: inline;
     --drawer-width:140px;
 }
+
 #collapse-all{
     background-image: url(https://cdn.jsdelivr.net/npm/xtal-editor/src/arrows-collapse.svg);
     width: 20px;
@@ -235,21 +271,15 @@ xtal-side-nav{
 .child-editors{
     margin-left: 15px;
 }
-div[part="child-editors"][data-open="false"]{
-    display: none;
-}
+
 [data-type="object"] button.nonPrimitive{
     display: inline;
 }
-[data-type="object"] div.nonPrimitive[data-open="true"]{
-    display: block;
-}
+
 [data-type="array"] button.nonPrimitive{
     display: inline;
 }
-[data-type="array"] div.nonPrimitive[data-open="true"]{
-    display: block;
-}
+
 [data-type="string"] .nonPrimitive{
     display: none;
 }
@@ -259,24 +289,14 @@ div[part="child-editors"][data-open="false"]{
 [data-type="boolean"] .nonPrimitive{
     display: none;
 }
-[data-type="string"] [part="key"]{
-    background-color: rgb(0, 148, 8);
+[data-type="string"] .key{
+    background-color: var(--str-key-bg);
+    color: var(--str-key-color);
 }
-[data-type="boolean"] [part="key"]{
+[data-type="boolean"] .key{
     background-color: #B1C639;
 }
-[data-type="object"] [part="key"]{
-    background-color: var(--obj-key-bg);
-    color: color-contrast(var(--obj-key-bg) vs white, black);
-}
-[data-type="number"] [part="key"]{
-    background-color: rgb(73, 123, 141);
-}
-[data-type="array"] [part="key"]{
-    background-color: var(--array-key-bg);
-    /* color: color-contrast(var(--array-key-bg) vs white, black); */
-    color: var(--array-key-color);
-}
+
 .value{
     background-color: #ECF3C3;
     width: 100%;
