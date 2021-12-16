@@ -93,7 +93,7 @@ slot{
     animation-duration: 1s;
     animation-fill-mode: both;
 }
-.editor,json-viewer {
+.editor[is-observant],json-viewer {
     animation-name: fadeIn;
 }
 
