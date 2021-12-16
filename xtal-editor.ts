@@ -10,20 +10,17 @@ import('be-deslotted/be-deslotted.js');
 import('@power-elements/json-viewer/json-viewer.js');
 import('./xtal-editor-field.js');
 
-//for local debugging
-// const splitBase = import.meta.url.split('/');
-// splitBase.pop();
-// const base = splitBase.join('/');
-
-// due to skypack limitations:
-
 const fallback = "https://unpkg.com/xtal-editor@latest/theme.css";
 
 const mainTemplate = html`
 <style be-loaded='{
-    "fallback": "${base}/theme.css",
-    "preloadRef": "xtal-editor/theme.css"
+    "fallback": "${fallback}",
+    "preloadRef": "xtal-editor/theme.css",
+    "removeStyle": true
 }'>
+header,xtal-editor-field{
+    display: none,
+}
 </style>
 <slot name=initVal be-deslotted='["value"]'></slot>
 <header part=header>

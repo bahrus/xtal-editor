@@ -128,16 +128,7 @@ slot{
     margin-left: 12px;
     background-color: var(--selector-bg);   
 }
-/* .download{
-    color: white;
-    text-shadow:1px 1px 1px black;
-    border-radius: 5px;
-    padding: 2;
-    font-size:14px;
-    border: none;
-    margin-left: 12px;
-    background-color: rgb(182, 197, 114);
-} */
+
 .download{
     color: rgb(29, 155, 240);
     margin-left: 11px;
@@ -147,10 +138,6 @@ slot{
 .header{
     display: flex;
     justify-content: space-between;
-    /* padding: 0px 4px;
-    -webkit-border-radius: 5px;
-    -moz-border-radius: 5px;
-    border-radius: 5px; */
     color: white;
     font-weight: bold;
     text-shadow: 1px 1px 1px black;
