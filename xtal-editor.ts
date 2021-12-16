@@ -19,7 +19,7 @@ const mainTemplate = html`
     "removeStyle": true
 }'>
 header,xtal-editor-field{
-    display: none,
+    display: none;
 }
 </style>
 <slot name=initVal be-deslotted='["value"]'></slot>
