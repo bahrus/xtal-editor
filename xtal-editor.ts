@@ -10,9 +10,14 @@ import('be-deslotted/be-deslotted.js');
 import('@power-elements/json-viewer/json-viewer.js');
 import('./xtal-editor-field.js');
 
-const splitBase = import.meta.url.split('/');
-splitBase.pop();
-const base = splitBase.join('/');
+//for local debugging
+// const splitBase = import.meta.url.split('/');
+// splitBase.pop();
+// const base = splitBase.join('/');
+
+// due to skypack limitations:
+
+const fallback = "https://unpkg.com/xtal-editor@latest/theme.css";
 
 const mainTemplate = html`
 <style be-loaded='{
