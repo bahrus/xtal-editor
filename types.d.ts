@@ -4,6 +4,15 @@ import { PEUnionSettings } from '../trans-render/lib/types.js';
 
 export type editType = 'string' | 'number' | 'boolean' | 'object' | 'array';
 
+export interface XtalEditorProps{
+    readOnly: boolean;
+    value: string;
+}
+
+export interface XtalEditorActions{
+
+}
+
 export interface XtalEditorFieldProps{
     /**
      * @prop {string} key - Root node name to display

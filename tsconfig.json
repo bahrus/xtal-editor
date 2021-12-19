@@ -5,12 +5,12 @@
 		"sourceMap": false,
 		"experimentalDecorators": false,
 		"newLine": "LF",
-		"strict": true,
 		"watch": true
 	},
 	"files":[
 		"xtal-editor.ts",
 		"xtal-editor-field.ts",
+		"xe-config.ts"
 	],
 	"exclude":[
 		"node_modules"
