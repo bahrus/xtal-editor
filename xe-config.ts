@@ -2,8 +2,10 @@ import {DefineArgs} from 'xtal-element/src/types';
 import {html} from 'trans-render/lib/html.mjs';
 import {BeLoadedVirtualProps as bl} from 'be-loaded/types';
 import {IObserveMap as iom} from 'be-observant/types';
+import {INotifyMap as inm} from 'be-noticed/types';
 import {XtalEditorFieldProps as xfp} from './types';
 import { doInitTransform } from 'trans-render/lib/mixins/doInitTransform.mjs';
+import {BeSwitchedVirtualProps as bs} from 'be-switched/types';
 
 const fallback = "https://cdn.jsdelivr.net/npm/xtal-editor/theme.css";
 
@@ -20,24 +22,24 @@ header,xtal-editor-field{
 <slot name=initVal be-deslotted='["value"]'></slot>
 <header part=header>
     <xtal-side-nav>
-        <button class="selector text-view-selector" part=text-view-selector be-transformative='{
-            "click": {
-                "transform":{
-                    ":host": [{"treeView": false, "textView": true}],
-                    ".tree-view-selector":[{},{},{".inactive": false}],
-                    ".text-view-selector": [{}, {}, {".inactive": true}]                            
+        <button class="selector text-view-selector" part=text-view-selector be-transformative='${{
+            click: {
+                transform:{
+                    ":host": [{treeView: false, textView: true}],
+                    treeViewSelectorClasses:[{},{},{".inactive": false}],
+                    textViewSelectorClasses: [{}, {}, {".inactive": true}]                            
                 }
             }
-        }'>Text View</button>
-        <button class="selector tree-view-selector inactive" part=tree-view-selector be-transformative='{
-            "click": {
-                "transform":{
-                    ":host": [{"treeView": true, "textView": false}],
-                    ".tree-view-selector":[{},{},{".inactive": true}],
-                    ".text-view-selector": [{},{}, {".inactive": false}]
+        }}'>Text View</button>
+        <button class="selector tree-view-selector inactive" part=tree-view-selector be-transformative='${{
+            click: {
+                transform:{
+                    ":host": [{treeView: true, textView: false}],
+                    treeViewSelectorClasses:[{},{},{".inactive": true}],
+                    textViewSelectorClasses: [{},{}, {".inactive": false}]
                 }
             }
-        }'>Tree View</button>
+        }}'>Tree View</button>
         <!-- TODO:  set download property dynamically -->
         <a class=download part=download download="file.json" be-observant='{
             "href": ".downloadHref"
@@ -67,22 +69,22 @@ header,xtal-editor-field{
     <xtal-editor-field itemscope be-observant='${{
         value: ".value",
         key: {ocoho: "xtal-editor", onSet: "key", vft: ".key"},
-        "readOnly": ".readOnly"
-    } as iom<xfp>}'></xtal-editor-field>
-    be-noticed='{
-        "download-href-changed": {"prop": "downloadHref", "vft": "downloadHref", "doInit": true},
-        "value:onSet": {"prop": "editedValue", "vft": "value"}
-    }'
-    ></xtal-editor-field>
+        readOnly: ".readOnly"
+    } as iom<xfp>}'
+    be-noticed='${{
+        "download-href-changed": {prop: "downloadHref", vft: "downloadHref", doInit: true},
+        "value:onSet": {prop: "editedValue", vft: "value"}
+    } as inm}'>
+    </xtal-editor-field>
 </template>
 </template>
 <!-- Text View -->
-<template be-switched='{
-    "if": {"onSet": "textView", "vft": "textView"}
-}'>
-    <json-viewer class=animated be-observant='{
-        "object": {"vft": "value", "parseValAs": "object"} 
-    }'></json-viewer>
+<template be-switched='${{
+    if: {onSet: "textView", vft: "textView"}
+} as bs}'>
+    <json-viewer class=animated be-observant='${{
+        object: {vft: "value", parseValAs: "object"} 
+    } as iom<{"object": any}>}'></json-viewer>
 </template>
 <be-hive></be-hive>
 `;

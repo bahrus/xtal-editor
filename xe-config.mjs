@@ -14,24 +14,24 @@ header,xtal-editor-field{
 <slot name=initVal be-deslotted='["value"]'></slot>
 <header part=header>
     <xtal-side-nav>
-        <button class="selector text-view-selector" part=text-view-selector be-transformative='{
-            "click": {
-                "transform":{
-                    ":host": [{"treeView": false, "textView": true}],
-                    ".tree-view-selector":[{},{},{".inactive": false}],
-                    ".text-view-selector": [{}, {}, {".inactive": true}]                            
-                }
-            }
-        }'>Text View</button>
-        <button class="selector tree-view-selector inactive" part=tree-view-selector be-transformative='{
-            "click": {
-                "transform":{
-                    ":host": [{"treeView": true, "textView": false}],
-                    ".tree-view-selector":[{},{},{".inactive": true}],
-                    ".text-view-selector": [{},{}, {".inactive": false}]
-                }
-            }
-        }'>Tree View</button>
+        <button class="selector text-view-selector" part=text-view-selector be-transformative='${{
+    click: {
+        transform: {
+            ":host": [{ treeView: false, textView: true }],
+            treeViewSelectorClasses: [{}, {}, { ".inactive": false }],
+            textViewSelectorClasses: [{}, {}, { ".inactive": true }]
+        }
+    }
+}}'>Text View</button>
+        <button class="selector tree-view-selector inactive" part=tree-view-selector be-transformative='${{
+    click: {
+        transform: {
+            ":host": [{ treeView: true, textView: false }],
+            treeViewSelectorClasses: [{}, {}, { ".inactive": true }],
+            textViewSelectorClasses: [{}, {}, { ".inactive": false }]
+        }
+    }
+}}'>Tree View</button>
         <!-- TODO:  set download property dynamically -->
         <a class=download part=download download="file.json" be-observant='{
             "href": ".downloadHref"
@@ -61,22 +61,22 @@ header,xtal-editor-field{
     <xtal-editor-field itemscope be-observant='${{
     value: ".value",
     key: { ocoho: "xtal-editor", onSet: "key", vft: ".key" },
-    "readOnly": ".readOnly"
-}}'></xtal-editor-field>
-    be-noticed='{
-        "download-href-changed": {"prop": "downloadHref", "vft": "downloadHref", "doInit": true},
-        "value:onSet": {"prop": "editedValue", "vft": "value"}
-    }'
-    ></xtal-editor-field>
+    readOnly: ".readOnly"
+}}'
+    be-noticed='${{
+    "download-href-changed": { prop: "downloadHref", vft: "downloadHref", doInit: true },
+    "value:onSet": { prop: "editedValue", vft: "value" }
+}}'>
+    </xtal-editor-field>
 </template>
 </template>
 <!-- Text View -->
-<template be-switched='{
-    "if": {"onSet": "textView", "vft": "textView"}
-}'>
-    <json-viewer class=animated be-observant='{
-        "object": {"vft": "value", "parseValAs": "object"} 
-    }'></json-viewer>
+<template be-switched='${{
+    if: { onSet: "textView", vft: "textView" }
+}}'>
+    <json-viewer class=animated be-observant='${{
+    object: { vft: "value", parseValAs: "object" }
+}}'></json-viewer>
 </template>
 <be-hive></be-hive>
 `;
