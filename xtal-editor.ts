@@ -72,6 +72,7 @@ async function register(){
 
 register();
 
+
 declare global {
     interface HTMLElementTagNameMap {
         "xtal-editor": XtalEditorCore,

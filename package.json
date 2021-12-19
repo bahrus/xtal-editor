@@ -58,7 +58,7 @@
     "compress": "node minify",
     "package-check": "package-check",
     "doc": "custom-elements-manifest analyze",
-    "gen-config": "copy xe-config.js xe-config.mjs && node xe-config.mjs > xe-config.json",
+    "gen-config": "copy xe-config.js xe-config.mjs && copy xef-config.js xef-config.mjs && node xe-config.mjs > xe-config.json && node xef-config.mjs > xef-config.json",
     "watch": "npm-watch"
   },
   "repository": {
