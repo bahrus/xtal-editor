@@ -1,10 +1,10 @@
 import {DefineArgs} from 'xtal-element/src/types';
-import {html} from 'trans-render/lib/html.mjs';
+import {html} from './node_modules/trans-render/lib/html.mjs';
 import {BeLoadedVirtualProps as bl} from 'be-loaded/types';
 import {IObserveMap as iom} from 'be-observant/types';
 import {INotifyMap as inm} from 'be-noticed/types';
 import {XtalEditorFieldProps as xfp} from './types';
-import { doInitTransform } from 'trans-render/lib/mixins/doInitTransform.mjs';
+import { doInitTransform } from './node_modules/trans-render/lib/mixins/doInitTransform.mjs';
 import {BeSwitchedVirtualProps as bs} from 'be-switched/types';
 
 const fallback = "https://cdn.jsdelivr.net/npm/xtal-editor/theme.css";
@@ -87,6 +87,17 @@ header,xtal-editor-field{
     } as iom<{"object": any}>}'></json-viewer>
 </template>
 <be-hive></be-hive>
+<template be-active>
+    <script type=module>
+        import('be-loaded/be-loaded.js');
+        import('be-observant/be-observant.js');
+        import('be-switched/be-switched.js');
+        import('xtal-side-nav/xtal-side-nav.js');
+        import('be-transformative/be-transformative.js');
+        import('be-deslotted/be-deslotted.js');
+        import('@power-elements/json-viewer/json-viewer.js');
+    </script>
+</template>
 `;
 
 const da: DefineArgs = {

@@ -1,8 +1,8 @@
-import {html} from 'trans-render/lib/html.mjs';
+import {html} from './node_modules/trans-render/lib/html.mjs';
 import {DefineArgs, PropInfoExt} from 'xtal-element/src/types';
 import {TemplMgmtProps} from 'trans-render/lib/types';
 import {XtalEditorFieldProps, XtalEditorFieldActions} from './types';
-import { doInitTransform } from 'trans-render/lib/mixins/doInitTransform.mjs';
+import { doInitTransform } from './node_modules/trans-render/lib/mixins/doInitTransform.mjs';
 
 const mainTemplate = html`
 <div part=editor class="animated editor" be-observant='{

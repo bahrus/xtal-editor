@@ -1,5 +1,5 @@
-import { html } from 'trans-render/lib/html.mjs';
-import { doInitTransform } from 'trans-render/lib/mixins/doInitTransform.mjs';
+import { html } from './node_modules/trans-render/lib/html.mjs';
+import { doInitTransform } from './node_modules/trans-render/lib/mixins/doInitTransform.mjs';
 const mainTemplate = html `
 <div part=editor class="animated editor" be-observant='{
     "data-type": {"onSet": "type", "vft": "type", "as": "str-attr", "ocoho": true },
