@@ -81,13 +81,7 @@ header,xtal-editor-field{
 <be-hive></be-hive>
 <template be-active>
     <script type=module>
-        import('be-loaded/be-loaded.js');
-        import('be-observant/be-observant.js');
-        import('be-switched/be-switched.js');
-        import('xtal-side-nav/xtal-side-nav.js');
-        import('be-transformative/be-transformative.js');
-        import('be-deslotted/be-deslotted.js');
-        import('@power-elements/json-viewer/json-viewer.js');
+
     </script>
 </template>
 `;
