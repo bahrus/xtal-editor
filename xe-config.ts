@@ -63,9 +63,9 @@ header,xtal-editor-field{
     } as iom}'></h1>
 </header>
 <!-- Tree View -->
-<template be-switched='{
-    "if": {"onSet": "treeView", "vft": "treeView"}
-}'>
+<template be-switched='${{
+    if: '.treeView'
+}}'>
     <xtal-editor-field itemscope be-observant='${{
         value: ".value",
         key: {ocoho: "xtal-editor", onSet: "key", vft: ".key"},
