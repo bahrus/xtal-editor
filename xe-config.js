@@ -80,9 +80,12 @@ header,xtal-editor-field{
 </template>
 <be-hive></be-hive>
 <template be-active>
-    <script type=module>
-
-    </script>
+    <script id=be-observant/be-observant.js></script>
+    <script id=be-switched/be-switched.js></script>
+    <script id=xtal-side-nav/xtal-side-nav.js></script>
+    <script id=be-transformative/be-transformative.js></script>
+    <script id=be-deslotted/be-deslotted.js></script>
+    <script id=@power-elements/json-viewer/json-viewer.js></script>
 </template>
 `;
 const da = {

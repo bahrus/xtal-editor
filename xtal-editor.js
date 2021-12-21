@@ -1,12 +1,7 @@
 import { XE } from 'xtal-element/src/XE.js';
 import { importJSON } from 'be-loaded/importJSON.js';
 import('be-loaded/be-loaded.js');
-import('be-observant/be-observant.js');
-import('be-switched/be-switched.js');
-import('xtal-side-nav/xtal-side-nav.js');
-import('be-transformative/be-transformative.js');
-import('be-deslotted/be-deslotted.js');
-import('@power-elements/json-viewer/json-viewer.js');
+import('be-active/be-active.js');
 import('./xtal-editor-field.js');
 import { tm } from 'trans-render/lib/mixins/TemplMgmtWithPEST.js';
 /**
