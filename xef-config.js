@@ -9,10 +9,10 @@ const mainTemplate = html `
         <div class=text-editing>
             <template be-switched='${{
     "if": true,
-    "ifNonEmptyArray": { "ocoho": true, vft: "childValues" }
+    "ifNonEmptyArray": { ocoho: true, vft: "childValues" }
 }}'>
                 <button disabled part=expander class=expander be-observant='${{
-    "textContent": { vft: "open", "trueVal": "-", "falseVal": "+", "ocoho": true }
+    "textContent": { vft: "open", "trueVal": "-", "falseVal": "+", ocoho: true }
 }}' be-noticed='${{
     click: { "tocoho": true, "toggleProp": true, prop: "open" }
 }}'
@@ -26,7 +26,7 @@ const mainTemplate = html `
             }'>
             <input disabled aria-label=value part=value -read-only class=value -value  be-observant='${{
     "readOnly": ".readOnly",
-    "value": { onSet: "value", vft: "value", parseValAs: "string", "ocoho": true }
+    "value": { onSet: "value", vft: "value", parseValAs: "string", ocoho: true }
 }}' be-noticed='{
                 "change": "handleValueChange"
             }'>
@@ -36,7 +36,7 @@ const mainTemplate = html `
         </div>
 
         <div part=child-inserters class="nonPrimitive child-inserters" data-open=false -data-ro be-observant='${{
-    "data-ro": { onSet: "readOnly", vft: "readOnly", "as": "str-attr", "ocoho": true }
+    "data-ro": { onSet: "readOnly", vft: "readOnly", "as": "str-attr", ocoho: true }
 }}'>
 
             <template be-switched='{
@@ -99,12 +99,12 @@ const mainTemplate = html `
                         "xtal-editor-field": [{"value": "value", "key": "key"}]
                     }
                 }'>
-                <xtal-editor-field itemscope has-parent be-observant='{
-                    "open": "expandAll",
-                    "expandAll": "expandAll",
-                    "readOnly": "readOnly",
-                    "ocoho": true
-                }' be-noticed='${{
+                <xtal-editor-field itemscope has-parent be-observant='${{
+    "open": "expandAll",
+    "expandAll": "expandAll",
+    "readOnly": "readOnly",
+    ocoho: true
+}}' be-noticed='${{
     "internal-update-count-changed": { prop: "upwardDataFlowInProgress", parseValAs: "truthy", "tocoho": true }
 }}' ></xtal-editor-field>
             </template>
