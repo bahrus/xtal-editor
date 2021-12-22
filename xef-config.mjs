@@ -7,13 +7,13 @@ const mainTemplate = html `
 }}'>
     <div part=field class=field>
         <div class=text-editing>
-            <template be-switched='{
-                "if": true,
-                "ifNonEmptyArray": {"ocoho": true, "vft": "childValues"}
-            }'>
-                <button disabled part=expander class=expander be-observant='{
-                    "textContent": {"vft": "open", "trueVal": "-", "falseVal": "+", "ocoho": true}
-                }' be-noticed='${{
+            <template be-switched='${{
+    "if": true,
+    "ifNonEmptyArray": { "ocoho": true, vft: "childValues" }
+}}'>
+                <button disabled part=expander class=expander be-observant='${{
+    "textContent": { vft: "open", "trueVal": "-", "falseVal": "+", "ocoho": true }
+}}' be-noticed='${{
     click: { "tocoho": true, "toggleProp": true, prop: "open" }
 }}'
                 ></button>
@@ -26,7 +26,7 @@ const mainTemplate = html `
             }'>
             <input disabled aria-label=value part=value -read-only class=value -value  be-observant='${{
     "readOnly": ".readOnly",
-    "value": { onSet: "value", "vft": "value", parseValAs: "string", "ocoho": true }
+    "value": { onSet: "value", vft: "value", parseValAs: "string", "ocoho": true }
 }}' be-noticed='{
                 "change": "handleValueChange"
             }'>
@@ -36,7 +36,7 @@ const mainTemplate = html `
         </div>
 
         <div part=child-inserters class="nonPrimitive child-inserters" data-open=false -data-ro be-observant='${{
-    "data-ro": { onSet: "readOnly", "vft": "readOnly", "as": "str-attr", "ocoho": true }
+    "data-ro": { onSet: "readOnly", vft: "readOnly", "as": "str-attr", "ocoho": true }
 }}'>
 
             <template be-switched='{
@@ -46,16 +46,16 @@ const mainTemplate = html `
     click: { prop: "objCounter", plusEq: true, vft: "dataset.d", parseValAs: "int", tocoho: true }
 }}'>+object</button>
                 <button disabled part=string-adder class="string adder" data-d=1 be-noticed='${{
-    click: { prop: "strCounter", "plusEq": true, "vft": "dataset.d", parseValAs: "int", "tocoho": true }
+    click: { prop: "strCounter", plusEq: true, vft: "dataset.d", parseValAs: "int", "tocoho": true }
 }}'>+string</button>
                 <button disabled part=bool-adder class="bool adder" data-d=1 be-noticed='${{
-    click: { prop: "boolCounter", "plusEq": true, "vft": "dataset.d", parseValAs: "int", "tocoho": true }
+    click: { prop: "boolCounter", plusEq: true, vft: "dataset.d", parseValAs: "int", "tocoho": true }
 }}'>+bool</button>
                 <button disabled part=number-adder class="number adder" data-d=1 be-noticed='${{
-    click: { prop: "numCounter", "plusEq": true, "vft": "dataset.d", parseValAs: "int", "tocoho": true }
+    click: { prop: "numCounter", plusEq: true, vft: "dataset.d", parseValAs: "int", "tocoho": true }
 }}'>+number</button>
                 <button disabled part=arr-adder class="arr adder" data-d=1 be-noticed='${{
-    click: { prop: "arrCounter", "plusEq": true, "vft": "dataset.d", parseValAs: "int", "tocoho": true }
+    click: { prop: "arrCounter", plusEq: true, vft: "dataset.d", parseValAs: "int", "tocoho": true }
 }}'>+array</button>
             </template>
             <template be-switched='{
