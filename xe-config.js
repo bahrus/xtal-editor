@@ -87,6 +87,9 @@ header,xtal-editor-field{
         if: { onSet: "textView", vft: "textView" }
     }
 }}>
+    <template be-active>
+        <script id=@power-elements/json-viewer/json-viewer.js></script>
+    </template>
     <json-viewer class=animated ${{
     beObservant: {
         object: { vft: "value", parseValAs: "object" }
@@ -100,7 +103,6 @@ header,xtal-editor-field{
     <script id=xtal-side-nav/xtal-side-nav.js></script>
     <script id=be-transformative/be-transformative.js></script>
     <script id=be-deslotted/be-deslotted.js></script>
-    <script id=@power-elements/json-viewer/json-viewer.js></script>
 </template>
 `;
 const da = {

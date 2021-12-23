@@ -1,9 +1,6 @@
 import {DefineArgs, PropInfoExt} from 'xtal-element/src/types';
 import {TemplMgmtProps} from 'trans-render/lib/types';
 import {XtalEditorFieldProps as props, XtalEditorFieldActions as actions} from './types';
-import {BeSwitchedVirtualProps as bs} from 'be-switched/types';
-import {IObserveMap as iom} from 'be-observant/types';
-import {INotifyMap as inm} from 'be-noticed/types';
 import {html, doInitTransform} from './node_modules/may-it-be/index.mjs';
 import {MayItBe as mib} from 'may-it-be/types';
 
