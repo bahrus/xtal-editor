@@ -27,21 +27,13 @@ const mainTemplate = html`
                 } as bn}'
                 ></button>
             </template>
-            <!-- <input disabled aria-label=key part=key class=key be-observant='{
+            <input disabled aria-label=key part=key class=key be-observant='{
                 "readOnly": ".readOnly",
                 "value": ".key"
             }' be-noticed='{
                 "change": "handleKeyChange"
-            }'> -->
-            <input disabled aria-label=key part=key class=key ${{
-                beObservant: {
-                    readOnly: '.readOnly',
-                    value: '.key'
-                },
-                beNoticed:{
-                    change: 'handleKeyChange'
-                }
-            }}>
+            }'>
+            
             <input disabled aria-label=value part=value -read-only class=value -value  be-observant='${{
                 "readOnly": ".readOnly",
                 "value": {onSet: "value", vft: "value", parseValAs: "string", ocoho: true}
