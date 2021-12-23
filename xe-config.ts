@@ -1,20 +1,22 @@
 import {DefineArgs} from 'xtal-element/src/types';
-import {html} from './node_modules/trans-render/lib/html.mjs';
+import {html, doInitTransform} from './node_modules/may-it-be/index.mjs';
+import {MayItBe as mib} from 'may-it-be/types';
 import {BeLoadedVirtualProps as bl} from 'be-loaded/types';
 import {IObserveMap as iom} from 'be-observant/types';
 import {INotifyMap as inm} from 'be-noticed/types';
 import {XtalEditorFieldProps as xfp} from './types';
-import { doInitTransform } from './node_modules/trans-render/lib/mixins/doInitTransform.mjs';
 import {BeSwitchedVirtualProps as bs} from 'be-switched/types';
 
 const fallback = "https://cdn.jsdelivr.net/npm/xtal-editor/theme.css";
 
 const mainTemplate = html`
-<style be-loaded='${{
-    fallback,
-    preloadRef: "xtal-editor/theme.css",
-    removeStyle: true,
-} as bl}'>
+<style ${{
+    beLoaded: {
+        fallback,
+        preloadRef: 'xtal-editor/theme.css',
+        removeStyle: true
+    }
+} as mib}>
 header,xtal-editor-field{
     display: none;
 }
