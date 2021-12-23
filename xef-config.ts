@@ -1,93 +1,124 @@
-import {html} from './node_modules/trans-render/lib/html.mjs';
 import {DefineArgs, PropInfoExt} from 'xtal-element/src/types';
 import {TemplMgmtProps} from 'trans-render/lib/types';
 import {XtalEditorFieldProps as props, XtalEditorFieldActions as actions} from './types';
-import { doInitTransform } from './node_modules/trans-render/lib/mixins/doInitTransform.mjs';
 import {BeSwitchedVirtualProps as bs} from 'be-switched/types';
 import {IObserveMap as iom} from 'be-observant/types';
 import {INotifyMap as inm} from 'be-noticed/types';
+import {html, doInitTransform} from './node_modules/may-it-be/index.mjs';
+import {MayItBe as mib} from 'may-it-be/types';
 
-type b = HTMLButtonElement;
-type bn = inm<b, props, actions>;
+type b = Partial<HTMLButtonElement>;
+type bpa = mib<b, props, actions>;
 const mainTemplate = html`
-<div part=editor class="animated editor" be-observant='${{
-    'data-type': {onSet: 'type', vft: 'type', as: 'str-attr', ocoho: true },
-    'data-ro': {onSet: 'readOnly', vft: 'readOnly', as: 'str-attr', ocoho: true}
-} as iom<any, props>}'>
+<div part=editor class="animated editor" ${{
+    beObservant:{
+        'data-type': {onSet: 'type', vft: 'type', as: 'str-attr', ocoho: true },
+        'data-ro': {onSet: 'readOnly', vft: 'readOnly', as: 'str-attr', ocoho: true}
+    }
+} as mib<any, props>}>
     <div part=field class=field>
         <div class=text-editing>
-            <template be-switched='${{
-                "if": true,
-                "ifNonEmptyArray": {ocoho: true, vft: "childValues"}
-            }}'>
-                <button disabled part=expander class=expander be-observant='${{
-                    "textContent": {vft: "open", "trueVal": "-", "falseVal": "+", ocoho: true}
-                }}' be-noticed='${{
-                    click: {"tocoho": true, "toggleProp": true, prop: "open"}
-                } as bn}'
+            <template ${{
+                beSwitched:{
+                    if: true,
+                    ifNonEmptyArray: {ocoho: true, vft: 'childValues'}
+                }
+            } as mib}>
+                <button disabled part=expander class=expander ${{
+                    beObservant:{
+                        textContent: {vft: 'open', trueVal: '-', falseVal: '+', ocoho: true}
+                    },
+                    beNoticed:{
+                        click: {tocoho: true, toggleProp: true, prop: "open"}
+                    },
+                } as bpa} 
                 ></button>
             </template>
-            <input disabled aria-label=key part=key class=key be-observant='{
-                "readOnly": ".readOnly",
-                "value": ".key"
-            }' be-noticed='{
-                "change": "handleKeyChange"
-            }'>
+            <input disabled aria-label=key part=key class=key ${{
+                beObservant:{
+                    readOnly: ".readOnly",
+                    value: ".key"
+                },
+                beNoticed:{
+                    change: "handleKeyChange"
+                }
+            } as mib}>
             
-            <input disabled aria-label=value part=value -read-only class=value -value  be-observant='${{
-                "readOnly": ".readOnly",
-                "value": {onSet: "value", vft: "value", parseValAs: "string", ocoho: true}
-            }}' be-noticed='{
-                "change": "handleValueChange"
-            }'>
-            <button disabled id=copy class=action part=copy-to-clipboard title="Copy to Clipboard" be-noticed='${{
-                click: "copyToClipboard"
-            } as bn}'></button>
+            <input disabled aria-label=value part=value -read-only class=value -value ${{
+                beObservant:{
+                    readOnly: ".readOnly",
+                    "value": {onSet: "value", vft: "value", parseValAs: "string", ocoho: true}
+                },
+                beNoticed:{
+                    change: "handleValueChange"
+                }
+            } as mib}>
+            <button disabled id=copy class=action part=copy-to-clipboard title="Copy to Clipboard" ${{
+                beNoticed:{
+                    click: "copyToClipboard"
+                }
+            } as bpa}></button>
         </div>
 
-        <div part=child-inserters class="nonPrimitive child-inserters" data-open=false -data-ro be-observant='${{
-            "data-ro": {onSet: "readOnly", vft: "readOnly", "as": "str-attr", ocoho: true}
-        }}'>
+        <div part=child-inserters class="nonPrimitive child-inserters" data-open=false -data-ro ${{
+            beObservant:{
+                "data-ro": {onSet: "readOnly", vft: "readOnly", as: "str-attr", ocoho: true}
+            }
+        } as mib}>
 
             <template be-switched='{
                 "if": ".isWritableObject"
             }'>
-                <button disabled part=object-adder class="object adder" data-d=1 be-noticed='${{
-                    click: {prop: "objCounter", plusEq: true, vft: "dataset.d", parseValAs: "int", tocoho: true}
-                } as bn}'>+object</button>
-                <button disabled part=string-adder class="string adder" data-d=1 be-noticed='${{
-                    click: {prop: "strCounter", plusEq: true, vft: "dataset.d", parseValAs: "int", "tocoho": true}
-                } as bn}'>+string</button>
-                <button disabled part=bool-adder class="bool adder" data-d=1 be-noticed='${{
-                    click: {prop: "boolCounter", plusEq: true, vft: "dataset.d", parseValAs: "int", "tocoho": true}
-                } as bn}'>+bool</button>
-                <button disabled part=number-adder class="number adder" data-d=1 be-noticed='${{
-                    click: {prop: "numCounter", plusEq: true, vft: "dataset.d", parseValAs: "int", "tocoho": true}
-                } as bn}'>+number</button>
-                <button disabled part=arr-adder class="arr adder" data-d=1 be-noticed='${{
-                    click: {prop: "arrCounter", plusEq: true, vft: "dataset.d", parseValAs: "int", "tocoho": true}
-                } as bn}'>+array</button>
+                <button disabled part=object-adder class="object adder" data-d=1 ${{
+                    beNoticed:{
+                        click: {prop: "objCounter", plusEq: true, vft: "dataset.d", parseValAs: "int", tocoho: true}
+                    }
+                } as bpa}>+object</button>
+                <button disabled part=string-adder class="string adder" data-d=1 ${{
+                    beNoticed:{
+                        click: {prop: "strCounter", plusEq: true, vft: "dataset.d", parseValAs: "int", tocoho: true}
+                    }
+                } as bpa}>+string</button>
+                <button disabled part=bool-adder class="bool adder" data-d=1 ${{
+                    beNoticed:{
+                        click: {prop: "boolCounter", plusEq: true, vft: "dataset.d", parseValAs: "int", tocoho: true}
+                    }
+                } as bpa}>+bool</button>
+                <button disabled part=number-adder class="number adder" data-d=1 ${{
+                    beNoticed:{
+                        click: {prop: "numCounter", plusEq: true, vft: "dataset.d", parseValAs: "int", tocoho: true}
+                    }
+                } as bpa}>+number</button>
+                <button disabled part=arr-adder class="arr adder" data-d=1 ${{
+                    beNoticed:{
+                        click: {prop: "arrCounter", plusEq: true, vft: "dataset.d", parseValAs: "int", tocoho: true}
+                    }
+                } as bpa}>+array</button>
             </template>
             <template be-switched='{
                 "if": ".isObject"
             }'>
                 <button disabled id=expand-all class=action part=expand-all title="Expand All"
-                        aria-label="Expand All" be-transformative='${{
-                            click:{
-                                "transform":{
-                                    ":host": [{"collapseAll": false, "expandAll": true, "open": true}]
+                        aria-label="Expand All" ${{
+                            beTransformative:{
+                                click: {
+                                    transform:{
+                                        ":host": [{"collapseAll": false, "expandAll": true, "open": true}]
+                                    }
                                 }
                             }
-                        }}'>
+                        } as mib}>
                     </button>
                     <button disabled id=collapse-all class=action part=collapse-all title="Collapse All"
-                        aria-label="Collapse All" be-transformative='${{
-                            click:{
-                                "transform":{
-                                    ":host": [{"collapseAll": true, "expandAll": false, "open": false}]
+                        aria-label="Collapse All" ${{
+                            beTransformative:{
+                                click: {
+                                    transform:{
+                                        ":host": [{"collapseAll": true, "expandAll": false, "open": false}]
+                                    }
                                 }
                             }
-                        }}'>
+                        } as mib}>
                     </button>
             </template>
 
@@ -98,10 +129,12 @@ const mainTemplate = html`
 
     </div>
 
-    <template be-switched='${{
-        if: {ocoho: true, vft: "open"},
-        ifNonEmptyArray: {ocoho: true, vft: "childValues"}
-    } as bs}'>
+    <template ${{
+        beSwitched:{
+            if: {ocoho: true, vft: "open"},
+            ifNonEmptyArray: {ocoho: true, vft: "childValues"}
+        }
+    } as bpa}>
         <div part=child-editors class="nonPrimitive child-editors" data-open=false>
             <template be-repeated='{
                     "list": "childValues",
@@ -109,14 +142,21 @@ const mainTemplate = html`
                         "xtal-editor-field": [{"value": "value", "key": "key"}]
                     }
                 }'>
-                <xtal-editor-field itemscope has-parent be-observant='${{
-                    "open": "expandAll",
-                    "expandAll": "expandAll",
-                    "readOnly": "readOnly",
-                    ocoho: true
-                }}' be-noticed='${{
-                    "internal-update-count-changed": {prop: "upwardDataFlowInProgress", parseValAs: "truthy", "tocoho": true}
-                } as inm<props & actions, props, actions>}' ></xtal-editor-field>
+                <xtal-editor-field itemscope has-parent ${{
+                    beObservant:{
+                        open: "expandAll",
+                        expandAll: "expandAll",
+                        readOnly: "readOnly",
+                        ocoho: true
+                    },
+                    beNoticed:{
+                        "internal-update-count-changed": {
+                            prop: "upwardDataFlowInProgress", 
+                            parseValAs: "truthy", 
+                            "tocoho": true
+                        }
+                    }
+                } as mib}></xtal-editor-field>
             </template>
         </div>
     </template>
