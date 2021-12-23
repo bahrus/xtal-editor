@@ -7,6 +7,10 @@ import {MayItBe as mib} from 'may-it-be/types';
 type b = Partial<HTMLButtonElement>;
 type bpa = mib<b, props, actions>;
 const mainTemplate = html`
+<template be-active>
+    <script id=be-noticed/be-noticed.js></script>
+    <script id=be-repeated/be-repeated.js></script>
+</template>
 <div part=editor class="animated editor" ${{
     beObservant:{
         'data-type': {onSet: 'type', vft: 'type', as: 'str-attr', ocoho: true },

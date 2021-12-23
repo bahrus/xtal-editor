@@ -1,9 +1,7 @@
 import { XE } from 'xtal-element/src/XE.js';
 import { tm } from 'trans-render/lib/mixins/TemplMgmtWithPEST.js';
 import { importJSON } from 'be-loaded/importJSON.js';
-import('be-hive/be-hive.js');
-import('be-repeated/be-repeated.js');
-import('be-noticed/be-noticed.js');
+//import('be-hive/be-hive.js');
 const tagName = 'xtal-editor-field';
 export class XtalEditorField extends HTMLElement {
     self = this;

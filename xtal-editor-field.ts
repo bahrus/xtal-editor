@@ -3,9 +3,7 @@ import {DefineArgs} from 'xtal-element/src/types';
 import { TemplMgmtActions, TemplMgmtProps, tm } from 'trans-render/lib/mixins/TemplMgmtWithPEST.js';
 import { XtalEditorFieldActions, XtalEditorFieldProps, NameValue, editType } from './types';
 import { importJSON } from 'be-loaded/importJSON.js';
-import('be-hive/be-hive.js');
-import('be-repeated/be-repeated.js');
-import('be-noticed/be-noticed.js');
+//import('be-hive/be-hive.js');
 
 const tagName = 'xtal-editor-field';
 
