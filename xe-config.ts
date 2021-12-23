@@ -2,12 +2,18 @@ import {DefineArgs} from 'xtal-element/src/types';
 import {html, doInitTransform} from './node_modules/may-it-be/index.mjs';
 import {MayItBe as mib} from 'may-it-be/types';
 
-const fallback = "https://cdn.jsdelivr.net/npm/xtal-editor/theme.css";
-
 const mainTemplate = html`
+<template be-active>
+    <script id=be-loaded/be-loaded.js></script>
+    <script id=be-observant/be-observant.js></script>
+    <script id=be-switched/be-switched.js></script>
+    <script id=xtal-side-nav/xtal-side-nav.js></script>
+    <script id=be-transformative/be-transformative.js></script>
+    <script id=be-deslotted/be-deslotted.js></script>
+</template>
 <style ${{
     beLoaded: {
-        fallback,
+        fallback: 'https://cdn.jsdelivr.net/npm/xtal-editor/theme.css',
         preloadRef: 'xtal-editor/theme.css',
         removeStyle: true
     }
@@ -101,13 +107,7 @@ header,xtal-editor-field{
     } as mib}></json-viewer>
 </template>
 <be-hive></be-hive>
-<template be-active>
-    <script id=be-observant/be-observant.js></script>
-    <script id=be-switched/be-switched.js></script>
-    <script id=xtal-side-nav/xtal-side-nav.js></script>
-    <script id=be-transformative/be-transformative.js></script>
-    <script id=be-deslotted/be-deslotted.js></script>
-</template>
+
 `;
 
 const da: DefineArgs = {
