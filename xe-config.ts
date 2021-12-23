@@ -1,10 +1,6 @@
 import {DefineArgs} from 'xtal-element/src/types';
 import {html, doInitTransform} from './node_modules/may-it-be/index.mjs';
 import {MayItBe as mib} from 'may-it-be/types';
-import {IObserveMap as iom} from 'be-observant/types';
-import {INotifyMap as inm} from 'be-noticed/types';
-import {XtalEditorFieldProps as xfp} from './types';
-import {BeSwitchedVirtualProps as bs} from 'be-switched/types';
 
 const fallback = "https://cdn.jsdelivr.net/npm/xtal-editor/theme.css";
 
