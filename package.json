@@ -49,7 +49,7 @@
     "npm-watch": "0.11.0"
   },
   "watch": {
-    "gen-config": "*-config.js"
+    "build": "*-config.js"
   },
   "scripts": {
     "serve": "node node_modules/xtal-test/serve.js",
@@ -59,7 +59,7 @@
     "compress": "node minify",
     "package-check": "package-check",
     "doc": "custom-elements-manifest analyze",
-    "gen-config": "copy xe-config.js xe-config.mjs && copy xef-config.js xef-config.mjs && node xe-config.mjs > xe-config.json && node xef-config.mjs > xef-config.json",
+    "build": "copy xe-config.js xe-config.mjs && copy xef-config.js xef-config.mjs && node xe-config.mjs > xe-config.json && node xef-config.mjs > xef-config.json",
     "watch": "npm-watch"
   },
   "repository": {
