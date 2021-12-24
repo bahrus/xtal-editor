@@ -3,11 +3,8 @@ import {DefineArgs} from 'xtal-element/src/types';
 import { TemplMgmtActions, TemplMgmtProps, tm } from 'trans-render/lib/mixins/TemplMgmtWithPEST.js';
 import { XtalEditorFieldActions, XtalEditorFieldProps, NameValue, editType } from './types';
 import { importJSON } from 'be-loaded/importJSON.js';
-//import('be-hive/be-hive.js');
 
 const tagName = 'xtal-editor-field';
-
-
 
 export class XtalEditorField extends HTMLElement implements XtalEditorFieldActions {
     self = this;

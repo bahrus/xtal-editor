@@ -1,5 +1,5 @@
 import {DefineArgs} from 'xtal-element/src/types';
-import {html, doInitTransform} from './node_modules/may-it-be/index.mjs';
+import {html, doInitTransform} from './node_modules/may-it-be/index.js';
 import {MayItBe as mib} from 'may-it-be/types';
 
 const mainTemplate = html`
