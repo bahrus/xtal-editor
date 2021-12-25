@@ -8,7 +8,6 @@
 		"watch": true
 	},
 	"files":[
-		"xtal-editor.ts",
 		"xtal-editor-field.ts",
 		"xe-config.ts",
 		"xef-config.ts",

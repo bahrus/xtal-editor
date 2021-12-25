@@ -18,15 +18,13 @@
     "./xtal-editor-field.js": "./xtal-editor-field.js"
   },
   "files": [
-    "*",
-    "custom-elements.json",
-    "types.d.ts"
+    "*.*"
   ],
   "types": "types.d.ts",
   "dependencies": {
     "trans-render": "0.0.439",
     "xtal-element": "0.0.455",
-    "may-it-be": "0.0.5",
+    "may-it-be": "0.0.10",
     "be-active": "0.0.9",
     "be-decorated": "0.0.52",
     "be-deslotted": "0.0.11",
@@ -59,7 +57,7 @@
     "compress": "node minify",
     "package-check": "package-check",
     "doc": "custom-elements-manifest analyze",
-    "build": "copy xe-config.js xe-config.mjs && copy xef-config.js xef-config.mjs && node xe-config.mjs > xe-config.json && node xef-config.mjs > xef-config.json",
+    "build": "copy xe-config.js xe-config.mjs && copy xef-config.js xef-config.mjs && node xe-config.mjs > xtal-editor.js && node xef-config.mjs > xef-config.json",
     "watch": "npm-watch"
   },
   "repository": {
