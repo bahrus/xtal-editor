@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+<xtal-editor key=abc>
+    <textarea slot="initVal">
+        {
+            "string":"foo",
+            "number":5,
+            "array":[1,2,3],
+            "object":{
+                "property":"value",
+                "subobj":{
+                    "arr":["foo","ha"],
+                    "numero":1
+                }
+            }
+        }
+    </textarea>
+</xtal-editor>
+
+
+<script type=module crossorigin>
+    import 'https://cdn.skypack.dev/xtal-editor?min';
+</script>
+</body>
+</html>
