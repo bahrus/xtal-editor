@@ -136,4 +136,4 @@ const mainTemplate = html `
     <be-hive></be-hive>
 </template>
 `;
-define(mainTemplate, ['./xtal-editor-field.js']);
+define(mainTemplate, console.log, ['./xtal-editor-field.js']);
