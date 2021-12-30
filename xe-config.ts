@@ -41,6 +41,7 @@ const innerHTML = html`
     <script id=xtal-side-nav/xtal-side-nav.js></script>
     <script id=be-transformative/be-transformative.js></script>
     <script id=be-deslotted/be-deslotted.js></script>
+    <script id=xtal-editor/xtal-editor-field.js></script>
 </template>
 <style ${{
     beLoaded: {
@@ -144,5 +145,4 @@ define({
     mode,
     beDefinitiveProps,
     encodeAndWrite: console.log,
-    dependencies: ['./xtal-editor-field.js']
 });
