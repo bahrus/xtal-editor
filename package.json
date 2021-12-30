@@ -24,7 +24,7 @@
   "dependencies": {
     "trans-render": "0.0.442",
     "xtal-element": "0.0.457",
-    "may-it-be": "0.0.12",
+    "may-it-be": "0.0.15",
     "be-active": "0.0.13",
     "be-decorated": "0.0.57",
     "be-definitive": "0.0.23",
@@ -37,7 +37,7 @@
     "be-repeated": "0.0.36",
     "be-switched": "0.0.48",
     "be-transformative": "0.0.22",
-    "xtal-side-nav": "0.0.50",
+    "xtal-side-nav": "0.0.51",
     "@power-elements/json-viewer": "2.1.1"
   },
   "devDependencies": {
@@ -58,7 +58,7 @@
     "compress": "node minify",
     "package-check": "package-check",
     "doc": "custom-elements-manifest analyze",
-    "build": "copy xe-config.js xe-config.mjs && copy xef-config.js xef-config.mjs && node xe-config.mjs > xtal-editor.js && node xef-config.mjs > xef-config.json",
+    "build": "copy xe-config.js xe-config.mjs && copy xef-config.js xef-config.mjs && node xe-config.mjs -js > xtal-editor.js && node xef-config.mjs > xef-config.json",
     "watch": "npm-watch"
   },
   "repository": {
