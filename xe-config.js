@@ -139,4 +139,5 @@ define({
     mode,
     beDefinitiveProps,
     encodeAndWrite: console.log,
+    dependencies: ['./xtal-editor-field.js']
 });

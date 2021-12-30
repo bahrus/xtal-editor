@@ -1,7 +1,19 @@
-import('be-definitive/be-definitive.js');
-import('be-active/be-active.js');
-import('./xtal-editor-field.js');
-document.body.insertAdjacentHTML('beforeend', `<template be-definitive='{"config":{"tagName":"xtal-editor","propDefaults":{"readOnly":false,"value":"","key":"","treeView":true,"textView":false,"downloadHref":"","editedValue":""},"propInfo":{"treeView":{"notify":{"dispatch":true}},"textView":{"notify":{"dispatch":true}}},"actions":{"cloneTemplate":{"ifAllOf":["mainTemplate"],"ifKeyIn":["noshadow","waitToInit"]},"doInitTransform":{"ifAllOf":["clonedTemplate"]}}}}'>
+
+<script type=module>
+    if(customElements.get('be-active') === undefined){
+        import('be-active/be-active.js').catch(err => {
+            import('https://esm.run/be-active/be-active.js');
+        });
+    }
+</script>
+
+<xtal-editor be-definitive='{"config":{"tagName":"xtal-editor","propDefaults":{"readOnly":false,"value":"","key":"","treeView":true,"textView":false,"downloadHref":"","editedValue":""},"propInfo":{"treeView":{"notify":{"dispatch":true}},"textView":{"notify":{"dispatch":true}}},"actions":{"cloneTemplate":{"ifAllOf":["mainTemplate"],"ifKeyIn":["noshadow","waitToInit"]},"doInitTransform":{"ifAllOf":["clonedTemplate"]}}}}'>
+    <template shadowroot="open">
+        <template be-active>
+            <script id="be-definitive/be-definitive.js"></script>
+            <script id="./xtal-editor-field.js"></script>
+        </template>
+        
 <template be-active>
     <script id=be-loaded/be-loaded.js></script>
     <script id=be-observant/be-observant.js></script>
@@ -48,4 +60,7 @@ header,xtal-editor-field{
     <json-viewer class=animated be-observant='{"object":{"vft":"value","parseValAs":"object"}}'></json-viewer>
 </template>
 <be-hive></be-hive>
-</template>`);
+
+    </template>
+</xtal-editor>;
+
