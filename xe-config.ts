@@ -1,12 +1,6 @@
 import {DefineArgs} from 'xtal-element/src/types';
 import {html, doInitTransform, define} from './node_modules/may-it-be/index.js';
 import {MayItBe as mib, BeDefinitiveVirtualProps} from 'may-it-be/types';
-import fs from 'node:fs'
-
-const readme = fs.readFileSync('./README.md').toString();
-//console.log(readme);
-
-//const test = fs.readFileSync('./xtal-editor-field.html', 'utf8');
 
 const mode = process.argv[2] as '-js' | '-html';
 const beDefinitiveProps: BeDefinitiveVirtualProps = {

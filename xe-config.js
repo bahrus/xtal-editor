@@ -1,8 +1,4 @@
 import { html, doInitTransform, define } from './node_modules/may-it-be/index.js';
-import fs from 'node:fs';
-const readme = fs.readFileSync('./README.md').toString();
-//console.log(readme);
-//const test = fs.readFileSync('./xtal-editor-field.html', 'utf8');
 const mode = process.argv[2];
 const beDefinitiveProps = {
     config: {
