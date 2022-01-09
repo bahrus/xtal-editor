@@ -39,7 +39,11 @@ header,xtal-editor-field{
             Download
         </a>
     </xtal-side-nav>
-    <h1 part=title be-observant='{"textContent":{"onSet":"readOnly","vft":"readOnly","trueVal":"JSON Viewer","falseVal":"JSON Editor"}}'></h1>
+    <h1 part=title >
+        <span be-observant='{"textContent":{"onSet":"readOnly","vft":"readOnly","trueVal":"JSON Viewer","falseVal":"JSON Editor"}}'>
+        </span>
+        <input type=search be-noticed='{"input":{"prop":"stringFilter"}}'>
+    </h1>
 </header>
 <!-- Tree View -->
 <template be-switched='{"if":".treeView"}'>

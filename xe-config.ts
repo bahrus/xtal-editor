@@ -93,16 +93,26 @@ header,xtal-editor-field{
             Download
         </a>
     </xtal-side-nav>
-    <h1 part=title ${{
-        beObservant: {
-            textContent:{
-                onSet: "readOnly",
-                vft: "readOnly",
-                trueVal: "JSON Viewer",
-                falseVal: "JSON Editor",
+    <h1 part=title >
+        <span ${{
+            beObservant: {
+                textContent:{
+                    onSet: "readOnly",
+                    vft: "readOnly",
+                    trueVal: "JSON Viewer",
+                    falseVal: "JSON Editor",
+                }
             }
-        }
-    } as mib}></h1>
+        } as mib}>
+        </span>
+        <input type=search ${{
+            beNoticed: {
+                input: {
+                    prop: "stringFilter",
+                }
+            }
+        } as mib}>
+    </h1>
 </header>
 <!-- Tree View -->
 <template ${{
