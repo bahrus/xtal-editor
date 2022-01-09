@@ -3,6 +3,7 @@ const mainTemplate = html `
 <template be-active>
     <script id=be-noticed/be-noticed.js></script>
     <script id=be-repeated/be-repeated.js></script>
+    <script id=be-intersectional/be-intersectional.js></script>
 </template>
 <div part=editor class="animated editor" ${{
     beObservant: {
@@ -126,17 +127,18 @@ const mainTemplate = html `
     <template ${{
     beSwitched: {
         if: { ocoho: true, vft: "open" },
-        ifNonEmptyArray: { ocoho: true, vft: "childValues" }
+        ifNonEmptyArray: { ocoho: true, vft: "childValues" },
     }
 }}>
-        <div part=child-editors class="nonPrimitive child-editors" data-open=false>
-            <template be-repeated='{
-                    "list": "childValues",
-                    "transform": {
-                        "xtal-editor-field": [{"value": "value", "key": "key"}]
-                    }
-                }'>
-                <xtal-editor-field itemscope has-parent ${{
+        <template be-intersectional>
+            <div part=child-editors class="nonPrimitive child-editors" data-open=false>
+                <template be-repeated='{
+                        "list": "childValues",
+                        "transform": {
+                            "xtal-editor-field": [{"value": "value", "key": "key"}]
+                        }
+                    }'>
+                    <xtal-editor-field itemscope has-parent ${{
     beObservant: {
         open: "expandAll",
         expandAll: "expandAll",
@@ -151,8 +153,9 @@ const mainTemplate = html `
         }
     }
 }}></xtal-editor-field>
-            </template>
-        </div>
+                </template>
+            </div>
+        </template>
     </template>
     
 

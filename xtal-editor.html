@@ -1,12 +1,4 @@
 
-<script type=module>
-    if(customElements.get('be-active') === undefined){
-        import('be-active/be-active.js').catch(err => {
-            import('https://esm.run/be-active/be-active.js');
-        });
-    }
-</script>
-
 <xtal-editor t-a-i-l-b be-definitive='{"config":{"tagName":"xtal-editor","propDefaults":{"readOnly":false,"value":"","key":"","treeView":true,"textView":false,"downloadHref":"","editedValue":""},"propInfo":{"treeView":{"notify":{"dispatch":true}},"textView":{"notify":{"dispatch":true}}},"actions":{"cloneTemplate":{"ifAllOf":["mainTemplate"],"ifKeyIn":["noshadow","waitToInit"]},"doInitTransform":{"ifAllOf":["clonedTemplate"]}}}}'>
     <!---->
     <template shadowroot="open">
@@ -65,4 +57,11 @@ header,xtal-editor-field{
 
     </template>
 </xtal-editor>
+<script type=module>
+    if(customElements.get('be-active') === undefined){
+        import('be-active/be-active.js').catch(err => {
+            import('https://esm.run/be-active/be-active.js');
+        });
+    }
+</script>
 

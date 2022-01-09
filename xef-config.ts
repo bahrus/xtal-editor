@@ -10,6 +10,7 @@ const mainTemplate = html`
 <template be-active>
     <script id=be-noticed/be-noticed.js></script>
     <script id=be-repeated/be-repeated.js></script>
+    <script id=be-intersectional/be-intersectional.js></script>
 </template>
 <div part=editor class="animated editor" ${{
     beObservant:{
@@ -133,33 +134,35 @@ const mainTemplate = html`
     <template ${{
         beSwitched:{
             if: {ocoho: true, vft: "open"},
-            ifNonEmptyArray: {ocoho: true, vft: "childValues"}
+            ifNonEmptyArray: {ocoho: true, vft: "childValues"},
         }
     } as bpa}>
-        <div part=child-editors class="nonPrimitive child-editors" data-open=false>
-            <template be-repeated='{
-                    "list": "childValues",
-                    "transform": {
-                        "xtal-editor-field": [{"value": "value", "key": "key"}]
-                    }
-                }'>
-                <xtal-editor-field itemscope has-parent ${{
-                    beObservant:{
-                        open: "expandAll",
-                        expandAll: "expandAll",
-                        readOnly: "readOnly",
-                        ocoho: true
-                    },
-                    beNoticed:{
-                        "internal-update-count-changed": {
-                            prop: "upwardDataFlowInProgress", 
-                            parseValAs: "truthy", 
-                            "tocoho": true
+        <template be-intersectional>
+            <div part=child-editors class="nonPrimitive child-editors" data-open=false>
+                <template be-repeated='{
+                        "list": "childValues",
+                        "transform": {
+                            "xtal-editor-field": [{"value": "value", "key": "key"}]
                         }
-                    }
-                } as mib}></xtal-editor-field>
-            </template>
-        </div>
+                    }'>
+                    <xtal-editor-field itemscope has-parent ${{
+                        beObservant:{
+                            open: "expandAll",
+                            expandAll: "expandAll",
+                            readOnly: "readOnly",
+                            ocoho: true
+                        },
+                        beNoticed:{
+                            "internal-update-count-changed": {
+                                prop: "upwardDataFlowInProgress", 
+                                parseValAs: "truthy", 
+                                "tocoho": true
+                            }
+                        }
+                    } as mib}></xtal-editor-field>
+                </template>
+            </div>
+        </template>
     </template>
     
 

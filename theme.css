@@ -300,3 +300,7 @@ input {
     border: none;
     padding: 3px;
 }
+template[be-intersectional], template[is-intersectional]{
+    display: block;
+    height: 100px;
+}
