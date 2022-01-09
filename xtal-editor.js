@@ -1,7 +1,7 @@
 import('be-definitive/be-definitive.js');
 import('be-active/be-active.js');
 
-document.body.insertAdjacentHTML('beforeend', `<template be-definitive='{"config":{"tagName":"xtal-editor","propDefaults":{"readOnly":false,"value":"","key":"","treeView":true,"textView":false,"downloadHref":"","editedValue":""},"propInfo":{"treeView":{"notify":{"dispatch":true}},"textView":{"notify":{"dispatch":true}}},"actions":{"cloneTemplate":{"ifAllOf":["mainTemplate"],"ifKeyIn":["noshadow","waitToInit"]},"doInitTransform":{"ifAllOf":["clonedTemplate"]}}}}'>
+document.body.insertAdjacentHTML('beforeend', `<template be-definitive='{"config":{"tagName":"xtal-editor","propDefaults":{"readOnly":false,"value":"","key":"","treeView":true,"textView":false,"downloadHref":"","editedValue":"","stringFilter":""},"propInfo":{"treeView":{"notify":{"dispatch":true}},"textView":{"notify":{"dispatch":true}}},"actions":{"cloneTemplate":{"ifAllOf":["mainTemplate"],"ifKeyIn":["noshadow","waitToInit"]},"doInitTransform":{"ifAllOf":["clonedTemplate"]}}}}'>
 <template be-active>
     <script id=be-loaded/be-loaded.js></script>
     <script id=be-observant/be-observant.js></script>
@@ -38,7 +38,7 @@ header,xtal-editor-field{
 </header>
 <!-- Tree View -->
 <template be-switched='{"if":".treeView"}'>
-    <xtal-editor-field itemscope be-observant='{"value":".value","key":{"ocoho":"xtal-editor","onSet":"key","vft":".key"},"readOnly":".readOnly"}'be-noticed='{"download-href-changed":{"prop":"downloadHref","vft":"downloadHref","doInit":true},"value:onSet":{"prop":"editedValue","vft":"value"}}' >
+    <xtal-editor-field itemscope be-observant='{"value":".value","key":{"ocoho":"xtal-editor","onSet":"key","vft":".key"},"readOnly":".readOnly","stringFilter":".stringFilter"}'be-noticed='{"download-href-changed":{"prop":"downloadHref","vft":"downloadHref","doInit":true},"value:onSet":{"prop":"editedValue","vft":"value"}}' >
     </xtal-editor-field>
 </template>
 <!-- Text View -->

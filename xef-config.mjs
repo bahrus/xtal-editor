@@ -142,7 +142,8 @@ const mainTemplate = html `
     beObservant: {
         open: "expandAll",
         expandAll: "expandAll",
-        readOnly: "readOnly",
+        readOnly: ".readOnly",
+        stringFilter: '.stringFilter',
         ocoho: true
     },
     beNoticed: {

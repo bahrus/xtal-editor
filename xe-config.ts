@@ -14,6 +14,7 @@ const beDefinitiveProps: BeDefinitiveVirtualProps = {
             textView: false,
             downloadHref:'',
             editedValue: '',
+            stringFilter: ''
         },
         propInfo:{
             treeView:{
@@ -113,7 +114,8 @@ header,xtal-editor-field{
         beObservant:{
             value: ".value",
             key: {ocoho: "xtal-editor", onSet: "key", vft: ".key"},
-            readOnly: ".readOnly"
+            readOnly: ".readOnly",
+            stringFilter: ".stringFilter",
         },
         beNoticed:{
             "download-href-changed": {prop: "downloadHref", vft: "downloadHref", doInit: true},
