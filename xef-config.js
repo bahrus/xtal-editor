@@ -198,6 +198,7 @@ const da = {
             noshadow: true,
             isWritableObject: false,
             isObject: false,
+            stringFilter: '',
         },
         propInfo: {
             childValues: {

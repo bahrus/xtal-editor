@@ -72,6 +72,7 @@ export interface XtalEditorFieldProps{
     isWritableObject: boolean;
     isObject: boolean;
     dontReparse: boolean;
+    stringFilter: string;
 }
 
 export interface XtalEditorFieldActions{

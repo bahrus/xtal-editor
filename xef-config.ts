@@ -206,6 +206,7 @@ const da: DefineArgs<props & TemplMgmtProps, actions> = {
             noshadow: true,
             isWritableObject: false,
             isObject: false,
+            stringFilter: '',
         },
         propInfo: {
             childValues: {
