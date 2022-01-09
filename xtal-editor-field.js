@@ -4,7 +4,7 @@ import { importJSON } from 'be-loaded/importJSON.js';
 const tagName = 'xtal-editor-field';
 export class XtalEditorField extends HTMLElement {
     self = this;
-    parseValue({ value }) {
+    parseValue({ value, stringFilter }) {
         if (this.dontReparse)
             return;
         let parsedObject = value;
@@ -20,6 +20,9 @@ export class XtalEditorField extends HTMLElement {
                         parsedObject = Number(value);
                     }
                     else {
+                        if (stringFilter && value.indexOf(stringFilter) !== -1) {
+                            return;
+                        }
                         try {
                             parsedObject = JSON.parse(value);
                             if (Array.isArray(parsedObject)) {
@@ -53,27 +56,38 @@ export class XtalEditorField extends HTMLElement {
         return { parsedObject };
     }
     #lastParsedObject;
-    setChildValues({ parsedObject, type }) {
-        if (parsedObject === this.#lastParsedObject)
+    #lastStringFilter;
+    setChildValues({ parsedObject, type, stringFilter }) {
+        if (parsedObject === this.#lastParsedObject && stringFilter === this.#lastStringFilter)
             return {
                 childValues: this.childValues
             };
         this.#lastParsedObject = parsedObject;
+        this.#lastStringFilter = stringFilter;
         if (parsedObject === undefined) {
             return {
                 childValues: undefined
             };
+        }
+        if (stringFilter) {
+            if (!JSON.stringify(parsedObject).includes(stringFilter)) {
+                return {
+                    childValues: []
+                };
+            }
         }
         switch (type) {
             case 'array': {
                 const childValues = [];
                 let cnt = 0;
                 for (const item of parsedObject) {
-                    childValues.push({
-                        key: cnt.toString(),
-                        value: item
-                    });
-                    cnt++;
+                    if (!stringFilter || JSON.stringify(item).includes(stringFilter)) {
+                        childValues.push({
+                            key: cnt.toString(),
+                            value: item
+                        });
+                        cnt++;
+                    }
                 }
                 return {
                     childValues,
@@ -82,10 +96,13 @@ export class XtalEditorField extends HTMLElement {
             case 'object': {
                 const childValues = [];
                 for (var key in parsedObject) {
-                    childValues.push({
-                        key: key,
-                        value: parsedObject[key] //toString(parsedObject[key]),
-                    });
+                    const value = parsedObject[key];
+                    if (!stringFilter || JSON.stringify(value).includes(stringFilter)) {
+                        childValues.push({
+                            key,
+                            value
+                        });
+                    }
                 }
                 return { childValues };
             }

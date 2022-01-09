@@ -235,10 +235,12 @@ const da: DefineArgs<props & TemplMgmtProps, actions> = {
         actions: {
             ...doInitTransform,
             parseValue: {
-                ifAllOf: ['value']
+                ifAllOf: ['value'],
+                ifKeyIn: ['stringFilter'],
             },
             setChildValues: {
-                ifAllOf: ['parsedObject']
+                ifAllOf: ['parsedObject'],
+                ifKeyIn: ['stringFilter'],
             },
             syncValueFromChildren: {
                 ifAllOf: ['upwardDataFlowInProgress']

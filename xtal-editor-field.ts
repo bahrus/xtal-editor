@@ -8,7 +8,7 @@ const tagName = 'xtal-editor-field';
 
 export class XtalEditorField extends HTMLElement implements XtalEditorFieldActions {
     self = this;
-    parseValue({ value }: this) {
+    parseValue({ value, stringFilter }: this) {
         if(this.dontReparse) return;
         let parsedObject = value;
         if (value !== undefined) {
@@ -21,6 +21,9 @@ export class XtalEditorField extends HTMLElement implements XtalEditorFieldActio
                         this.type = 'number';
                         parsedObject = Number(value);
                     } else {
+                        if(stringFilter && value.indexOf(stringFilter) !== -1){
+                            return;
+                        }
                         try {
                             parsedObject = JSON.parse(value);
                             if (Array.isArray(parsedObject)) {
@@ -54,14 +57,23 @@ export class XtalEditorField extends HTMLElement implements XtalEditorFieldActio
 
     }
     #lastParsedObject: any;
-    setChildValues({ parsedObject, type }: this) {
-        if (parsedObject === this.#lastParsedObject) return {
+    #lastStringFilter: string;
+    setChildValues({ parsedObject, type, stringFilter }: this) {
+        if (parsedObject === this.#lastParsedObject && stringFilter === this.#lastStringFilter) return {
             childValues: this.childValues
         };
         this.#lastParsedObject = parsedObject;
+        this.#lastStringFilter = stringFilter;
         if (parsedObject === undefined) {
             return {
                 childValues: undefined
+            }
+        }
+        if(stringFilter){
+            if(!JSON.stringify(parsedObject).includes(stringFilter)){
+                return {
+                    childValues: []
+                }
             }
         }
         switch (type) {
@@ -69,11 +81,13 @@ export class XtalEditorField extends HTMLElement implements XtalEditorFieldActio
                 const childValues: NameValue[] = [];
                 let cnt = 0;
                 for (const item of parsedObject) {
-                    childValues.push({
-                        key: cnt.toString(),
-                        value: item
-                    });
-                    cnt++;
+                    if(!stringFilter || JSON.stringify(item).includes(stringFilter)){
+                        childValues.push({
+                            key: cnt.toString(),
+                            value: item
+                        });
+                        cnt++;
+                    }
                 }
                 return {
                     childValues,
@@ -82,10 +96,13 @@ export class XtalEditorField extends HTMLElement implements XtalEditorFieldActio
             case 'object': {
                 const childValues: NameValue[] = [];
                 for (var key in parsedObject) {
-                    childValues.push({
-                        key: key,
-                        value: parsedObject[key] //toString(parsedObject[key]),
-                    } as NameValue);
+                    const value = parsedObject[key];
+                    if(!stringFilter || JSON.stringify(value).includes(stringFilter)){
+                        childValues.push({
+                            key,
+                            value
+                        } as NameValue);
+                    }
                 }
                 return { childValues };
             }
