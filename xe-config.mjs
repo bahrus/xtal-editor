@@ -101,14 +101,16 @@ header,xtal-editor-field{
     }
 }}>
         </span>
-        <input type=search ${{
+        
+
+    </h1>
+    <label part=search-label class=search-label>Search:  <input part=search-input type=search ${{
     beNoticed: {
         input: {
             prop: "stringFilter",
         }
     }
-}}>
-    </h1>
+}}></label>
 </header>
 <!-- Tree View -->
 <template ${{

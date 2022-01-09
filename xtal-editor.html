@@ -42,8 +42,10 @@ header,xtal-editor-field{
     <h1 part=title >
         <span be-observant='{"textContent":{"onSet":"readOnly","vft":"readOnly","trueVal":"JSON Viewer","falseVal":"JSON Editor"}}'>
         </span>
-        <input type=search be-noticed='{"input":{"prop":"stringFilter"}}'>
+        
+
     </h1>
+    <label part=search-label class=search-label>Search:  <input part=search-input type=search be-noticed='{"input":{"prop":"stringFilter"}}'></label>
 </header>
 <!-- Tree View -->
 <template be-switched='{"if":".treeView"}'>

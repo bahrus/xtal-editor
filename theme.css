@@ -304,3 +304,9 @@ template[be-intersectional], template[is-intersectional]{
     display: block;
     height: 100px;
 }
+.search-label{
+    position:absolute;
+    right:0px;
+    margin-top:1px;
+    margin-bottom:1px;
+}
