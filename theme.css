@@ -135,9 +135,10 @@ slot{
     
 }
 
-.header{
+header{
     display: flex;
-    justify-content: space-between;
+    flex-direction: row;
+    justify-content: stretch;
     color: white;
     font-weight: bold;
     text-shadow: 1px 1px 1px black;
@@ -145,8 +146,9 @@ slot{
 }
 
 header h1{
-    display: inline-block;
-    margin-top: 0px;
+    /* display: inline-block; */
+    margin-top: 5px;
+    margin-left: 5px;
     margin-bottom: 0px;
     font-size: small;
 }
