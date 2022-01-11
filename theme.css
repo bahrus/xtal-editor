@@ -138,11 +138,15 @@ slot{
 header{
     display: flex;
     flex-direction: row;
-    justify-content: stretch;
+    /* justify-content: space-evenly; */
     color: white;
     font-weight: bold;
     text-shadow: 1px 1px 1px black;
     background-color: black;
+}
+
+xtal-side-nav{
+    flex:1;
 }
 
 header h1{
@@ -151,7 +155,17 @@ header h1{
     margin-left: 5px;
     margin-bottom: 0px;
     font-size: small;
+    flex:1;
 }
+
+.search-label{
+    /* position:absolute; */
+    right:0px; 
+    margin-top:1px;
+    margin-bottom:1px;
+    margin-right:10px;
+}
+
 .tree-view-selector.inactive{
     display:none;
 }
@@ -306,10 +320,4 @@ template[be-intersectional], template[is-intersectional]{
     display: block;
     height: 100px;
 }
-.search-label{
-    position:absolute;
-    right:0px;
-    margin-top:1px;
-    margin-bottom:1px;
-    margin-right:10px;
-}
+
