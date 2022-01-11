@@ -160,6 +160,9 @@ header h1{
 
 .search-label{
     /* position:absolute; */
+    flex: 1;
+    display: flex;
+    justify-content: flex-end;
     right:0px; 
     margin-top:1px;
     margin-bottom:1px;
