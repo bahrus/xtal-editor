@@ -51,7 +51,9 @@
     "xtal-test": "0.0.54"
   },
   "watch": {
-    "build": "*-config.mjs"
+    "build-xe-html": "*-config.mjs",
+    "build-xe-js": "*-config.mjs",
+    "build-xef": "*-config.mjs"
   },
   "scripts": {
     "serve": "node node_modules/xtal-test/serve.js",
@@ -61,7 +63,9 @@
     "compress": "node minify",
     "package-check": "package-check",
     "doc": "custom-elements-manifest analyze",
-    "build": "copy xe-config.js xe-config.mjs && copy xef-config.js xef-config.mjs && node xe-config.mjs  -html  > xtal-editor.html  && node xe-config.mjs -js > xtal-editor.js && node xef-config.mjs > xef-config.json",
+    "build-xe-html": "node xe-config.mjs -html > xtal-editor.html",
+    "build-xe-js": "node xe-config.mjs -js > xtal-editor.js",
+    "build-xef": "node xef-config.mjs > xef-config.json",
     "watch": "npm-watch"
   },
   "repository": {

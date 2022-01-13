@@ -1,5 +1,5 @@
 import {DefineArgs} from 'xtal-element/src/types';
-import {html, doInitTransform, define} from 'may-it-be';
+import {html, doInitTransform, define} from 'may-it-be/index.js';
 import {MayItBe as mib, BeDefinitiveVirtualProps} from 'may-it-be/types';
 
 const mode = process.argv[2] as '-js' | '-html';

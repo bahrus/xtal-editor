@@ -1,4 +1,4 @@
-import { html, doInitTransform, define } from 'may-it-be';
+import { html, doInitTransform, define } from 'may-it-be/index.js';
 const mode = process.argv[2];
 const beDefinitiveProps = {
     config: {
