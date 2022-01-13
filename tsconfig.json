@@ -9,8 +9,8 @@
 	},
 	"files":[
 		"xtal-editor-field.ts",
-		"xe-config.ts",
-		"xef-config.ts",
+		"xe-config.mts",
+		"xef-config.mts",
 	],
 	"exclude":[
 		"node_modules"

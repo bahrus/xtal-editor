@@ -1,4 +1,4 @@
-import { html, doInitTransform } from './node_modules/may-it-be/index.js';
+import { html, doInitTransform } from 'may-it-be';
 const mainTemplate = html `
 <template be-active>
     <script id=be-noticed/be-noticed.js></script>

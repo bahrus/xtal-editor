@@ -1,7 +1,10 @@
-import { html, doInitTransform, define } from './node_modules/may-it-be/index.js';
-const mode = process.argv[2];
-const beDefinitiveProps = {
-    config: {
+import {DefineArgs} from 'xtal-element/src/types';
+import {html, doInitTransform, define} from 'may-it-be';
+import {MayItBe as mib, BeDefinitiveVirtualProps} from 'may-it-be/types';
+
+const mode = process.argv[2] as '-js' | '-html';
+const beDefinitiveProps: BeDefinitiveVirtualProps = {
+    config:{
         tagName: 'xtal-editor',
         propDefaults: {
             readOnly: false,
@@ -9,28 +12,29 @@ const beDefinitiveProps = {
             key: '',
             treeView: true,
             textView: false,
-            downloadHref: '',
+            downloadHref:'',
             editedValue: '',
             stringFilter: ''
         },
-        propInfo: {
-            treeView: {
-                notify: {
+        propInfo:{
+            treeView:{
+                notify:{
                     dispatch: true
                 }
             },
-            textView: {
-                notify: {
+            textView:{
+                notify:{
                     dispatch: true
                 }
             },
         },
-        actions: {
+        actions:{
             ...doInitTransform,
         }
     }
-};
-const innerHTML = html `
+}
+
+const innerHTML = html`
 <template be-active>
     <script id=be-loaded/be-loaded.js></script>
     <script id=be-observant/be-observant.js></script>
@@ -46,7 +50,7 @@ const innerHTML = html `
         preloadRef: 'xtal-editor/theme.css',
         removeStyle: true
     }
-}}>
+} as mib}>
 header,xtal-editor-field{
     display: none;
 }
@@ -55,27 +59,27 @@ header,xtal-editor-field{
 <header part=header>
     <xtal-side-nav>
         <button class="selector text-view-selector" part=text-view-selector ${{
-    beTransformative: {
-        click: {
-            transform: {
-                ":host": [{ treeView: false, textView: true }],
-                treeViewSelectorClasses: [{}, {}, { ".inactive": false }],
-                textViewSelectorClasses: [{}, {}, { ".inactive": true }]
+            beTransformative:{
+                click: {
+                    transform:{
+                        ":host": [{treeView: false, textView: true}],
+                        treeViewSelectorClasses:[{},{},{".inactive": false}],
+                        textViewSelectorClasses: [{}, {}, {".inactive": true}]                            
+                    }
+                }
             }
-        }
-    }
-}}>Text View</button>
+        } as mib}>Text View</button>
         <button class="selector tree-view-selector inactive" part=tree-view-selector ${{
-    beTransformative: {
-        click: {
-            transform: {
-                ":host": [{ treeView: true, textView: false }],
-                treeViewSelectorClasses: [{}, {}, { ".inactive": true }],
-                textViewSelectorClasses: [{}, {}, { ".inactive": false }]
+            beTransformative:{
+                click: {
+                    transform:{
+                        ":host": [{treeView: true, textView: false}],
+                        treeViewSelectorClasses:[{},{},{".inactive": true}],
+                        textViewSelectorClasses: [{},{}, {".inactive": false}]
+                    }
+                }
             }
-        }
-    }
-}}>Tree View</button>
+        } as mib}>Tree View</button>
         <!-- TODO:  set download property dynamically -->
         <a class=download part=download download="file.json" be-observant='{
             "href": ".downloadHref"
@@ -91,64 +95,65 @@ header,xtal-editor-field{
     </xtal-side-nav>
     <h1 part=title >
         <span ${{
-    beObservant: {
-        textContent: {
-            onSet: "readOnly",
-            vft: "readOnly",
-            trueVal: "JSON Viewer",
-            falseVal: "JSON Editor",
-        }
-    }
-}}>
+            beObservant: {
+                textContent:{
+                    onSet: "readOnly",
+                    vft: "readOnly",
+                    trueVal: "JSON Viewer",
+                    falseVal: "JSON Editor",
+                }
+            }
+        } as mib}>
         </span>
         
 
     </h1>
     <label part=search-label class=search-label>Search:  <input part=search-input type=search ${{
-    beNoticed: {
-        input: {
-            prop: "stringFilter",
-        }
-    }
-}}></label>
+            beNoticed: {
+                input: {
+                    prop: "stringFilter",
+                }
+            }
+        } as mib}></label>
 </header>
 <!-- Tree View -->
 <template ${{
-    beSwitched: {
+    beSwitched:{
         if: '.treeView'
     }
-}}>
+} as mib}>
     <xtal-editor-field itemscope ${{
-    beObservant: {
-        value: ".value",
-        key: { ocoho: "xtal-editor", onSet: "key", vft: ".key" },
-        readOnly: ".readOnly",
-        stringFilter: ".stringFilter",
-    },
-    beNoticed: {
-        "download-href-changed": { prop: "downloadHref", vft: "downloadHref", doInit: true },
-        "value:onSet": { prop: "editedValue", vft: "value" }
-    }
-}} >
+        beObservant:{
+            value: ".value",
+            key: {ocoho: "xtal-editor", onSet: "key", vft: ".key"},
+            readOnly: ".readOnly",
+            stringFilter: ".stringFilter",
+        },
+        beNoticed:{
+            "download-href-changed": {prop: "downloadHref", vft: "downloadHref", doInit: true},
+            "value:onSet": {prop: "editedValue", vft: "value"}
+        }
+    } as mib} >
     </xtal-editor-field>
 </template>
 <!-- Text View -->
 <template ${{
-    beSwitched: {
-        if: { onSet: "textView", vft: "textView" }
+    beSwitched:{
+        if: {onSet: "textView", vft: "textView"}
     }
-}}>
+} as mib}>
     <template be-active>
         <script id=@power-elements/json-viewer/json-viewer.js></script>
     </template>
     <json-viewer class=animated ${{
-    beObservant: {
-        object: { vft: "value", parseValAs: "object" }
-    }
-}}></json-viewer>
+        beObservant:{
+            object: {vft: "value", parseValAs: "object"} 
+        }
+    } as mib}></json-viewer>
 </template>
 <be-hive></be-hive>
 `;
+
 define({
     innerHTML,
     mode,
