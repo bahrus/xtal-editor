@@ -3,7 +3,9 @@
     <!---->
     <template shadowroot="open">
         <template be-active>
-            <script id="be-definitive/be-definitive.js"></script>
+            <script data-version=0.0.4 id="be-importing/be-importing.js"></script>
+            <script data-version=0.0.27 id="be-definitive/be-definitive.js" data-when=be-importing></script>
+            
             
         </template>
         
@@ -63,10 +65,11 @@ header,xtal-editor-field{
 
     </template>
 </xtal-editor>
+
 <script type=module>
     if(customElements.get('be-active') === undefined){
         import('be-active/be-active.js').catch(err => {
-            import('https://esm.run/be-active/be-active.js');
+            import('https://esm.run/be-active@0.0.16/be-active.js');
         });
     }
 </script>
