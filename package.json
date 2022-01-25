@@ -24,18 +24,18 @@
   "dependencies": {
     "@power-elements/json-viewer": "2.1.1",
     "be-active": "0.0.17",
-    "be-decorated": "0.0.67",
+    "be-decorated": "0.0.68",
     "be-definitive": "0.0.28",
     "be-deslotted": "0.0.16",
     "be-hive": "0.0.20",
     "be-intersectional": "0.0.12",
-    "be-loaded": "0.0.36",
+    "be-loaded": "0.0.37",
     "be-noticed": "0.0.47",
     "be-observant": "0.0.88",
     "be-repeated": "0.0.40",
     "be-switched": "0.0.56",
     "be-transformative": "0.0.25",
-    "may-it-be": "0.0.100",
+    "may-it-be": "0.0.103",
     "trans-render": "0.0.449",
     "xtal-element": "0.0.462",
     "xtal-side-nav": "0.0.58"
@@ -47,7 +47,7 @@
     "be-persistent": "0.0.8",
     "npm-watch": "0.11.0",
     "xtal-shell": "0.0.25",
-    "xtal-test": "0.0.54",
+    "xtal-test": "0.0.55",
     "typescript": "^4.6.0-dev.20220113"
   },
   "watch": {
