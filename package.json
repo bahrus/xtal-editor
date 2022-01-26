@@ -25,7 +25,7 @@
     "@power-elements/json-viewer": "2.1.1",
     "be-active": "0.0.17",
     "be-decorated": "0.0.70",
-    "be-definitive": "0.0.29",
+    "be-definitive": "0.0.30",
     "be-deslotted": "0.0.16",
     "be-hive": "0.0.20",
     "be-intersectional": "0.0.12",
@@ -35,10 +35,10 @@
     "be-repeated": "0.0.40",
     "be-switched": "0.0.56",
     "be-transformative": "0.0.25",
-    "may-it-be": "0.0.103",
+    "may-it-be": "0.0.111",
     "trans-render": "0.0.449",
     "xtal-element": "0.0.462",
-    "xtal-side-nav": "0.0.58"
+    "xtal-side-nav": "0.0.59"
   },
   "devDependencies": {
     "@custom-elements-manifest/analyzer": "0.5.7",
