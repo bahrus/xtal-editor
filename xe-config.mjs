@@ -44,7 +44,8 @@ const innerHTML = html `
     beLoaded: {
         fallback: 'https://cdn.jsdelivr.net/npm/xtal-editor/theme.css',
         preloadRef: 'xtal-editor/theme.css',
-        removeStyle: true
+        removeStyle: true,
+        debug: true,
     }
 }}>
 header,xtal-editor-field{
