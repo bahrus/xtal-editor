@@ -1,7 +1,7 @@
 import {DefineArgs, PropInfoExt} from 'xtal-element/src/types';
 import {TemplMgmtProps} from 'trans-render/lib/types';
 import {XtalEditorFieldProps as props, XtalEditorFieldActions as actions} from './types';
-import {html, doInitTransform} from 'may-it-be';
+import {html, beTransformed} from 'may-it-be/index.js';
 import {MayItBe as mib} from 'may-it-be/types';
 
 type b = Partial<HTMLButtonElement>;
@@ -207,6 +207,7 @@ const da: DefineArgs<props & TemplMgmtProps, actions> = {
             isWritableObject: false,
             isObject: false,
             stringFilter: '',
+            transform:{},
         },
         propInfo: {
             childValues: {
@@ -233,7 +234,7 @@ const da: DefineArgs<props & TemplMgmtProps, actions> = {
 
         },
         actions: {
-            ...doInitTransform,
+            ...beTransformed,
             parseValue: {
                 ifAllOf: ['value'],
                 ifKeyIn: ['stringFilter'],
@@ -273,7 +274,6 @@ const da: DefineArgs<props & TemplMgmtProps, actions> = {
         },
 
     },
-
 };
 
 console.log(JSON.stringify(da));

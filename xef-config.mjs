@@ -1,4 +1,4 @@
-import { html, doInitTransform } from 'may-it-be';
+import { html, beTransformed } from 'may-it-be/index.js';
 const mainTemplate = html `
 <template be-active>
     <script id=be-noticed/be-noticed.js></script>
@@ -199,6 +199,7 @@ const da = {
             isWritableObject: false,
             isObject: false,
             stringFilter: '',
+            transform: {},
         },
         propInfo: {
             childValues: {
@@ -223,7 +224,7 @@ const da = {
             internalUpdateCount: notifyProp,
         },
         actions: {
-            ...doInitTransform,
+            ...beTransformed,
             parseValue: {
                 ifAllOf: ['value'],
                 ifKeyIn: ['stringFilter'],

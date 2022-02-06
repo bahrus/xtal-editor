@@ -1,6 +1,6 @@
 import { PropInfoExt, XE } from 'xtal-element/src/XE.js';
 import {DefineArgs} from 'xtal-element/src/types';
-import { TemplMgmtActions, TemplMgmtProps, tm } from 'trans-render/lib/mixins/TemplMgmtWithPEST.js';
+import { TemplMgmtActions, TemplMgmtProps, TemplMgmt} from 'trans-render/lib/mixins/TemplMgmt.js';
 import { XtalEditorFieldActions, XtalEditorFieldProps, NameValue, editType } from './types';
 import { importJSON } from 'be-loaded/importJSON.js';
 
@@ -286,7 +286,7 @@ async function register(){
     xe.def({
         ...def,
         superclass: XtalEditorField,
-        mixins: [tm.TemplMgmtMixin]
+        mixins: [TemplMgmt]
     })
 }
 

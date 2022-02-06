@@ -1,4 +1,4 @@
-import { html, doInitTransform, define } from 'may-it-be/index.js';
+import { html, beTransformed, define } from 'may-it-be/index.js';
 const mode = process.argv[2];
 const beDefinitiveProps = {
     config: {
@@ -26,7 +26,7 @@ const beDefinitiveProps = {
             },
         },
         actions: {
-            ...doInitTransform,
+            ...beTransformed,
         }
     }
 };
@@ -115,7 +115,7 @@ header,xtal-editor-field{
 <!-- Tree View -->
 <template ${{
     beSwitched: {
-        if: '.treeView'
+        if: '.treeView',
     }
 }}>
     <xtal-editor-field itemscope ${{

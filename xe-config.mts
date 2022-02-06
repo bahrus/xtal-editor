@@ -1,5 +1,5 @@
 import {DefineArgs} from 'xtal-element/src/types';
-import {html, doInitTransform, define} from 'may-it-be/index.js';
+import {html, beTransformed, define} from 'may-it-be/index.js';
 import {MayItBe as mib, BeDefinitiveVirtualProps} from 'may-it-be/types';
 
 const mode = process.argv[2] as '-js' | '-html';
@@ -29,7 +29,7 @@ const beDefinitiveProps: BeDefinitiveVirtualProps = {
             },
         },
         actions:{
-            ...doInitTransform,
+            ...beTransformed,
         }
     }
 }
@@ -119,7 +119,7 @@ header,xtal-editor-field{
 <!-- Tree View -->
 <template ${{
     beSwitched:{
-        if: '.treeView'
+        if: '.treeView',
     }
 } as mib}>
     <xtal-editor-field itemscope ${{

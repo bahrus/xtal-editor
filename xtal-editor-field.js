@@ -1,5 +1,5 @@
 import { XE } from 'xtal-element/src/XE.js';
-import { tm } from 'trans-render/lib/mixins/TemplMgmtWithPEST.js';
+import { TemplMgmt } from 'trans-render/lib/mixins/TemplMgmt.js';
 import { importJSON } from 'be-loaded/importJSON.js';
 const tagName = 'xtal-editor-field';
 export class XtalEditorField extends HTMLElement {
@@ -261,7 +261,7 @@ async function register() {
     xe.def({
         ...def,
         superclass: XtalEditorField,
-        mixins: [tm.TemplMgmtMixin]
+        mixins: [TemplMgmt]
     });
 }
 register();
