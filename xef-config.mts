@@ -8,9 +8,9 @@ type b = Partial<HTMLButtonElement>;
 type bpa = mib<b, props, actions>;
 const mainTemplate = html`
 <template be-active>
-    <script id=be-noticed/be-noticed.js></script>
-    <script id=be-repeated/be-repeated.js></script>
-    <script id=be-intersectional/be-intersectional.js></script>
+    <script data-version=0.0.50 id=be-noticed/be-noticed.js></script>
+    <script data-version=0.0.42 id=be-repeated/be-repeated.js></script>
+    <script data-version=0.0.14 id=be-intersectional/be-intersectional.js></script>
 </template>
 <div part=editor class="animated editor" ${{
     beObservant:{
