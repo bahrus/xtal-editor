@@ -1,9 +1,9 @@
 import { html, beTransformed } from 'may-it-be/index.js';
 const mainTemplate = html `
 <template be-active>
-    <script id=be-noticed/be-noticed.js></script>
-    <script id=be-repeated/be-repeated.js></script>
-    <script id=be-intersectional/be-intersectional.js></script>
+    <script data-version=0.0.50 id=be-noticed/be-noticed.js></script>
+    <script data-version=0.0.42 id=be-repeated/be-repeated.js></script>
+    <script data-version=0.0.14 id=be-intersectional/be-intersectional.js></script>
 </template>
 <div part=editor class="animated editor" ${{
     beObservant: {
@@ -21,7 +21,7 @@ const mainTemplate = html `
 }}>
                 <button disabled part=expander class=expander ${{
     beObservant: {
-        textContent: { vft: 'open', trueVal: '-', falseVal: '+', ocoho: true }
+        textContent: { vft: 'open', trual: '-', falseVal: '+', ocoho: true }
     },
     beNoticed: {
         click: { tocoho: true, toggleProp: true, prop: "open" }

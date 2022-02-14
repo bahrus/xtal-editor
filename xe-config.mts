@@ -36,12 +36,12 @@ const beDefinitiveProps: BeDefinitiveVirtualProps = {
 
 const innerHTML = html`
 <template be-active>
-    <script data-version=0.0.46 id=be-loaded/be-loaded.js></script>
-    <script data-version=0.0.93 id=be-observant/be-observant.js></script>
-    <script data-version=0.0.58 id=be-switched/be-switched.js></script>
-    <script data-version=0.0.61 id=xtal-side-nav/xtal-side-nav.js></script>
-    <script data-version=0.0.27 id=be-transformative/be-transformative.js></script>
-    <script data-version=0.0.18 id=be-deslotted/be-deslotted.js></script>
+    <script data-version=0.0.47 id=be-loaded/be-loaded.js></script>
+    <script data-version=0.0.94 id=be-observant/be-observant.js></script>
+    <script data-version=0.0.59 id=be-switched/be-switched.js></script>
+    <script data-version=0.0.62 id=xtal-side-nav/xtal-side-nav.js></script>
+    <script data-version=0.0.28 id=be-transformative/be-transformative.js></script>
+    <script data-version=0.0.19 id=be-deslotted/be-deslotted.js></script>
     <script id=xtal-editor/xtal-editor-field.js></script>
 </template>
 <style ${{

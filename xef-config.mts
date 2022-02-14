@@ -28,7 +28,7 @@ const mainTemplate = html`
             } as mib}>
                 <button disabled part=expander class=expander ${{
                     beObservant:{
-                        textContent: {vft: 'open', trueVal: '-', falseVal: '+', ocoho: true}
+                        textContent: {vft: 'open', trual: '-', falseVal: '+', ocoho: true}
                     },
                     beNoticed:{
                         click: {tocoho: true, toggleProp: true, prop: "open"}
