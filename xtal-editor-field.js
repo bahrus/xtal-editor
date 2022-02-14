@@ -256,7 +256,7 @@ const notifyProp = {
 const xe = new XE();
 async function register() {
     const path = 'xtal-editor/xef-config.json';
-    const versionedPath = 'xtal-editor@0.0.135/xef-config.json';
+    const versionedPath = 'xtal-editor@0.0.138/xef-config.json';
     const config = await importJSON(path, 'https://cdn.jsdelivr.net/npm/' + versionedPath);
     const def = config.default;
     xe.def({
