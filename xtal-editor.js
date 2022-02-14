@@ -9,9 +9,9 @@ document.body.insertAdjacentHTML('beforeend', `<template be-definitive='{"config
     <script data-version=0.0.63 id=xtal-side-nav/xtal-side-nav.js></script>
     <script data-version=0.0.28 id=be-transformative/be-transformative.js></script>
     <script data-version=0.0.19 id=be-deslotted/be-deslotted.js></script>
-    <script id=xtal-editor/xtal-editor-field.js></script>
+    <script data-version=0.0.134 id=xtal-editor/xtal-editor-field.js></script>
 </template>
-<style be-loaded='{"fallback":"https://cdn.jsdelivr.net/npm/xtal-editor/theme.css","preloadRef":"xtal-editor/theme.css","removeStyle":true}'>
+<style be-loaded='{"fallback":"https://cdn.jsdelivr.net/npm/xtal-editor@0.0.134/theme.css","preloadRef":"xtal-editor/theme.css","removeStyle":true}'>
 header,xtal-editor-field{
     display: none;
 }
