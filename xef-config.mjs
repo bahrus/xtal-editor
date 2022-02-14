@@ -1,9 +1,9 @@
 import { html, beTransformed } from 'may-it-be/index.js';
 const mainTemplate = html `
 <template be-active>
-    <script data-version=0.0.50 id=be-noticed/be-noticed.js></script>
-    <script data-version=0.0.42 id=be-repeated/be-repeated.js></script>
-    <script data-version=0.0.14 id=be-intersectional/be-intersectional.js></script>
+    <script data-version=0.0.51 id=be-noticed/be-noticed.js></script>
+    <script data-version=0.0.43 id=be-repeated/be-repeated.js></script>
+    <script data-version=0.0.15 id=be-intersectional/be-intersectional.js></script>
 </template>
 <div part=editor class="animated editor" ${{
     beObservant: {

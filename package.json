@@ -35,10 +35,10 @@
     "be-repeated": "0.0.43",
     "be-switched": "0.0.59",
     "be-transformative": "0.0.28",
-    "may-it-be": "0.0.131",
+    "may-it-be": "0.0.132",
     "trans-render": "0.0.473",
     "xtal-element": "0.0.472",
-    "xtal-side-nav": "0.0.62"
+    "xtal-side-nav": "0.0.63"
   },
   "devDependencies": {
     "@custom-elements-manifest/analyzer": "0.5.7",
