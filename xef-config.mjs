@@ -21,7 +21,7 @@ const mainTemplate = html `
 }}>
                 <button disabled part=expander class=expander ${{
     beObservant: {
-        textContent: { vft: 'open', trual: '-', falseVal: '+', ocoho: true }
+        textContent: { vft: 'open', trueVal: '-', falseVal: '+', ocoho: true }
     },
     beNoticed: {
         click: { tocoho: true, toggleProp: true, prop: "open" }
