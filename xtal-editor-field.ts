@@ -281,7 +281,8 @@ const xe = new XE<XtalEditorFieldProps & TemplMgmtProps, XtalEditorFieldActions>
 
 async function register(){
     const path = 'xtal-editor/xef-config.json';
-    const config = await importJSON(path, 'https://cdn.jsdelivr.net/npm/' + path);
+    const versionedPath = 'xtal-editor@0.0.135/xef-config.json';
+    const config = await importJSON(path, 'https://cdn.jsdelivr.net/npm/' + versionedPath);
     const def = config.default as DefineArgs<XtalEditorFieldProps & TemplMgmtProps, XtalEditorFieldActions>;
     xe.def({
         ...def,
