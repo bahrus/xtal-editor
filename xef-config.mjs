@@ -139,6 +139,12 @@ const mainTemplate = html `
             "xtal-editor-field": [{}, {}, { "value": "value", "key": "key" }]
         },
         beIntersectionalPageSize: 40,
+        beIntersectionalProps: {
+            options: {
+                rootMargin: "1000px",
+                threshold: 0,
+            }
+        }
     },
 }}>
                     <xtal-editor-field itemscope has-parent ${{

@@ -146,6 +146,7 @@ const mainTemplate = html`
                             "xtal-editor-field": [{},{},{"value": "value", "key": "key"}]
                         },
                         beIntersectionalPageSize: 40,
+                        beIntersectionalScaleFactor: 24,
                     },
                 } as mib}>
                     <xtal-editor-field itemscope has-parent ${{
