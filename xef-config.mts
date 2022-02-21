@@ -139,12 +139,15 @@ const mainTemplate = html`
     } as bpa}>
         <template be-intersectional>
             <div part=child-editors class="nonPrimitive child-editors" data-open=false>
-                <template be-repeated='{
-                        "list": "childValues",
-                        "transform": {
-                            "xtal-editor-field": [{"value": "value", "key": "key"}]
-                        }
-                    }'>
+                <template ${{
+                    beRepeated:{
+                        list: 'childValues',
+                        transform: {
+                            "xtal-editor-field": [{},{},{"value": "value", "key": "key"}]
+                        },
+                        beIntersectionalPageSize: 40,
+                    },
+                } as mib}>
                     <xtal-editor-field itemscope has-parent ${{
                         beObservant:{
                             open: "expandAll",
