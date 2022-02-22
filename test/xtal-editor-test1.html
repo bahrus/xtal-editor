@@ -63,13 +63,15 @@
                 $hell.$0.value = 'jethro tull';
                 const event = new Event('change');
                 $hell.$0.dispatchEvent(event);
-                $hell.cd('/xtal-editor/xtal-editor-field');
-                if($hell.$0.parsedObject.string === 'jethro tull'){
-                    $hell.cd('/xtal-editor');
-                    $hell.$0.setAttribute('mark', '');
-                }else{
-                    console.error('jethro tull not found in higher nodes.');
-                }
+                setTimeout(() => {
+                    $hell.cd('/xtal-editor/xtal-editor-field');
+                    if($hell.$0.parsedObject.string === 'jethro tull'){
+                        $hell.cd('/xtal-editor');
+                        $hell.$0.setAttribute('mark', '');
+                    }else{
+                        console.error('jethro tull not found in higher nodes.');
+                    }
+                }, 100);
             }, 500);
 
         }
