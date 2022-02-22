@@ -1,7 +1,7 @@
 import { html, beTransformed } from 'may-it-be/index.js';
 const mainTemplate = html `
 <template be-active>
-    <script data-version=0.0.54 id=be-noticed/be-noticed.js></script>
+    <script data-version=0.0.55 id=be-noticed/be-noticed.js></script>
     <script data-version=0.0.48 id=be-repeated/be-repeated.js></script>
     <script data-version=0.0.25 id=be-intersectional/be-intersectional.js></script>
 </template>

@@ -30,15 +30,15 @@
     "be-hive": "0.0.34",
     "be-intersectional": "0.0.25",
     "be-loaded": "0.0.49",
-    "be-noticed": "0.0.54",
+    "be-noticed": "0.0.55",
     "be-observant": "0.0.99",
     "be-repeated": "0.0.48",
     "be-switched": "0.0.62",
     "be-transformative": "0.0.31",
-    "may-it-be": "0.0.140",
+    "may-it-be": "0.0.141",
     "trans-render": "0.0.489",
     "xtal-element": "0.0.480",
-    "xtal-side-nav": "0.0.66"
+    "xtal-side-nav": "0.0.67"
   },
   "devDependencies": {
     "@custom-elements-manifest/analyzer": "0.5.7",
