@@ -137,7 +137,7 @@ const mainTemplate = html`
             ifNonEmptyArray: {ocoho: true, vft: "childValues"},
         }
     } as bpa}>
-        <template be-intersectional>
+        <template be-lazy>
             <div part=child-editors class="nonPrimitive child-editors" data-open=false>
                 <template ${{
                     beRepeated:{
