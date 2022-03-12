@@ -8,9 +8,9 @@ type b = Partial<HTMLButtonElement>;
 type bpa = mib<b, props, actions>;
 const mainTemplate = html`
 <template be-active>
-    <script data-version=0.0.55 id=be-noticed/be-noticed.js></script>
-    <script data-version=0.0.48 id=be-repeated/be-repeated.js></script>
-    <script data-version=0.0.25 id=be-intersectional/be-intersectional.js></script>
+    <script data-version=0.0.57 id=be-noticed/be-noticed.js></script>
+    <script data-version=0.0.65 id=be-repeated/be-repeated.js></script>
+    <script data-version=0.0.2 id=be-lazy/be-lazy.js></script>
 </template>
 <div part=editor class="animated editor" ${{
     beObservant:{
@@ -145,8 +145,8 @@ const mainTemplate = html`
                         transform: {
                             "xtal-editor-field": [{},{},{"value": "value", "key": "key"}]
                         },
-                        beIntersectionalPageSize: 40,
-                        beIntersectionalScaleFactor: 24,
+                        beLazyPageSize: 40,
+                        beLazyScaleFactor: 24,
                     },
                 } as mib}>
                     <xtal-editor-field itemscope has-parent ${{
