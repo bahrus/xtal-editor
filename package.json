@@ -54,6 +54,8 @@
   "watch": {
     "build-xe-html": "*-config.mjs",
     "build-xe-js": "*-config.mjs",
+    "build-xe-html2": "*-config2.mjs",
+    "build-xe-js2": "*-config2.mjs",
     "build-xef": "*-config.mjs"
   },
   "scripts": {
@@ -66,6 +68,8 @@
     "doc": "custom-elements-manifest analyze",
     "build-xe-html": "node xe-config.mjs -html > xtal-editor.html",
     "build-xe-js": "node xe-config.mjs -js > xtal-editor.js",
+    "build-xe-html2": "node xe-config2.mjs -html > xtal-editor2.html",
+    "build-xe-js2": "node xe-config2.mjs -js > xtal-editor2.js",
     "build-xef": "node xef-config.mjs > xef-config.json",
     "watch": "npm-watch"
   },
