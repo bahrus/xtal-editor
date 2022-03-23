@@ -68,7 +68,7 @@ header,xtal-editor-field{
             "div": [{}, {}, {"data-path": "path", "style": "marginStyle"}],
             ".name": "name",
             ".eq": [true, {"if": "asString"}, [" = "], [""]],
-            ".value": [{"value": "asString"}],
+            ".value": [{"value": "asString"},{},{"readonly": "hasChildren"}],
             "expanderParts": [true, {"if": "open"}, ["-"], ["+"]],
             "button": [{}, {}, {"data-children": "hasChildren"}]
         }'
