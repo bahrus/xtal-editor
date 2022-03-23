@@ -24,6 +24,7 @@
   "dependencies": {
     "@power-elements/json-viewer": "2.1.1",
     "be-active": "0.0.27",
+    "be-channeling": "0.0.5",
     "be-decorated": "0.0.89",
     "be-definitive": "0.0.42",
     "be-deslotted": "0.0.23",
@@ -39,7 +40,8 @@
     "trans-render": "0.0.514",
     "xtal-element": "0.0.484",
     "xtal-side-nav": "0.0.70",
-    "xtal-tree": "0.0.83"
+    "xtal-tree": "0.0.83",
+    "xtal-vlist": "0.0.52"
   },
   "devDependencies": {
     "@custom-elements-manifest/analyzer": "0.5.7",

@@ -36,13 +36,16 @@ const beDefinitiveProps: BeDefinitiveVirtualProps = {
 
 const innerHTML = html`
 <template be-active>
-    <script data-version=0.0.51 id=be-loaded/be-loaded.js></script>
+    <script data-version=0.0.51  id=be-loaded/be-loaded.js></script>
     <script data-version=0.0.101 id=be-observant/be-observant.js></script>
-    <script data-version=0.0.64 id=be-switched/be-switched.js></script>
-    <script data-version=0.0.70 id=xtal-side-nav/xtal-side-nav.js></script>
-    <script data-version=0.0.33 id=be-transformative/be-transformative.js></script>
-    <script data-version=0.0.89 id=be-deslotted/be-deslotted.js></script>
+    <script data-version=0.0.64  id=be-switched/be-switched.js></script>
+    <script data-version=0.0.70  id=xtal-side-nav/xtal-side-nav.js></script>
+    <script data-version=0.0.33  id=be-transformative/be-transformative.js></script>
+    <script data-version=0.0.89  id=be-deslotted/be-deslotted.js></script>
     <script data-version=0.0.141 id=xtal-editor/xtal-editor-field.js></script>
+    <script data-version=0.0.83  id=xtal-tree/xtal-tree.js></script>
+    <script data-version=0.0.52  id=xtal-vlist/xtal-vlist.js></script>
+    <script data-version=0.0.5   id=be-channeling/be-channeling.js></script>
 </template>
 <style ${{
     beLoaded: {
@@ -122,7 +125,7 @@ header,xtal-editor-field{
         if: '.treeView',
     }
 } as mib}>
-    <xtal-editor-field itemscope ${{
+    <!-- <xtal-editor-field itemscope ${{
         beObservant:{
             value: ".value",
             key: {ocoho: "xtal-editor", onSet: "key", vft: ".key"},
@@ -134,7 +137,66 @@ header,xtal-editor-field{
             "value:onSet": {prop: "editedValue", vft: "value"}
         }
     } as mib} >
-    </xtal-editor-field>
+    </xtal-editor-field> -->
+    <xtal-tree id-path=path ${{
+        beObservant:{
+            //objectGraph: ".value"
+            objectGraph:{
+                onSet: 'value',
+                vft: 'value',
+                parseValAs: 'object',
+            }
+        }
+    } as mib}></xtal-tree>
+    <xtal-vlist 
+        style="height:600px;width:100%;" 
+        page-size="10" 
+        id="vlist"
+        min-item-height='19.5'
+        be-observant='{
+            "list": {"observe": "xtal-tree", "vft": "viewableNodes"}
+        }' 
+        row-transform='{
+            "div": [{}, {}, {"data-path": "path", "style": "marginStyle"}],
+            ".name": "name",
+            ".eq": [true, {"if": "asString"}, [" = "], [""]],
+            ".asString": "asString",
+            "expanderParts": [true, {"if": "open"}, ["-"], ["+"]],
+            "button": [{}, {}, {"data-children": "hasChildren"}]
+        }'
+        be-channeling='{
+            "eventFilter": "click",
+            "toNearestUpMatch": "xtal-tree",
+            "prop": "toggledNodeId",
+            "vfe": "path.0.parentElement.dataset.path",
+            "composedPathMatch": "button"
+        }'
+        row-intersectional-settings='{
+            "rootClosest": ".scroller",
+            "options": {
+                "rootMargin": "300px",
+                "threshold": 0
+            }
+        }'
+    >
+        <div class=node slot=row itemscope >
+            <button class="expander" part=expander>.</button>
+            <label class='name'></label>
+            <span class='eq'></span>
+            <span class='asString'></span>
+        </div>
+        <template slot="style">
+            <style>
+                button.expander{
+                    display:none;
+                }
+                button[data-children].expander{
+                    display:inline;
+                }
+            </style>
+        </template>
+    </xtal-vlist>
+
 </template>
 <!-- Text View -->
 <template ${{
