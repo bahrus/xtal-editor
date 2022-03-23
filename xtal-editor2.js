@@ -47,8 +47,7 @@ header,xtal-editor-field{
 </header>
 <!-- Tree View -->
 <template be-switched='{"if":".treeView"}'>
-    <!-- <xtal-editor-field itemscope be-observant='{"value":".value","key":{"ocoho":"xtal-editor","onSet":"key","vft":".key"},"readOnly":".readOnly","stringFilter":".stringFilter"}'be-noticed='{"download-href-changed":{"prop":"downloadHref","vft":"downloadHref","doInit":true},"value:onSet":{"prop":"editedValue","vft":"value"}}' >
-    </xtal-editor-field> -->
+    
     <xtal-tree id-path=path be-observant='{"objectGraph":{"onSet":"value","vft":"value","parseValAs":"object"}}'></xtal-tree>
     <xtal-vlist 
         style="height:600px;width:100%;" 
@@ -66,13 +65,13 @@ header,xtal-editor-field{
             "expanderParts": [true, {"if": "open"}, ["-"], ["+"]],
             "button": [{}, {}, {"data-children": "hasChildren"}]
         }'
-        be-channeling='{
+        be-channeling='[{
             "eventFilter": "click",
             "toNearestUpMatch": "xtal-tree",
             "prop": "toggledNodeId",
             "vfe": "path.0.parentElement.dataset.path",
             "composedPathMatch": "button"
-        }'
+        }]'
         row-intersectional-settings='{
             "rootClosest": ".scroller",
             "options": {

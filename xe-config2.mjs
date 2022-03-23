@@ -121,19 +121,7 @@ header,xtal-editor-field{
         if: '.treeView',
     }
 }}>
-    <!-- <xtal-editor-field itemscope ${{
-    beObservant: {
-        value: ".value",
-        key: { ocoho: "xtal-editor", onSet: "key", vft: ".key" },
-        readOnly: ".readOnly",
-        stringFilter: ".stringFilter",
-    },
-    beNoticed: {
-        "download-href-changed": { prop: "downloadHref", vft: "downloadHref", doInit: true },
-        "value:onSet": { prop: "editedValue", vft: "value" }
-    }
-}} >
-    </xtal-editor-field> -->
+    
     <xtal-tree id-path=path ${{
     beObservant: {
         //objectGraph: ".value"
@@ -160,13 +148,13 @@ header,xtal-editor-field{
             "expanderParts": [true, {"if": "open"}, ["-"], ["+"]],
             "button": [{}, {}, {"data-children": "hasChildren"}]
         }'
-        be-channeling='{
+        be-channeling='[{
             "eventFilter": "click",
             "toNearestUpMatch": "xtal-tree",
             "prop": "toggledNodeId",
             "vfe": "path.0.parentElement.dataset.path",
             "composedPathMatch": "button"
-        }'
+        }]'
         row-intersectional-settings='{
             "rootClosest": ".scroller",
             "options": {
