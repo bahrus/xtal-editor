@@ -157,7 +157,7 @@ header,xtal-editor-field{
             "toNearestUpMatch": "xtal-tree",
             "prop": "toggledNodeId",
             "vfe": "path.0.parentElement.dataset.path",
-            "composedPathMatch": "button"
+            "composedPathMatch": "button.expander"
         }]'
         row-intersectional-settings='{
             "rootClosest": ".scroller",
