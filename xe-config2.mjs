@@ -144,7 +144,7 @@ header,xtal-editor-field{
             "div": [{}, {}, {"data-path": "path", "style": "marginStyle"}],
             ".name": "name",
             ".eq": [true, {"if": "asString"}, [" = "], [""]],
-            ".asString": "asString",
+            ".value": [{"value": "asString"}],
             "expanderParts": [true, {"if": "open"}, ["-"], ["+"]],
             "button": [{}, {}, {"data-children": "hasChildren"}]
         }'
@@ -167,7 +167,8 @@ header,xtal-editor-field{
             <button class="expander" part=expander>.</button>
             <label class='name'></label>
             <span class='eq'></span>
-            <span class='asString'></span>
+            <!-- <span class='asString'></span> -->
+            <input class=value>
         </div>
         <template slot="style">
             <style>
