@@ -145,8 +145,7 @@ header,xtal-editor-field{
         }' 
         row-transform='{
             "div": [{}, {}, {"data-path": "path", "style": "marginStyle"}],
-            ".name": "name",
-            ".eq": [true, {"if": "asString"}, [" = "], [""]],
+            ".key": [{"value": "name"},{},{"data-type": "type"}],
             ".value": [{"value": "asString", "name": "path"},{},{"readonly": "hasChildren"}],
             "expanderParts": [true, {"if": "open"}, ["-"], ["+"]],
             "button": [{}, {}, {"data-children": "hasChildren"}]
@@ -175,19 +174,65 @@ header,xtal-editor-field{
             }
         }'
     >
-        <div class=node slot=row itemscope >
-            <button class="expander" part=expander>.</button>
-            <label class='name'></label>
-            <span class='eq'></span>
-            <input class=value>
+        <div class=field part=field slot=row itemscope >
+            <div class=text-editing>
+                <button class="expander" part=expander>.</button>
+                <input aria-label=key part=key class=key></label>
+                <input arial-label=value class=value part=value>
+            </div>
         </div>
         <template slot="style">
             <style>
+                :host{
+                    --obj-key-bg: #FFD4B8;
+                    --obj-key-color: #000000;
+                    --str-key-bg: #B8FFBB;
+                    --str-key-color: #000000;
+                    --num-key-bg: #BCD3DC;
+                    --num-key-color: #000000;
+                    --bool-key-bg: #B1C639;
+                    --array-key-bg: #AAC7E4;
+                    --array-key-color: #000000;
+                    --obj-even-level-editor-bg: #F1E090;
+                    --obj-odd-level-editor-bg: #FFEFCC;
+                    --array-even-level-editor-bg: #A9DBDD;
+                    --array-odd-level-editor-bg: #D9DBDD;
+                    --obj-adder-bg: #C15000;
+                    --string-adder-bg: #007408;
+                    --bool-adder-bg: #516600;
+                    --num-adder-bg:#497B8D;
+                    --arr-adder-bg: #2d5b89;
+                    --selector-bg: #CD138F;
+                }
                 button.expander{
                     display:none;
                 }
                 button[data-children].expander{
                     display:inline;
+                }
+                .value{
+                    background-color: #ECF3C3;
+                    width: 100%;
+                    flex-grow:5;
+                }
+                .text-editing .key[data-type="string"]{
+                    background-color: var(--str-key-bg);
+                    color: var(--str-key-color);
+                }
+                .text-editing .key[data-type="number"]{
+                    background-color: var(--num-key-bg);
+                    color: var(--num-key-color);
+                }
+                .text-editing .key[data-type="array"]{
+                    background-color: var(--array-key-bg);
+                    color: var(--array-key-color);
+                }
+                .text-editing .key[data-type="object"]{
+                    background-color: var(--obj-key-bg);
+                    color: var(--obj-key-color);
+                }
+                .text-editing .key[data-type="boolean"]{
+                    background-color: var(--bool-key-bg);
                 }
             </style>
         </template>
