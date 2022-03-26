@@ -141,7 +141,7 @@ header,xtal-editor-field{
         }' 
         row-transform='{
             "div": [{}, {}, {"data-path": "path", "style": "marginStyle"}],
-            ".key": [{"value": "name"},{},{"data-type": "type"}],
+            ".key": [{"value": "name", "name": ["key::", "path"]},{},{"data-type": "type"}],
             ".value": [{"value": "asString", "name": "path"},{},{"readonly": "hasChildren"}],
             "expanderParts": [true, {"if": "open"}, ["-"], ["+"]],
             "button": [{}, {}, {"data-children": "hasChildren"}]
