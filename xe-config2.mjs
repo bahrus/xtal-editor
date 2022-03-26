@@ -35,6 +35,7 @@ const innerHTML = html `
     <script data-version=0.0.51  id=be-loaded/be-loaded.js></script>
     <script data-version=0.0.101 id=be-observant/be-observant.js></script>
     <script data-version=0.0.64  id=be-switched/be-switched.js></script>
+    <script data-version=0.0.37  id=be-intersectional/be-intersectional.js></script>
     <script data-version=0.0.70  id=xtal-side-nav/xtal-side-nav.js></script>
     <script data-version=0.0.33  id=be-transformative/be-transformative.js></script>
     <script data-version=0.0.89  id=be-deslotted/be-deslotted.js></script>
@@ -141,10 +142,11 @@ header,xtal-editor-field{
         }' 
         row-transform='{
             "div": [{}, {}, {"data-path": "path", "style": "marginStyle"}],
-            ".key": [{"value": "name", "name": ["key::", "path"]},{},{"data-type": "type"}],
+            ".key": [{"value": "name"}],
             ".value": [{"value": "asString", "name": "path"},{},{"readonly": "hasChildren"}],
             "expanderParts": [true, {"if": "open"}, ["-"], ["+"]],
-            "button": [{}, {}, {"data-children": "hasChildren"}]
+            "button": [{}, {}, {"data-children": "hasChildren"}],
+            "section": [{}, {}, {"data-children": "hasChildren"}]
         }'
         be-channeling='[
             {
@@ -176,6 +178,40 @@ header,xtal-editor-field{
                 <input aria-label=key part=key class=key></label>
                 <input arial-label=value class=value part=value>
             </div>
+            <section>
+                <template be-intersectional>
+                    <div part=edit-buttons>
+                        <button disabled part=object-adder class="object adder" data-d=1 ${{
+    beNoticed: {
+        click: { prop: "objCounter", plusEq: true, vft: "dataset.d", parseValAs: "int", tocoho: true }
+    }
+}}>+object
+                        </button>
+                        <button disabled part=string-adder class="string adder" data-d=1 ${{
+    beNoticed: {
+        click: { prop: "strCounter", plusEq: true, vft: "dataset.d", parseValAs: "int", tocoho: true }
+    }
+}}>+string</button>
+                        <button disabled part=bool-adder class="bool adder" data-d=1 ${{
+    beNoticed: {
+        click: { prop: "boolCounter", plusEq: true, vft: "dataset.d", parseValAs: "int", tocoho: true }
+    }
+}}>+bool</button>
+                        <button disabled part=number-adder class="number adder" data-d=1 ${{
+    beNoticed: {
+        click: { prop: "numCounter", plusEq: true, vft: "dataset.d", parseValAs: "int", tocoho: true }
+    }
+}}>+number</button>
+                        <button disabled part=arr-adder class="arr adder" data-d=1 ${{
+    beNoticed: {
+        click: { prop: "arrCounter", plusEq: true, vft: "dataset.d", parseValAs: "int", tocoho: true }
+    }
+}}>+array</button>
+                    </div>
+                </template>
+                
+            </section>
+
         </div>
         <template slot="style">
             <style>
@@ -229,6 +265,34 @@ header,xtal-editor-field{
                 }
                 .text-editing .key[data-type="boolean"]{
                     background-color: var(--bool-key-bg);
+                }
+                section{
+                    display:none;
+                }
+                section[data-children]{
+                    display:block;
+                }
+                .object.adder{
+                    background-color: var(--obj-adder-bg);
+                }
+                .string.adder{
+                    background-color:var(--string-adder-bg);
+                }
+                .bool.adder{
+                    background-color: var(--bool-adder-bg);
+                }
+                .number.adder{
+                    background-color: var(--num-adder-bg);
+                }
+                .arr.adder{
+                    background-color: var(--arr-adder-bg);
+                }
+                .adder{
+                    color: white;
+                    text-shadow:1px 1px 1px black;
+                    border-radius: 5px;
+                    padding: 2;
+                    border: none;
                 }
             </style>
         </template>

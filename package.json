@@ -28,6 +28,7 @@
     "be-decorated": "0.0.89",
     "be-definitive": "0.0.42",
     "be-deslotted": "0.0.23",
+    "be-intersectional": "0.0.37",
     "be-hive": "0.0.36",
     "be-lazy": "0.0.2",
     "be-loaded": "0.0.51",
