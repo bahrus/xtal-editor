@@ -38,8 +38,7 @@ const innerHTML = html `
     <script data-version=0.0.70  id=xtal-side-nav/xtal-side-nav.js></script>
     <script data-version=0.0.33  id=be-transformative/be-transformative.js></script>
     <script data-version=0.0.89  id=be-deslotted/be-deslotted.js></script>
-    <script data-version=0.0.141 id=xtal-editor/xtal-editor-field.js></script>
-    <script data-version=0.0.83  id=xtal-tree/xtal-tree.js></script>
+    <!-- <script data-version=0.0.95  id=xtal-tree/xtal-tree.js></script> -->
     <script data-version=0.0.52  id=xtal-vlist/xtal-vlist.js></script>
     <script data-version=0.0.5   id=be-channeling/be-channeling.js></script>
 </template>
@@ -144,17 +143,26 @@ header,xtal-editor-field{
             "div": [{}, {}, {"data-path": "path", "style": "marginStyle"}],
             ".name": "name",
             ".eq": [true, {"if": "asString"}, [" = "], [""]],
-            ".value": [{"value": "asString"},{},{"readonly": "hasChildren"}],
+            ".value": [{"value": "asString", "name": "path"},{},{"readonly": "hasChildren"}],
             "expanderParts": [true, {"if": "open"}, ["-"], ["+"]],
             "button": [{}, {}, {"data-children": "hasChildren"}]
         }'
-        be-channeling='[{
-            "eventFilter": "click",
-            "toNearestUpMatch": "xtal-tree",
-            "prop": "toggledNodeId",
-            "vfe": "path.0.parentElement.dataset.path",
-            "composedPathMatch": "button.expander"
-        }]'
+        be-channeling='[
+            {
+                "eventFilter": "click",
+                "toNearestUpMatch": "xtal-tree",
+                "prop": "toggledNodeId",
+                "vfe": "path.0.parentElement.dataset.path",
+                "composedPathMatch": "button.expander"
+            },
+            {
+                "eventFilter": "input",
+                "composedPathMatch": "input.value",
+                "toNearestUpMatch": "xtal-tree",
+                "prop": "editedNode",
+                "vfe": "path.0"
+            }
+        ]'
         row-intersectional-settings='{
             "rootClosest": ".scroller",
             "options": {
@@ -167,7 +175,6 @@ header,xtal-editor-field{
             <button class="expander" part=expander>.</button>
             <label class='name'></label>
             <span class='eq'></span>
-            <!-- <span class='asString'></span> -->
             <input class=value>
         </div>
         <template slot="style">

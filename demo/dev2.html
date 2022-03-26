@@ -5,7 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
     <link rel=preload as=script id="xtal-editor/theme.css" href="../theme.css" crossorigin="anonymous">
-    <link rel=preload as=script id="xtal-editor/xef-config.json" href="../xef-config.json" crossorigin="anonymous">
+    <!-- <link rel=preload as=script id="xtal-editor/xef-config.json" href="../xef-config.json" crossorigin="anonymous"> -->
 </head>
 <body>
     <div style="height:500px">hello</div>
@@ -84,13 +84,15 @@
                 "xtal-shell/": "../node_modules/xtal-shell/",
                 "idb-keyval/": "../node_modules/idb-keyval/",
                 "safari-14-idb-fix": "../node_modules/safari-14-idb-fix/dist/index.js",
-                "xtal-editor/": "../"
+                "xtal-editor/": "../",
+                "xtal-tree/": "../node_modules/xtal-tree/"
             }
         }
     </script>
     <script type=module>
         import 'xtal-editor/xtal-editor2.js';
         import 'be-persistent/be-persistent.js';
+        import 'xtal-tree/xtal-tree.js';
     </script>
 </body>
 </html>
