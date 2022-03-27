@@ -59,7 +59,7 @@ header,xtal-editor-field{
         }' 
         row-transform='{
             "div": [{}, {}, {"data-path": "path", "style": "marginStyle"}],
-            ".key": [{"value": "name"},{},{"data-type": "type"}],
+            ".key": [{"textContent": "name"},{},{"data-type": "type"}],
             ".value": [{"value": "asString", "name": "path"},{},{"readonly": "hasChildren"}],
             "expanderParts": [true, {"if": "open"}, ["-"], ["+"]],
             "button": [{}, {}, {"data-children": "hasChildren"}],
@@ -93,7 +93,7 @@ header,xtal-editor-field{
             <div class=field part=field itemscope >
                 <div class=text-editing>
                     <button class="expander" part=expander>.</button>
-                    <input aria-label=key part=key class=key></label>
+                    <label part=key class=key></label>
                     <input arial-label=value class=value part=value>
                 </div>
                 <section class=adder-buttons part=adder-buttons>
