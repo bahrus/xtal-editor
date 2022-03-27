@@ -146,7 +146,7 @@ header,xtal-editor-field{
             ".value": [{"value": "asString", "name": "path"},{},{"readonly": "hasChildren"}],
             "expanderParts": [true, {"if": "open"}, ["-"], ["+"]],
             "button": [{}, {}, {"data-children": "hasChildren"}],
-            "section": [{}, {}, {"data-children": "hasChildren"}]
+            ".adder-buttons": [{}, {}, {"data-children": "hasChildren"}]
         }'
         be-channeling='[
             {
@@ -179,9 +179,9 @@ header,xtal-editor-field{
                     <input aria-label=key part=key class=key></label>
                     <input arial-label=value class=value part=value>
                 </div>
-                <section>
+                <section class=adder-buttons part=adder-buttons>
                     <template be-intersectional>
-                        <div part=edit-buttons>
+                        <!-- <div part=edit-buttons> -->
                             <button disabled part=object-adder class="object adder" data-d=1 ${{
     beNoticed: {
         click: { prop: "objCounter", plusEq: true, vft: "dataset.d", parseValAs: "int", tocoho: true }
@@ -208,7 +208,7 @@ header,xtal-editor-field{
         click: { prop: "arrCounter", plusEq: true, vft: "dataset.d", parseValAs: "int", tocoho: true }
     }
 }}>+array</button>
-                        </div>
+                        <!-- </div> -->
                     </template>
                 </section>
             </div>
