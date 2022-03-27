@@ -146,8 +146,8 @@ header,xtal-editor-field{
         }' 
         row-transform='{
             "div": [{}, {}, {"data-path": "path", "style": "marginStyle"}],
-            ".key": [{"textContent": "name"},{},{"data-type": "type"}],
-            ".value": [{"value": "asString", "name": "path"},{},{"readonly": "hasChildren"}],
+            ".key": [{"textContent": "name"},{},{"data-type": "type", "for": "path"}],
+            ".value": [{"value": "asString", "name": "path", "id": "path"},{},{"readonly": "hasChildren"}],
             "expanderParts": [true, {"if": "open"}, ["-"], ["+"]],
             "button": [{}, {}, {"data-children": "hasChildren"}],
             ".adder-buttons": [{}, {}, {"data-children": "hasChildren"}]
