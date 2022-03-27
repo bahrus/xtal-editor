@@ -180,7 +180,7 @@ header,xtal-editor-field{
                     <input arial-label=value class=value part=value>
                 </div>
                 <section>
-                    <template be-intersectional data-test='hello'>
+                    <template be-intersectional>
                         <div part=edit-buttons>
                             <button disabled part=object-adder class="object adder" data-d=1 ${{
     beNoticed: {
@@ -210,7 +210,6 @@ header,xtal-editor-field{
 }}>+array</button>
                         </div>
                     </template>
-                    hello
                 </section>
             </div>
         </template>
