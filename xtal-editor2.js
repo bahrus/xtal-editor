@@ -63,7 +63,8 @@ header,xtal-editor-field{
             ".value": [{"value": "asString", "name": "path", "id": "path"},{},{"readonly": "hasChildren"}],
             "expanderParts": [true, {"if": "open"}, ["-"], ["+"]],
             "button": [{}, {}, {"data-children": "hasChildren"}],
-            ".adder-buttons": [{}, {}, {"data-children": "hasChildren"}]
+            ".adder-buttons": [{}, {}, {"data-children": "hasChildren"}],
+            ".adder-template": [{".beDecorated.intersectional.host": "."}]
         }'
         be-channeling='[
             {
@@ -96,18 +97,16 @@ header,xtal-editor-field{
                     <label part=key class=key></label>
                     <input arial-label=value class=value part=value>
                 </div>
-                <section class=adder-buttons part=adder-buttons>
-                    <template be-intersectional>
-                        <!-- <div part=edit-buttons> -->
+                <!-- <section class=adder-buttons part=adder-buttons>
+                    <template class=adder-template be-intersectional>
                             <button disabled part=object-adder class="object adder" data-d=1 be-noticed='{"click":{"prop":"objCounter","plusEq":true,"vft":"dataset.d","parseValAs":"int","tocoho":true}}'>+object
                             </button>
                             <button disabled part=string-adder class="string adder" data-d=1 be-noticed='{"click":{"prop":"strCounter","plusEq":true,"vft":"dataset.d","parseValAs":"int","tocoho":true}}'>+string</button>
                             <button disabled part=bool-adder class="bool adder" data-d=1 be-noticed='{"click":{"prop":"boolCounter","plusEq":true,"vft":"dataset.d","parseValAs":"int","tocoho":true}}'>+bool</button>
                             <button disabled part=number-adder class="number adder" data-d=1 be-noticed='{"click":{"prop":"numCounter","plusEq":true,"vft":"dataset.d","parseValAs":"int","tocoho":true}}'>+number</button>
                             <button disabled part=arr-adder class="arr adder" data-d=1 be-noticed='{"click":{"prop":"arrCounter","plusEq":true,"vft":"dataset.d","parseValAs":"int","tocoho":true}}'>+array</button>
-                        <!-- </div> -->
                     </template>
-                </section>
+                </section> -->
             </div>
         </template>
         <template slot="style">
