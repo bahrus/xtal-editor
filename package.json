@@ -24,7 +24,7 @@
   "dependencies": {
     "@power-elements/json-viewer": "2.1.1",
     "be-active": "0.0.27",
-    "be-channeling": "0.0.5",
+    "be-channeling": "0.0.7",
     "be-decorated": "0.0.91",
     "be-definitive": "0.0.42",
     "be-deslotted": "0.0.24",

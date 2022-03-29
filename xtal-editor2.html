@@ -19,7 +19,7 @@
     <!-- <script data-version=0.0.24  id=be-deslotted/be-deslotted.js></script> -->
     <!-- <script data-version=0.0.95  id=xtal-tree/xtal-tree.js></script> -->
     <!-- <script data-version=0.0.53  id=xtal-vlist/xtal-vlist.js></script> -->
-    <script data-version=0.0.5   id=be-channeling/be-channeling.js></script>
+    <!-- <script data-version=0.0.5   id=be-channeling/be-channeling.js></script> -->
 </template>
 <style be-loaded='{"fallback":"https://cdn.jsdelivr.net/npm/xtal-editor@0.0.140/theme.css","preloadRef":"xtal-editor/theme.css","removeStyle":true}'>
 header,xtal-editor-field{
@@ -87,6 +87,41 @@ header,xtal-editor-field{
                 "toNearestUpMatch": "xtal-tree",
                 "prop": "editedNode",
                 "vfe": "path.0"
+            },
+            {
+                "eventFilter": "click",
+                "composedPathMatch": "button.bool",
+                "toNearestUpMatch": "xtal-tree",
+                "prop": "newBoolNode",
+                "vfe": "path.0"
+            },
+            {
+                "eventFilter": "click",
+                "composedPathMatch": "button.number",
+                "toNearestUpMatch": "xtal-tree",
+                "prop": "newNumberNode",
+                "vfe": "path.0"
+            },
+            {
+                "eventFilter": "click",
+                "composedPathMatch": "button.string",
+                "toNearestUpMatch": "xtal-tree",
+                "prop": "newStringNode",
+                "vfe": "path.0"
+            },
+            {
+                "eventFilter": "click",
+                "composedPathMatch": "button.arr",
+                "toNearestUpMatch": "xtal-tree",
+                "prop": "newArrayNode",
+                "vfe": "path.0"
+            },
+            {
+                "eventFilter": "click",
+                "composedPathMatch": "button.object",
+                "toNearestUpMatch": "xtal-tree",
+                "prop": "newObjectNode",
+                "vfe": "path.0"
             }
         ]'
         row-intersectional-settings='{
@@ -107,15 +142,14 @@ header,xtal-editor-field{
                 <section class=adder-buttons part=adder-buttons>
                     <template class=adder-template be-intersectional='{
                         "transform": {
-                            "button": [{}, {}, {"name": "path"}]
+                            "button": [{"name": "path"}, {}, {}]
                         }
                     }'>
-                            <button disabled part=object-adder class="object adder" data-d=1 be-noticed='{"click":{"prop":"objCounter","plusEq":true,"vft":"dataset.d","parseValAs":"int","tocoho":true}}'>+object
-                            </button>
-                            <button disabled part=string-adder class="string adder" data-d=1 be-noticed='{"click":{"prop":"strCounter","plusEq":true,"vft":"dataset.d","parseValAs":"int","tocoho":true}}'>+string</button>
-                            <button disabled part=bool-adder class="bool adder" data-d=1 be-noticed='{"click":{"prop":"boolCounter","plusEq":true,"vft":"dataset.d","parseValAs":"int","tocoho":true}}'>+bool</button>
-                            <button disabled part=number-adder class="number adder" data-d=1 be-noticed='{"click":{"prop":"numCounter","plusEq":true,"vft":"dataset.d","parseValAs":"int","tocoho":true}}'>+number</button>
-                            <button disabled part=arr-adder class="arr adder" data-d=1 be-noticed='{"click":{"prop":"arrCounter","plusEq":true,"vft":"dataset.d","parseValAs":"int","tocoho":true}}'>+array</button>
+                            <button part=object-adder class="object adder">+object</button>
+                            <button disabled part=string-adder class="string adder">+string</button>
+                            <button disabled part=bool-adder class="bool adder">+bool</button>
+                            <button disabled part=number-adder class="number adder">+number</button>
+                            <button disabled part=arr-adder class="arr adder">+array</button>
                     </template>
                 </section>
             </div>
