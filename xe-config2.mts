@@ -200,7 +200,7 @@ header,xtal-editor-field{
                 "eventFilter": "click",
                 "composedPathMatch": "button.object",
                 "toNearestUpMatch": "xtal-tree",
-                "prop": "newObjectNode",
+                "prop": "newNode",
                 "vfe": "path.0"
             }
         ]'
@@ -225,11 +225,11 @@ header,xtal-editor-field{
                             "button": [{"name": "path"}, {}, {}]
                         }
                     }'>
-                            <button part=object-adder class="object adder">+object</button>
-                            <button disabled part=string-adder class="string adder">+string</button>
-                            <button disabled part=bool-adder class="bool adder">+bool</button>
-                            <button disabled part=number-adder class="number adder">+number</button>
-                            <button disabled part=arr-adder class="arr adder">+array</button>
+                            <button part=object-adder class="object adder" value=object>+object</button>
+                            <button part=string-adder class="string adder" value=string>+string</button>
+                            <button part=bool-adder class="bool adder" value=bool>+bool</button>
+                            <button part=number-adder class="number adder" value=number>+number</button>
+                            <button part=arr-adder class="arr adder" value=arr>+array</button>
                     </template>
                 </section>
             </div>
