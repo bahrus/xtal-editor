@@ -111,7 +111,7 @@ header,xtal-editor-field{
             },
             {
                 "eventFilter": "click",
-                "composedPathMatch": "button.object",
+                "composedPathMatch": "button.adder",
                 "toNearestUpMatch": "xtal-tree",
                 "prop": "newNode",
                 "vfe": "path.0"
@@ -227,6 +227,10 @@ header,xtal-editor-field{
                     border-radius: 5px;
                     padding: 2;
                     border: none;
+                }
+                .field{
+                    display: flex;
+                    flex-direction: row;
                 }
             </style>
         </template>
