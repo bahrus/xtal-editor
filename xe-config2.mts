@@ -157,7 +157,7 @@ header,xtal-editor-field{
             {
                 "eventFilter": "click",
                 "toNearestUpMatch": "xtal-tree",
-                "prop": "toggledNodeId",
+                "prop": "toggledNodePath",
                 "vfe": "path.0.parentElement.dataset.path",
                 "composedPathMatch": "button.expander"
             },
