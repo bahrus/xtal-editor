@@ -150,7 +150,7 @@ header,xtal-editor-field{
             ".value": [{"value": "asString", "name": "path", "id": "path"},{},{"readonly": "hasChildren"}],
             "expanderParts": [true, {"if": "open"}, ["-"], ["+"]],
             "button": [{}, {}, {"data-children": "hasChildren"}],
-            ".adder-buttons": [{}, {}, {"data-children": "hasChildren"}],
+            ".adder-buttons,.other-buttons": [{}, {}, {"data-children": "hasChildren"}],
             ".adder-template": [{".beDecorated.intersectional.host": "."}]
         }'
         be-channeling='[
@@ -232,6 +232,17 @@ header,xtal-editor-field{
                             <button part=arr-adder class="arr adder" value=arr>+array</button>
                     </template>
                 </section>
+                <section class=other-buttons>
+                    <template class=other-template be-intersectional='{
+                        "transform": {
+                        }
+                    }'>
+                        <button class="action expand-all" aria-label="expand all" title="expand all">&nbsp;</button>
+                        <button class="action collapse-all" aria-label="collapse all" title="collapse all">&nbsp;</button>
+                        <button class="action delete" aria-label="delete" title="delete">-</button>
+                        <button class="action copy" aria-label="copy" title="copy">&nbsp;</button>
+                    </template>
+                </section>
             </div>
         </template>
         <template slot="style">
@@ -268,6 +279,10 @@ header,xtal-editor-field{
                     width: 100%;
                     flex-grow:5;
                 }
+                .text-editing{
+                    display:flex;
+                    flex-direction: row;
+                }
                 .text-editing .key[data-type="string"]{
                     background-color: var(--str-key-bg);
                     color: var(--str-key-color);
@@ -292,6 +307,11 @@ header,xtal-editor-field{
                 }
                 section[data-children]{
                     display:block;
+                }
+                .action{
+                    background-repeat:no-repeat;
+                    background-position-y:center;
+                    height: 22px;
                 }
                 .object.adder{
                     background-color: var(--obj-adder-bg);
@@ -318,6 +338,17 @@ header,xtal-editor-field{
                 .field{
                     display: flex;
                     flex-direction: row;
+                }
+                .expand-all{
+                    background-image: url(https://cdn.jsdelivr.net/npm/xtal-editor/src/arrows-expand.svg);
+                    width: 20px;
+                }
+                .collapse-all{
+                    background-image: url(https://cdn.jsdelivr.net/npm/xtal-editor/src/arrows-collapse.svg);
+                    width: 20px;
+                }
+                .copy{
+                    background-image: url(https://cdn.jsdelivr.net/npm/xtal-editor/src/copy.svg);
                 }
             </style>
         </template>
