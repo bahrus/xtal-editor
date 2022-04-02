@@ -63,7 +63,7 @@ header,xtal-editor-field{
             ".value": [{"value": "asString", "name": "path", "id": "path"},{},{"readonly": "hasChildren"}],
             "expanderParts": [true, {"if": "open"}, ["-"], ["+"]],
             "button": [{}, {}, {"data-children": "hasChildren"}],
-            ".adder-buttons,.other-buttons": [{}, {}, {"data-children": "hasChildren"}],
+            ".adder-buttons,.exp-collapse-buttons": [{}, {}, {"data-children": "hasChildren"}],
             ".adder-template": [{".beDecorated.intersectional.host": "."}]
         }'
         be-channeling='[
@@ -115,6 +115,13 @@ header,xtal-editor-field{
                 "toNearestUpMatch": "xtal-tree",
                 "prop": "newNode",
                 "vfe": "path.0"
+            },
+            {
+                "eventFilter": "click",
+                "composedPathMatch": "button.delete",
+                "toNearestUpMatch": "xtal-tree",
+                "prop": "deleteNode",
+                "vfe": "path.0"
             }
         ]'
         row-intersectional-settings='{
@@ -145,16 +152,20 @@ header,xtal-editor-field{
                             <button part=arr-adder class="arr adder" value=arr>+array</button>
                     </template>
                 </section>
-                <section class=other-buttons>
-                    <template class=other-template be-intersectional='{
-                        "transform": {
-                        }
-                    }'>
-                        <button class="action expand-all" aria-label="expand all" title="expand all">&nbsp;</button>
-                        <button class="action collapse-all" aria-label="collapse all" title="collapse all">&nbsp;</button>
-                        <button class="action delete" aria-label="delete" title="delete">-</button>
-                        <button class="action copy" aria-label="copy" title="copy">&nbsp;</button>
+                <section class=exp-collapse-buttons>
+                    <template be-intersectional='{
+                            "transform": {
+                            }
+                        }'>
+                            <button class="action expand-all" aria-label="expand all" title="expand all">&nbsp;</button>
+                            <button class="action collapse-all" aria-label="collapse all" title="collapse all">&nbsp;</button>
                     </template>
+                </section>
+                <section class=other-buttons>
+                    <button class="action copy" aria-label="copy" title="copy">&nbsp;</button>
+                </section>
+                <section class=delete-button>
+                    <button class="action delete" aria-label="delete" title="delete">&times;</button>
                 </section>
             </div>
         </template>
@@ -184,7 +195,7 @@ header,xtal-editor-field{
                 button.expander{
                     display:none;
                 }
-                button[data-children].expander{
+                button.expander[data-children]{
                     display:inline;
                 }
                 .value{
@@ -215,10 +226,16 @@ header,xtal-editor-field{
                 .text-editing .key[data-type="boolean"]{
                     background-color: var(--bool-key-bg);
                 }
-                section{
+                section.adder-buttons{
                     display:none;
                 }
-                section[data-children]{
+                section.adder-buttons[data-children]{
+                    display:block;
+                }
+                section.exp-collapse-buttons{
+                    display:none;
+                }
+                section.exp-collapse-buttons[data-children]{
                     display:block;
                 }
                 .action{
