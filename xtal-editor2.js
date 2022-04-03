@@ -61,7 +61,7 @@ header,xtal-editor-field{
             "div": [{}, {}, {"data-path": "path", "style": "marginStyle"}],
             ".key": [{"textContent": "name"},{},{"data-type": "type", "for": "path"}],
             ".value": [{"value": "asString", "name": "path", "id": "path"},{},{"readonly": "hasChildren"}],
-            ".delete": [{"name": "path", "id": "path"}],
+            ".delete,.copy": [{"name": "path", "id": "path"}],
             "expanderParts": [true, {"if": "open"}, ["-"], ["+"]],
             "button": [{}, {}, {"data-children": "hasChildren"}],
             ".adder-buttons,.exp-collapse-buttons": [{}, {}, {"data-children": "hasChildren"}],
@@ -122,6 +122,13 @@ header,xtal-editor-field{
                 "composedPathMatch": "button.delete",
                 "toNearestUpMatch": "xtal-tree",
                 "prop": "deleteNode",
+                "vfe": "path.0"
+            },
+            {
+                "eventFilter": "click",
+                "composedPathMatch": "button.copy",
+                "toNearestUpMatch": "xtal-tree",
+                "prop": "copyNodeToClipboard",
                 "vfe": "path.0"
             }
         ]'
