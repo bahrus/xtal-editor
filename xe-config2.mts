@@ -171,34 +171,6 @@ header,xtal-editor-field{
             },
             {
                 "eventFilter": "click",
-                "composedPathMatch": "button.bool",
-                "toNearestUpMatch": "xtal-tree",
-                "prop": "newBoolNode",
-                "vfe": "path.0"
-            },
-            {
-                "eventFilter": "click",
-                "composedPathMatch": "button.number",
-                "toNearestUpMatch": "xtal-tree",
-                "prop": "newNumberNode",
-                "vfe": "path.0"
-            },
-            {
-                "eventFilter": "click",
-                "composedPathMatch": "button.string",
-                "toNearestUpMatch": "xtal-tree",
-                "prop": "newStringNode",
-                "vfe": "path.0"
-            },
-            {
-                "eventFilter": "click",
-                "composedPathMatch": "button.arr",
-                "toNearestUpMatch": "xtal-tree",
-                "prop": "newArrayNode",
-                "vfe": "path.0"
-            },
-            {
-                "eventFilter": "click",
                 "composedPathMatch": "button.adder",
                 "toNearestUpMatch": "xtal-tree",
                 "prop": "newNode",
