@@ -195,7 +195,7 @@ header,xtal-editor-field{
                 }
                 .value{
                     background-color: #ECF3C3;
-                    width: 100%;
+                    /* width: 100%; */
                     flex-grow:5;
                 }
                 .text-editing{
@@ -222,17 +222,23 @@ header,xtal-editor-field{
                 .text-editing .key[data-type="boolean"]{
                     background-color: var(--bool-key-bg);
                 }
+                section{
+                    display:flex;
+                    flex-direction: row;
+                }
                 section.adder-buttons{
                     display:none;
                 }
                 section.adder-buttons[data-children]{
-                    display:block;
+                    display:flex;
+                    width:425px;
                 }
                 section.exp-collapse-buttons{
                     display:none;
                 }
                 section.exp-collapse-buttons[data-children]{
-                    display:block;
+                    display:flex;
+                    width:40px;
                 }
                 .action{
                     background-repeat:no-repeat;
