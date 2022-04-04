@@ -231,7 +231,7 @@ header,xtal-editor-field{
                 }
                 section.adder-buttons[data-children]{
                     display:flex;
-                    width:425px;
+                    width:340px;
                 }
                 section.exp-collapse-buttons{
                     display:none;
@@ -264,7 +264,8 @@ header,xtal-editor-field{
                     color: white;
                     text-shadow:1px 1px 1px black;
                     border-radius: 5px;
-                    padding: 2;
+                    padding: 2px;
+                    margin: 1px;
                     border: none;
                 }
                 .field{
