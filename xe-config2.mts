@@ -288,6 +288,7 @@ header,xtal-editor-field{
                 .text-editing{
                     display:flex;
                     flex-direction: row;
+                    flex-basis: 100%;
                 }
                 .text-editing .key[data-type="string"]{
                     background-color: var(--str-key-bg);
