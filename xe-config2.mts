@@ -196,6 +196,13 @@ header,xtal-editor-field{
                 "toNearestUpMatch": "xtal-tree",
                 "prop": "expandAllNode",
                 "vfe": "path.0"
+            },
+            {
+                "eventFilter": "click",
+                "composedPathMatch": "button.collapse-all",
+                "toNearestUpMatch": "xtal-tree",
+                "prop": "collapseAllNode",
+                "vfe": "path.0"
             }
         ]'
         row-intersectional-settings='{
