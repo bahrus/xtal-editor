@@ -144,11 +144,11 @@ header,xtal-editor-field{
             "div": [{}, {}, {"data-path": "path", "style": "marginStyle"}],
             ".key": [{"textContent": "name"},{},{"data-type": "type", "for": "path"}],
             ".value": [{"value": "asString", "name": "path", "id": "path"},{},{"readonly": "hasChildren"}],
-            ".delete,.copy": [{"name": "path", "id": "path"}],
+            ".delete,.copy,.expand-all": [{"name": "path", "id": "path"}],
             "expanderParts": [true, {"if": "open"}, ["-"], ["+"]],
             "button": [{}, {}, {"data-children": "hasChildren"}],
             ".adder-buttons,.exp-collapse-buttons": [{}, {}, {"data-children": "hasChildren"}],
-            ".adder-template": [{".beDecorated.intersectional.host": "."}]
+            ".adder-template,.exp-coll-template": [{".beDecorated.intersectional.host": "."}]
         }'
         be-channeling='[
             {
@@ -185,6 +185,13 @@ header,xtal-editor-field{
                 "toNearestUpMatch": "xtal-tree",
                 "prop": "copyNodeToClipboard",
                 "vfe": "path.0"
+            },
+            {
+                "eventFilter": "click",
+                "composedPathMatch": "button.expand-all",
+                "toNearestUpMatch": "xtal-tree",
+                "prop": "expandAllNode",
+                "vfe": "path.0"
             }
         ]'
         row-intersectional-settings='{
@@ -216,8 +223,9 @@ header,xtal-editor-field{
                     </template>
                 </section>
                 <section class=exp-collapse-buttons>
-                    <template be-intersectional='{
+                    <template class=exp-coll-template be-intersectional='{
                             "transform": {
+                                "button": [{"name": "path"}, {}, {}]
                             }
                         }'>
                             <button class="action expand-all" aria-label="expand all" title="expand all">&nbsp;</button>
