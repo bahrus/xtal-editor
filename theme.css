@@ -34,23 +34,6 @@ slot{
 }
 
 :host{
-    --obj-key-bg: #FFD4B8;
-    --obj-key-color: #000000;
-    --str-key-bg: #B8FFBB;
-    --str-key-color: #000000;
-    --num-key-bg: #BCD3DC;
-    --num-key-color: #000000;
-    --array-key-bg: #AAC7E4;
-    --array-key-color: #000000;
-    --obj-even-level-editor-bg: #F1E090;
-    --obj-odd-level-editor-bg: #FFEFCC;
-    --array-even-level-editor-bg: #A9DBDD;
-    --array-odd-level-editor-bg: #D9DBDD;
-    --obj-adder-bg: #C15000;
-    --string-adder-bg: #007408;
-    --bool-adder-bg: #516600;
-    --num-adder-bg:#497B8D;
-    --arr-adder-bg: #2d5b89;
     --selector-bg: #CD138F;
 }
 

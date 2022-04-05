@@ -268,7 +268,6 @@ header,xtal-editor-field{
                     --bool-adder-bg: #516600;
                     --num-adder-bg:#497B8D;
                     --arr-adder-bg: #2d5b89;
-                    --selector-bg: #CD138F;
                 }
                 button.expander{
                     display:none;
