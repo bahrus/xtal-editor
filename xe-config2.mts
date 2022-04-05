@@ -286,6 +286,7 @@ header,xtal-editor-field{
                     height: fit-content;
                     padding-left: 0px;
                     padding-right: 0px;
+                    padding-top: 2px;
                     width:25px;
                 }
                 /*
@@ -300,9 +301,9 @@ header,xtal-editor-field{
                     -webkit-border-radius: 5px;
                     -moz-border-radius: 5px;
                     border-radius: 5px;
-                    margin-right: 1px;
-                    margin-left: 1px;
+                    margin: 1px;
                     padding: 3px;
+                    height: fit-content;
                 }
                 label.key::after{
                     content: ": ";
@@ -312,6 +313,7 @@ header,xtal-editor-field{
                 }
                 button.expander[data-children]{
                     display:inline;
+                    margin: 1px;
                 }
                 .value{
                     background-color: #ECF3C3;
