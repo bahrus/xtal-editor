@@ -279,6 +279,9 @@ header,xtal-editor-field{
                     display: flex;
                     flex-direction: row;
                 }
+                .rowContainer{
+                    background: #121212;
+                }
                 /*
                 TODO:  make this a container query
                 */

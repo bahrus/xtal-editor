@@ -11,9 +11,10 @@ slot{
 }
 
 
-.editor, header{
-    background-color: black;
+header{
+    color-scheme: dark;
     color: white;
+    background: #121212;
 }
 
 .expander{
@@ -69,11 +70,10 @@ slot{
 header{
     display: flex;
     flex-direction: row;
-    /* justify-content: space-evenly; */
     color: white;
     font-weight: bold;
-    text-shadow: 1px 1px 1px black;
-    background-color: black;
+    /* text-shadow: 1px 1px 1px black; */
+    /* background-color: black; */
 }
 
 xtal-side-nav{
