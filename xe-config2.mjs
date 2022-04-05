@@ -216,35 +216,37 @@ header,xtal-editor-field{
                     <label part=key class=key></label>
                     <input arial-label=value class=value part=value>
                 </div>
-                <section class=adder-buttons part=adder-buttons>
-                    <template class=adder-template be-intersectional='{
-                        "transform": {
-                            "button": [{"name": "path"}, {}, {}]
-                        }
-                    }'>
-                            <button part=object-adder class="object adder" value=object>+object</button>
-                            <button part=string-adder class="string adder" value=string>+string</button>
-                            <button part=bool-adder class="bool adder" value=bool>+bool</button>
-                            <button part=number-adder class="number adder" value=number>+number</button>
-                            <button part=arr-adder class="arr adder" value=arr>+array</button>
-                    </template>
-                </section>
-                <section class=exp-collapse-buttons>
-                    <template class=exp-coll-template be-intersectional='{
+                <div class=buttons>
+                    <section class=adder-buttons part=adder-buttons>
+                        <template class=adder-template be-intersectional='{
                             "transform": {
                                 "button": [{"name": "path"}, {}, {}]
                             }
                         }'>
-                            <button class="action expand-all" aria-label="expand all" title="expand all">&nbsp;</button>
-                            <button class="action collapse-all" aria-label="collapse all" title="collapse all">&nbsp;</button>
-                    </template>
-                </section>
-                <section class=other-buttons>
-                    <button class="action copy" aria-label="copy" title="copy">&nbsp;</button>
-                </section>
-                <section class=delete-button>
-                    <button class="action delete" aria-label="delete" title="delete">&times;</button>
-                </section>
+                                <button part=object-adder class="object adder" value=object>+object</button>
+                                <button part=string-adder class="string adder" value=string>+string</button>
+                                <button part=bool-adder class="bool adder" value=bool>+bool</button>
+                                <button part=number-adder class="number adder" value=number>+number</button>
+                                <button part=arr-adder class="arr adder" value=arr>+array</button>
+                        </template>
+                    </section>
+                    <section class=exp-collapse-buttons>
+                        <template class=exp-coll-template be-intersectional='{
+                                "transform": {
+                                    "button": [{"name": "path"}, {}, {}]
+                                }
+                            }'>
+                                <button class="action expand-all" aria-label="expand all" title="expand all">&nbsp;</button>
+                                <button class="action collapse-all" aria-label="collapse all" title="collapse all">&nbsp;</button>
+                        </template>
+                    </section>
+                    <section class=other-buttons>
+                        <button class="action copy" aria-label="copy" title="copy">&nbsp;</button>
+                    </section>
+                    <section class=delete-button>
+                        <button class="action delete" aria-label="delete" title="delete">&times;</button>
+                    </section>
+                </div>
             </div>
         </template>
         <template slot="style">
@@ -304,7 +306,7 @@ header,xtal-editor-field{
                 .text-editing .key[data-type="boolean"]{
                     background-color: var(--bool-key-bg);
                 }
-                section{
+                section,div.buttons{
                     display:flex;
                     flex-direction: row;
                 }
