@@ -149,6 +149,9 @@ header,xtal-editor-field{
                     margin-left: 1px;
                     padding: 3px;
                 }
+                label.key::after{
+                    content: ": ";
+                }
                 button.expander{
                     display:none;
                 }
