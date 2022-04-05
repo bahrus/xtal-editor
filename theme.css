@@ -18,7 +18,7 @@ header{
 }
 
 
-.copyBtn{
+/* .copyBtn{
     width: fit-content;
     height: fit-content;
     padding-left: 0px;
@@ -26,7 +26,7 @@ header{
     padding-top: 0px;
     padding-bottom: 0px;
     border: 0;
-}
+} */
 
 :host{
     --selector-bg: #CD138F;
@@ -100,9 +100,9 @@ header h1{
 .text-view-selector.inactive{
     display:none;
 }
-.remove.editKey::after{
+/* .remove.editKey::after{
     content: "Remove item by deleting the property name.";
-}
+} */
 xtal-side-nav::part(opener), xtal-side-nav::part(close-btn){
     font-size:12px;
 }
@@ -115,19 +115,19 @@ xtal-side-nav::part(side-nav){
     /* top: inherit; */
 }
 
-#copy{
+/* #copy{
     background-image: url(https://cdn.jsdelivr.net/npm/xtal-editor/src/copy.svg);
     
 }
 #expand-all{
     background-image: url(https://cdn.jsdelivr.net/npm/xtal-editor/src/arrows-expand.svg);
     width: 20px;
-}
-.action{
+} */
+/* .action{
     background-repeat:no-repeat;
     background-position-y:center;
     height: 22px;
-}
+} */
 xtal-side-nav{
     display: inline;
     --drawer-width:140px;
@@ -137,7 +137,7 @@ xtal-side-nav{
     background-image: url(https://cdn.jsdelivr.net/npm/xtal-editor/src/arrows-collapse.svg);
     width: 20px;
 }
-@media only screen and (max-width: 1000px) {
+/* @media only screen and (max-width: 1000px) {
     [data-ro="false"] .field{
         flex-direction: column;
     }
@@ -148,8 +148,8 @@ xtal-side-nav{
     [data-ro="false"] .text-editing{
         width: 100%;
     }
-}
-@media only screen and (min-width: 1001px){
+} */
+/* @media only screen and (min-width: 1001px){
     [data-ro="false"] .child-inserters{
         justify-content: center;
     }
@@ -160,8 +160,8 @@ xtal-side-nav{
     [data-ro="false"] .text-editing{
         flex-grow: 1;
     }
-}
-@media only screen and (max-width: 500px) {
+} */
+/* @media only screen and (max-width: 500px) {
     [data-ro="true"] .field{
         flex-direction: column;
     }
@@ -172,73 +172,10 @@ xtal-side-nav{
     [data-ro="true"] .text-editing{
         width: 100%;
     }
-}
-@media only screen and (min-width: 501px){
-    [data-ro="true"] .child-inserters{
-        justify-content: center;
-    }
-    [data-ro="true"] .field{
-        width: 100%;
-        justify-content: space-evenly;
-    }
-    [data-ro="true"] .text-editing{
-        flex-grow: 1;
-    }
-}
-.text-editing{
-    display: flex;
-    flex-direction: row;
-    padding-top:1px;
-    padding-bottom:1px;
-}
-.child-inserters{
-    display: flex;
-}
-.child-editors{
-    margin-left: 15px;
-}
-
-/* [data-type="object"] button.nonPrimitive{
-    display: inline;
-}
-
-[data-type="array"] button.nonPrimitive{
-    display: inline;
-}
-
-[data-type="string"] .nonPrimitive{
-    display: none;
-}
-[data-type="number"] .nonPrimitive{
-    display: none;
-}
-[data-type="boolean"] .nonPrimitive{
-    display: none;
-}
-[data-type="string"] .key{
-    background-color: var(--str-key-bg);
-    color: var(--str-key-color);
-}
-[data-type="boolean"] .key{
-    background-color: #B1C639;
 } */
 
-/* .value{
-    background-color: #ECF3C3;
-    width: 100%;
-    flex-grow:5;
-}
-input.key {
-    
-    -webkit-border-radius: 5px;
-    -moz-border-radius: 5px;
-    border-radius: 5px;
-    margin-right: 2px;
-}
-input {
-    border: none;
-    padding: 3px;
-} */
+
+
 template[be-lazy], template[is-lazy]{
     display: block;
     height: 24px;
