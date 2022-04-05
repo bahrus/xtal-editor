@@ -195,6 +195,18 @@ header,xtal-editor-field{
                     --num-adder-bg:#497B8D;
                     --arr-adder-bg: #2d5b89;
                 }
+                .field{
+                    display: flex;
+                    flex-direction: row;
+                }
+                /*
+                TODO:  make this a container query
+                */
+                @media only screen and (max-width: 1000px) {
+                    .field{
+                        flex-direction: column;
+                    }
+                }
                 button.expander{
                     display:none;
                 }
@@ -276,10 +288,7 @@ header,xtal-editor-field{
                     margin: 1px;
                     border: none;
                 }
-                .field{
-                    display: flex;
-                    flex-direction: row;
-                }
+
                 .expand-all{
                     background-image: url(https://cdn.jsdelivr.net/npm/xtal-editor/src/arrows-expand.svg);
                     width: 20px;
