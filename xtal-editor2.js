@@ -58,7 +58,8 @@ header,xtal-editor-field{
             "list": {"observe": "xtal-tree", "vft": "viewableNodes"}
         }' 
         row-transform='{
-            "div": [{}, {}, {"data-path": "path", "style": "marginStyle"}],
+            "div": [{}, {}, {"data-path": "path"}],
+            "div.field": [{}, {}, {"style": "marginStyle"}],
             ".key": [{"textContent": "name"},{},{"data-type": "type", "for": "path"}],
             ".value": [{"value": "asString", "name": "path", "id": "path"},{},{"readonly": "hasChildren"}],
             ".delete,.copy,.expand-all": [{"name": "path", "id": "path"}],
@@ -254,7 +255,7 @@ header,xtal-editor-field{
                 }
                 section.adder-buttons[data-children]{
                     display:flex;
-                    width:340px;
+                    width:240px;
                 }
                 section.exp-collapse-buttons{
                     display:none;
