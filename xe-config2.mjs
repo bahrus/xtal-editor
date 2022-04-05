@@ -30,6 +30,11 @@ const beDefinitiveProps = {
         }
     }
 };
+const commonChannel = {
+    eventFilter: "click",
+    toNearestUpMatch: "xtal-tree",
+    "vfe": "path.0",
+};
 const innerHTML = html `
 <template be-active>
     <script data-version=0.0.51  id=be-loaded/be-loaded.js></script>
@@ -137,9 +142,49 @@ header,xtal-editor-field{
         page-size="10" 
         id="vlist"
         min-item-height='19.5'
-        be-observant='{
-            "list": {"observe": "xtal-tree", "vft": "viewableNodes"}
-        }' 
+        ${{
+    beObservant: {
+        list: { observe: "xtal-tree", vft: "viewableNodes" }
+    },
+    beChanneling: [
+        {
+            ...commonChannel,
+            prop: "toggledNodePath",
+            vfe: "path.0.parentElement.dataset.path",
+            composedPathMatch: "button.expander"
+        },
+        {
+            ...commonChannel,
+            prop: "editedNode",
+            composedPathMatch: "button.adder",
+        },
+        {
+            ...commonChannel,
+            prop: "newNode",
+            composedPathMatch: "button.adder",
+        },
+        {
+            ...commonChannel,
+            composedPathMatch: "button.delete",
+            prop: "deleteNode",
+        },
+        {
+            ...commonChannel,
+            composedPathMatch: "button.copy",
+            prop: "copyNodeToClipboard",
+        },
+        {
+            ...commonChannel,
+            composedPathMatch: "button.expand-all",
+            prop: "expandAllNode",
+        },
+        {
+            ...commonChannel,
+            composedPathMatch: "button.collapse-all",
+            prop: "collapseAllNode",
+        }
+    ]
+}}
         row-transform='{
             "div": [{}, {}, {"data-path": "path"}],
             "div.field": [{}, {}, {"style": "marginStyle"}],
@@ -151,57 +196,6 @@ header,xtal-editor-field{
             ".adder-buttons,.exp-collapse-buttons": [{}, {}, {"data-children": "hasChildren"}],
             ".adder-template,.exp-coll-template": [{".beDecorated.intersectional.host": "."}]
         }'
-        be-channeling='[
-            {
-                "eventFilter": "click",
-                "toNearestUpMatch": "xtal-tree",
-                "prop": "toggledNodePath",
-                "vfe": "path.0.parentElement.dataset.path",
-                "composedPathMatch": "button.expander"
-            },
-            {
-                "eventFilter": "input",
-                "composedPathMatch": "input.value",
-                "toNearestUpMatch": "xtal-tree",
-                "prop": "editedNode",
-                "vfe": "path.0"
-            },
-            {
-                "eventFilter": "click",
-                "composedPathMatch": "button.adder",
-                "toNearestUpMatch": "xtal-tree",
-                "prop": "newNode",
-                "vfe": "path.0"
-            },
-            {
-                "eventFilter": "click",
-                "composedPathMatch": "button.delete",
-                "toNearestUpMatch": "xtal-tree",
-                "prop": "deleteNode",
-                "vfe": "path.0"
-            },
-            {
-                "eventFilter": "click",
-                "composedPathMatch": "button.copy",
-                "toNearestUpMatch": "xtal-tree",
-                "prop": "copyNodeToClipboard",
-                "vfe": "path.0"
-            },
-            {
-                "eventFilter": "click",
-                "composedPathMatch": "button.expand-all",
-                "toNearestUpMatch": "xtal-tree",
-                "prop": "expandAllNode",
-                "vfe": "path.0"
-            },
-            {
-                "eventFilter": "click",
-                "composedPathMatch": "button.collapse-all",
-                "toNearestUpMatch": "xtal-tree",
-                "prop": "collapseAllNode",
-                "vfe": "path.0"
-            }
-        ]'
         row-intersectional-settings='{
             "rootClosest": ".scroller",
             "options": {
