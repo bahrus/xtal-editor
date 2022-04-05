@@ -198,7 +198,7 @@ xtal-side-nav{
     margin-left: 15px;
 }
 
-[data-type="object"] button.nonPrimitive{
+/* [data-type="object"] button.nonPrimitive{
     display: inline;
 }
 
@@ -221,9 +221,9 @@ xtal-side-nav{
 }
 [data-type="boolean"] .key{
     background-color: #B1C639;
-}
+} */
 
-.value{
+/* .value{
     background-color: #ECF3C3;
     width: 100%;
     flex-grow:5;
@@ -238,7 +238,7 @@ input.key {
 input {
     border: none;
     padding: 3px;
-}
+} */
 template[be-lazy], template[is-lazy]{
     display: block;
     height: 24px;
