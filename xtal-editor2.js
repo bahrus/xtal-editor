@@ -195,6 +195,13 @@ header,xtal-editor-field{
                 .rowContainer{
                     background: #121212;
                 }
+                .expander{
+                    width: fit-content;
+                    height: fit-content;
+                    padding-left: 0px;
+                    padding-right: 0px;
+                    width:25px;
+                }
                 /*
                 TODO:  make this a container query
                 */

@@ -17,13 +17,7 @@ header{
     background: #121212;
 }
 
-.expander{
-    width: fit-content;
-    height: fit-content;
-    padding-left: 0px;
-    padding-right: 0px;
-    width:25px;
-}
+
 .copyBtn{
     width: fit-content;
     height: fit-content;
