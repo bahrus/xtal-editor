@@ -42,7 +42,7 @@
     "xtal-element": "0.0.485",
     "xtal-side-nav": "0.0.70",
     "xtal-tree": "0.0.127",
-    "xtal-vlist": "0.0.53"
+    "xtal-vlist": "0.0.54"
   },
   "devDependencies": {
     "@custom-elements-manifest/analyzer": "0.5.7",
