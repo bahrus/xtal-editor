@@ -185,24 +185,26 @@ header,xtal-editor-field{
         }
     ]
 }}
-        row-transform='{
-            "div": [{}, {}, {"data-path": "path"}],
-            "div.field": [{}, {}, {"style": "marginStyle"}],
-            ".key": [{"textContent": "name"},{},{"data-type": "type", "for": "path"}],
-            ".value": [{"value": "asString", "name": "path", "id": "path"},{},{"readonly": "hasChildren"}],
-            ".delete,.copy,.expand-all": [{"name": "path", "id": "path"}],
-            "expanderParts": [true, {"if": "open"}, ["-"], ["+"]],
-            "button": [{}, {}, {"data-children": "hasChildren"}],
-            ".adder-buttons,.exp-collapse-buttons": [{}, {}, {"data-children": "hasChildren"}],
-            ".adder-template,.exp-coll-template": [{".beDecorated.intersectional.host": "."}]
-        }'
-        row-intersectional-settings='{
-            "rootClosest": ".scroller",
-            "options": {
-                "rootMargin": "300px",
-                "threshold": 0
-            }
-        }'
+        ${{
+    rowTransform: {
+        div: [{}, {}, { "data-path": "path" }],
+        "div.field": [{}, {}, { "style": "marginStyle" }],
+        keyClasses: [{ "textContent": "name" }, {}, { "data-type": "type", "for": "path" }],
+        valueClasses: [{ value: "asString", name: "path", id: "path" }, {}, { readonly: "hasChildren" }],
+        ".delete,.copy,.expand-all": [{ name: "path", id: "path" }],
+        expanderParts: [true, { if: "open" }, ["-"], ["+"]],
+        buttonElements: [{}, {}, { "data-children": "hasChildren" }],
+        ".adder-buttons,.exp-collapse-buttons": [{}, {}, { "data-children": "hasChildren" }],
+        ".adder-template,.exp-coll-template": [{ ".beDecorated.intersectional.host": "." }]
+    },
+    rowIntersectionalSettings: {
+        rootClosest: ".scroller",
+        options: {
+            "rootMargin": "300px",
+            "threshold": 0
+        }
+    }
+}}
     >
        <template slot=row>
             <div class=field part=field itemscope >
