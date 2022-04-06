@@ -4,7 +4,7 @@ import('be-active/be-active.js');
 document.body.insertAdjacentHTML('beforeend', `<template be-definitive='{"config":{"tagName":"xtal-editor","propDefaults":{"readOnly":false,"value":"","key":"","treeView":true,"textView":false,"downloadHref":"","editedValue":"","stringFilter":""},"propInfo":{"treeView":{"notify":{"dispatch":true}},"textView":{"notify":{"dispatch":true}}},"actions":{"cloneTemplate":{"ifAllOf":["mainTemplate"],"ifKeyIn":["noshadow","waitToInit"]},"doTemplMount":{"ifAllOf":["clonedTemplate","transform"],"ifKeyIn":["waitToInit"],"async":true}}}}'>
 <template be-active>
     <script data-version=0.0.51  id=be-loaded/be-loaded.js></script>
-    <script data-version=0.0.101 id=be-observant/be-observant.js></script>
+    <!-- <script data-version=0.0.101 id=be-observant/be-observant.js></script> -->
     <script data-version=0.0.64  id=be-switched/be-switched.js></script>
     <!-- <script data-version=0.0.43  id=be-intersectional/be-intersectional.js></script> -->
     <script data-version=0.0.70  id=xtal-side-nav/xtal-side-nav.js></script>
@@ -58,14 +58,14 @@ header,xtal-editor-field{
         row-transform='{"div":[{},{},{"data-path":"path"}],"div.field":[{},{},{"style":"marginStyle"}],"keyClasses":[{"textContent":"name"},{},{"data-type":"type","for":"path"}],"valueClasses":[{"value":"asString","name":"path","id":"path"},{},{"readonly":"hasChildren"}],".delete,.copy,.expand-all":[{"name":"path","id":"path"}],"expanderParts":[true,{"if":"open"},["-"],["+"]],"buttonElements":[{},{},{"data-children":"hasChildren"}],".adder-buttons,.exp-collapse-buttons":[{},{},{"data-children":"hasChildren"}],".adder-template,.exp-coll-template":[{".beDecorated.intersectional.host":"."}]}'row-intersectional-settings='{"rootClosest":".scroller","options":{"rootMargin":"300px","threshold":0}}'
     >
        <template slot=row>
-            <div class=field part=field itemscope >
+            <div class=field data-readonly part=field itemscope be-observant='{"data-readonly":{"observeProp":"readOnly","vft":"readOnly","as":"bool-attr"}}'>
                 <div class=text-editing>
                     <button class="expander" part=expander>.</button>
                     <label part=key class=key></label>
                     <input arial-label=value class=value part=value>
                 </div>
                 <div class=buttons>
-                    <section class=adder-buttons part=adder-buttons>
+                    <section class=adder-buttons  part=adder-buttons >
                         <template class=adder-template be-intersectional='{
                             "transform": {
                                 "button": [{"name": "path"}, {}, {}]
@@ -199,6 +199,9 @@ header,xtal-editor-field{
                 section.adder-buttons[data-children]{
                     display:flex;
                     width:240px;
+                }
+                div.field[data-readonly] section.adder-buttons[data-children]{
+                    display:none;
                 }
                 section.exp-collapse-buttons{
                     display:none;

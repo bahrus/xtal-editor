@@ -38,7 +38,7 @@ const commonChannel = {
 const innerHTML = html `
 <template be-active>
     <script data-version=0.0.51  id=be-loaded/be-loaded.js></script>
-    <script data-version=0.0.101 id=be-observant/be-observant.js></script>
+    <!-- <script data-version=0.0.101 id=be-observant/be-observant.js></script> -->
     <script data-version=0.0.64  id=be-switched/be-switched.js></script>
     <!-- <script data-version=0.0.43  id=be-intersectional/be-intersectional.js></script> -->
     <script data-version=0.0.70  id=xtal-side-nav/xtal-side-nav.js></script>
@@ -207,14 +207,22 @@ header,xtal-editor-field{
 }}
     >
        <template slot=row>
-            <div class=field part=field itemscope >
+            <div class=field data-readonly part=field itemscope ${{
+    beObservant: {
+        'data-readonly': {
+            observeProp: 'readOnly',
+            vft: 'readOnly',
+            as: 'bool-attr'
+        }
+    }
+}}>
                 <div class=text-editing>
                     <button class="expander" part=expander>.</button>
                     <label part=key class=key></label>
                     <input arial-label=value class=value part=value>
                 </div>
                 <div class=buttons>
-                    <section class=adder-buttons part=adder-buttons>
+                    <section class=adder-buttons  part=adder-buttons >
                         <template class=adder-template be-intersectional='{
                             "transform": {
                                 "button": [{"name": "path"}, {}, {}]
@@ -348,6 +356,9 @@ header,xtal-editor-field{
                 section.adder-buttons[data-children]{
                     display:flex;
                     width:240px;
+                }
+                div.field[data-readonly] section.adder-buttons[data-children]{
+                    display:none;
                 }
                 section.exp-collapse-buttons{
                     display:none;
