@@ -5,12 +5,10 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
     <link rel=preload as=script id="xtal-editor/theme.css" href="../theme.css" crossorigin="anonymous">
-    <link rel=preload as=script id="xtal-editor/xef-config.json" href="../xef-config.json" crossorigin="anonymous">
 </head>
 <body>
-    <div style="height:500px">hello</div>
     <form action="dev.html" method="POST">
-        <xtal-editor key=ab id=editor be-persistent='{
+        <xtal-editor id=editor be-persistent='{
             "what":{
                 "textView": true,
                 "treeView": true
@@ -69,10 +67,12 @@
                 "xodus/": "../node_modules/xodus/",
                 "@power-elements/": "../node_modules/@power-elements/",
                 "be-active/": "../node_modules/be-active/",
+                "be-channeling/": "../node_modules/be-channeling/",
                 "be-decorated/": "../node_modules/be-decorated/",
                 "be-definitive/": "../node_modules/be-definitive/",
                 "be-deslotted/": "../node_modules/be-deslotted/",
                 "be-hive/": "../node_modules/be-hive/",
+                "be-intersectional/": "../node_modules/be-intersectional/",
                 "be-lazy/": "../node_modules/be-lazy/",
                 "be-loaded/": "../node_modules/be-loaded/",
                 "be-noticed/": "../node_modules/be-noticed/",
@@ -84,13 +84,21 @@
                 "xtal-shell/": "../node_modules/xtal-shell/",
                 "idb-keyval/": "../node_modules/idb-keyval/",
                 "safari-14-idb-fix": "../node_modules/safari-14-idb-fix/dist/index.js",
-                "xtal-editor/": "../"
+                "xtal-editor/": "../",
+                "xtal-tree/": "../node_modules/xtal-tree/",
+                "xtal-vlist/": "../node_modules/xtal-vlist/"
             }
         }
     </script>
     <script type=module>
         import 'xtal-editor/xtal-editor.js';
         import 'be-persistent/be-persistent.js';
+        import 'xtal-tree/xtal-tree.js';
+        import 'be-intersectional/be-intersectional.js';
+        import 'xtal-vlist/xtal-vlist.js';
+        import 'be-deslotted/be-deslotted.js';
+        import 'be-channeling/be-channeling.js';
+        import 'be-observant/be-observant.js';
     </script>
 </body>
 </html>

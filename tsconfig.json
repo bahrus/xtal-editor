@@ -8,10 +8,7 @@
 		"watch": true
 	},
 	"files":[
-		"xtal-editor-field.ts",
-		"xe-config.mts",
-		"xe-config2.mts",
-		"xef-config.mts",
+		"xe-config.mts"
 	],
 	"exclude":[
 		"node_modules"

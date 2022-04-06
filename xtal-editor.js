@@ -3,13 +3,16 @@ import('be-active/be-active.js');
 
 document.body.insertAdjacentHTML('beforeend', `<template be-definitive='{"config":{"tagName":"xtal-editor","propDefaults":{"readOnly":false,"value":"","key":"","treeView":true,"textView":false,"downloadHref":"","editedValue":"","stringFilter":""},"propInfo":{"treeView":{"notify":{"dispatch":true}},"textView":{"notify":{"dispatch":true}}},"actions":{"cloneTemplate":{"ifAllOf":["mainTemplate"],"ifKeyIn":["noshadow","waitToInit"]},"doTemplMount":{"ifAllOf":["clonedTemplate","transform"],"ifKeyIn":["waitToInit"],"async":true}}}}'>
 <template be-active>
-    <script data-version=0.0.51 id=be-loaded/be-loaded.js></script>
-    <script data-version=0.0.101 id=be-observant/be-observant.js></script>
-    <script data-version=0.0.64 id=be-switched/be-switched.js></script>
-    <script data-version=0.0.70 id=xtal-side-nav/xtal-side-nav.js></script>
-    <script data-version=0.0.33 id=be-transformative/be-transformative.js></script>
-    <script data-version=0.0.89 id=be-deslotted/be-deslotted.js></script>
-    <script data-version=0.0.141 id=xtal-editor/xtal-editor-field.js></script>
+    <script data-version=0.0.51  id=be-loaded/be-loaded.js></script>
+    <!-- <script data-version=0.0.101 id=be-observant/be-observant.js></script> -->
+    <script data-version=0.0.64  id=be-switched/be-switched.js></script>
+    <!-- <script data-version=0.0.43  id=be-intersectional/be-intersectional.js></script> -->
+    <script data-version=0.0.70  id=xtal-side-nav/xtal-side-nav.js></script>
+    <script data-version=0.0.33  id=be-transformative/be-transformative.js></script>
+    <!-- <script data-version=0.0.24  id=be-deslotted/be-deslotted.js></script> -->
+    <!-- <script data-version=0.0.95  id=xtal-tree/xtal-tree.js></script> -->
+    <!-- <script data-version=0.0.53  id=xtal-vlist/xtal-vlist.js></script> -->
+    <!-- <script data-version=0.0.5   id=be-channeling/be-channeling.js></script> -->
 </template>
 <style be-loaded='{"fallback":"https://cdn.jsdelivr.net/npm/xtal-editor@0.0.140/theme.css","preloadRef":"xtal-editor/theme.css","removeStyle":true}'>
 header,xtal-editor-field{
@@ -44,8 +47,213 @@ header,xtal-editor-field{
 </header>
 <!-- Tree View -->
 <template be-switched='{"if":".treeView"}'>
-    <xtal-editor-field itemscope be-observant='{"value":".value","key":{"ocoho":"xtal-editor","onSet":"key","vft":".key"},"readOnly":".readOnly","stringFilter":".stringFilter"}'be-noticed='{"download-href-changed":{"prop":"downloadHref","vft":"downloadHref","doInit":true},"value:onSet":{"prop":"editedValue","vft":"value"}}' >
-    </xtal-editor-field>
+    
+    <xtal-tree id-path=path be-observant='{"objectGraph":{"onSet":"value","vft":"value","parseValAs":"object"}}'></xtal-tree>
+    <xtal-vlist 
+        style="height:600px;width:100%;" 
+        page-size="10" 
+        id="vlist"
+        min-item-height='19.5'
+        be-observant='{"list":{"observe":"xtal-tree","vft":"viewableNodes"}}'be-channeling='[{"eventFilter":"click","toNearestUpMatch":"xtal-tree","vfe":"path.0.parentElement.dataset.path","prop":"toggledNodePath","composedPathMatch":"button.expander"},{"eventFilter":"click","toNearestUpMatch":"xtal-tree","vfe":"path.0","prop":"editedNode","composedPathMatch":"button.adder"},{"eventFilter":"click","toNearestUpMatch":"xtal-tree","vfe":"path.0","prop":"newNode","composedPathMatch":"button.adder"},{"eventFilter":"click","toNearestUpMatch":"xtal-tree","vfe":"path.0","composedPathMatch":"button.delete","prop":"deleteNode"},{"eventFilter":"click","toNearestUpMatch":"xtal-tree","vfe":"path.0","composedPathMatch":"button.copy","prop":"copyNodeToClipboard"},{"eventFilter":"click","toNearestUpMatch":"xtal-tree","vfe":"path.0","composedPathMatch":"button.expand-all","prop":"expandAllNode"},{"eventFilter":"click","toNearestUpMatch":"xtal-tree","vfe":"path.0","composedPathMatch":"button.collapse-all","prop":"collapseAllNode"}]'
+        row-transform='{"div":[{},{},{"data-path":"path"}],"div.field":[{},{},{"style":"marginStyle"}],"keyClasses":[{"textContent":"name"},{},{"data-type":"type","for":"path"}],"valueClasses":[{"value":"asString","name":"path","id":"path"},{},{"readonly":"hasChildren"}],".delete,.copy,.expand-all":[{"name":"path","id":"path"}],"expanderParts":[true,{"if":"open"},["-"],["+"]],"buttonElements":[{},{},{"data-children":"hasChildren"}],".adder-buttons,.exp-collapse-buttons":[{},{},{"data-children":"hasChildren"}],".adder-template,.exp-coll-template":[{".beDecorated.intersectional.host":"."}]}'row-intersectional-settings='{"rootClosest":".scroller","options":{"rootMargin":"300px","threshold":0}}'
+    >
+       <template slot=row>
+            <div class=field data-readonly part=field itemscope be-observant='{"data-readonly":{"observeProp":"readOnly","vft":"readOnly","as":"bool-attr"}}'>
+                <div class=text-editing>
+                    <button class="expander" part=expander>.</button>
+                    <label part=key class=key></label>
+                    <input arial-label=value class=value part=value>
+                </div>
+                <div class=buttons>
+                    <section class=adder-buttons  part=adder-buttons >
+                        <template class=adder-template be-intersectional='{
+                            "transform": {
+                                "button": [{"name": "path"}, {}, {}]
+                            }
+                        }'>
+                                <button part=object-adder class="object adder" value=object>+object</button>
+                                <button part=string-adder class="string adder" value=string>+string</button>
+                                <button part=bool-adder class="bool adder" value=bool>+bool</button>
+                                <button part=number-adder class="number adder" value=number>+number</button>
+                                <button part=arr-adder class="arr adder" value=arr>+array</button>
+                        </template>
+                    </section>
+                    <section class=exp-collapse-buttons>
+                        <template class=exp-coll-template be-intersectional='{
+                                "transform": {
+                                    "button": [{"name": "path"}, {}, {}]
+                                }
+                            }'>
+                                <button class="action expand-all" aria-label="expand all" title="expand all">&nbsp;</button>
+                                <button class="action collapse-all" aria-label="collapse all" title="collapse all">&nbsp;</button>
+                        </template>
+                    </section>
+                    <section class=other-buttons>
+                        <button class="action copy" aria-label="copy" title="copy">&nbsp;</button>
+                    </section>
+                    <section class=delete-button>
+                        <button class="action delete" aria-label="delete" title="delete">&times;</button>
+                    </section>
+                </div>
+            </div>
+        </template>
+        <template slot="style">
+            <style>
+                :host{
+                    --obj-key-bg: #FFD4B8;
+                    --obj-key-color: #000000;
+                    --str-key-bg: #B8FFBB;
+                    --str-key-color: #000000;
+                    --num-key-bg: #BCD3DC;
+                    --num-key-color: #000000;
+                    --bool-key-bg: #B1C639;
+                    --array-key-bg: #AAC7E4;
+                    --array-key-color: #000000;
+                    --obj-even-level-editor-bg: #F1E090;
+                    --obj-odd-level-editor-bg: #FFEFCC;
+                    --array-even-level-editor-bg: #A9DBDD;
+                    --array-odd-level-editor-bg: #D9DBDD;
+                    --obj-adder-bg: #C15000;
+                    --string-adder-bg: #007408;
+                    --bool-adder-bg: #516600;
+                    --num-adder-bg:#497B8D;
+                    --arr-adder-bg: #2d5b89;
+                }
+                .field{
+                    display: flex;
+                    flex-direction: row;
+                }
+                .rowContainer{
+                    background: #121212;
+                }
+                .expander{
+                    width: fit-content;
+                    height: fit-content;
+                    padding-left: 0px;
+                    padding-right: 0px;
+                    padding-top: 2px;
+                    width:25px;
+                }
+                /*
+                TODO:  make this a container query
+                */
+                @media only screen and (max-width: 700px) {
+                    .field{
+                        flex-direction: column;
+                    }
+                }
+                label.key {
+                    -webkit-border-radius: 5px;
+                    -moz-border-radius: 5px;
+                    border-radius: 5px;
+                    margin: 1px;
+                    padding: 3px;
+                    height: fit-content;
+                }
+                label.key::after{
+                    content: ": ";
+                }
+                button.expander{
+                    display:none;
+                }
+                button.expander[data-children]{
+                    display:inline;
+                    margin: 1px;
+                }
+                .value{
+                    background-color: #ECF3C3;
+                    /* width: 100%; */
+                    flex-grow:5;
+                }
+                .text-editing{
+                    display:flex;
+                    flex-direction: row;
+                    flex-basis: 100%;
+                }
+                .text-editing .key[data-type="string"]{
+                    background-color: var(--str-key-bg);
+                    color: var(--str-key-color);
+                }
+                .text-editing .key[data-type="number"]{
+                    background-color: var(--num-key-bg);
+                    color: var(--num-key-color);
+                }
+                .text-editing .key[data-type="array"]{
+                    background-color: var(--array-key-bg);
+                    color: var(--array-key-color);
+                }
+                .text-editing .key[data-type="object"]{
+                    background-color: var(--obj-key-bg);
+                    color: var(--obj-key-color);
+                }
+                .text-editing .key[data-type="boolean"]{
+                    background-color: var(--bool-key-bg);
+                }
+                section,div.buttons{
+                    display:flex;
+                    flex-direction: row;
+                }
+                section.adder-buttons{
+                    display:none;
+                }
+                section.adder-buttons[data-children]{
+                    display:flex;
+                    width:240px;
+                }
+                div.field[data-readonly] section.adder-buttons[data-children]{
+                    display:none;
+                }
+                section.exp-collapse-buttons{
+                    display:none;
+                }
+                section.exp-collapse-buttons[data-children]{
+                    display:flex;
+                    width:40px;
+                }
+                .action{
+                    background-repeat:no-repeat;
+                    background-position-y:center;
+                    height: 22px;
+                }
+                .object.adder{
+                    background-color: var(--obj-adder-bg);
+                }
+                .string.adder{
+                    background-color:var(--string-adder-bg);
+                }
+                .bool.adder{
+                    background-color: var(--bool-adder-bg);
+                }
+                .number.adder{
+                    background-color: var(--num-adder-bg);
+                }
+                .arr.adder{
+                    background-color: var(--arr-adder-bg);
+                }
+                .adder{
+                    color: white;
+                    text-shadow:1px 1px 1px black;
+                    border-radius: 5px;
+                    padding: 2px;
+                    margin: 1px;
+                    border: none;
+                }
+
+                .expand-all{
+                    background-image: url(https://cdn.jsdelivr.net/npm/xtal-editor/src/arrows-expand.svg);
+                    width: 20px;
+                }
+                .collapse-all{
+                    background-image: url(https://cdn.jsdelivr.net/npm/xtal-editor/src/arrows-collapse.svg);
+                    width: 20px;
+                }
+                .copy{
+                    background-image: url(https://cdn.jsdelivr.net/npm/xtal-editor/src/copy.svg);
+                }
+            </style>
+        </template>
+    </xtal-vlist>
+
 </template>
 <!-- Text View -->
 <template be-switched='{"if":{"onSet":"textView","vft":"textView"}}'>
