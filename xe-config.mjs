@@ -367,6 +367,9 @@ header,xtal-editor-field{
                     display:flex;
                     width:40px;
                 }
+                section{
+                    align-items: center;
+                }
                 .action{
                     background-repeat:no-repeat;
                     background-position-y:center;
