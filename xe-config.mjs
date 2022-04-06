@@ -306,6 +306,7 @@ header,xtal-editor-field{
                     margin: 1px;
                     padding: 3px;
                     height: fit-content;
+                    width:175px;
                 }
                 label.key::after{
                     content: ": ";
