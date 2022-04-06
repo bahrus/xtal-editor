@@ -4,7 +4,7 @@ import('be-active/be-active.js');
 document.body.insertAdjacentHTML('beforeend', `<template be-definitive='{"config":{"tagName":"xtal-editor","propDefaults":{"readOnly":false,"value":"","key":"","treeView":true,"textView":false,"downloadHref":"","editedValue":"","stringFilter":""},"propInfo":{"treeView":{"notify":{"dispatch":true}},"textView":{"notify":{"dispatch":true}}},"actions":{"cloneTemplate":{"ifAllOf":["mainTemplate"],"ifKeyIn":["noshadow","waitToInit"]},"doTemplMount":{"ifAllOf":["clonedTemplate","transform"],"ifKeyIn":["waitToInit"],"async":true}}}}'>
 <template be-active>
     <script data-version=0.0.51  id=be-loaded/be-loaded.js></script>
-    <!-- <script data-version=0.0.101 id=be-observant/be-observant.js></script> -->
+    <script data-version=0.0.106 id=be-observant/be-observant.js></script>
     <script data-version=0.0.64  id=be-switched/be-switched.js></script>
     <!-- <script data-version=0.0.43  id=be-intersectional/be-intersectional.js></script> -->
     <script data-version=0.0.70  id=xtal-side-nav/xtal-side-nav.js></script>

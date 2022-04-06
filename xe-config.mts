@@ -44,7 +44,7 @@ const commonChannel: Partial<IChannel> = {
 const innerHTML = html`
 <template be-active>
     <script data-version=0.0.51  id=be-loaded/be-loaded.js></script>
-    <!-- <script data-version=0.0.101 id=be-observant/be-observant.js></script> -->
+    <script data-version=0.0.106 id=be-observant/be-observant.js></script>
     <script data-version=0.0.64  id=be-switched/be-switched.js></script>
     <!-- <script data-version=0.0.43  id=be-intersectional/be-intersectional.js></script> -->
     <script data-version=0.0.70  id=xtal-side-nav/xtal-side-nav.js></script>
