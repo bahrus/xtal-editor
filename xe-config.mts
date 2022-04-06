@@ -49,8 +49,8 @@ const innerHTML = html`
     <script data-version=0.0.44  id=be-intersectional/be-intersectional.js></script>
     <script data-version=0.0.70  id=xtal-side-nav/xtal-side-nav.js></script>
     <script data-version=0.0.33  id=be-transformative/be-transformative.js></script>
-    <!-- <script data-version=0.0.24  id=be-deslotted/be-deslotted.js></script> -->
-    <!-- <script data-version=0.0.95  id=xtal-tree/xtal-tree.js></script> -->
+    <script data-version=0.0.24  id=be-deslotted/be-deslotted.js></script>
+    <script data-version=0.0.95  id=xtal-tree/xtal-tree.js></script>
     <!-- <script data-version=0.0.53  id=xtal-vlist/xtal-vlist.js></script> -->
     <!-- <script data-version=0.0.5   id=be-channeling/be-channeling.js></script> -->
 </template>
