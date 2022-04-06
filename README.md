@@ -71,4 +71,13 @@ To run locally (instructions may vary depending on OS):
 6.  Issue command "npm install"
 7.  When step 6 is completed, issue command "npm run start".
 
+TODO:
+
+1.  Download link not working
+2.  Adding nodes doesn't adjust node expander status
+3.  html view no longer working
+4.  test search
+5.  
+
+
 
