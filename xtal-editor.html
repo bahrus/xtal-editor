@@ -3,23 +3,23 @@
     <!---->
     <template shadowroot="open">
         <template be-active>
-            <script data-version=0.0.22 id="be-importing/be-importing.js"></script>
-            <script data-version=0.0.42 id="be-definitive/be-definitive.js" data-when=be-importing></script>
+            <script data-version=0.0.23 id="be-importing/be-importing.js"></script>
+            <script data-version=0.0.43 id="be-definitive/be-definitive.js" data-when=be-importing></script>
             
             
         </template>
         
 <template be-active>
-    <script data-version=0.0.51  id=be-loaded/be-loaded.js></script>
-    <script data-version=0.0.106 id=be-observant/be-observant.js></script>
-    <script data-version=0.0.64  id=be-switched/be-switched.js></script>
-    <script data-version=0.0.44  id=be-intersectional/be-intersectional.js></script>
+    <script data-version=0.0.52  id=be-loaded/be-loaded.js></script>
+    <script data-version=0.0.109 id=be-observant/be-observant.js></script>
+    <script data-version=0.0.65  id=be-switched/be-switched.js></script>
+    <script data-version=0.0.45  id=be-intersectional/be-intersectional.js></script>
     <script data-version=0.0.70  id=xtal-side-nav/xtal-side-nav.js></script>
-    <script data-version=0.0.33  id=be-transformative/be-transformative.js></script>
-    <script data-version=0.0.24  id=be-deslotted/be-deslotted.js></script>
-    <script data-version=0.0.95  id=xtal-tree/xtal-tree.js></script>
-    <script data-version=0.0.53  id=xtal-vlist/xtal-vlist.js></script>
-    <script data-version=0.0.5   id=be-channeling/be-channeling.js></script>
+    <script data-version=0.0.25  id=be-transformative/be-transformative.js></script>
+    <script data-version=0.0.25  id=be-deslotted/be-deslotted.js></script>
+    <script data-version=0.0.128  id=xtal-tree/xtal-tree.js></script>
+    <script data-version=0.0.54  id=xtal-vlist/xtal-vlist.js></script>
+    <script data-version=0.0.8   id=be-channeling/be-channeling.js></script>
 </template>
 <style be-loaded='{"fallback":"https://cdn.jsdelivr.net/npm/xtal-editor@0.0.140/theme.css","preloadRef":"xtal-editor/theme.css","removeStyle":true}'>
 header,xtal-editor-field{
@@ -65,7 +65,7 @@ header,xtal-editor-field{
         row-transform='{"div":[{},{},{"data-path":"path"}],"div.field":[{},{},{"style":"marginStyle"}],"keyClasses":[{"textContent":"name"},{},{"data-type":"type","for":"path"}],"valueClasses":[{"value":"asString","name":"path","id":"path"},{},{"readonly":"hasChildren"}],".delete,.copy,.expand-all":[{"name":"path","id":"path"}],"expanderParts":[true,{"if":"open"},["-"],["+"]],"buttonElements":[{},{},{"data-children":"hasChildren"}],".adder-buttons,.exp-collapse-buttons":[{},{},{"data-children":"hasChildren"}],".adder-template,.exp-coll-template":[{".beDecorated.intersectional.host":"."}]}'row-intersectional-settings='{"rootClosest":".scroller","options":{"rootMargin":"300px","threshold":0}}'
     >
        <template slot=row>
-            <div class=field data-readonly part=field itemscope be-observant='{"data-readonly":{"observeProp":"readOnly","vft":"readOnly","as":"bool-attr"}}'>
+            <div class=field data-readonly part=field itemscope be-observant='{"data-readonly":{"observeHostProp":"readOnly","vft":"readOnly","as":"bool-attr"}}'>
                 <div class=text-editing>
                     <button class="expander" part=expander>.</button>
                     <label part=key class=key></label>
@@ -277,7 +277,7 @@ header,xtal-editor-field{
 <script type=module>
     if(customElements.get('be-active') === undefined){
         import('be-active/be-active.js').catch(err => {
-            import('https://esm.run/be-active@0.0.27/be-active.js');
+            import('https://esm.run/be-active@0.0.28/be-active.js');
         });
     }
 </script>

@@ -37,16 +37,16 @@ const commonChannel = {
 };
 const innerHTML = html `
 <template be-active>
-    <script data-version=0.0.51  id=be-loaded/be-loaded.js></script>
-    <script data-version=0.0.106 id=be-observant/be-observant.js></script>
-    <script data-version=0.0.64  id=be-switched/be-switched.js></script>
-    <script data-version=0.0.44  id=be-intersectional/be-intersectional.js></script>
+    <script data-version=0.0.52  id=be-loaded/be-loaded.js></script>
+    <script data-version=0.0.109 id=be-observant/be-observant.js></script>
+    <script data-version=0.0.65  id=be-switched/be-switched.js></script>
+    <script data-version=0.0.45  id=be-intersectional/be-intersectional.js></script>
     <script data-version=0.0.70  id=xtal-side-nav/xtal-side-nav.js></script>
-    <script data-version=0.0.33  id=be-transformative/be-transformative.js></script>
-    <script data-version=0.0.24  id=be-deslotted/be-deslotted.js></script>
-    <script data-version=0.0.95  id=xtal-tree/xtal-tree.js></script>
-    <script data-version=0.0.53  id=xtal-vlist/xtal-vlist.js></script>
-    <script data-version=0.0.5   id=be-channeling/be-channeling.js></script>
+    <script data-version=0.0.25  id=be-transformative/be-transformative.js></script>
+    <script data-version=0.0.25  id=be-deslotted/be-deslotted.js></script>
+    <script data-version=0.0.128  id=xtal-tree/xtal-tree.js></script>
+    <script data-version=0.0.54  id=xtal-vlist/xtal-vlist.js></script>
+    <script data-version=0.0.8   id=be-channeling/be-channeling.js></script>
 </template>
 <style ${{
     beLoaded: {
@@ -210,7 +210,7 @@ header,xtal-editor-field{
             <div class=field data-readonly part=field itemscope ${{
     beObservant: {
         'data-readonly': {
-            observeProp: 'readOnly',
+            observeHostProp: 'readOnly',
             vft: 'readOnly',
             as: 'bool-attr'
         }
