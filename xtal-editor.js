@@ -26,9 +26,7 @@ header,xtal-editor-field{
         <button class="selector text-view-selector" part=text-view-selector be-transformative='{"click":{"transform":{":host":[{"treeView":false,"textView":true}],"treeViewSelectorClasses":[{},{},{".inactive":false}],"textViewSelectorClasses":[{},{},{".inactive":true}]}}}'>Text View</button>
         <button class="selector tree-view-selector inactive" part=tree-view-selector be-transformative='{"click":{"transform":{":host":[{"treeView":true,"textView":false}],"treeViewSelectorClasses":[{},{},{".inactive":true}],"textViewSelectorClasses":[{},{},{".inactive":false}]}}}'>Tree View</button>
         <!-- TODO:  set download property dynamically -->
-        <a class=download part=download download="file.json" be-observant='{
-            "href": ".downloadHref"
-        }'>
+        <a class=download part=download download="file.json" be-observant='{"href":{"observe":"xtal-tree","onSet":"downloadHref","vft":"downloadHref"}}'>
             <svg viewBox="0 0 24 24" style="width:16.25px;height:16.25px">
                 <g color="rgb(29, 155, 240)">
                     <path stroke="currentcolor" d="M11.96 14.945c-.067 0-.136-.01-.203-.027-1.13-.318-2.097-.986-2.795-1.932-.832-1.125-1.176-2.508-.968-3.893s.942-2.605 2.068-3.438l3.53-2.608c2.322-1.716 5.61-1.224 7.33 1.1.83 1.127 1.175 2.51.967 3.895s-.943 2.605-2.07 3.438l-1.48 1.094c-.333.246-.804.175-1.05-.158-.246-.334-.176-.804.158-1.05l1.48-1.095c.803-.592 1.327-1.463 1.476-2.45.148-.988-.098-1.975-.69-2.778-1.225-1.656-3.572-2.01-5.23-.784l-3.53 2.608c-.802.593-1.326 1.464-1.475 2.45-.15.99.097 1.975.69 2.778.498.675 1.187 1.15 1.992 1.377.4.114.633.528.52.928-.092.33-.394.547-.722.547z"></path>
@@ -48,8 +46,6 @@ header,xtal-editor-field{
 </header>
 <!-- Tree View -->
 <template be-switched='{"if":".treeView"}'>
-    
-
     <xtal-vlist 
         style="height:600px;width:100%;" 
         page-size="10" 

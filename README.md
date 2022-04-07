@@ -73,11 +73,10 @@ To run locally (instructions may vary depending on OS):
 
 TODO:
 
-1.  Download link not working
-2.  Adding nodes doesn't adjust node expander status
-3.  html view no longer working
-4.  test search
-5.  animation effect of switching to tree view
+1.  test search
+2.  animation effect of switching to tree view
+3.  Adding nodes doesn't adjust node expander status
+4.  html view no longer working 
 
 
 
