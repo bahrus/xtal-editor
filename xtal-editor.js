@@ -4,6 +4,7 @@ import('be-active/be-active.js');
 document.body.insertAdjacentHTML('beforeend', `<template be-definitive='{"config":{"tagName":"xtal-editor","propDefaults":{"readOnly":false,"value":"","key":"","treeView":true,"textView":false,"downloadHref":"","editedValue":"","stringFilter":""},"propInfo":{"treeView":{"notify":{"dispatch":true}},"textView":{"notify":{"dispatch":true}}},"actions":{"cloneTemplate":{"ifAllOf":["mainTemplate"],"ifKeyIn":["noshadow","waitToInit"]},"doTemplMount":{"ifAllOf":["clonedTemplate","transform"],"ifKeyIn":["waitToInit"],"async":true}}}}'>
 <template be-active>
     <script data-version=0.0.52  id=be-loaded/be-loaded.js></script>
+    <script data-version=0.0.58  id=be-noticed/be-noticed.js></script>
     <script data-version=0.0.109 id=be-observant/be-observant.js></script>
     <script data-version=0.0.65  id=be-switched/be-switched.js></script>
     <script data-version=0.0.45  id=be-intersectional/be-intersectional.js></script>
@@ -42,7 +43,7 @@ header,xtal-editor-field{
         
 
     </h1>
-    <label part=search-label class=search-label>Search:  <input part=search-input type=search be-noticed='{"input":{"prop":"stringFilter"}}'></label>
+    <label part=search-label class=search-label>Search:  <input part=search-input type=search be-noticed='{"input":{"toNearestUpMatch":"xtal-tree","prop":"searchString","vft":"value","debug":true}}'></label>
 </header>
 <!-- Tree View -->
 <template be-switched='{"if":".treeView"}'>

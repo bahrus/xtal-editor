@@ -44,6 +44,7 @@ const commonChannel: Partial<IChannel> = {
 const innerHTML = html`
 <template be-active>
     <script data-version=0.0.52  id=be-loaded/be-loaded.js></script>
+    <script data-version=0.0.58  id=be-noticed/be-noticed.js></script>
     <script data-version=0.0.109 id=be-observant/be-observant.js></script>
     <script data-version=0.0.65  id=be-switched/be-switched.js></script>
     <script data-version=0.0.45  id=be-intersectional/be-intersectional.js></script>
@@ -136,7 +137,10 @@ header,xtal-editor-field{
     <label part=search-label class=search-label>Search:  <input part=search-input type=search ${{
             beNoticed: {
                 input: {
-                    prop: "stringFilter",
+                    toNearestUpMatch: 'xtal-tree',
+                    prop: "searchString",
+                    vft: "value",
+                    debug: true
                 }
             }
         } as mib}></label>
