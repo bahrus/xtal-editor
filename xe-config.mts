@@ -45,13 +45,13 @@ const innerHTML = html`
 <template be-active>
     <script data-version=0.0.52  id=be-loaded/be-loaded.js></script>
     <script data-version=0.0.58  id=be-noticed/be-noticed.js></script>
-    <script data-version=0.0.109 id=be-observant/be-observant.js></script>
+    <script data-version=0.0.110 id=be-observant/be-observant.js></script>
     <script data-version=0.0.65  id=be-switched/be-switched.js></script>
     <script data-version=0.0.45  id=be-intersectional/be-intersectional.js></script>
-    <script data-version=0.0.70  id=xtal-side-nav/xtal-side-nav.js></script>
-    <script data-version=0.0.25  id=be-transformative/be-transformative.js></script>
+    <script data-version=0.0.71  id=xtal-side-nav/xtal-side-nav.js></script>
+    <script data-version=0.0.34  id=be-transformative/be-transformative.js></script>
     <script data-version=0.0.25  id=be-deslotted/be-deslotted.js></script>
-    <script data-version=0.0.128  id=xtal-tree/xtal-tree.js></script>
+    <script data-version=0.0.130  id=xtal-tree/xtal-tree.js></script>
     <script data-version=0.0.54  id=xtal-vlist/xtal-vlist.js></script>
     <script data-version=0.0.8   id=be-channeling/be-channeling.js></script>
 </template>
