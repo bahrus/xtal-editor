@@ -77,7 +77,7 @@ TODO:
 2.  Adding nodes doesn't adjust node expander status
 3.  html view no longer working
 4.  test search
-5.  
+5.  animation effect of switching to tree view
 
 
 

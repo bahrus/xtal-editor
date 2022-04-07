@@ -27,6 +27,7 @@ header,xtal-editor-field{
 }
 </style>
 <slot name=initVal be-deslotted='["value"]'></slot>
+<xtal-tree id-path=path be-observant='{"objectGraph":{"onSet":"value","vft":"value","parseValAs":"object"}}'></xtal-tree>
 <header part=header>
     <xtal-side-nav>
         <button class="selector text-view-selector" part=text-view-selector be-transformative='{"click":{"transform":{":host":[{"treeView":false,"textView":true}],"treeViewSelectorClasses":[{},{},{".inactive":false}],"textViewSelectorClasses":[{},{},{".inactive":true}]}}}'>Text View</button>
@@ -55,7 +56,7 @@ header,xtal-editor-field{
 <!-- Tree View -->
 <template be-switched='{"if":".treeView"}'>
     
-    <xtal-tree id-path=path be-observant='{"objectGraph":{"onSet":"value","vft":"value","parseValAs":"object"}}'></xtal-tree>
+
     <xtal-vlist 
         style="height:600px;width:100%;" 
         page-size="10" 

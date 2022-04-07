@@ -66,6 +66,15 @@ header,xtal-editor-field{
 }
 </style>
 <slot name=initVal be-deslotted='["value"]'></slot>
+<xtal-tree id-path=path ${{
+        beObservant:{
+            objectGraph:{
+                onSet: 'value',
+                vft: 'value',
+                parseValAs: 'object',
+            }
+        }
+    } as mib}></xtal-tree>
 <header part=header>
     <xtal-side-nav>
         <button class="selector text-view-selector" part=text-view-selector ${{
@@ -133,16 +142,7 @@ header,xtal-editor-field{
     }
 } as mib}>
     
-    <xtal-tree id-path=path ${{
-        beObservant:{
-            //objectGraph: ".value"
-            objectGraph:{
-                onSet: 'value',
-                vft: 'value',
-                parseValAs: 'object',
-            }
-        }
-    } as mib}></xtal-tree>
+
     <xtal-vlist 
         style="height:600px;width:100%;" 
         page-size="10" 
