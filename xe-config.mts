@@ -169,8 +169,9 @@ header,xtal-editor-field{
                 },
                 {
                     ...commonChannel,
+                    eventFilter: "input",
                     prop: "editedNode",
-                    composedPathMatch: "button.adder",
+                    composedPathMatch: "input.value",
                 },
                 {
                     ...commonChannel,
