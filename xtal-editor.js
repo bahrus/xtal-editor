@@ -2,19 +2,19 @@ import('be-definitive/be-definitive.js');
 import('be-active/be-active.js');
 
 document.body.insertAdjacentHTML('beforeend', `<template be-definitive='{"config":{"tagName":"xtal-editor","propDefaults":{"readOnly":false,"value":"","key":"","treeView":true,"textView":false,"downloadHref":"","editedValue":"","stringFilter":""},"propInfo":{"treeView":{"notify":{"dispatch":true}},"textView":{"notify":{"dispatch":true}}},"actions":{"cloneTemplate":{"ifAllOf":["mainTemplate"],"ifKeyIn":["noshadow","waitToInit"]},"doTemplMount":{"ifAllOf":["clonedTemplate","transform"],"ifKeyIn":["waitToInit"],"async":true}}}}'>
-<template be-active>
+<!-- <template be-active>
     <script data-version=0.0.52  id=be-loaded/be-loaded.js></script>
-    <script data-version=0.0.58  id=be-noticed/be-noticed.js></script>
-    <script data-version=0.0.115 id=be-observant/be-observant.js></script>
+    <script data-version=0.0.60  id=be-noticed/be-noticed.js></script>
+    <script data-version=0.0.116 id=be-observant/be-observant.js></script>
     <script data-version=0.0.65  id=be-switched/be-switched.js></script>
-    <script data-version=0.0.45  id=be-intersectional/be-intersectional.js></script>
+    <script data-version=0.0.46  id=be-intersectional/be-intersectional.js></script>
     <script data-version=0.0.71  id=xtal-side-nav/xtal-side-nav.js></script>
-    <script data-version=0.0.34  id=be-transformative/be-transformative.js></script>
+    <script data-version=0.0.38  id=be-transformative/be-transformative.js></script>
     <script data-version=0.0.25  id=be-deslotted/be-deslotted.js></script>
     <script data-version=0.0.130  id=xtal-tree/xtal-tree.js></script>
     <script data-version=0.0.55  id=xtal-vlist/xtal-vlist.js></script>
     <script data-version=0.0.8   id=be-channeling/be-channeling.js></script>
-</template>
+</template> -->
 <style be-loaded='{"fallback":"https://cdn.jsdelivr.net/npm/xtal-editor@0.0.140/theme.css","preloadRef":"xtal-editor/theme.css","removeStyle":true}'>
 header,xtal-editor-field{
     display: none;
