@@ -45,7 +45,7 @@ const innerHTML = html`
 <template be-active>
     <script data-version=0.0.52  id=be-loaded/be-loaded.js></script>
     <script data-version=0.0.58  id=be-noticed/be-noticed.js></script>
-    <script data-version=0.0.110 id=be-observant/be-observant.js></script>
+    <script data-version=0.0.115 id=be-observant/be-observant.js></script>
     <script data-version=0.0.65  id=be-switched/be-switched.js></script>
     <script data-version=0.0.45  id=be-intersectional/be-intersectional.js></script>
     <script data-version=0.0.71  id=xtal-side-nav/xtal-side-nav.js></script>
