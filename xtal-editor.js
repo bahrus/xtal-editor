@@ -15,7 +15,7 @@ document.body.insertAdjacentHTML('beforeend', `<template be-definitive='{"config
     <script data-version=0.0.56  id=xtal-vlist/xtal-vlist.js></script>
     <script data-version=0.0.12   id=be-channeling/be-channeling.js></script>
 </template>
-<style be-loaded='{"fallback":"https://cdn.jsdelivr.net/npm/xtal-editor@0.0.140/theme.css","preloadRef":"xtal-editor/theme.css","removeStyle":true}'>
+<style be-loaded='{"fallback":"https://cdn.jsdelivr.net/npm/xtal-editor@0.0.146/theme.css","preloadRef":"xtal-editor/theme.css","removeStyle":true}'>
 header,xtal-editor-field{
     display: none;
 }
