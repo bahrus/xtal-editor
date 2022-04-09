@@ -30,8 +30,9 @@ header{
     animation-duration: 1s;
     animation-fill-mode: both;
 }
-.editor[is-observant],json-viewer {
+xtal-vlist,json-viewer {
     animation-name: fadeIn;
+    display:flex;
 }
 
 

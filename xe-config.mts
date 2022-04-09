@@ -151,7 +151,9 @@ header,xtal-editor-field{
         if: '.treeView',
     }
 } as mib}>
-    <xtal-vlist 
+    <xtal-vlist
+        part=xtal-vlist
+        class=animated 
         style="height:600px;width:100%;" 
         page-size="10" 
         id="vlist"

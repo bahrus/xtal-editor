@@ -47,7 +47,9 @@ header,xtal-editor-field{
 </header>
 <!-- Tree View -->
 <template be-switched='{"if":".treeView"}'>
-    <xtal-vlist 
+    <xtal-vlist
+        part=xtal-vlist
+        class=animated 
         style="height:600px;width:100%;" 
         page-size="10" 
         id="vlist"
