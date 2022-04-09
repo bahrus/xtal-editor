@@ -73,9 +73,8 @@ To run locally (instructions may vary depending on OS):
 
 TODO:
 
-1.  test search
-2.  animation effect of switching to tree view
-3.  Adding nodes doesn't adjust node expander status
+1.  animation effect of switching to tree view
+2.  Adding nodes doesn't adjust node expander status
 
 
 
