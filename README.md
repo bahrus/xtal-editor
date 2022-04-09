@@ -74,6 +74,7 @@ To run locally (instructions may vary depending on OS):
 TODO:
 
 1.  Adding nodes doesn't adjust node expander status
+2.  Issues with Firefox
 
 
 
