@@ -207,6 +207,7 @@ header,xtal-editor-field{
         ".adder-template,.exp-coll-template": [{ ".beDecorated.intersectional.host": "." }]
     },
     rowIntersectionalSettings: {
+        dumpOnExit: true,
         rootClosest: ".scroller",
         options: {
             "rootMargin": "300px",
