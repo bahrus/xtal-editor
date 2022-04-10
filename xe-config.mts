@@ -57,7 +57,7 @@ const innerHTML = html`
 </template>
 <style ${{
     beLoaded: {
-        fallback: 'https://cdn.jsdelivr.net/npm/xtal-editor@0.0.146/theme.css',
+        fallback: 'https://cdn.jsdelivr.net/npm/xtal-editor@0.0.150/theme.css',
         preloadRef: 'xtal-editor/theme.css',
         removeStyle: true,
     }

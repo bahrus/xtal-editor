@@ -92,8 +92,6 @@ xtal-side-nav::part(opener), xtal-side-nav::part(close-btn){
     font-size:12px;
 }
 xtal-side-nav::part(side-nav){
-    left: inherit;
-    top:initial;
     height: 40px;
     padding-top:20px;
     justify-content: space-evenly;
@@ -101,9 +99,12 @@ xtal-side-nav::part(side-nav){
 
 
 xtal-side-nav{
-    display: inline;
     --drawer-width:140px;
+    
 }
+/* xtal-side-nav::part(side-nave){
+    position: absolute;
+} */
 
 #collapse-all{
     background-image: url(https://cdn.jsdelivr.net/npm/xtal-editor/src/arrows-collapse.svg);
