@@ -37,17 +37,17 @@ const commonChannel = {
 };
 const innerHTML = html `
 <template be-active>
-    <script data-version=0.0.53  id=be-loaded/be-loaded.js></script>
-    <script data-version=0.0.61  id=be-noticed/be-noticed.js></script>
-    <script data-version=0.0.118 id=be-observant/be-observant.js></script>
-    <script data-version=0.0.66  id=be-switched/be-switched.js></script>
-    <script data-version=0.0.51  id=be-intersectional/be-intersectional.js></script>
-    <script data-version=0.0.76  id=xtal-side-nav/xtal-side-nav.js></script>
-    <script data-version=0.0.39  id=be-transformative/be-transformative.js></script>
-    <script data-version=0.0.26  id=be-deslotted/be-deslotted.js></script>
-    <script data-version=0.0.131  id=xtal-tree/xtal-tree.js></script>
-    <script data-version=0.0.56  id=xtal-vlist/xtal-vlist.js></script>
-    <script data-version=0.0.12   id=be-channeling/be-channeling.js></script>
+    <script data-version=0.0.54  id=be-loaded/be-loaded.js></script>
+    <script data-version=0.0.62  id=be-noticed/be-noticed.js></script>
+    <script data-version=0.0.119 id=be-observant/be-observant.js></script>
+    <script data-version=0.0.67  id=be-switched/be-switched.js></script>
+    <script data-version=0.0.52  id=be-intersectional/be-intersectional.js></script>
+    <script data-version=0.0.81  id=xtal-side-nav/xtal-side-nav.js></script>
+    <script data-version=0.0.40  id=be-transformative/be-transformative.js></script>
+    <script data-version=0.0.27  id=be-deslotted/be-deslotted.js></script>
+    <script data-version=0.0.132  id=xtal-tree/xtal-tree.js></script>
+    <script data-version=0.0.57  id=xtal-vlist/xtal-vlist.js></script>
+    <script data-version=0.0.13   id=be-channeling/be-channeling.js></script>
 </template>
 <style ${{
     beLoaded: {
