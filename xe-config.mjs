@@ -37,7 +37,7 @@ const commonChannel = {
 };
 const innerHTML = html `
 <template be-active>
-    <script data-version=0.0.54  id=be-loaded/be-loaded.js></script>
+    <script data-version=0.0.56  id=be-loaded/be-loaded.js></script>
     <script data-version=0.0.62  id=be-noticed/be-noticed.js></script>
     <script data-version=0.0.119 id=be-observant/be-observant.js></script>
     <script data-version=0.0.67  id=be-switched/be-switched.js></script>
