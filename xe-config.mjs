@@ -112,6 +112,11 @@ header,xtal-editor-field{
             </svg>
             Download
         </a>
+        <button part=object-adder class="object adder" value=object>+object</button>
+        <button part=string-adder class="string adder" value=string>+string</button>
+        <button part=bool-adder class="bool adder" value=bool>+bool</button>
+        <button part=number-adder class="number adder" value=number>+number</button>
+        <button part=arr-adder class="arr adder" value=arr>+array</button>
     </xtal-side-nav>
     <h1 part=title >
         <span ${{
@@ -155,6 +160,15 @@ header,xtal-editor-field{
             toNearestUpMatch: 'xtal-tree',
             prop: "collapseAll",
             val: true,
+        }
+    }
+}}>&nbsp;</button>
+        <button class="action copy" aria-label="copy" title="copy" name="" ${{
+    beNoticed: {
+        click: {
+            toNearestUpMatch: 'xtal-tree',
+            prop: 'copyNodeToClipboard',
+            vft: '.'
         }
     }
 }}>&nbsp;</button>
@@ -288,26 +302,7 @@ header,xtal-editor-field{
         </template>
         <template slot="style">
             <style>
-                :host{
-                    --obj-key-bg: #FFD4B8;
-                    --obj-key-color: #000000;
-                    --str-key-bg: #B8FFBB;
-                    --str-key-color: #000000;
-                    --num-key-bg: #BCD3DC;
-                    --num-key-color: #000000;
-                    --bool-key-bg: #B1C639;
-                    --array-key-bg: #AAC7E4;
-                    --array-key-color: #000000;
-                    --obj-even-level-editor-bg: #F1E090;
-                    --obj-odd-level-editor-bg: #FFEFCC;
-                    --array-even-level-editor-bg: #A9DBDD;
-                    --array-odd-level-editor-bg: #D9DBDD;
-                    --obj-adder-bg: #C15000;
-                    --string-adder-bg: #007408;
-                    --bool-adder-bg: #516600;
-                    --num-adder-bg:#497B8D;
-                    --arr-adder-bg: #2d5b89;
-                }
+
                 .field{
                     display: flex;
                     flex-direction: row;

@@ -6,6 +6,27 @@
     display:none;
 }
 
+:host{
+    --obj-key-bg: #FFD4B8;
+    --obj-key-color: #000000;
+    --str-key-bg: #B8FFBB;
+    --str-key-color: #000000;
+    --num-key-bg: #BCD3DC;
+    --num-key-color: #000000;
+    --bool-key-bg: #B1C639;
+    --array-key-bg: #AAC7E4;
+    --array-key-color: #000000;
+    --obj-even-level-editor-bg: #F1E090;
+    --obj-odd-level-editor-bg: #FFEFCC;
+    --array-even-level-editor-bg: #A9DBDD;
+    --array-odd-level-editor-bg: #D9DBDD;
+    --obj-adder-bg: #C15000;
+    --string-adder-bg: #007408;
+    --bool-adder-bg: #516600;
+    --num-adder-bg:#497B8D;
+    --arr-adder-bg: #2d5b89;
+}
+
 slot{
     display: none;
 }
@@ -34,7 +55,29 @@ xtal-vlist,json-viewer {
     animation-name: fadeIn;
     display:flex;
 }
-
+.object.adder{
+    background-color: var(--obj-adder-bg);
+}
+.string.adder{
+    background-color:var(--string-adder-bg);
+}
+.bool.adder{
+    background-color: var(--bool-adder-bg);
+}
+.number.adder{
+    background-color: var(--num-adder-bg);
+}
+.arr.adder{
+    background-color: var(--arr-adder-bg);
+}
+.adder{
+    color: white;
+    text-shadow:1px 1px 1px black;
+    border-radius: 5px;
+    padding: 2px;
+    margin: 1px;
+    border: none;
+}
 
 .selector{
     color: white;
@@ -92,7 +135,7 @@ xtal-side-nav::part(opener), xtal-side-nav::part(close-btn){
     font-size:12px;
 }
 xtal-side-nav::part(side-nav){
-    height: 40px;
+    height: 160px;
     padding-top:20px;
     justify-content: space-evenly;
 }
@@ -101,6 +144,12 @@ xtal-side-nav::part(side-nav){
 xtal-side-nav{
     --drawer-width:140px;
     
+}
+
+.action{
+    background-repeat:no-repeat;
+    background-position-y:center;
+    height: 22px;
 }
 
 .exp-coll{
@@ -114,6 +163,10 @@ xtal-side-nav{
 .collapse-all{
     background-image: url(https://cdn.jsdelivr.net/npm/xtal-editor/src/arrows-collapse.svg);
     width: 20px;
+}
+
+.copy{
+    background-image: url(https://cdn.jsdelivr.net/npm/xtal-editor/src/copy.svg);
 }
 
 
