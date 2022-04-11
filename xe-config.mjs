@@ -140,8 +140,24 @@ header,xtal-editor-field{
 }}>
     </label>
     <div class=exp-coll>
-        <button class="action expand-all" aria-label="expand all" title="expand all">&nbsp;</button>
-        <button class="action collapse-all" aria-label="collapse all" title="collapse all">&nbsp;</button>
+        <button class="action expand-all" aria-label="expand all" title="expand all" ${{
+    beNoticed: {
+        click: {
+            toNearestUpMatch: 'xtal-tree',
+            prop: "expandAll",
+            val: true,
+        }
+    }
+}}>&nbsp;</button>
+        <button class="action collapse-all" aria-label="collapse all" title="collapse all" ${{
+    beNoticed: {
+        click: {
+            toNearestUpMatch: 'xtal-tree',
+            prop: "collapseAll",
+            val: true,
+        }
+    }
+}}>&nbsp;</button>
     </div>
 </header>
 <!-- Tree View -->
