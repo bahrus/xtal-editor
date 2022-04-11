@@ -8,7 +8,8 @@
 
 Re-creation of [flexi-json](http://www.daviddurman.com/flexi-json-editor/jsoneditor.html), taking some liberties, but as a web component.
 
-## [Demo](https://codepen.io/bahrus/pen/eYgxzor)
+## [Demo](https://codepen.io/bahrus/pen/gOojgoP)
+
 ## Usage
 
 Locally:
@@ -37,29 +38,16 @@ Locally:
 
 ## [Reference API](https://bahrus.github.io/wc-info/cdn-base.html?npmPackage=xtal-editor@0.0.46)
 
-## CDN
-
-The script tag above can be replaced by:
+## Referencing via CDN
 
 ```html
-<script type=module src=https://unpkg.com/xtal-editor/src/xtal-editor.js?module></script>
-```
-
-or 
-
-```html
-<script type=module src=https://cdn.jsdelivr.net/npm/xtal-editor/dist/xtal-editor.js></script>
-```
-
-or
-
-```html
-<script type=module>
-import xtalEditor from 'https://cdn.skypack.dev/xtal-editor';
+<script type=module crossorigin>
+    import 'https://esm.run/xtal-editor@0.0.154';
 </script>
 ```
 
-## Installation
+
+## Running demos locally
 
 To run locally (instructions may vary depending on OS):
 
