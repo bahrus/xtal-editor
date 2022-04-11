@@ -71,9 +71,6 @@ To run locally (instructions may vary depending on OS):
 6.  Issue command "npm install"
 7.  When step 6 is completed, issue command "npm run start".
 
-TODO:
-
-1.  Issues with Firefox / Safari
 
 
 
