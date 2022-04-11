@@ -43,7 +43,12 @@ header,xtal-editor-field{
         
 
     </h1>
-    <label part=search-label class=search-label>Search:  <input part=search-input type=search be-noticed='{"input":{"toNearestUpMatch":"xtal-tree","prop":"searchString","vft":"value","debug":true}}'></label>
+    <label part=search-label class=search-label>Search:&nbsp;&nbsp;<input part=search-input type=search be-noticed='{"input":{"toNearestUpMatch":"xtal-tree","prop":"searchString","vft":"value","debug":true}}'>
+    </label>
+    <div class=exp-coll>
+        <button class="action expand-all" aria-label="expand all" title="expand all">&nbsp;</button>
+        <button class="action collapse-all" aria-label="collapse all" title="collapse all">&nbsp;</button>
+    </div>
 </header>
 <!-- Tree View -->
 <template be-switched='{"if":".treeView"}'>

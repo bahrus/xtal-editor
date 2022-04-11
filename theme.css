@@ -102,11 +102,16 @@ xtal-side-nav{
     --drawer-width:140px;
     
 }
-/* xtal-side-nav::part(side-nave){
-    position: absolute;
-} */
 
-#collapse-all{
+.exp-coll{
+    color-scheme: light;
+}
+
+.expand-all{
+    background-image: url(https://cdn.jsdelivr.net/npm/xtal-editor/src/arrows-expand.svg);
+    width: 20px;
+}
+.collapse-all{
     background-image: url(https://cdn.jsdelivr.net/npm/xtal-editor/src/arrows-collapse.svg);
     width: 20px;
 }

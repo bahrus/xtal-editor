@@ -128,7 +128,7 @@ header,xtal-editor-field{
         
 
     </h1>
-    <label part=search-label class=search-label>Search:  <input part=search-input type=search ${{
+    <label part=search-label class=search-label>Search:&nbsp;&nbsp;<input part=search-input type=search ${{
     beNoticed: {
         input: {
             toNearestUpMatch: 'xtal-tree',
@@ -137,7 +137,12 @@ header,xtal-editor-field{
             debug: true
         }
     }
-}}></label>
+}}>
+    </label>
+    <div class=exp-coll>
+        <button class="action expand-all" aria-label="expand all" title="expand all">&nbsp;</button>
+        <button class="action collapse-all" aria-label="collapse all" title="collapse all">&nbsp;</button>
+    </div>
 </header>
 <!-- Tree View -->
 <template ${{
