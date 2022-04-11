@@ -52,7 +52,7 @@ const innerHTML = html`
     <script data-version=0.0.40  id=be-transformative/be-transformative.js></script>
     <script data-version=0.0.27  id=be-deslotted/be-deslotted.js></script>
     <script data-version=0.0.132  id=xtal-tree/xtal-tree.js></script>
-    <script data-version=0.0.57  id=xtal-vlist/xtal-vlist.js></script>
+    <script data-version=0.0.58  id=xtal-vlist/xtal-vlist.js></script>
     <script data-version=0.0.13   id=be-channeling/be-channeling.js></script>
 </template>
 <style ${{
