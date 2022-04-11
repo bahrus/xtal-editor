@@ -10,6 +10,8 @@ Re-creation of [flexi-json](http://www.daviddurman.com/flexi-json-editor/jsonedi
 
 ## [Demo](https://codepen.io/bahrus/pen/gOojgoP)
 
+xtal-editor is able to scale somewhat better for large JSON objects as compared to other alternative editors.
+
 ## Usage
 
 Locally:
