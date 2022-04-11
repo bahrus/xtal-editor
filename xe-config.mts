@@ -118,11 +118,52 @@ header,xtal-editor-field{
             </svg>
             Download
         </a>
-        <button part=object-adder class="object adder" value=object>+object</button>
-        <button part=string-adder class="string adder" value=string>+string</button>
-        <button part=bool-adder class="bool adder" value=bool>+bool</button>
-        <button part=number-adder class="number adder" value=number>+number</button>
-        <button part=arr-adder class="arr adder" value=arr>+array</button>
+        <button part=object-adder class="object adder" value=object
+        name="" ${{
+            beNoticed:{
+                click: {
+                    toNearestUpMatch: 'xtal-tree',
+                    prop: 'newNode',
+                    vft: '.'
+                }
+            }
+        }}>+object</button>
+        <button part=string-adder class="string adder" value=string ${{
+            beNoticed:{
+                click: {
+                    toNearestUpMatch: 'xtal-tree',
+                    prop: 'newNode',
+                    vft: '.'
+                }
+            }
+        }}>+string</button>
+        <button part=bool-adder class="bool adder" value=bool ${{
+            beNoticed:{
+                click: {
+                    toNearestUpMatch: 'xtal-tree',
+                    prop: 'newNode',
+                    vft: '.'
+                }
+            }
+        }}>+bool</button>
+        <button part=number-adder class="number adder" value=number ${{
+            beNoticed:{
+                click: {
+                    toNearestUpMatch: 'xtal-tree',
+                    prop: 'newNode',
+                    vft: '.'
+                }
+            }
+        }}>+number</button>
+        <button part=arr-adder class="arr adder" value=arr ${{
+            beNoticed:{
+                click: {
+                    toNearestUpMatch: 'xtal-tree',
+                    prop: 'newNode',
+                    vft: '.'
+                }
+            }
+        }}>+array</button>
     </xtal-side-nav>
     <h1 part=title >
         <span ${{
