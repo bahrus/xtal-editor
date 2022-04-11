@@ -70,7 +70,7 @@ xtal-vlist,json-viewer {
 .arr.adder{
     background-color: var(--arr-adder-bg);
 }
-.adder{
+.adder,.selector{
     color: white;
     text-shadow:1px 1px 1px black;
     border-radius: 5px;
@@ -80,12 +80,6 @@ xtal-vlist,json-viewer {
 }
 
 .selector{
-    color: white;
-    text-shadow:1px 1px 1px black;
-    border-radius: 5px;
-    padding: 2;
-    border: none;
-    margin-left: 12px;
     background-color: var(--selector-bg);   
 }
 
