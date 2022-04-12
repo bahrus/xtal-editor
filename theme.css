@@ -63,6 +63,12 @@ xtal-vlist,json-viewer {
     display:flex;
     height:calc(100% - 24px);
 }
+xtal-vlist::part(scroller){
+    height:100%;
+}
+json-viewer{
+    overflow:hidden;
+}
 .object.adder{
     background-color: var(--obj-adder-bg);
 }
