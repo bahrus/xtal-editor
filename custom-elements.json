@@ -1,0 +1,134 @@
+{
+  "schemaVersion": "1.0.0",
+  "readme": "",
+  "modules": [
+    {
+      "kind": "javascript-module",
+      "path": "./xtal-editor.js",
+      "declarations": [
+        {
+          "tagName": "xtal-editor",
+          "name": "XtalEditorInfo",
+          "customElement": true,
+          "members": [
+            {
+              "kind": "field",
+              "name": "readOnly",
+              "description": "Indicates if the editor is in read-only mode."
+            },
+            {
+              "kind": "field",
+              "name": "value",
+              "description": "JSON formatted string to edit"
+            },
+            {
+              "kind": "field",
+              "name": "inputObj",
+              "description": "Already parsed JSON object to edit"
+            }
+          ],
+          "attributes": [
+            {
+              "name": "read-only",
+              "description": "Indicates if the editor is in read-only mode."
+            },
+            {
+              "name": "value",
+              "description": "JSON formatted string to edit"
+            },
+            {
+              "name": "input-obj",
+              "description": "Already parsed JSON object to edit"
+            }
+          ],
+          "cssParts": [
+            {
+              "name": "header",
+              "description": "Header Section"
+            },
+            {
+              "name": "side-nav",
+              "description": "Side Nav Popout"
+            },
+            {
+              "name": "menu",
+              "description": "Menu of commands"
+            },
+            {
+              "name": "text-view-selector",
+              "description": "Select Text View Button"
+            },
+            {
+              "name": "tree-view-selector",
+              "description": "Select Tree View Button"
+            },
+            {
+              "name": "download",
+              "description": "Download Button"
+            },
+            {
+              "name": "object-adder",
+              "description": "Object Adder"
+            },
+            {
+              "name": "string-adder",
+              "description": "String Adder"
+            },
+            {
+              "name": "bool-adder",
+              "description": "Bool Adder"
+            },
+            {
+              "name": "number-adder",
+              "description": "Number Adder"
+            },
+            {
+              "name": "arr-adder",
+              "description": "Array Adder"
+            },
+            {
+              "name": "title",
+              "description": "Title element"
+            },
+            {
+              "name": "search-label",
+              "description": "Search Label"
+            },
+            {
+              "name": "search-input",
+              "description": "Search Input"
+            },
+            {
+              "name": "expand-all",
+              "description": "Expand All Button"
+            },
+            {
+              "name": "collapse-all",
+              "description": "Collapse All Button"
+            },
+            {
+              "name": "copy",
+              "description": "Copy Button"
+            },
+            {
+              "name": "xtal-vlist",
+              "description": "xtal-vlist element"
+            }
+          ],
+          "slots": [
+            {
+              "name": "init-val",
+              "description": "Must be a form element with \"value\" property, such as input or textarea."
+            }
+          ],
+          "events": [
+            {
+              "name": "edited-value-changed",
+              "description": "Fires whenever an update to the object is committed."
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}
