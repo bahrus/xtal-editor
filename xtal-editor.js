@@ -20,8 +20,11 @@ header,xtal-editor-field{
     display: none;
 }
 </style>
+
+<main part=main>
 <slot name=init-val be-deslotted='["value"]'></slot>
 <xtal-tree id-path=path be-observant='[{"objectGraph":{"onSet":"value","vft":"value","parseValAs":"object"}},{"objectGraph":{"onSet":"inputObj","vft":"inputObj"}}]'be-noticed='{"updateCount:onSet":{"vft":"objectGraph","prop":"editedValue"}}'></xtal-tree>
+</div>
 <header part=header>
     <xtal-side-nav part=side-nav>
         <menu part=menu>
@@ -64,7 +67,7 @@ header,xtal-editor-field{
     <xtal-vlist
         part=xtal-vlist
         class=animated 
-        style="height:600px;width:100%;" 
+        style="width:100%;" 
         page-size="10" 
         id="vlist"
         min-item-height='19.5'
@@ -264,5 +267,6 @@ header,xtal-editor-field{
     </template>
     <json-viewer class=animated be-observant='{"object":{"vft":"value","parseValAs":"object"}}'></json-viewer>
 </template>
+</main>
 <be-hive></be-hive>
 </template>`);

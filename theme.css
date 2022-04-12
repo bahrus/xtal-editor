@@ -36,6 +36,13 @@ header{
     color-scheme: dark;
     color: white;
     background: #121212;
+    height: 24px;
+}
+
+main{
+    height:inherit;
+    display:flex;
+    flex-direction: column;
 }
 
 
@@ -54,6 +61,7 @@ header{
 xtal-vlist,json-viewer {
     animation-name: fadeIn;
     display:flex;
+    height:calc(100% - 24px);
 }
 .object.adder{
     background-color: var(--obj-adder-bg);
