@@ -4,8 +4,18 @@ import {SimpleWCInfo} from 'may-it-be/SimpleWCInfo';
 export type editType = 'string' | 'number' | 'boolean' | 'object' | 'array';
 
 export interface XtalEditorProps{
+    /**
+     * Indicates if the editor is in read-only mode.
+     */
     readOnly: boolean;
+    /**
+     * JSON formatted string to edit
+     */
     value: string;
+    /**
+     * Already parsed JSON object to edit
+     */
+    inputObj: any;
 }
 
 export interface XtalEditorActions{

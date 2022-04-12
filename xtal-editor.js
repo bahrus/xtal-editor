@@ -1,11 +1,11 @@
 import('be-definitive/be-definitive.js');
 import('be-active/be-active.js');
 
-document.body.insertAdjacentHTML('beforeend', `<template be-definitive='{"config":{"tagName":"xtal-editor","propDefaults":{"readOnly":false,"value":"","key":"","treeView":true,"textView":false,"downloadHref":"","editedValue":{},"stringFilter":"","transform":{"header":[{},{},{"data-read-only":"readOnly"}]}},"propInfo":{"editedValue":{"notify":{"dispatch":true}}},"actions":{"cloneTemplate":{"ifAllOf":["mainTemplate"],"ifKeyIn":["noshadow","waitToInit"]},"doTemplMount":{"ifAllOf":["clonedTemplate","transform"],"ifKeyIn":["waitToInit"],"async":true}}}}'>
+document.body.insertAdjacentHTML('beforeend', `<template be-definitive='{"config":{"tagName":"xtal-editor","propDefaults":{"readOnly":false,"key":"","treeView":true,"textView":false,"downloadHref":"","editedValue":{},"stringFilter":"","transform":{"header":[{},{},{"data-read-only":"readOnly"}]}},"propInfo":{"editedValue":{"notify":{"dispatch":true}},"inputObj":{"type":"Object"},"value":{"type":"String"}},"actions":{"cloneTemplate":{"ifAllOf":["mainTemplate"],"ifKeyIn":["noshadow","waitToInit"]},"doTemplMount":{"ifAllOf":["clonedTemplate","transform"],"ifKeyIn":["waitToInit"],"async":true}}}}'>
 <template be-active>
     <script data-version=0.0.56  id=be-loaded/be-loaded.js></script>
     <script data-version=0.0.62  id=be-noticed/be-noticed.js></script>
-    <script data-version=0.0.119 id=be-observant/be-observant.js></script>
+    <script data-version=0.0.120 id=be-observant/be-observant.js></script>
     <script data-version=0.0.67  id=be-switched/be-switched.js></script>
     <script data-version=0.0.52  id=be-intersectional/be-intersectional.js></script>
     <script data-version=0.0.81  id=xtal-side-nav/xtal-side-nav.js></script>
@@ -21,7 +21,7 @@ header,xtal-editor-field{
 }
 </style>
 <slot name=init-val be-deslotted='["value"]'></slot>
-<xtal-tree id-path=path be-observant='{"objectGraph":{"onSet":"value","vft":"value","parseValAs":"object"}}'be-noticed='{"updateCount:onSet":{"vft":"objectGraph","prop":"editedValue"}}'></xtal-tree>
+<xtal-tree id-path=path be-observant='[{"objectGraph":{"onSet":"value","vft":"value","parseValAs":"object"}},{"objectGraph":{"onSet":"inputObj","vft":"inputObj"}}]'be-noticed='{"updateCount:onSet":{"vft":"objectGraph","prop":"editedValue"}}'></xtal-tree>
 <header part=header>
     <xtal-side-nav part=side-nav>
         <menu part=menu>

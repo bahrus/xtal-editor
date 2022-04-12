@@ -13,19 +13,32 @@
           "members": [
             {
               "kind": "field",
-              "name": "readOnly"
+              "name": "readOnly",
+              "description": "Indicates if the editor is in read-only mode."
             },
             {
               "kind": "field",
-              "name": "value"
+              "name": "value",
+              "description": "JSON formatted string to edit"
+            },
+            {
+              "kind": "field",
+              "name": "inputObj",
+              "description": "Already parsed JSON object to edit"
             }
           ],
           "attributes": [
             {
-              "name": "read-only"
+              "name": "read-only",
+              "description": "Indicates if the editor is in read-only mode."
             },
             {
-              "name": "value"
+              "name": "value",
+              "description": "JSON formatted string to edit"
+            },
+            {
+              "name": "input-obj",
+              "description": "Already parsed JSON object to edit"
             }
           ],
           "cssParts": [

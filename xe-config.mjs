@@ -5,7 +5,6 @@ const beDefinitiveProps = {
         tagName: 'xtal-editor',
         propDefaults: {
             readOnly: false,
-            value: '',
             key: '',
             treeView: true,
             textView: false,
@@ -21,6 +20,12 @@ const beDefinitiveProps = {
                 notify: {
                     dispatch: true
                 }
+            },
+            inputObj: {
+                type: 'Object',
+            },
+            value: {
+                type: 'String',
             }
         },
         actions: {
@@ -37,7 +42,7 @@ const innerHTML = html `
 <template be-active>
     <script data-version=0.0.56  id=be-loaded/be-loaded.js></script>
     <script data-version=0.0.62  id=be-noticed/be-noticed.js></script>
-    <script data-version=0.0.119 id=be-observant/be-observant.js></script>
+    <script data-version=0.0.120 id=be-observant/be-observant.js></script>
     <script data-version=0.0.67  id=be-switched/be-switched.js></script>
     <script data-version=0.0.52  id=be-intersectional/be-intersectional.js></script>
     <script data-version=0.0.81  id=xtal-side-nav/xtal-side-nav.js></script>
@@ -60,13 +65,18 @@ header,xtal-editor-field{
 </style>
 <slot name=init-val be-deslotted='["value"]'></slot>
 <xtal-tree id-path=path ${{
-    beObservant: {
-        objectGraph: {
-            onSet: 'value',
-            vft: 'value',
-            parseValAs: 'object',
-        }
-    },
+    beObservant: [{
+            objectGraph: {
+                onSet: 'value',
+                vft: 'value',
+                parseValAs: 'object',
+            },
+        }, {
+            objectGraph: {
+                onSet: 'inputObj',
+                vft: 'inputObj',
+            }
+        }],
     beNoticed: {
         'updateCount:onSet': {
             vft: 'objectGraph',
