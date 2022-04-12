@@ -10,23 +10,18 @@ const beDefinitiveProps = {
             treeView: true,
             textView: false,
             downloadHref: '',
-            editedValue: '',
+            editedValue: {},
             stringFilter: '',
             transform: {
                 header: [{}, {}, { 'data-read-only': 'readOnly' }],
             }
         },
         propInfo: {
-            treeView: {
+            editedValue: {
                 notify: {
                     dispatch: true
                 }
-            },
-            textView: {
-                notify: {
-                    dispatch: true
-                }
-            },
+            }
         },
         actions: {
             ...beTransformed,
@@ -70,6 +65,12 @@ header,xtal-editor-field{
             onSet: 'value',
             vft: 'value',
             parseValAs: 'object',
+        }
+    },
+    beNoticed: {
+        'updateCount:onSet': {
+            vft: 'objectGraph',
+            prop: 'editedValue'
         }
     }
 }}></xtal-tree>

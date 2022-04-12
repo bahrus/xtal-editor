@@ -74,8 +74,9 @@ header,xtal-editor-field{
             }
         },
         beNoticed:{
-            '.updateCount': {
-                vft: 'objectGraph'
+            'updateCount:onSet': {
+                vft: 'objectGraph',
+                prop: 'editedValue'
             }
         }
     } as mib}></xtal-tree>
