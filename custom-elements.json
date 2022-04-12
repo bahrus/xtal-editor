@@ -101,6 +101,12 @@
               "name": "xtal-vlist",
               "description": "xtal-vlist element"
             }
+          ],
+          "slots": [
+            {
+              "name": "init-val",
+              "description": "Must be a form element with \"value\" property, such as input or textarea."
+            }
           ]
         }
       ]
