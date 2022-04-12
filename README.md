@@ -2,7 +2,6 @@
 
 <a href="https://nodei.co/npm/xtal-editor/"><img src="https://nodei.co/npm/xtal-editor.png"></a>
 
-<img src="https://badgen.net/bundlephobia/minzip/xtal-editor">
 
 [![Actions Status](https://github.com/bahrus/xtal-editor/workflows/CI/badge.svg)](https://github.com/bahrus/xtal-editor/actions?query=workflow%3ACI)
 
