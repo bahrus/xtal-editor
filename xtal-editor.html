@@ -27,11 +27,11 @@ header,xtal-editor-field{
     display: none;
 }
 </style>
-<slot name=initVal be-deslotted='["value"]'></slot>
+<slot name=init-val be-deslotted='["value"]'></slot>
 <xtal-tree id-path=path be-observant='{"objectGraph":{"onSet":"value","vft":"value","parseValAs":"object"}}'></xtal-tree>
 <header part=header>
-    <xtal-side-nav>
-        <menu>
+    <xtal-side-nav part=side-nav>
+        <menu part=menu>
             <button class="selector text-view-selector" part=text-view-selector be-transformative='{"click":{"transform":{":host":[{"treeView":false,"textView":true}],"treeViewSelectorClasses":[{},{},{".inactive":false}],"textViewSelectorClasses":[{},{},{".inactive":true}]}}}'>Text View</button>
             <button class="selector tree-view-selector inactive" part=tree-view-selector be-transformative='{"click":{"transform":{":host":[{"treeView":true,"textView":false}],"treeViewSelectorClasses":[{},{},{".inactive":true}],"textViewSelectorClasses":[{},{},{".inactive":false}]}}}'>Tree View</button>
             <!-- TODO:  set download property dynamically -->
@@ -61,9 +61,9 @@ header,xtal-editor-field{
     <label part=search-label class=search-label>Search:&nbsp;&nbsp;<input part=search-input type=search be-noticed='{"input":{"toNearestUpMatch":"xtal-tree","prop":"searchString","vft":"value","debug":true}}'>
     </label>
     <div class=exp-coll>
-        <button class="action expand-all" aria-label="expand all" title="expand all" be-noticed='{"click":{"toNearestUpMatch":"xtal-tree","prop":"expandAll","val":true}}'>&nbsp;</button>
-        <button class="action collapse-all" aria-label="collapse all" title="collapse all" be-noticed='{"click":{"toNearestUpMatch":"xtal-tree","prop":"collapseAll","val":true}}'>&nbsp;</button>
-        <button class="action copy" aria-label="copy" title="copy" name="" be-noticed='{"click":{"toNearestUpMatch":"xtal-tree","prop":"copyNodeToClipboard","vft":"."}}'>&nbsp;</button>
+        <button part=expand-all class="action expand-all" aria-label="expand all" title="expand all" be-noticed='{"click":{"toNearestUpMatch":"xtal-tree","prop":"expandAll","val":true}}'>&nbsp;</button>
+        <button part=collapse-all class="action collapse-all" aria-label="collapse all" title="collapse all" be-noticed='{"click":{"toNearestUpMatch":"xtal-tree","prop":"collapseAll","val":true}}'>&nbsp;</button>
+        <button part=copy class="action copy" aria-label="copy" title="copy" name="" be-noticed='{"click":{"toNearestUpMatch":"xtal-tree","prop":"copyNodeToClipboard","vft":"."}}'>&nbsp;</button>
     </div>
 </header>
 <!-- Tree View -->

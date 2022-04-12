@@ -4,918 +4,104 @@
   "modules": [
     {
       "kind": "javascript-module",
-      "path": "types.d.ts",
-      "declarations": [],
-      "exports": []
-    },
-    {
-      "kind": "javascript-module",
-      "path": "src/xtal-editor-example1.js",
+      "path": "./xtal-editor.js",
       "declarations": [
         {
-          "kind": "class",
-          "description": "",
-          "name": "XtalEditorExample1",
+          "tagName": "xtal-editor",
+          "name": "XtalEditorInfo",
+          "customElement": true,
           "members": [
             {
               "kind": "field",
-              "name": "key",
-              "type": {
-                "text": "string"
-              },
-              "default": "'abc'"
+              "name": "readOnly"
             },
             {
               "kind": "field",
-              "name": "value",
-              "type": {
-                "text": "object"
-              },
-              "default": "{\n        \"string\": \"foo\",\n        \"number\": 5,\n        \"array\": [1, 2, 3],\n        \"object\": {\n            \"property\": \"value\",\n            \"subobj\": {\n                \"arr\": [\"foo\", \"ha\"],\n                \"numero\": 1\n            }\n        }\n    }"
-            }
-          ],
-          "superclass": {
-            "name": "XtalEditor",
-            "module": "/src/xtal-editor.js"
-          },
-          "tagName": "xtal-editor-example1",
-          "customElement": true
-        }
-      ],
-      "exports": [
-        {
-          "kind": "js",
-          "name": "XtalEditorExample1",
-          "declaration": {
-            "name": "XtalEditorExample1",
-            "module": "src/xtal-editor-example1.js"
-          }
-        },
-        {
-          "kind": "custom-element-definition",
-          "name": "xtal-editor-example1",
-          "declaration": {
-            "name": "XtalEditorExample1",
-            "module": "src/xtal-editor-example1.js"
-          }
-        }
-      ]
-    },
-    {
-      "kind": "javascript-module",
-      "path": "src/xtal-editor-example1.ts",
-      "declarations": [
-        {
-          "kind": "class",
-          "description": "",
-          "name": "XtalEditorExample1",
-          "members": [
-            {
-              "kind": "field",
-              "name": "key",
-              "type": {
-                "text": "string"
-              },
-              "default": "'abc'"
-            },
-            {
-              "kind": "field",
-              "name": "value",
-              "type": {
-                "text": "object"
-              },
-              "default": "{\r\n        \"string\":\"foo\",\r\n        \"number\":5,\r\n        \"array\":[1,2,3],\r\n        \"object\":{\r\n            \"property\":\"value\",\r\n            \"subobj\":{\r\n                \"arr\":[\"foo\",\"ha\"],\r\n                \"numero\":1\r\n            }\r\n        }\r\n    }"
-            }
-          ],
-          "superclass": {
-            "name": "XtalEditor",
-            "module": "/src/xtal-editor.js"
-          },
-          "tagName": "xtal-editor-example1",
-          "customElement": true
-        }
-      ],
-      "exports": [
-        {
-          "kind": "js",
-          "name": "XtalEditorExample1",
-          "declaration": {
-            "name": "XtalEditorExample1",
-            "module": "src/xtal-editor-example1.ts"
-          }
-        },
-        {
-          "kind": "custom-element-definition",
-          "name": "xtal-editor-example1",
-          "declaration": {
-            "name": "XtalEditorExample1",
-            "module": "src/xtal-editor-example1.ts"
-          }
-        }
-      ]
-    },
-    {
-      "kind": "javascript-module",
-      "path": "src/xtal-editor.js",
-      "declarations": [
-        {
-          "kind": "class",
-          "description": "",
-          "name": "XtalEditorCore",
-          "cssProperties": [
-            {
-              "description": "Controls the color of foo",
-              "name": "--text-color"
-            },
-            {
-              "description": "Object Key Background Color",
-              "name": "--obj-key-bg",
-              "default": "rgb(225, 112, 0)"
-            },
-            {
-              "description": "Array Key Background Color",
-              "name": "--array-key-bg",
-              "default": "rgb(45, 91, 137)"
-            },
-            {
-              "description": "Object Even Level Editor Background Color",
-              "name": "--obj-even-level-editor-bg",
-              "default": "#F1E090"
-            },
-            {
-              "description": "Object Odd Level Editor Background Color",
-              "name": "--obj-odd-level-editor-bg",
-              "default": "#FFEFCC"
-            },
-            {
-              "description": "Array Even Level Editor Background Color",
-              "name": "--array-even-level-editor-bg",
-              "default": "#A9DBDD"
-            },
-            {
-              "description": "Array Odd Level Editor Background Color",
-              "name": "--array-odd-level-editor-bg",
-              "default": "#D9DBDD"
-            },
-            {
-              "description": "String Adder Background Color",
-              "name": "--string-adder-bg",
-              "default": "#007408"
-            },
-            {
-              "description": "Bool Adder Background Color",
-              "name": "--bool-adder-bg",
-              "default": "#516600"
-            },
-            {
-              "description": "Number Adder Background Color",
-              "name": "--num-adder-bg",
-              "default": "#497B8D"
-            }
-          ],
-          "cssParts": [
-            {
-              "description": "Element that displays title only at top level",
-              "name": "remove"
-            },
-            {
-              "description": "Element containing the editor",
-              "name": "editor"
-            },
-            {
-              "description": "Element containing a field",
-              "name": "field"
-            },
-            {
-              "description": "Expander button",
-              "name": "expander"
-            },
-            {
-              "description": "Input element for editing key",
-              "name": "key"
-            },
-            {
-              "description": "Section containing buttons to insert children",
-              "name": "child-inserts"
-            },
-            {
-              "description": "Button to add a subobject",
-              "name": "object-adder"
-            },
-            {
-              "description": "Button to add a string child",
-              "name": "string-adder"
-            },
-            {
-              "description": "Button to add a boolean child",
-              "name": "bool-adder"
-            },
-            {
-              "description": "Button to add a number child",
-              "name": "number-adder"
-            },
-            {
-              "description": "Button to copy JSON to clipboard",
-              "name": "copy-to-clipboard"
-            },
-            {
-              "description": "Button to expand JSON tree",
-              "name": "expand-all"
-            },
-            {
-              "description": "Button to collapse JSON tree",
-              "name": "collapse-all"
-            },
-            {
-              "description": "section containing child editors",
-              "name": "child-editors"
-            }
-          ],
-          "slots": [
-            {
-              "description": "Pass in the initial JSON string via a textarea component with this slot (or some other input element with property \"value\" where the string can be pulled from.)",
-              "name": "initVal"
-            }
-          ],
-          "members": [
-            {
-              "kind": "field",
-              "name": "self",
-              "default": "this"
-            },
-            {
-              "kind": "field",
-              "name": "updateValue",
-              "default": "updateValue"
-            },
-            {
-              "kind": "field",
-              "name": "updateType",
-              "default": "updateType"
-            },
-            {
-              "kind": "field",
-              "name": "updateKey",
-              "default": "updateKey"
-            },
-            {
-              "kind": "method",
-              "name": "parseValue",
-              "parameters": [
-                {
-                  "name": "{ value }"
-                }
-              ]
-            },
-            {
-              "kind": "field",
-              "name": "#lastParsedObject",
-              "privacy": "private"
-            },
-            {
-              "kind": "method",
-              "name": "setChildValues",
-              "parameters": [
-                {
-                  "name": "{ parsedObject, type }"
-                }
-              ]
-            },
-            {
-              "kind": "method",
-              "name": "syncValueFromChildren",
-              "parameters": [
-                {
-                  "name": "{ childEditors, type }"
-                }
-              ]
-            },
-            {
-              "kind": "method",
-              "name": "syncLightChild",
-              "parameters": [
-                {
-                  "name": "{ hasParent, value }"
-                }
-              ]
-            },
-            {
-              "kind": "field",
-              "name": "childEditors"
-            },
-            {
-              "kind": "method",
-              "name": "addObject",
-              "parameters": [
-                {
-                  "name": "{ objCounter, parsedObject, type }"
-                }
-              ]
-            },
-            {
-              "kind": "method",
-              "name": "addString",
-              "parameters": [
-                {
-                  "name": "{ strCounter, parsedObject, type }"
-                }
-              ]
-            },
-            {
-              "kind": "method",
-              "name": "addBool",
-              "parameters": [
-                {
-                  "name": "{ boolCounter, parsedObject, type }"
-                }
-              ]
-            },
-            {
-              "kind": "method",
-              "name": "addNumber",
-              "parameters": [
-                {
-                  "name": "{ numCounter, parsedObject, type }"
-                }
-              ]
-            },
-            {
-              "kind": "method",
-              "name": "onConnected",
-              "parameters": [
-                {
-                  "name": "{ hasParent }"
-                }
-              ]
-            },
-            {
-              "kind": "method",
-              "name": "handleKeyChange",
-              "parameters": [
-                {
-                  "name": "self"
-                },
-                {
-                  "name": "key"
-                }
-              ]
-            },
-            {
-              "kind": "method",
-              "name": "handleKeyFocus",
-              "parameters": [
-                {
-                  "name": "e"
-                }
-              ]
-            },
-            {
-              "kind": "method",
-              "name": "handleValueFocus",
-              "parameters": [
-                {
-                  "name": "e"
-                }
-              ]
-            },
-            {
-              "kind": "method",
-              "name": "handleValueChange",
-              "parameters": [
-                {
-                  "name": "self"
-                },
-                {
-                  "name": "val"
-                },
-                {
-                  "name": "e"
-                }
-              ]
-            },
-            {
-              "kind": "method",
-              "name": "copyToClipboard"
-            },
-            {
-              "kind": "method",
-              "name": "handleSlotChange",
-              "parameters": [
-                {
-                  "name": "e"
-                }
-              ]
-            },
-            {
-              "kind": "field",
-              "name": "toggleOpen"
-            },
-            {
-              "type": {
-                "text": "string"
-              },
-              "description": "Root node name to display",
-              "name": "key",
-              "kind": "field"
-            },
-            {
-              "type": {
-                "text": "boolean"
-              },
-              "description": "Indicates with Editor should show child nodes expanded.",
-              "name": "open",
-              "kind": "field"
-            }
-          ],
-          "events": [
-            {
-              "type": {
-                "text": "ValueDetail"
-              },
-              "description": "Fired after successfully parsing JSON string to edit.",
-              "name": "parsed-object-changed"
-            },
-            {
-              "type": {
-                "text": "ValueDetail"
-              },
-              "description": "-- Used for internal use.",
-              "name": "internal-updated-count-changed"
+              "name": "value"
             }
           ],
           "attributes": [
             {
-              "type": {
-                "text": "string"
-              },
-              "description": "Root node name to display",
-              "name": "key"
+              "name": "read-only"
             },
             {
-              "type": {
-                "text": "boolean"
-              },
-              "description": "Indicates with Editor should show child nodes expanded.",
-              "name": "open"
-            }
-          ],
-          "superclass": {
-            "name": "HTMLElement"
-          },
-          "tagName": "xtal-editor",
-          "customElement": true
-        },
-        {
-          "kind": "variable",
-          "name": "XtalEditor"
-        }
-      ],
-      "exports": [
-        {
-          "kind": "js",
-          "name": "XtalEditorCore",
-          "declaration": {
-            "name": "XtalEditorCore",
-            "module": "src/xtal-editor.js"
-          }
-        },
-        {
-          "kind": "js",
-          "name": "XtalEditor",
-          "declaration": {
-            "name": "XtalEditor",
-            "module": "src/xtal-editor.js"
-          }
-        }
-      ]
-    },
-    {
-      "kind": "javascript-module",
-      "path": "src/xtal-editor.ts",
-      "declarations": [
-        {
-          "kind": "class",
-          "description": "",
-          "name": "XtalEditorCore",
-          "cssProperties": [
-            {
-              "description": "Controls the color of foo",
-              "name": "--text-color"
-            },
-            {
-              "description": "Object Key Background Color",
-              "name": "--obj-key-bg",
-              "default": "rgb(225, 112, 0)"
-            },
-            {
-              "description": "Array Key Background Color",
-              "name": "--array-key-bg",
-              "default": "rgb(45, 91, 137)"
-            },
-            {
-              "description": "Object Even Level Editor Background Color",
-              "name": "--obj-even-level-editor-bg",
-              "default": "#F1E090"
-            },
-            {
-              "description": "Object Odd Level Editor Background Color",
-              "name": "--obj-odd-level-editor-bg",
-              "default": "#FFEFCC"
-            },
-            {
-              "description": "Array Even Level Editor Background Color",
-              "name": "--array-even-level-editor-bg",
-              "default": "#A9DBDD"
-            },
-            {
-              "description": "Array Odd Level Editor Background Color",
-              "name": "--array-odd-level-editor-bg",
-              "default": "#D9DBDD"
-            },
-            {
-              "description": "String Adder Background Color",
-              "name": "--string-adder-bg",
-              "default": "#007408"
-            },
-            {
-              "description": "Bool Adder Background Color",
-              "name": "--bool-adder-bg",
-              "default": "#516600"
-            },
-            {
-              "description": "Number Adder Background Color",
-              "name": "--num-adder-bg",
-              "default": "#497B8D"
+              "name": "value"
             }
           ],
           "cssParts": [
             {
-              "description": "Element that displays title only at top level",
-              "name": "remove"
+              "name": "header",
+              "description": "Header Section"
             },
             {
-              "description": "Element containing the editor",
-              "name": "editor"
+              "name": "side-nav",
+              "description": "Side Nav Popout"
             },
             {
-              "description": "Element containing a field",
-              "name": "field"
+              "name": "menu",
+              "description": "Menu of commands"
             },
             {
-              "description": "Expander button",
-              "name": "expander"
+              "name": "text-view-selector",
+              "description": "Select Text View Button"
             },
             {
-              "description": "Input element for editing key",
-              "name": "key"
+              "name": "tree-view-selector",
+              "description": "Select Tree View Button"
             },
             {
-              "description": "Section containing buttons to insert children",
-              "name": "child-inserts"
+              "name": "download",
+              "description": "Download Button"
             },
             {
-              "description": "Button to add a subobject",
-              "name": "object-adder"
+              "name": "object-adder",
+              "description": "Object Adder"
             },
             {
-              "description": "Button to add a string child",
-              "name": "string-adder"
+              "name": "string-adder",
+              "description": "String Adder"
             },
             {
-              "description": "Button to add a boolean child",
-              "name": "bool-adder"
+              "name": "bool-adder",
+              "description": "Bool Adder"
             },
             {
-              "description": "Button to add a number child",
-              "name": "number-adder"
+              "name": "number-adder",
+              "description": "Number Adder"
             },
             {
-              "description": "Button to copy JSON to clipboard",
-              "name": "copy-to-clipboard"
+              "name": "arr-adder",
+              "description": "Array Adder"
             },
             {
-              "description": "Button to expand JSON tree",
-              "name": "expand-all"
+              "name": "title",
+              "description": "Title element"
             },
             {
-              "description": "Button to collapse JSON tree",
-              "name": "collapse-all"
+              "name": "search-label",
+              "description": "Search Label"
             },
             {
-              "description": "section containing child editors",
-              "name": "child-editors"
+              "name": "search-input",
+              "description": "Search Input"
+            },
+            {
+              "name": "expand-all",
+              "description": "Expand All Button"
+            },
+            {
+              "name": "collapse-all",
+              "description": "Collapse All Button"
+            },
+            {
+              "name": "copy",
+              "description": "Copy Button"
+            },
+            {
+              "name": "xtal-vlist",
+              "description": "xtal-vlist element"
             }
-          ],
-          "slots": [
-            {
-              "description": "Pass in the initial JSON string via a textarea component with this slot (or some other input element with property \"value\" where the string can be pulled from.)",
-              "name": "initVal"
-            }
-          ],
-          "members": [
-            {
-              "kind": "field",
-              "name": "self",
-              "default": "this"
-            },
-            {
-              "kind": "field",
-              "name": "updateValue",
-              "default": "updateValue"
-            },
-            {
-              "kind": "field",
-              "name": "updateType",
-              "default": "updateType"
-            },
-            {
-              "kind": "field",
-              "name": "updateKey",
-              "default": "updateKey"
-            },
-            {
-              "kind": "method",
-              "name": "parseValue",
-              "parameters": [
-                {
-                  "name": "{value}",
-                  "type": {
-                    "text": "this"
-                  }
-                }
-              ]
-            },
-            {
-              "kind": "field",
-              "name": "#lastParsedObject",
-              "privacy": "private",
-              "type": {
-                "text": "any"
-              }
-            },
-            {
-              "kind": "method",
-              "name": "setChildValues",
-              "parameters": [
-                {
-                  "name": "{parsedObject, type}",
-                  "type": {
-                    "text": "this"
-                  }
-                }
-              ]
-            },
-            {
-              "kind": "method",
-              "name": "syncValueFromChildren",
-              "parameters": [
-                {
-                  "name": "{childEditors, type}",
-                  "type": {
-                    "text": "this"
-                  }
-                }
-              ]
-            },
-            {
-              "kind": "method",
-              "name": "syncLightChild",
-              "parameters": [
-                {
-                  "name": "{hasParent, value}",
-                  "type": {
-                    "text": "this"
-                  }
-                }
-              ]
-            },
-            {
-              "kind": "field",
-              "name": "childEditors"
-            },
-            {
-              "kind": "method",
-              "name": "addObject",
-              "parameters": [
-                {
-                  "name": "{objCounter, parsedObject, type}",
-                  "type": {
-                    "text": "this"
-                  }
-                }
-              ]
-            },
-            {
-              "kind": "method",
-              "name": "addString",
-              "parameters": [
-                {
-                  "name": "{strCounter, parsedObject, type}",
-                  "type": {
-                    "text": "this"
-                  }
-                }
-              ]
-            },
-            {
-              "kind": "method",
-              "name": "addBool",
-              "parameters": [
-                {
-                  "name": "{boolCounter, parsedObject, type}",
-                  "type": {
-                    "text": "this"
-                  }
-                }
-              ]
-            },
-            {
-              "kind": "method",
-              "name": "addNumber",
-              "parameters": [
-                {
-                  "name": "{numCounter, parsedObject, type}",
-                  "type": {
-                    "text": "this"
-                  }
-                }
-              ]
-            },
-            {
-              "kind": "method",
-              "name": "onConnected",
-              "parameters": [
-                {
-                  "name": "{hasParent}",
-                  "type": {
-                    "text": "this"
-                  }
-                }
-              ]
-            },
-            {
-              "kind": "method",
-              "name": "handleKeyChange",
-              "parameters": [
-                {
-                  "name": "self",
-                  "type": {
-                    "text": "this"
-                  }
-                },
-                {
-                  "name": "key",
-                  "type": {
-                    "text": "string"
-                  }
-                }
-              ]
-            },
-            {
-              "kind": "method",
-              "name": "handleKeyFocus",
-              "parameters": [
-                {
-                  "name": "e",
-                  "type": {
-                    "text": "Event"
-                  }
-                }
-              ]
-            },
-            {
-              "kind": "method",
-              "name": "handleValueFocus",
-              "parameters": [
-                {
-                  "name": "e",
-                  "type": {
-                    "text": "Event"
-                  }
-                }
-              ]
-            },
-            {
-              "kind": "method",
-              "name": "handleValueChange",
-              "parameters": [
-                {
-                  "name": "self",
-                  "type": {
-                    "text": "this"
-                  }
-                },
-                {
-                  "name": "val",
-                  "type": {
-                    "text": "string"
-                  }
-                },
-                {
-                  "name": "e",
-                  "type": {
-                    "text": "InputEvent"
-                  }
-                }
-              ]
-            },
-            {
-              "kind": "method",
-              "name": "copyToClipboard"
-            },
-            {
-              "kind": "method",
-              "name": "handleSlotChange",
-              "parameters": [
-                {
-                  "name": "e",
-                  "type": {
-                    "text": "Event"
-                  }
-                }
-              ]
-            },
-            {
-              "kind": "field",
-              "name": "toggleOpen"
-            },
-            {
-              "type": {
-                "text": "string"
-              },
-              "description": "Root node name to display",
-              "name": "key",
-              "kind": "field"
-            },
-            {
-              "type": {
-                "text": "boolean"
-              },
-              "description": "Indicates with Editor should show child nodes expanded.",
-              "name": "open",
-              "kind": "field"
-            }
-          ],
-          "events": [
-            {
-              "type": {
-                "text": "ValueDetail"
-              },
-              "description": "Fired after successfully parsing JSON string to edit.",
-              "name": "parsed-object-changed"
-            },
-            {
-              "type": {
-                "text": "ValueDetail"
-              },
-              "description": "-- Used for internal use.",
-              "name": "internal-updated-count-changed"
-            }
-          ],
-          "attributes": [
-            {
-              "type": {
-                "text": "string"
-              },
-              "description": "Root node name to display",
-              "name": "key"
-            },
-            {
-              "type": {
-                "text": "boolean"
-              },
-              "description": "Indicates with Editor should show child nodes expanded.",
-              "name": "open"
-            }
-          ],
-          "superclass": {
-            "name": "HTMLElement"
-          },
-          "tagName": "xtal-editor",
-          "customElement": true
-        },
-        {
-          "kind": "variable",
-          "name": "XtalEditor",
-          "default": "xe.classDef!"
-        }
-      ],
-      "exports": [
-        {
-          "kind": "js",
-          "name": "XtalEditorCore",
-          "declaration": {
-            "name": "XtalEditorCore",
-            "module": "src/xtal-editor.ts"
-          }
-        },
-        {
-          "kind": "js",
-          "name": "XtalEditor",
-          "declaration": {
-            "name": "XtalEditor",
-            "module": "src/xtal-editor.ts"
-          }
+          ]
         }
       ]
     }

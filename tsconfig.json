@@ -8,7 +8,8 @@
 		"watch": true
 	},
 	"files":[
-		"xe-config.mts"
+		"xe-config.mts",
+		"doc.mts"
 	],
 	"exclude":[
 		"node_modules"

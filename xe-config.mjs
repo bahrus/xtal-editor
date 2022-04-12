@@ -63,7 +63,7 @@ header,xtal-editor-field{
     display: none;
 }
 </style>
-<slot name=initVal be-deslotted='["value"]'></slot>
+<slot name=init-val be-deslotted='["value"]'></slot>
 <xtal-tree id-path=path ${{
     beObservant: {
         objectGraph: {
@@ -74,8 +74,8 @@ header,xtal-editor-field{
     }
 }}></xtal-tree>
 <header part=header>
-    <xtal-side-nav>
-        <menu>
+    <xtal-side-nav part=side-nav>
+        <menu part=menu>
             <button class="selector text-view-selector" part=text-view-selector ${{
     beTransformative: {
         click: {
@@ -191,7 +191,7 @@ header,xtal-editor-field{
 }}>
     </label>
     <div class=exp-coll>
-        <button class="action expand-all" aria-label="expand all" title="expand all" ${{
+        <button part=expand-all class="action expand-all" aria-label="expand all" title="expand all" ${{
     beNoticed: {
         click: {
             toNearestUpMatch: 'xtal-tree',
@@ -200,7 +200,7 @@ header,xtal-editor-field{
         }
     }
 }}>&nbsp;</button>
-        <button class="action collapse-all" aria-label="collapse all" title="collapse all" ${{
+        <button part=collapse-all class="action collapse-all" aria-label="collapse all" title="collapse all" ${{
     beNoticed: {
         click: {
             toNearestUpMatch: 'xtal-tree',
@@ -209,7 +209,7 @@ header,xtal-editor-field{
         }
     }
 }}>&nbsp;</button>
-        <button class="action copy" aria-label="copy" title="copy" name="" ${{
+        <button part=copy class="action copy" aria-label="copy" title="copy" name="" ${{
     beNoticed: {
         click: {
             toNearestUpMatch: 'xtal-tree',

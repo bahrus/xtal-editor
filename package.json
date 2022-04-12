@@ -42,7 +42,7 @@
     "trans-render": "0.0.528",
     "xtal-element": "0.0.490",
     "xtal-side-nav": "0.0.81",
-    "xtal-tree": "0.0.139",
+    "xtal-tree": "0.0.140",
     "xtal-vlist": "0.0.58"
   },
   "devDependencies": {
@@ -57,7 +57,8 @@
   },
   "watch": {
     "build-xe-html": "*-config.mjs",
-    "build-xe-js": "*-config.mjs"
+    "build-xe-js": "*-config.mjs",
+    "build-manifest": "types.d.ts"
   },
   "scripts": {
     "serve": "node node_modules/xtal-test/serve.js",
@@ -69,6 +70,7 @@
     "doc": "custom-elements-manifest analyze",
     "build-xe-html": "node xe-config.mjs -html > xtal-editor.html",
     "build-xe-js": "node xe-config.mjs -js > xtal-editor.js",
+    "build-manifest": "node doc.mjs > custom-elements.json",
     "watch": "npm-watch"
   },
   "repository": {
