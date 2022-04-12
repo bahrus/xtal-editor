@@ -21,16 +21,11 @@ const beDefinitiveProps: BeDefinitiveVirtualProps = {
             }
         },
         propInfo:{
-            treeView:{
+            updateCount:{
                 notify:{
                     dispatch: true
                 }
-            },
-            textView:{
-                notify:{
-                    dispatch: true
-                }
-            },
+            }
         },
         actions:{
             ...beTransformed,
