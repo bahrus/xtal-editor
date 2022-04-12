@@ -167,7 +167,7 @@ export abstract class XtalEditorInfo implements SimpleWCInfo{
         arrAdderBg: 'Background color of array adder',
     };
     events: {
-        updateCountChanged: 'Fires whenever an update to the object is committed.'
+        editedValueChanged: 'Fires whenever an update to the object is committed.'
     }
 }
 

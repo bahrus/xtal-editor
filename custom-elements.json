@@ -110,7 +110,7 @@
           ],
           "events": [
             {
-              "name": "update-count-changed",
+              "name": "edited-value-changed",
               "description": "Fires whenever an update to the object is committed."
             }
           ]

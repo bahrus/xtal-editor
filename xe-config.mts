@@ -14,14 +14,14 @@ const beDefinitiveProps: BeDefinitiveVirtualProps = {
             treeView: true,
             textView: false,
             downloadHref:'',
-            editedValue: '',
+            editedValue: {},
             stringFilter: '',
             transform: {
                 header: [{},{},{'data-read-only': 'readOnly'}],
             }
         },
         propInfo:{
-            updateCount:{
+            editedValue:{
                 notify:{
                     dispatch: true
                 }
@@ -71,6 +71,11 @@ header,xtal-editor-field{
                 onSet: 'value',
                 vft: 'value',
                 parseValAs: 'object',
+            }
+        },
+        beNoticed:{
+            '.updateCount': {
+                vft: 'objectGraph'
             }
         }
     } as mib}></xtal-tree>
