@@ -4,6 +4,7 @@ const xt = require('xtal-test/index');
         {
             path: 'test/xtal-editor-test1.html',
             expectedNoOfSuccessMarkers: 1,
+            wait: 10000
         },
     ]);
     if (passed) {
