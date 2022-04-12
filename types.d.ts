@@ -166,6 +166,9 @@ export abstract class XtalEditorInfo implements SimpleWCInfo{
         numAdderBg: 'Background color of number adder',
         arrAdderBg: 'Background color of array adder',
     };
+    events: {
+        updateCountChanged: 'Fires whenever an update to the object is committed.'
+    }
 }
 
 export type Package = [XtalEditorInfo];

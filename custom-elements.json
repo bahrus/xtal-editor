@@ -107,6 +107,12 @@
               "name": "init-val",
               "description": "Must be a form element with \"value\" property, such as input or textarea."
             }
+          ],
+          "events": [
+            {
+              "name": "update-count-changed",
+              "description": "Fires whenever an update to the object is committed."
+            }
           ]
         }
       ]
