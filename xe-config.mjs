@@ -44,7 +44,7 @@ const innerHTML = html `
     <script data-version=0.0.62  id=be-noticed/be-noticed.js></script>
     <script data-version=0.0.120 id=be-observant/be-observant.js></script>
     <script data-version=0.0.67  id=be-switched/be-switched.js></script>
-    <script data-version=0.0.52  id=be-intersectional/be-intersectional.js></script>
+    <script data-version=0.0.53  id=be-intersectional/be-intersectional.js></script>
     <script data-version=0.0.81  id=xtal-side-nav/xtal-side-nav.js></script>
     <script data-version=0.0.40  id=be-transformative/be-transformative.js></script>
     <script data-version=0.0.27  id=be-deslotted/be-deslotted.js></script>

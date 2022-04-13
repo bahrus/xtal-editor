@@ -14,6 +14,8 @@ Re-creation of [flexi-json](http://www.daviddurman.com/flexi-json-editor/jsonedi
 
 xtal-editor is able to scale somewhat better for large JSON objects as compared to other alternative editors.
 
+At least if a height is specified (if not, not very scalable).
+
 ## [API](https://cf-sw.bahrus.workers.dev/?href=https%3A%2F%2Fcdn.jsdelivr.net%2Fnpm%2Fxtal-editor%400.0.159%2Fcustom-elements.json&stylesheet=https%3A%2F%2Fcdn.jsdelivr.net%2Fnpm%2Fwc-info%2Fsimple-ce-style.css&embedded=false&tags=&ts=0.0.159&tocXSLT=https%3A%2F%2Fcdn.jsdelivr.net%2Fnpm%2Fwc-info%2Ftoc.xsl)
 
 ## Usage
@@ -21,7 +23,7 @@ xtal-editor is able to scale somewhat better for large JSON objects as compared 
 Locally:
 
 ```html
-<xtal-editor key=root>
+<xtal-editor style=height:350px;>
     <textarea>
         {
             "string":"foo",
