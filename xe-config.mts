@@ -48,15 +48,15 @@ const innerHTML = html`
 <template be-active>
     <script data-version=0.0.56  id=be-loaded/be-loaded.js></script>
     <script data-version=0.0.62  id=be-noticed/be-noticed.js></script>
-    <script data-version=0.0.120 id=be-observant/be-observant.js></script>
-    <script data-version=0.0.67  id=be-switched/be-switched.js></script>
-    <script data-version=0.0.53  id=be-intersectional/be-intersectional.js></script>
-    <script data-version=0.0.81  id=xtal-side-nav/xtal-side-nav.js></script>
-    <script data-version=0.0.40  id=be-transformative/be-transformative.js></script>
-    <script data-version=0.0.27  id=be-deslotted/be-deslotted.js></script>
-    <script data-version=0.0.141  id=xtal-tree/xtal-tree.js></script>
-    <script data-version=0.0.58  id=xtal-vlist/xtal-vlist.js></script>
-    <script data-version=0.0.13   id=be-channeling/be-channeling.js></script>
+    <script data-version=0.0.121 id=be-observant/be-observant.js></script>
+    <script data-version=0.0.68  id=be-switched/be-switched.js></script>
+    <script data-version=0.0.55  id=be-intersectional/be-intersectional.js></script>
+    <script data-version=0.0.82  id=xtal-side-nav/xtal-side-nav.js></script>
+    <script data-version=0.0.41  id=be-transformative/be-transformative.js></script>
+    <script data-version=0.0.28  id=be-deslotted/be-deslotted.js></script>
+    <script data-version=0.0.142  id=xtal-tree/xtal-tree.js></script>
+    <script data-version=0.0.59  id=xtal-vlist/xtal-vlist.js></script>
+    <script data-version=0.0.14   id=be-channeling/be-channeling.js></script>
 </template>
 <style ${{
     beLoaded: {

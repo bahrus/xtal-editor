@@ -5,8 +5,8 @@ document.body.insertAdjacentHTML('beforeend', `<template be-definitive='{"config
 <template be-active>
     <script data-version=0.0.56  id=be-loaded/be-loaded.js></script>
     <script data-version=0.0.62  id=be-noticed/be-noticed.js></script>
-    <script data-version=0.0.120 id=be-observant/be-observant.js></script>
-    <script data-version=0.0.67  id=be-switched/be-switched.js></script>
+    <script data-version=0.0.121 id=be-observant/be-observant.js></script>
+    <script data-version=0.0.68  id=be-switched/be-switched.js></script>
     <script data-version=0.0.53  id=be-intersectional/be-intersectional.js></script>
     <script data-version=0.0.81  id=xtal-side-nav/xtal-side-nav.js></script>
     <script data-version=0.0.40  id=be-transformative/be-transformative.js></script>
