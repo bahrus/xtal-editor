@@ -15,7 +15,7 @@ document.body.insertAdjacentHTML('beforeend', `<template be-definitive='{"config
     <script data-version=0.0.59  id=xtal-vlist/xtal-vlist.js></script>
     <script data-version=0.0.14   id=be-channeling/be-channeling.js></script>
 </template>
-<style be-loaded='{"fallback":"https://cdn.jsdelivr.net/npm/xtal-editor@0.0.160/theme.css","preloadRef":"xtal-editor/theme.css","removeStyle":true}'>
+<style be-loaded='{"fallback":"https://cdn.jsdelivr.net/npm/xtal-editor@0.0.163/theme.css","preloadRef":"xtal-editor/theme.css","removeStyle":true}'>
 header,xtal-editor-field{
     display: none;
 }
@@ -169,6 +169,7 @@ header,xtal-editor-field{
                     display:flex;
                     flex-direction: row;
                     flex-basis: 100%;
+                    align-items: center;
                 }
                 .text-editing .key[data-type="string"]{
                     background-color: var(--str-key-bg);
@@ -216,7 +217,7 @@ header,xtal-editor-field{
                 section{
                     align-items: center;
                 }
-                .action{
+                button{
                     background-repeat:no-repeat;
                     background-position-y:center;
                     height: 22px;
@@ -246,15 +247,15 @@ header,xtal-editor-field{
                 }
 
                 .expand-all{
-                    background-image: url(https://cdn.jsdelivr.net/npm/xtal-editor/src/arrows-expand.svg);
+                    background-image: url(https://cdn.jsdelivr.net/npm/xtal-editor@0.0.163/arrows-expand.svg);
                     width: 20px;
                 }
                 .collapse-all{
-                    background-image: url(https://cdn.jsdelivr.net/npm/xtal-editor/src/arrows-collapse.svg);
+                    background-image: url(https://cdn.jsdelivr.net/npm/xtal-editor@0.0.163/arrows-collapse.svg);
                     width: 20px;
                 }
                 .copy{
-                    background-image: url(https://cdn.jsdelivr.net/npm/xtal-editor/src/copy.svg);
+                    background-image: url(https://cdn.jsdelivr.net/npm/xtal-editor@0.0.163/copy.svg);
                 }
             </style>
         </template>
