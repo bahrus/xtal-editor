@@ -409,6 +409,7 @@ header,xtal-editor-field{
                     background-color: #ECF3C3;
                     /* width: 100%; */
                     flex-grow:5;
+                    color: var(--value-color);
                 }
                 .text-editing{
                     display:flex;

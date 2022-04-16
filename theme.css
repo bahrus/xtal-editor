@@ -25,6 +25,7 @@
     --bool-adder-bg: #516600;
     --num-adder-bg:#497B8D;
     --arr-adder-bg: #2d5b89;
+    --value-color: #000000;
 }
 
 slot{
