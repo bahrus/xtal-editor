@@ -417,6 +417,7 @@ header,xtal-editor-field{
                     /* width: 100%; */
                     flex-grow:5;
                     color: var(--value-color);
+                    line-height: var(--font-lineheight-3);
                 }
                 .text-editing{
                     display:flex;
