@@ -9,7 +9,9 @@
 	},
 	"files":[
 		"xe-config.mts",
-		"doc.mts"
+		"doc.mts",
+		"playwright.config.ts",
+		"tests/test1.spec.mts"
 	],
 	"exclude":[
 		"node_modules"

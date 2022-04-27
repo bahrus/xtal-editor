@@ -46,12 +46,13 @@
     "xtal-vlist": "0.0.59"
   },
   "devDependencies": {
+    "@playwright/test": "1.21.1",
+    "may-it-serve": "0.0.0",
     "@custom-elements-manifest/analyzer": "0.5.7",
     "@skypack/package-check": "0.2.2",
     "be-persistent": "0.0.13",
     "npm-watch": "0.11.0",
-    "xtal-shell": "0.0.25",
-    "xtal-test": "0.0.56",
+    "xtal-shell": "0.0.27",
     "typescript": "4.6.3"
   },
   "watch": {
@@ -60,8 +61,8 @@
     "build-manifest": "types.d.ts"
   },
   "scripts": {
-    "serve": "node node_modules/xtal-test/serve.js",
-    "test": "node test/test-all.js",
+    "serve": "node node_modules/may-it-serve",
+    "test": "playwright test",
     "start": "web-dev-server --node-resolve --app-index demo/dev.html  --watch --open",
     "bundle": "rollup --config",
     "compress": "node minify",
