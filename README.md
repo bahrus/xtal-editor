@@ -5,7 +5,7 @@
 <a href="https://nodei.co/npm/xtal-editor/"><img src="https://nodei.co/npm/xtal-editor.png"></a>
 
 
-[![Actions Status](https://github.com/bahrus/xtal-editor/workflows/CI/badge.svg)](https://github.com/bahrus/xtal-editor/actions?query=workflow%3ACI)
+[![Playwright Tests](https://github.com/bahrus/xtal-editor/actions/workflows/CI.yml/badge.svg?branch=baseline)](https://github.com/bahrus/xtal-editor/actions/workflows/CI.yml)
 
 Re-creation of [flexi-json](http://www.daviddurman.com/flexi-json-editor/jsoneditor.html), taking some liberties, but as a web component.
 
