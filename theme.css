@@ -26,6 +26,7 @@
     --num-adder-bg:#497B8D;
     --arr-adder-bg: #2d5b89;
     --value-color: #000000;
+    --btn-color: #CD138F;
 }
 
 slot{
@@ -111,6 +112,10 @@ json-viewer{
     font-size: 13.3333px;
 }
 
+button{
+    color: var(--btn-color);
+}
+
 header{
     display: flex;
     flex-direction: row;
@@ -184,16 +189,16 @@ xtal-side-nav{
 }
 
 .expand-all{
-    background-image: url(https://cdn.jsdelivr.net/npm/xtal-editor/src/arrows-expand.svg);
+    background-image: url(https://cdn.jsdelivr.net/npm/xtal-editor@0.0.165/arrows-expand.svg);
     width: 20px;
 }
 .collapse-all{
-    background-image: url(https://cdn.jsdelivr.net/npm/xtal-editor/src/arrows-collapse.svg);
+    background-image: url(https://cdn.jsdelivr.net/npm/xtal-editor@0.0.165/src/arrows-collapse.svg);
     width: 20px;
 }
 
 .copy{
-    background-image: url(https://cdn.jsdelivr.net/npm/xtal-editor/src/copy.svg);
+    background-image: url(https://cdn.jsdelivr.net/npm/xtal-editor@0.0.165/src/copy.svg);
 }
 
 

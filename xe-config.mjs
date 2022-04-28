@@ -468,6 +468,7 @@ header,xtal-editor-field{
                     background-repeat:no-repeat;
                     background-position-y:center;
                     height: 22px;
+                    color: var(--btn-color);
                 }
                 .object.adder{
                     background-color: var(--obj-adder-bg);
@@ -494,15 +495,15 @@ header,xtal-editor-field{
                 }
 
                 .expand-all{
-                    background-image: url(https://cdn.jsdelivr.net/npm/xtal-editor@0.0.163/arrows-expand.svg);
+                    background-image: url(https://cdn.jsdelivr.net/npm/xtal-editor@0.0.165/arrows-expand.svg);
                     width: 20px;
                 }
                 .collapse-all{
-                    background-image: url(https://cdn.jsdelivr.net/npm/xtal-editor@0.0.163/arrows-collapse.svg);
+                    background-image: url(https://cdn.jsdelivr.net/npm/xtal-editor@0.0.165/arrows-collapse.svg);
                     width: 20px;
                 }
                 .copy{
-                    background-image: url(https://cdn.jsdelivr.net/npm/xtal-editor@0.0.163/copy.svg);
+                    background-image: url(https://cdn.jsdelivr.net/npm/xtal-editor@0.0.165/copy.svg);
                 }
             </style>
         </template>
