@@ -193,12 +193,12 @@ xtal-side-nav{
     width: 20px;
 }
 .collapse-all{
-    background-image: url(https://cdn.jsdelivr.net/npm/xtal-editor@0.0.165/src/arrows-collapse.svg);
+    background-image: url(https://cdn.jsdelivr.net/npm/xtal-editor@0.0.165/arrows-collapse.svg);
     width: 20px;
 }
 
 .copy{
-    background-image: url(https://cdn.jsdelivr.net/npm/xtal-editor@0.0.165/src/copy.svg);
+    background-image: url(https://cdn.jsdelivr.net/npm/xtal-editor@0.0.165/copy.svg);
 }
 
 
