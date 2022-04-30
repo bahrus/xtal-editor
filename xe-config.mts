@@ -308,7 +308,7 @@ header,xtal-editor-field{
                 '^^': [iff, {lhs: 'type', op: '===', rhsVal: 'string'}, [{type: ['text']}]],
                 '^3': [iff, {lhs: 'type', op: '===', rhsVal: 'number'}, [{type: ['number']}]],
                 ".delete,.copy,.expand-all": [{name: "path", id: "path"}],
-                expanderParts: [true, {if: "open"}, ["-"], ["+"]],
+                expanderParts: [iff, {if: "open"}, ["-"], ["+"]],
                 buttonElements: [{}, {}, {"data-children": "hasChildren"}],
                 ".adder-buttons,.exp-collapse-buttons": [{}, {}, {"data-children": "hasChildren"}],
                 ".adder-template,.exp-coll-template": [{".beDecorated.intersectional.host": "."}]
