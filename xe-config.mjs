@@ -38,6 +38,7 @@ const commonChannel = {
     toNearestUpMatch: "xtal-tree",
     "vfe": "path.0",
 };
+const iff = true || false; //conditional head indicator
 const innerHTML = html `
 <template be-active>
     <script data-version=0.0.56  id=be-loaded/be-loaded.js></script>
@@ -296,7 +297,10 @@ header,xtal-editor-field{
         div: [{}, {}, { "data-path": "path" }],
         "div.field": [{}, {}, { "style": "marginStyle" }],
         keyClasses: [{ "textContent": "name" }, {}, { "data-type": "type", "for": "path" }],
-        valueClasses: [{ value: "asString", name: "path", id: "path" }, {}, { readonly: "hasChildren" }],
+        valueClasses: [{ value: "asString", name: "path", id: "path" }, {}, { readonly: "hasChildren", "data-value-type": "type" }],
+        '^': [iff, { lhs: 'type', op: '===', rhsVal: 'boolean' }, [{ type: ['checkbox'] }]],
+        '^^': [iff, { lhs: 'type', op: '===', rhsVal: 'string' }, [{ type: ['text'] }]],
+        '^3': [iff, { lhs: 'type', op: '===', rhsVal: 'number' }, [{ type: ['number'] }]],
         ".delete,.copy,.expand-all": [{ name: "path", id: "path" }],
         expanderParts: [true, { if: "open" }, ["-"], ["+"]],
         buttonElements: [{}, {}, { "data-children": "hasChildren" }],
