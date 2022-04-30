@@ -42,7 +42,7 @@
     "trans-render": "0.0.533",
     "xtal-element": "0.0.490",
     "xtal-side-nav": "0.0.82",
-    "xtal-tree": "0.0.143",
+    "xtal-tree": "0.0.147",
     "xtal-vlist": "0.0.59"
   },
   "devDependencies": {
