@@ -74,7 +74,7 @@ header,xtal-editor-field{
         id="vlist"
         min-item-height='19.5'
         be-observant='{"list":{"observe":"xtal-tree","vft":"viewableNodes"}}'be-channeling='[{"eventFilter":"click","toNearestUpMatch":"xtal-tree","vfe":"path.0.parentElement.dataset.path","prop":"toggledNodePath","composedPathMatch":"button.expander"},{"eventFilter":"input","toNearestUpMatch":"xtal-tree","vfe":"path.0","prop":"editedNode","composedPathMatch":"input.value"},{"eventFilter":"click","toNearestUpMatch":"xtal-tree","vfe":"path.0","prop":"newNode","composedPathMatch":"button.adder"},{"eventFilter":"click","toNearestUpMatch":"xtal-tree","vfe":"path.0","composedPathMatch":"button.delete","prop":"deleteNode"},{"eventFilter":"click","toNearestUpMatch":"xtal-tree","vfe":"path.0","composedPathMatch":"button.copy","prop":"copyNodeToClipboard"},{"eventFilter":"click","toNearestUpMatch":"xtal-tree","vfe":"path.0","composedPathMatch":"button.expand-all","prop":"expandAllNode"},{"eventFilter":"click","toNearestUpMatch":"xtal-tree","vfe":"path.0","composedPathMatch":"button.collapse-all","prop":"collapseAllNode"}]'
-        row-transform='{"div":[{},{},{"data-path":"path"}],"div.field":[{},{},{"style":"marginStyle"}],"keyClasses":[{"textContent":"name"},{},{"data-type":"type","for":"path"}],"valueClasses":[{"name":"path","id":"path"},{},{"data-value-type":"type"}],"^":[true,{"lhs":"type","op":"===","rhsVal":"boolean"},[{"readonly":false,"type":["checkbox"],"checked":"value"}]],"^^":[true,{"lhs":"type","op":"===","rhsVal":"string"},[{"readonly":false,"type":["text"],"value":"asString"}]],"^3":[true,{"lhs":"type","op":"===","rhsVal":"number"},[{"readonly":true,"type":["number"],"value":"value"}]],"^4":[true,{"lhs":"type","op":"===","rhsVal":"object"},[{"readonly":true,"type":["text"],"value":"asString","class":"object-adder"}]],"^5":[true,{"lhs":"type","op":"===","rhsVal":"array"},[{"readonly":true,"type":["text"],"value":"asString","class":"object-adder"}]],".delete,.copy,.expand-all":[{"name":"path","id":"path"}],"expanderParts":[true,{"if":"open"},["-"],["+"]],"buttonElements":[{},{},{"data-children":"hasChildren"}],".adder-buttons,.exp-collapse-buttons":[{},{},{"data-children":"hasChildren"}],".adder-template,.exp-coll-template":[{".beDecorated.intersectional.host":"."}]}'row-intersectional-settings='{"rootClosest":".scroller","options":{"rootMargin":"300px","threshold":0}}'
+        row-transform='{"div":[{},{},{"data-path":"path"}],"div.field":[{},{},{"style":"marginStyle"}],"keyClasses":[{"textContent":"name"},{},{"data-type":"type","for":"path"}],"valueClasses":[{"name":"path","id":"path"},{},{"data-value-type":"type"}],"^":[true,{"lhs":"type","op":"===","rhsVal":"boolean"},[{"readonly":false,"type":["checkbox"],"checked":"value"}]],"^^":[true,{"lhs":"type","op":"===","rhsVal":"string"},[{"readonly":false,"type":["text"],"value":"asString"}]],"^3":[true,{"lhs":"type","op":"===","rhsVal":"number"},[{"readonly":true,"type":["number"],"value":"value"}]],"^4":[true,{"lhs":"type","op":"===","rhsVal":"object"},[{"readonly":true,"type":["text"],"value":"asString","class":"object-adder"}]],"^5":[true,{"lhs":"type","op":"===","rhsVal":"array"},[{"readonly":true,"type":["text"],"value":"asString","class":"object-adder"}]],".delete,.copy,.expand-all":[{"name":"path","id":"path"}],"expanderParts":[true,{"if":"open"},["-"],["+"]],"buttonElements":[{},{},{"data-children":"hasChildren"}],".adder-buttons,.exp-collapse-buttons":[{},{},{"data-children":"hasChildren","data-can-have-children":"canHaveChildren"}],".adder-template,.exp-coll-template":[{".beDecorated.intersectional.host":"."}]}'row-intersectional-settings='{"rootClosest":".scroller","options":{"rootMargin":"300px","threshold":0}}'
     >
        <template slot=row>
             <div class=field data-readonly part=field itemscope be-observant='{"data-readonly":{"observeHostProp":"readOnly","vft":"readOnly","as":"bool-attr"}}'>
@@ -200,11 +200,11 @@ header,xtal-editor-field{
                 section.adder-buttons{
                     display:none;
                 }
-                section.adder-buttons[data-children]{
+                section.adder-buttons[data-can-have-children]{
                     display:flex;
                     width:240px;
                 }
-                div.field[data-readonly] section.adder-buttons[data-children]{
+                div.field[data-readonly] section.adder-buttons[data-can-have-children]{
                     display:none;
                 }
                 div.field[data-readonly] .delete-button{
@@ -349,7 +349,7 @@ header,xtal-editor-field{
         id="vlist"
         min-item-height='19.5'
         be-observant='{"list":{"observe":"xtal-tree","vft":"viewableNodes"}}'be-channeling='[{"eventFilter":"click","toNearestUpMatch":"xtal-tree","vfe":"path.0.parentElement.dataset.path","prop":"toggledNodePath","composedPathMatch":"button.expander"},{"eventFilter":"input","toNearestUpMatch":"xtal-tree","vfe":"path.0","prop":"editedNode","composedPathMatch":"input.value"},{"eventFilter":"click","toNearestUpMatch":"xtal-tree","vfe":"path.0","prop":"newNode","composedPathMatch":"button.adder"},{"eventFilter":"click","toNearestUpMatch":"xtal-tree","vfe":"path.0","composedPathMatch":"button.delete","prop":"deleteNode"},{"eventFilter":"click","toNearestUpMatch":"xtal-tree","vfe":"path.0","composedPathMatch":"button.copy","prop":"copyNodeToClipboard"},{"eventFilter":"click","toNearestUpMatch":"xtal-tree","vfe":"path.0","composedPathMatch":"button.expand-all","prop":"expandAllNode"},{"eventFilter":"click","toNearestUpMatch":"xtal-tree","vfe":"path.0","composedPathMatch":"button.collapse-all","prop":"collapseAllNode"}]'
-        row-transform='{"div":[{},{},{"data-path":"path"}],"div.field":[{},{},{"style":"marginStyle"}],"keyClasses":[{"textContent":"name"},{},{"data-type":"type","for":"path"}],"valueClasses":[{"name":"path","id":"path"},{},{"data-value-type":"type"}],"^":[true,{"lhs":"type","op":"===","rhsVal":"boolean"},[{"readonly":false,"type":["checkbox"],"checked":"value"}]],"^^":[true,{"lhs":"type","op":"===","rhsVal":"string"},[{"readonly":false,"type":["text"],"value":"asString"}]],"^3":[true,{"lhs":"type","op":"===","rhsVal":"number"},[{"readonly":true,"type":["number"],"value":"value"}]],"^4":[true,{"lhs":"type","op":"===","rhsVal":"object"},[{"readonly":true,"type":["text"],"value":"asString","class":"object-adder"}]],"^5":[true,{"lhs":"type","op":"===","rhsVal":"array"},[{"readonly":true,"type":["text"],"value":"asString","class":"object-adder"}]],".delete,.copy,.expand-all":[{"name":"path","id":"path"}],"expanderParts":[true,{"if":"open"},["-"],["+"]],"buttonElements":[{},{},{"data-children":"hasChildren"}],".adder-buttons,.exp-collapse-buttons":[{},{},{"data-children":"hasChildren"}],".adder-template,.exp-coll-template":[{".beDecorated.intersectional.host":"."}]}'row-intersectional-settings='{"rootClosest":".scroller","options":{"rootMargin":"300px","threshold":0}}'
+        row-transform='{"div":[{},{},{"data-path":"path"}],"div.field":[{},{},{"style":"marginStyle"}],"keyClasses":[{"textContent":"name"},{},{"data-type":"type","for":"path"}],"valueClasses":[{"name":"path","id":"path"},{},{"data-value-type":"type"}],"^":[true,{"lhs":"type","op":"===","rhsVal":"boolean"},[{"readonly":false,"type":["checkbox"],"checked":"value"}]],"^^":[true,{"lhs":"type","op":"===","rhsVal":"string"},[{"readonly":false,"type":["text"],"value":"asString"}]],"^3":[true,{"lhs":"type","op":"===","rhsVal":"number"},[{"readonly":true,"type":["number"],"value":"value"}]],"^4":[true,{"lhs":"type","op":"===","rhsVal":"object"},[{"readonly":true,"type":["text"],"value":"asString","class":"object-adder"}]],"^5":[true,{"lhs":"type","op":"===","rhsVal":"array"},[{"readonly":true,"type":["text"],"value":"asString","class":"object-adder"}]],".delete,.copy,.expand-all":[{"name":"path","id":"path"}],"expanderParts":[true,{"if":"open"},["-"],["+"]],"buttonElements":[{},{},{"data-children":"hasChildren"}],".adder-buttons,.exp-collapse-buttons":[{},{},{"data-children":"hasChildren","data-can-have-children":"canHaveChildren"}],".adder-template,.exp-coll-template":[{".beDecorated.intersectional.host":"."}]}'row-intersectional-settings='{"rootClosest":".scroller","options":{"rootMargin":"300px","threshold":0}}'
     >
        <template slot=row>
             <div class=field data-readonly part=field itemscope be-observant='{"data-readonly":{"observeHostProp":"readOnly","vft":"readOnly","as":"bool-attr"}}'>
@@ -475,11 +475,11 @@ header,xtal-editor-field{
                 section.adder-buttons{
                     display:none;
                 }
-                section.adder-buttons[data-children]{
+                section.adder-buttons[data-can-have-children]{
                     display:flex;
                     width:240px;
                 }
-                div.field[data-readonly] section.adder-buttons[data-children]{
+                div.field[data-readonly] section.adder-buttons[data-can-have-children]{
                     display:none;
                 }
                 div.field[data-readonly] .delete-button{

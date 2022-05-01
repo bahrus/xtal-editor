@@ -312,7 +312,7 @@ header,xtal-editor-field{
                 ".delete,.copy,.expand-all": [{name: "path", id: "path"}],
                 expanderParts: [iff, {if: "open"}, ["-"], ["+"]],
                 buttonElements: [{}, {}, {"data-children": "hasChildren"}],
-                ".adder-buttons,.exp-collapse-buttons": [{}, {}, {"data-children": "hasChildren"}],
+                ".adder-buttons,.exp-collapse-buttons": [{}, {}, {"data-children": "hasChildren", "data-can-have-children": "canHaveChildren"}],
                 ".adder-template,.exp-coll-template": [{".beDecorated.intersectional.host": "."}]
             },
             rowIntersectionalSettings: {
@@ -456,11 +456,11 @@ header,xtal-editor-field{
                 section.adder-buttons{
                     display:none;
                 }
-                section.adder-buttons[data-children]{
+                section.adder-buttons[data-can-have-children]{
                     display:flex;
                     width:240px;
                 }
-                div.field[data-readonly] section.adder-buttons[data-children]{
+                div.field[data-readonly] section.adder-buttons[data-can-have-children]{
                     display:none;
                 }
                 div.field[data-readonly] .delete-button{
