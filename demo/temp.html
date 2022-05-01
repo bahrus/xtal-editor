@@ -7,13 +7,30 @@
     <title>Document</title>
 </head>
 <body>
-    <template shadowroot='open'>
-        <input>
-    </template>
+    <input id='myInput'>
+    <button onclick='test1()'>test1</button>
+    <button onclick='test2()'>test2</button>
     <script>
-        document.body.addEventListener('change', e => {
-            console.log(e);
-        });
+        const uBound = 1000000;
+        function test1(){
+            const start = performance.now();
+            for(let i = 0; i < uBound; i++){
+                myInput.readOnly = true;
+            }
+            const end = performance.now();
+            console.log(`test1: ${(end - start) / 1000}`);
+        }
+
+        function test2(){
+            const start = performance.now();
+            for(let i = 0; i < uBound; i++){
+                if(myInput.readOnly === true){
+                    myInput.readOnly = false;
+                }
+            }
+            const end = performance.now();
+            console.log(`test2: ${(end - start) / 1000}`);
+        }
     </script>
 </body>
 </html>
