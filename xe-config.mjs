@@ -247,7 +247,7 @@ header,xtal-editor-field{
         style="width:100%;" 
         page-size="10" 
         id="vlist"
-        min-item-height='19.5'
+        min-item-height=24
         ${{
     beObservant: {
         list: { observe: "xtal-tree", vft: "viewableNodes" }
