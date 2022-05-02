@@ -5,17 +5,17 @@ if(!document.body){
     document.addEventListener('DOMContentLoaded', () => {
         document.body.insertAdjacentHTML('beforeend', `<template be-definitive='{"config":{"tagName":"xtal-editor","propDefaults":{"readOnly":false,"key":"","treeView":true,"textView":false,"downloadHref":"","editedValue":{},"stringFilter":"","transform":{"header":[{},{},{"data-read-only":"readOnly"}]}},"propInfo":{"editedValue":{"notify":{"dispatch":true}},"inputObj":{"type":"Object"},"value":{"type":"String"}},"actions":{"cloneTemplate":{"ifAllOf":["mainTemplate"],"ifKeyIn":["noshadow","waitToInit"]},"doTemplMount":{"ifAllOf":["clonedTemplate","transform"],"ifKeyIn":["waitToInit"],"async":true}}}}'>
 <template be-active>
-    <script data-version=0.0.56  id=be-loaded/be-loaded.js></script>
-    <script data-version=0.0.62  id=be-noticed/be-noticed.js></script>
-    <script data-version=0.0.121 id=be-observant/be-observant.js></script>
-    <script data-version=0.0.68  id=be-switched/be-switched.js></script>
-    <script data-version=0.0.55  id=be-intersectional/be-intersectional.js></script>
-    <script data-version=0.0.82  id=xtal-side-nav/xtal-side-nav.js></script>
-    <script data-version=0.0.41  id=be-transformative/be-transformative.js></script>
-    <script data-version=0.0.28  id=be-deslotted/be-deslotted.js></script>
-    <script data-version=0.0.143  id=xtal-tree/xtal-tree.js></script>
-    <script data-version=0.0.59  id=xtal-vlist/xtal-vlist.js></script>
-    <script data-version=0.0.14   id=be-channeling/be-channeling.js></script>
+    <script data-version=0.0.57  id=be-loaded/be-loaded.js></script>
+    <script data-version=0.0.64  id=be-noticed/be-noticed.js></script>
+    <script data-version=0.0.124 id=be-observant/be-observant.js></script>
+    <script data-version=0.0.70  id=be-switched/be-switched.js></script>
+    <script data-version=0.0.56  id=be-intersectional/be-intersectional.js></script>
+    <script data-version=0.0.83  id=xtal-side-nav/xtal-side-nav.js></script>
+    <script data-version=0.0.42  id=be-transformative/be-transformative.js></script>
+    <script data-version=0.0.29  id=be-deslotted/be-deslotted.js></script>
+    <script data-version=0.0.153  id=xtal-tree/xtal-tree.js></script>
+    <script data-version=0.0.60  id=xtal-vlist/xtal-vlist.js></script>
+    <script data-version=0.0.16   id=be-channeling/be-channeling.js></script>
 </template>
 <style be-loaded='{"fallback":"https://cdn.jsdelivr.net/npm/xtal-editor@0.0.167/theme.css","preloadRef":"xtal-editor/theme.css","removeStyle":true}'>
 header,xtal-editor-field{
@@ -280,17 +280,17 @@ header,xtal-editor-field{
 }else{
     document.body.insertAdjacentHTML('beforeend', `<template be-definitive='{"config":{"tagName":"xtal-editor","propDefaults":{"readOnly":false,"key":"","treeView":true,"textView":false,"downloadHref":"","editedValue":{},"stringFilter":"","transform":{"header":[{},{},{"data-read-only":"readOnly"}]}},"propInfo":{"editedValue":{"notify":{"dispatch":true}},"inputObj":{"type":"Object"},"value":{"type":"String"}},"actions":{"cloneTemplate":{"ifAllOf":["mainTemplate"],"ifKeyIn":["noshadow","waitToInit"]},"doTemplMount":{"ifAllOf":["clonedTemplate","transform"],"ifKeyIn":["waitToInit"],"async":true}}}}'>
 <template be-active>
-    <script data-version=0.0.56  id=be-loaded/be-loaded.js></script>
-    <script data-version=0.0.62  id=be-noticed/be-noticed.js></script>
-    <script data-version=0.0.121 id=be-observant/be-observant.js></script>
-    <script data-version=0.0.68  id=be-switched/be-switched.js></script>
-    <script data-version=0.0.55  id=be-intersectional/be-intersectional.js></script>
-    <script data-version=0.0.82  id=xtal-side-nav/xtal-side-nav.js></script>
-    <script data-version=0.0.41  id=be-transformative/be-transformative.js></script>
-    <script data-version=0.0.28  id=be-deslotted/be-deslotted.js></script>
-    <script data-version=0.0.143  id=xtal-tree/xtal-tree.js></script>
-    <script data-version=0.0.59  id=xtal-vlist/xtal-vlist.js></script>
-    <script data-version=0.0.14   id=be-channeling/be-channeling.js></script>
+    <script data-version=0.0.57  id=be-loaded/be-loaded.js></script>
+    <script data-version=0.0.64  id=be-noticed/be-noticed.js></script>
+    <script data-version=0.0.124 id=be-observant/be-observant.js></script>
+    <script data-version=0.0.70  id=be-switched/be-switched.js></script>
+    <script data-version=0.0.56  id=be-intersectional/be-intersectional.js></script>
+    <script data-version=0.0.83  id=xtal-side-nav/xtal-side-nav.js></script>
+    <script data-version=0.0.42  id=be-transformative/be-transformative.js></script>
+    <script data-version=0.0.29  id=be-deslotted/be-deslotted.js></script>
+    <script data-version=0.0.153  id=xtal-tree/xtal-tree.js></script>
+    <script data-version=0.0.60  id=xtal-vlist/xtal-vlist.js></script>
+    <script data-version=0.0.16   id=be-channeling/be-channeling.js></script>
 </template>
 <style be-loaded='{"fallback":"https://cdn.jsdelivr.net/npm/xtal-editor@0.0.167/theme.css","preloadRef":"xtal-editor/theme.css","removeStyle":true}'>
 header,xtal-editor-field{
