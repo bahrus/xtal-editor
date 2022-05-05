@@ -9,7 +9,7 @@ if(!document.body){
     <script data-version=0.0.65  id=be-noticed/be-noticed.js></script>
     <script data-version=0.0.125 id=be-observant/be-observant.js></script>
     <script data-version=0.0.71  id=be-switched/be-switched.js></script>
-    <script data-version=0.0.57  id=be-intersectional/be-intersectional.js></script>
+    <script data-version=0.0.10  id=be-lazy/be-lazy.js></script>
     <script data-version=0.0.83  id=xtal-side-nav/xtal-side-nav.js></script>
     <script data-version=0.0.42  id=be-transformative/be-transformative.js></script>
     <script data-version=0.0.29  id=be-deslotted/be-deslotted.js></script>
@@ -74,7 +74,7 @@ header,xtal-editor-field{
         id="vlist"
         min-item-height=24
         be-observant='{"list":{"observe":"xtal-tree","vft":"viewableNodes"}}'be-channeling='[{"eventFilter":"click","toNearestUpMatch":"xtal-tree","vfe":"path.0.parentElement.dataset.path","prop":"toggledNodePath","composedPathMatch":"button.expander"},{"eventFilter":"input","toNearestUpMatch":"xtal-tree","vfe":"path.0","prop":"editedNode","composedPathMatch":"input.value"},{"eventFilter":"click","toNearestUpMatch":"xtal-tree","vfe":"path.0","prop":"newNode","composedPathMatch":"button.adder"},{"eventFilter":"click","toNearestUpMatch":"xtal-tree","vfe":"path.0","composedPathMatch":"button.delete","prop":"deleteNode"},{"eventFilter":"click","toNearestUpMatch":"xtal-tree","vfe":"path.0","composedPathMatch":"button.copy","prop":"copyNodeToClipboard"},{"eventFilter":"click","toNearestUpMatch":"xtal-tree","vfe":"path.0","composedPathMatch":"button.expand-all","prop":"expandAllNode"},{"eventFilter":"click","toNearestUpMatch":"xtal-tree","vfe":"path.0","composedPathMatch":"button.collapse-all","prop":"collapseAllNode"}]'
-        row-transform='{"div":[{},{},{"data-path":"path"}],"div.field":[{},{},{"style":"marginStyle"}],"keyClasses":[{"textContent":"name"},{},{"data-type":"type","for":"path"}],"valueClasses":[{"name":"path","id":"path"},{},{"data-value-type":"type"}],"^":[true,{"lhs":"type","op":"===","rhsVal":"boolean"},[{"readOnly":false,"type":["checkbox"],"checked":"value"}]],"^^":[true,{"lhs":"type","op":"===","rhsVal":"string"},[{"readOnly":false,"type":["text"],"value":"asString"}]],"^3":[true,{"lhs":"type","op":"===","rhsVal":"number"},[{"readOnly":true,"type":["number"],"value":"value"}]],"^4":[true,{"lhs":"type","op":"===","rhsVal":"object"},[{"readOnly":true,"type":["text"],"value":"asString","class":"object-adder"}]],"^5":[true,{"lhs":"type","op":"===","rhsVal":"array"},[{"readOnly":true,"type":["text"],"value":"asString","class":"object-adder"}]],".delete,.copy,.expand-all":[{"name":"path","id":"path"}],"expanderParts":[true,{"if":"open"},["-"],["+"]],"buttonElements":[{},{},{"data-children":"hasChildren"}],".adder-buttons,.exp-collapse-buttons":[{},{},{"data-children":"hasChildren","data-can-have-children":"canHaveChildren"}],".adder-template,.exp-coll-template":[{".beDecorated.intersectional.host":"."}]}'row-intersectional-settings='{"rootClosest":".scroller","options":{"rootMargin":"300px","threshold":0}}'
+        row-transform='{"div":[{},{},{"data-path":"path"}],"div.field":[{},{},{"style":"marginStyle"}],"keyClasses":[{"textContent":"name"},{},{"data-type":"type","for":"path"}],"valueClasses":[{"name":"path","id":"path"},{},{"data-value-type":"type"}],"^":[true,{"lhs":"type","op":"===","rhsVal":"boolean"},[{"readOnly":false,"type":["checkbox"],"checked":"value"}]],"^^":[true,{"lhs":"type","op":"===","rhsVal":"string"},[{"readOnly":false,"type":["text"],"value":"asString"}]],"^3":[true,{"lhs":"type","op":"===","rhsVal":"number"},[{"readOnly":true,"type":["number"],"value":"value"}]],"^4":[true,{"lhs":"type","op":"===","rhsVal":"object"},[{"readOnly":true,"type":["text"],"value":"asString","class":"object-adder"}]],"^5":[true,{"lhs":"type","op":"===","rhsVal":"array"},[{"readOnly":true,"type":["text"],"value":"asString","class":"object-adder"}]],".delete,.copy,.expand-all":[{"name":"path","id":"path"}],"expanderParts":[true,{"if":"open"},["-"],["+"]],"buttonElements":[{},{},{"data-children":"hasChildren"}],".adder-buttons,.exp-collapse-buttons":[{},{},{"data-children":"hasChildren","data-can-have-children":"canHaveChildren"}],".adder-template,.exp-coll-template":[{".beDecorated.lazy.host":"."}]}'row-intersectional-settings='{"rootClosest":".scroller","options":{"rootMargin":"600px","threshold":0}}'
     >
        <template slot=row>
             <div class=field data-readonly part=field itemscope be-observant='{"data-readonly":{"observeHostProp":"readOnly","vft":"readOnly","as":"bool-attr"}}'>
@@ -85,7 +85,7 @@ header,xtal-editor-field{
                 </div>
                 <div class=buttons>
                     <section class=adder-buttons  part=adder-buttons >
-                        <template class=adder-template be-intersectional='{
+                        <template class=adder-template be-lazy='{
                             "transform": {
                                 "button": [{"name": "path"}, {}, {}]
                             }
@@ -98,7 +98,7 @@ header,xtal-editor-field{
                         </template>
                     </section>
                     <section class=exp-collapse-buttons>
-                        <template class=exp-coll-template be-intersectional='{
+                        <template class=exp-coll-template be-lazy='{
                                 "transform": {
                                     "button": [{"name": "path"}, {}, {}]
                                 }
@@ -284,7 +284,7 @@ header,xtal-editor-field{
     <script data-version=0.0.65  id=be-noticed/be-noticed.js></script>
     <script data-version=0.0.125 id=be-observant/be-observant.js></script>
     <script data-version=0.0.71  id=be-switched/be-switched.js></script>
-    <script data-version=0.0.57  id=be-intersectional/be-intersectional.js></script>
+    <script data-version=0.0.10  id=be-lazy/be-lazy.js></script>
     <script data-version=0.0.83  id=xtal-side-nav/xtal-side-nav.js></script>
     <script data-version=0.0.42  id=be-transformative/be-transformative.js></script>
     <script data-version=0.0.29  id=be-deslotted/be-deslotted.js></script>
@@ -349,7 +349,7 @@ header,xtal-editor-field{
         id="vlist"
         min-item-height=24
         be-observant='{"list":{"observe":"xtal-tree","vft":"viewableNodes"}}'be-channeling='[{"eventFilter":"click","toNearestUpMatch":"xtal-tree","vfe":"path.0.parentElement.dataset.path","prop":"toggledNodePath","composedPathMatch":"button.expander"},{"eventFilter":"input","toNearestUpMatch":"xtal-tree","vfe":"path.0","prop":"editedNode","composedPathMatch":"input.value"},{"eventFilter":"click","toNearestUpMatch":"xtal-tree","vfe":"path.0","prop":"newNode","composedPathMatch":"button.adder"},{"eventFilter":"click","toNearestUpMatch":"xtal-tree","vfe":"path.0","composedPathMatch":"button.delete","prop":"deleteNode"},{"eventFilter":"click","toNearestUpMatch":"xtal-tree","vfe":"path.0","composedPathMatch":"button.copy","prop":"copyNodeToClipboard"},{"eventFilter":"click","toNearestUpMatch":"xtal-tree","vfe":"path.0","composedPathMatch":"button.expand-all","prop":"expandAllNode"},{"eventFilter":"click","toNearestUpMatch":"xtal-tree","vfe":"path.0","composedPathMatch":"button.collapse-all","prop":"collapseAllNode"}]'
-        row-transform='{"div":[{},{},{"data-path":"path"}],"div.field":[{},{},{"style":"marginStyle"}],"keyClasses":[{"textContent":"name"},{},{"data-type":"type","for":"path"}],"valueClasses":[{"name":"path","id":"path"},{},{"data-value-type":"type"}],"^":[true,{"lhs":"type","op":"===","rhsVal":"boolean"},[{"readOnly":false,"type":["checkbox"],"checked":"value"}]],"^^":[true,{"lhs":"type","op":"===","rhsVal":"string"},[{"readOnly":false,"type":["text"],"value":"asString"}]],"^3":[true,{"lhs":"type","op":"===","rhsVal":"number"},[{"readOnly":true,"type":["number"],"value":"value"}]],"^4":[true,{"lhs":"type","op":"===","rhsVal":"object"},[{"readOnly":true,"type":["text"],"value":"asString","class":"object-adder"}]],"^5":[true,{"lhs":"type","op":"===","rhsVal":"array"},[{"readOnly":true,"type":["text"],"value":"asString","class":"object-adder"}]],".delete,.copy,.expand-all":[{"name":"path","id":"path"}],"expanderParts":[true,{"if":"open"},["-"],["+"]],"buttonElements":[{},{},{"data-children":"hasChildren"}],".adder-buttons,.exp-collapse-buttons":[{},{},{"data-children":"hasChildren","data-can-have-children":"canHaveChildren"}],".adder-template,.exp-coll-template":[{".beDecorated.intersectional.host":"."}]}'row-intersectional-settings='{"rootClosest":".scroller","options":{"rootMargin":"300px","threshold":0}}'
+        row-transform='{"div":[{},{},{"data-path":"path"}],"div.field":[{},{},{"style":"marginStyle"}],"keyClasses":[{"textContent":"name"},{},{"data-type":"type","for":"path"}],"valueClasses":[{"name":"path","id":"path"},{},{"data-value-type":"type"}],"^":[true,{"lhs":"type","op":"===","rhsVal":"boolean"},[{"readOnly":false,"type":["checkbox"],"checked":"value"}]],"^^":[true,{"lhs":"type","op":"===","rhsVal":"string"},[{"readOnly":false,"type":["text"],"value":"asString"}]],"^3":[true,{"lhs":"type","op":"===","rhsVal":"number"},[{"readOnly":true,"type":["number"],"value":"value"}]],"^4":[true,{"lhs":"type","op":"===","rhsVal":"object"},[{"readOnly":true,"type":["text"],"value":"asString","class":"object-adder"}]],"^5":[true,{"lhs":"type","op":"===","rhsVal":"array"},[{"readOnly":true,"type":["text"],"value":"asString","class":"object-adder"}]],".delete,.copy,.expand-all":[{"name":"path","id":"path"}],"expanderParts":[true,{"if":"open"},["-"],["+"]],"buttonElements":[{},{},{"data-children":"hasChildren"}],".adder-buttons,.exp-collapse-buttons":[{},{},{"data-children":"hasChildren","data-can-have-children":"canHaveChildren"}],".adder-template,.exp-coll-template":[{".beDecorated.lazy.host":"."}]}'row-intersectional-settings='{"rootClosest":".scroller","options":{"rootMargin":"600px","threshold":0}}'
     >
        <template slot=row>
             <div class=field data-readonly part=field itemscope be-observant='{"data-readonly":{"observeHostProp":"readOnly","vft":"readOnly","as":"bool-attr"}}'>
@@ -360,7 +360,7 @@ header,xtal-editor-field{
                 </div>
                 <div class=buttons>
                     <section class=adder-buttons  part=adder-buttons >
-                        <template class=adder-template be-intersectional='{
+                        <template class=adder-template be-lazy='{
                             "transform": {
                                 "button": [{"name": "path"}, {}, {}]
                             }
@@ -373,7 +373,7 @@ header,xtal-editor-field{
                         </template>
                     </section>
                     <section class=exp-collapse-buttons>
-                        <template class=exp-coll-template be-intersectional='{
+                        <template class=exp-coll-template be-lazy='{
                                 "transform": {
                                     "button": [{"name": "path"}, {}, {}]
                                 }

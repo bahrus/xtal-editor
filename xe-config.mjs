@@ -45,7 +45,7 @@ const innerHTML = html `
     <script data-version=0.0.65  id=be-noticed/be-noticed.js></script>
     <script data-version=0.0.125 id=be-observant/be-observant.js></script>
     <script data-version=0.0.71  id=be-switched/be-switched.js></script>
-    <script data-version=0.0.57  id=be-intersectional/be-intersectional.js></script>
+    <script data-version=0.0.10  id=be-lazy/be-lazy.js></script>
     <script data-version=0.0.83  id=xtal-side-nav/xtal-side-nav.js></script>
     <script data-version=0.0.42  id=be-transformative/be-transformative.js></script>
     <script data-version=0.0.29  id=be-deslotted/be-deslotted.js></script>
@@ -307,12 +307,12 @@ header,xtal-editor-field{
         expanderParts: [iff, { if: "open" }, ["-"], ["+"]],
         buttonElements: [{}, {}, { "data-children": "hasChildren" }],
         ".adder-buttons,.exp-collapse-buttons": [{}, {}, { "data-children": "hasChildren", "data-can-have-children": "canHaveChildren" }],
-        ".adder-template,.exp-coll-template": [{ ".beDecorated.intersectional.host": "." }]
+        ".adder-template,.exp-coll-template": [{ ".beDecorated.lazy.host": "." }]
     },
     rowIntersectionalSettings: {
         rootClosest: ".scroller",
         options: {
-            "rootMargin": "300px",
+            "rootMargin": "600px",
             "threshold": 0
         }
     }
@@ -335,7 +335,7 @@ header,xtal-editor-field{
                 </div>
                 <div class=buttons>
                     <section class=adder-buttons  part=adder-buttons >
-                        <template class=adder-template be-intersectional='{
+                        <template class=adder-template be-lazy='{
                             "transform": {
                                 "button": [{"name": "path"}, {}, {}]
                             }
@@ -348,7 +348,7 @@ header,xtal-editor-field{
                         </template>
                     </section>
                     <section class=exp-collapse-buttons>
-                        <template class=exp-coll-template be-intersectional='{
+                        <template class=exp-coll-template be-lazy='{
                                 "transform": {
                                     "button": [{"name": "path"}, {}, {}]
                                 }
