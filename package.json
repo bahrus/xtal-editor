@@ -27,7 +27,7 @@
     "be-channeling": "0.0.17",
     "be-decorated": "0.0.113",
     "be-definitive": "0.0.55",
-    "be-deslotted": "0.0.29",
+    "be-deslotted": "0.0.30",
     "be-importing": "0.0.26",
     "be-hive": "0.0.45",
     "be-lazy": "0.0.10",
@@ -42,7 +42,7 @@
     "xtal-element": "0.0.493",
     "xtal-side-nav": "0.0.83",
     "xtal-tree": "0.0.154",
-    "xtal-vlist": "0.0.63"
+    "xtal-vlist": "0.0.64"
   },
   "devDependencies": {
     "@playwright/test": "1.21.1",

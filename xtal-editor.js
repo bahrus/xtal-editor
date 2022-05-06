@@ -12,9 +12,9 @@ if(!document.body){
     <script data-version=0.0.10  id=be-lazy/be-lazy.js></script>
     <script data-version=0.0.83  id=xtal-side-nav/xtal-side-nav.js></script>
     <script data-version=0.0.42  id=be-transformative/be-transformative.js></script>
-    <script data-version=0.0.29  id=be-deslotted/be-deslotted.js></script>
+    <script data-version=0.0.30  id=be-deslotted/be-deslotted.js></script>
     <script data-version=0.0.154  id=xtal-tree/xtal-tree.js></script>
-    <script data-version=0.0.61  id=xtal-vlist/xtal-vlist.js></script>
+    <script data-version=0.0.64  id=xtal-vlist/xtal-vlist.js></script>
     <script data-version=0.0.17   id=be-channeling/be-channeling.js></script>
 </template>
 <style be-loaded='{"fallback":"https://cdn.jsdelivr.net/npm/xtal-editor@0.0.167/theme.css","preloadRef":"xtal-editor/theme.css","removeStyle":true}'>
@@ -288,9 +288,9 @@ header,xtal-editor-field{
     <script data-version=0.0.10  id=be-lazy/be-lazy.js></script>
     <script data-version=0.0.83  id=xtal-side-nav/xtal-side-nav.js></script>
     <script data-version=0.0.42  id=be-transformative/be-transformative.js></script>
-    <script data-version=0.0.29  id=be-deslotted/be-deslotted.js></script>
+    <script data-version=0.0.30  id=be-deslotted/be-deslotted.js></script>
     <script data-version=0.0.154  id=xtal-tree/xtal-tree.js></script>
-    <script data-version=0.0.61  id=xtal-vlist/xtal-vlist.js></script>
+    <script data-version=0.0.64  id=xtal-vlist/xtal-vlist.js></script>
     <script data-version=0.0.17   id=be-channeling/be-channeling.js></script>
 </template>
 <style be-loaded='{"fallback":"https://cdn.jsdelivr.net/npm/xtal-editor@0.0.167/theme.css","preloadRef":"xtal-editor/theme.css","removeStyle":true}'>
