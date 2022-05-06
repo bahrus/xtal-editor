@@ -196,6 +196,7 @@ header,xtal-editor-field{
                 section,div.buttons{
                     display:flex;
                     flex-direction: row;
+                    justify-content: flex-end;
                 }
                 section.adder-buttons{
                     display:none;
@@ -471,6 +472,7 @@ header,xtal-editor-field{
                 section,div.buttons{
                     display:flex;
                     flex-direction: row;
+                    justify-content: flex-end;
                 }
                 section.adder-buttons{
                     display:none;
