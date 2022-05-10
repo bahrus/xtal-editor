@@ -5,7 +5,7 @@ if(!document.body){
     document.addEventListener('DOMContentLoaded', () => {
         document.body.insertAdjacentHTML('beforeend', `<template be-definitive='{"config":{"tagName":"xtal-editor","propDefaults":{"readOnly":false,"key":"","treeView":true,"textView":false,"downloadHref":"","editedValue":{},"stringFilter":"","transform":{"header":[{},{},{"data-read-only":"readOnly"}]}},"propInfo":{"editedValue":{"notify":{"dispatch":true}},"inputObj":{"type":"Object"},"value":{"type":"String"}},"actions":{"cloneTemplate":{"ifAllOf":["mainTemplate"],"ifKeyIn":["noshadow","waitToInit"]},"doTemplMount":{"ifAllOf":["clonedTemplate","transform"],"ifKeyIn":["waitToInit"],"async":true}}}}'>
 <template be-active>
-    <script data-version=0.0.58  id=be-loaded/be-loaded.js></script>
+    <script data-version=0.0.63  id=be-loaded/be-loaded.js></script>
     <script data-version=0.0.65  id=be-noticed/be-noticed.js></script>
     <script data-version=0.0.125 id=be-observant/be-observant.js></script>
     <script data-version=0.0.71  id=be-switched/be-switched.js></script>
@@ -17,7 +17,7 @@ if(!document.body){
     <script data-version=0.0.64  id=xtal-vlist/xtal-vlist.js></script>
     <script data-version=0.0.17   id=be-channeling/be-channeling.js></script>
 </template>
-<style be-loaded='{"fallback":"https://cdn.jsdelivr.net/npm/xtal-editor@0.0.167/theme.css","preloadRef":"xtal-editor/theme.css","removeStyle":true}'>
+<style be-loaded='{"path":"xtal-editor/theme.css","version":"0.0.174","removeStyle":true}'>
 header,xtal-editor-field{
     display: none;
 }
@@ -281,7 +281,7 @@ header,xtal-editor-field{
 }else{
     document.body.insertAdjacentHTML('beforeend', `<template be-definitive='{"config":{"tagName":"xtal-editor","propDefaults":{"readOnly":false,"key":"","treeView":true,"textView":false,"downloadHref":"","editedValue":{},"stringFilter":"","transform":{"header":[{},{},{"data-read-only":"readOnly"}]}},"propInfo":{"editedValue":{"notify":{"dispatch":true}},"inputObj":{"type":"Object"},"value":{"type":"String"}},"actions":{"cloneTemplate":{"ifAllOf":["mainTemplate"],"ifKeyIn":["noshadow","waitToInit"]},"doTemplMount":{"ifAllOf":["clonedTemplate","transform"],"ifKeyIn":["waitToInit"],"async":true}}}}'>
 <template be-active>
-    <script data-version=0.0.58  id=be-loaded/be-loaded.js></script>
+    <script data-version=0.0.63  id=be-loaded/be-loaded.js></script>
     <script data-version=0.0.65  id=be-noticed/be-noticed.js></script>
     <script data-version=0.0.125 id=be-observant/be-observant.js></script>
     <script data-version=0.0.71  id=be-switched/be-switched.js></script>
@@ -293,7 +293,7 @@ header,xtal-editor-field{
     <script data-version=0.0.64  id=xtal-vlist/xtal-vlist.js></script>
     <script data-version=0.0.17   id=be-channeling/be-channeling.js></script>
 </template>
-<style be-loaded='{"fallback":"https://cdn.jsdelivr.net/npm/xtal-editor@0.0.167/theme.css","preloadRef":"xtal-editor/theme.css","removeStyle":true}'>
+<style be-loaded='{"path":"xtal-editor/theme.css","version":"0.0.174","removeStyle":true}'>
 header,xtal-editor-field{
     display: none;
 }

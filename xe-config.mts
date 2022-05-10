@@ -46,7 +46,7 @@ const commonChannel: Partial<IChannel> = {
 const iff = true || false; //conditional head indicator
 const innerHTML = html`
 <template be-active>
-    <script data-version=0.0.58  id=be-loaded/be-loaded.js></script>
+    <script data-version=0.0.63  id=be-loaded/be-loaded.js></script>
     <script data-version=0.0.65  id=be-noticed/be-noticed.js></script>
     <script data-version=0.0.125 id=be-observant/be-observant.js></script>
     <script data-version=0.0.71  id=be-switched/be-switched.js></script>
@@ -60,8 +60,8 @@ const innerHTML = html`
 </template>
 <style ${{
     beLoaded: {
-        fallback: 'https://cdn.jsdelivr.net/npm/xtal-editor@0.0.167/theme.css',
-        preloadRef: 'xtal-editor/theme.css',
+        path: 'xtal-editor/theme.css',
+        version: '0.0.174',
         removeStyle: true,
     }
 } as mib}>
