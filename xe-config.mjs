@@ -41,7 +41,8 @@ const commonChannel = {
 const iff = true || false; //conditional head indicator
 const innerHTML = html `
 <template be-active>
-    <script data-version=0.0.63  id=be-loaded/be-loaded.js></script>
+    <script data-version=0.0.2   id=be-adopted/be-adopted.js></script>
+    <script data-version=0.0.67  id=be-loaded/be-loaded.js></script>
     <script data-version=0.0.65  id=be-noticed/be-noticed.js></script>
     <script data-version=0.0.125 id=be-observant/be-observant.js></script>
     <script data-version=0.0.71  id=be-switched/be-switched.js></script>
@@ -49,18 +50,18 @@ const innerHTML = html `
     <script data-version=0.0.85  id=xtal-side-nav/xtal-side-nav.js></script>
     <script data-version=0.0.42  id=be-transformative/be-transformative.js></script>
     <script data-version=0.0.30  id=be-deslotted/be-deslotted.js></script>
-    <script data-version=0.0.154  id=xtal-tree/xtal-tree.js></script>
+    <script data-version=0.0.154 id=xtal-tree/xtal-tree.js></script>
     <script data-version=0.0.64  id=xtal-vlist/xtal-vlist.js></script>
-    <script data-version=0.0.17   id=be-channeling/be-channeling.js></script>
+    <script data-version=0.0.17  id=be-channeling/be-channeling.js></script>
 </template>
 <style ${{
     beLoaded: {
-        path: 'xtal-editor/theme.css',
-        version: '0.0.174',
+        path: 'xtal-editor/shell.css',
+        version: '0.0.175',
         removeStyle: true,
     }
 }}>
-header,xtal-editor-field{
+header{
     display: none;
 }
 </style>
@@ -318,6 +319,7 @@ header,xtal-editor-field{
     }
 }}
     >
+       <style be-adopted="xtal-editor/list.css" slot=header></style>
        <template slot=row>
             <div class=field data-readonly part=field itemscope ${{
     beObservant: {
@@ -365,154 +367,6 @@ header,xtal-editor-field{
                     </section>
                 </div>
             </div>
-        </template>
-        <template slot="style">
-            <style>
-
-                .field{
-                    display: flex;
-                    flex-direction: row;
-                }
-                .rowContainer{
-                    background: #121212;
-                }
-                .expander{
-                    width: fit-content;
-                    height: fit-content;
-                    padding-left: 0px;
-                    padding-right: 0px;
-                    padding-top: 2px;
-                    width:25px;
-                }
-                /*
-                TODO:  make this a container query
-                */
-                @media only screen and (max-width: 740px) {
-                    .field{
-                        flex-direction: column;
-                    }
-                }
-                label.key {
-                    -webkit-border-radius: 5px;
-                    -moz-border-radius: 5px;
-                    border-radius: 5px;
-                    margin: 1px;
-                    padding: 3px;
-                    height: fit-content;
-                    width:175px;
-                }
-                label.key::after{
-                    content: ": ";
-                }
-                button.expander{
-                    display:none;
-                }
-                button.expander[data-children]{
-                    display:inline;
-                    margin: 1px;
-                }
-                .value{
-                    background-color: #ECF3C3;
-                    /* width: 100%; */
-                    flex-grow:5;
-                    color: var(--value-color);
-                    line-height: var(--font-lineheight-3);
-                }
-                .text-editing{
-                    display:flex;
-                    flex-direction: row;
-                    flex-basis: 100%;
-                    align-items: center;
-                }
-                .text-editing .key[data-type="string"]{
-                    background-color: var(--str-key-bg);
-                    color: var(--str-key-color);
-                }
-                .text-editing .key[data-type="number"]{
-                    background-color: var(--num-key-bg);
-                    color: var(--num-key-color);
-                }
-                .text-editing .key[data-type="array"]{
-                    background-color: var(--array-key-bg);
-                    color: var(--array-key-color);
-                }
-                .text-editing .key[data-type="object"]{
-                    background-color: var(--obj-key-bg);
-                    color: var(--obj-key-color);
-                }
-                .text-editing .key[data-type="boolean"]{
-                    background-color: var(--bool-key-bg);
-                }
-                section,div.buttons{
-                    display:flex;
-                    flex-direction: row;
-                    justify-content: flex-end;
-                }
-                section.adder-buttons{
-                    display:none;
-                }
-                section.adder-buttons[data-can-have-children]{
-                    display:flex;
-                    width:240px;
-                }
-                div.field[data-readonly] section.adder-buttons[data-can-have-children]{
-                    display:none;
-                }
-                div.field[data-readonly] .delete-button{
-                    display:none;
-                }
-                section.exp-collapse-buttons{
-                    display:none;
-                }
-                section.exp-collapse-buttons[data-children]{
-                    display:flex;
-                    width:40px;
-                }
-                section{
-                    align-items: center;
-                }
-                button{
-                    background-repeat:no-repeat;
-                    background-position-y:center;
-                    height: 22px;
-                    color: var(--btn-color);
-                }
-                .object.adder{
-                    background-color: var(--obj-adder-bg);
-                }
-                .string.adder{
-                    background-color:var(--string-adder-bg);
-                }
-                .bool.adder{
-                    background-color: var(--bool-adder-bg);
-                }
-                .number.adder{
-                    background-color: var(--num-adder-bg);
-                }
-                .arr.adder{
-                    background-color: var(--arr-adder-bg);
-                }
-                .adder{
-                    color: white;
-                    text-shadow:1px 1px 1px black;
-                    border-radius: 5px;
-                    padding: 2px;
-                    margin: 1px;
-                    border: none;
-                }
-
-                .expand-all{
-                    background-image: url(https://cdn.jsdelivr.net/npm/xtal-editor@0.0.165/arrows-expand.svg);
-                    width: 20px;
-                }
-                .collapse-all{
-                    background-image: url(https://cdn.jsdelivr.net/npm/xtal-editor@0.0.165/arrows-collapse.svg);
-                    width: 20px;
-                }
-                .copy{
-                    background-image: url(https://cdn.jsdelivr.net/npm/xtal-editor@0.0.165/copy.svg);
-                }
-            </style>
         </template>
     </xtal-vlist>
 

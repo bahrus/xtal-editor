@@ -25,13 +25,14 @@
     "@power-elements/json-viewer": "2.1.1",
     "be-active": "0.0.33",
     "be-channeling": "0.0.17",
-    "be-decorated": "0.0.113",
+    "be-decorated": "0.0.114",
     "be-definitive": "0.0.55",
     "be-deslotted": "0.0.30",
     "be-importing": "0.0.26",
     "be-hive": "0.0.46",
     "be-lazy": "0.0.10",
-    "be-loaded": "0.0.64",
+    "be-loaded": "0.0.67",
+    "be-adopted": "0.0.2",
     "be-noticed": "0.0.65",
     "be-observant": "0.0.125",
     "be-repeated": "0.0.71",
@@ -42,7 +43,7 @@
     "xtal-element": "0.0.493",
     "xtal-side-nav": "0.0.85",
     "xtal-tree": "0.0.154",
-    "xtal-vlist": "0.0.64"
+    "xtal-vlist": "0.0.65"
   },
   "devDependencies": {
     "@playwright/test": "1.21.1",
