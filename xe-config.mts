@@ -46,18 +46,18 @@ const commonChannel: Partial<IChannel> = {
 const iff = true || false; //conditional head indicator
 const innerHTML = html`
 <template be-active>
-    <script data-version=0.0.2   id=be-adopted/be-adopted.js></script>
+    <script data-version=0.0.3   id=be-adopted/be-adopted.js></script>
+    <script data-version=0.0.17  id=be-channeling/be-channeling.js></script>
     <script data-version=0.0.67  id=be-loaded/be-loaded.js></script>
     <script data-version=0.0.65  id=be-noticed/be-noticed.js></script>
-    <script data-version=0.0.125 id=be-observant/be-observant.js></script>
-    <script data-version=0.0.71  id=be-switched/be-switched.js></script>
+    <script data-version=0.0.128 id=be-observant/be-observant.js></script>
+    <script data-version=0.0.72  id=be-switched/be-switched.js></script>
     <script data-version=0.0.10  id=be-lazy/be-lazy.js></script>
-    <script data-version=0.0.85  id=xtal-side-nav/xtal-side-nav.js></script>
+    <script data-version=0.0.86  id=xtal-side-nav/xtal-side-nav.js></script>
     <script data-version=0.0.42  id=be-transformative/be-transformative.js></script>
     <script data-version=0.0.30  id=be-deslotted/be-deslotted.js></script>
     <script data-version=0.0.154 id=xtal-tree/xtal-tree.js></script>
-    <script data-version=0.0.64  id=xtal-vlist/xtal-vlist.js></script>
-    <script data-version=0.0.17  id=be-channeling/be-channeling.js></script>
+    <script data-version=0.0.66  id=xtal-vlist/xtal-vlist.js></script>
 </template>
 <style ${{
     beLoaded: {
