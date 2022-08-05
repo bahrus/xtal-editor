@@ -322,6 +322,9 @@ header{
                     "rootMargin": "600px",
                     "threshold": 0
                 }
+            },
+            timeStampMap: {
+                timeStamp: null,
             }
         }}
     >
