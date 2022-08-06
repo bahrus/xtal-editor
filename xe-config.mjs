@@ -296,7 +296,7 @@ header{
 }}
         ${{
     rowTransform: {
-        div: [{}, {}, { "data-path": "path" }],
+        divElements: [{}, {}, { "data-path": "path" }],
         "div.field": [{}, {}, { "style": "marginStyle" }],
         keyClasses: [{ "textContent": "name" }, {}, { "data-type": "type", "for": "path" }],
         valueClasses: [{ name: "path", id: "path" }, {}, { "data-value-type": "type" }],
