@@ -302,11 +302,11 @@ header{
         valueClass: [{ name: "path", id: "path" }, {}, { "data-value-type": "type" }],
         '^': [iff, { lhs: 'type', op: '===', rhsVal: 'boolean' }, [{ readOnly: false, type: ['checkbox'], checked: 'value' }]],
         '^^': [iff, { lhs: 'type', op: '===', rhsVal: 'string' }, [{ readOnly: false, type: ['text'], value: "asString" }]],
-        '^3': [iff, { lhs: 'type', op: '===', rhsVal: 'number' }, [{ readOnly: true, type: ['number'], value: 'value' }]],
+        '^3': [iff, { lhs: 'type', op: '===', rhsVal: 'number' }, [{ readOnly: false, type: ['number'], value: 'value' }]],
         '^4': [iff, { lhs: 'type', op: '===', rhsVal: 'object' }, [{ readOnly: true, type: ['text'], value: 'asString', class: 'object-adder' }]],
         '^5': [iff, { lhs: 'type', op: '===', rhsVal: 'array' }, [{ readOnly: true, type: ['text'], value: 'asString', class: 'object-adder' }]],
         ".delete,.copy,.expand-all": [{ name: "path", id: "path" }],
-        expanderParts: [iff, { if: "open" }, ["-"], ["+"]],
+        expanderClass: [iff, { if: "open" }, ["-"], ["+"]],
         buttonElements: [{}, {}, { "data-children": "hasChildren" }],
         ".adder-buttons,.exp-collapse-buttons": [{}, {}, { "data-children": "hasChildren", "data-can-have-children": "canHaveChildren" }],
         ".adder-template,.exp-coll-template": [{ ".beDecorated.lazy.host": "." }]
