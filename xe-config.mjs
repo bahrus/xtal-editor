@@ -246,7 +246,8 @@ header{
         part=xtal-vlist
         class=animated 
         style="width:100%;" 
-        page-size="10" 
+        page-size="10"
+        timestamp-key="timestamp" 
         id="vlist"
         min-item-height=24
         ${{
@@ -317,9 +318,6 @@ header{
             "threshold": 0
         }
     },
-    timeStampMap: {
-        timeStamp: null,
-    }
 }}
     >
        <style be-adopted="xtal-editor/list.css" slot=header></style>
