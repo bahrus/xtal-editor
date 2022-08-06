@@ -303,7 +303,7 @@ header{
         ${{
             rowTransform: {
                 divElements: [{}, {}, {"data-path": "path"}],
-                "div.field": [{}, {}, {"style": "marginStyle"}],
+                fieldClasses: [{}, {}, {"style": "marginStyle"}],
                 keyClasses: [{"textContent": "name"},{},{"data-type": "type", "for": "path"}],
                 valueClasses: [{name: "path", id: "path"},{},{"data-value-type": "type"}],
                 '^' : [iff, {lhs: 'type', op: '===', rhsVal: 'boolean'}, [{readOnly: false, type: ['checkbox'], checked: 'value'}]],
