@@ -39,10 +39,10 @@
     "be-switched": "0.0.72",
     "be-transformative": "0.0.42",
     "may-it-be": "0.0.162",
-    "trans-render": "0.0.549",
+    "trans-render": "0.0.550",
     "xtal-element": "0.0.493",
     "xtal-side-nav": "0.0.86",
-    "xtal-tree": "0.0.159",
+    "xtal-tree": "0.0.160",
     "xtal-vlist": "0.0.70"
   },
   "devDependencies": {
