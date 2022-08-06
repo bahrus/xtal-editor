@@ -305,7 +305,7 @@ header{
                 divElements: [{}, {}, {"data-path": "path"}],
                 fieldClass: [{}, {}, {"style": "marginStyle"}],
                 keyClass: [{"textContent": "name"},{},{"data-type": "type", "for": "path"}],
-                valueClasses: [{name: "path", id: "path"},{},{"data-value-type": "type"}],
+                valueClass: [{name: "path", id: "path"},{},{"data-value-type": "type"}],
                 '^' : [iff, {lhs: 'type', op: '===', rhsVal: 'boolean'}, [{readOnly: false, type: ['checkbox'], checked: 'value'}]],
                 '^^': [iff, {lhs: 'type', op: '===', rhsVal: 'string'}, [{readOnly: false, type: ['text'], value: "asString" }]],
                 '^3': [iff, {lhs: 'type', op: '===', rhsVal: 'number'}, [{readOnly: true, type: ['number'], value: 'value' }]],
