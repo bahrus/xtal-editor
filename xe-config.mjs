@@ -52,7 +52,7 @@ const innerHTML = html `
     <script data-version=0.0.44  id=be-transformative/be-transformative.js></script>
     <script data-version=0.0.34  id=be-deslotted/be-deslotted.js></script>
     <script data-version=0.0.162 id=xtal-tree/xtal-tree.js></script>
-    <script data-version=0.0.72  id=xtal-vlist/xtal-vlist.js></script>
+    <script data-version=0.0.73  id=xtal-vlist/xtal-vlist.js></script>
 </template>
 <style ${{
     beLoaded: {
@@ -246,7 +246,6 @@ header{
         part=xtal-vlist
         class=animated 
         style="width:100%;" 
-        page-size="10"
         timestamp-key="timestamp" 
         id="vlist"
         min-item-height=24
