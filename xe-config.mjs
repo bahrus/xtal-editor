@@ -53,6 +53,7 @@ const innerHTML = html `
     <script data-version=0.0.34  id=be-deslotted/be-deslotted.js></script>
     <script data-version=0.0.162 id=xtal-tree/xtal-tree.js></script>
     <script data-version=0.0.73  id=xtal-vlist/xtal-vlist.js></script>
+    <script data-version=0.0.1   id=be-composed/be-composed.js></script>
 </template>
 <style ${{
     beLoaded: {
@@ -262,7 +263,7 @@ header{
         },
         {
             ...commonChannel,
-            eventFilter: "input",
+            eventFilter: "c2b4531e-993d-4109-84fe-b9af0fb45927",
             prop: "editedNode",
             composedPathMatch: "input.value",
         },
@@ -333,7 +334,15 @@ header{
                 <div class=text-editing>
                     <button class="expander" part=expander>.</button>
                     <label part=key class=key></label>
-                    <input arial-label=value class=value part=value>
+                    <input arial-label=value class=value part=value be-composed='{
+                        "dispatch":{
+                            "change": {
+                                "as": "c2b4531e-993d-4109-84fe-b9af0fb45927",
+                                "bubbles": true,
+                                "composed": true
+                            }
+                        }
+                    }'>
                 </div>
                 <div class=buttons>
                     <section class=adder-buttons  part=adder-buttons >

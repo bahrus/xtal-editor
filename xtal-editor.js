@@ -17,6 +17,7 @@ if(!document.body){
     <script data-version=0.0.34  id=be-deslotted/be-deslotted.js></script>
     <script data-version=0.0.162 id=xtal-tree/xtal-tree.js></script>
     <script data-version=0.0.73  id=xtal-vlist/xtal-vlist.js></script>
+    <script data-version=0.0.1   id=be-composed/be-composed.js></script>
 </template>
 <style be-loaded='{"path":"xtal-editor/shell.css","version":"0.0.177","removeStyle":true}'>
 header{
@@ -74,7 +75,7 @@ header{
         timestamp-key="timestamp" 
         id="vlist"
         min-item-height=24
-        be-observant='{"list":{"observe":"xtal-tree","vft":"viewableNodes"}}'be-channeling='[{"eventFilter":"click","toNearestUpMatch":"xtal-tree","vfe":"path.0.parentElement.dataset.path","prop":"toggledNodePath","composedPathMatch":"button.expander"},{"eventFilter":"input","toNearestUpMatch":"xtal-tree","vfe":"path.0","prop":"editedNode","composedPathMatch":"input.value"},{"eventFilter":"click","toNearestUpMatch":"xtal-tree","vfe":"path.0","prop":"newNode","composedPathMatch":"button.adder"},{"eventFilter":"click","toNearestUpMatch":"xtal-tree","vfe":"path.0","composedPathMatch":"button.delete","prop":"deleteNode"},{"eventFilter":"click","toNearestUpMatch":"xtal-tree","vfe":"path.0","composedPathMatch":"button.copy","prop":"copyNodeToClipboard"},{"eventFilter":"click","toNearestUpMatch":"xtal-tree","vfe":"path.0","composedPathMatch":"button.expand-all","prop":"expandAllNode"},{"eventFilter":"click","toNearestUpMatch":"xtal-tree","vfe":"path.0","composedPathMatch":"button.collapse-all","prop":"collapseAllNode"}]'
+        be-observant='{"list":{"observe":"xtal-tree","vft":"viewableNodes"}}'be-channeling='[{"eventFilter":"click","toNearestUpMatch":"xtal-tree","vfe":"path.0.parentElement.dataset.path","prop":"toggledNodePath","composedPathMatch":"button.expander"},{"eventFilter":"c2b4531e-993d-4109-84fe-b9af0fb45927","toNearestUpMatch":"xtal-tree","vfe":"path.0","prop":"editedNode","composedPathMatch":"input.value"},{"eventFilter":"click","toNearestUpMatch":"xtal-tree","vfe":"path.0","prop":"newNode","composedPathMatch":"button.adder"},{"eventFilter":"click","toNearestUpMatch":"xtal-tree","vfe":"path.0","composedPathMatch":"button.delete","prop":"deleteNode"},{"eventFilter":"click","toNearestUpMatch":"xtal-tree","vfe":"path.0","composedPathMatch":"button.copy","prop":"copyNodeToClipboard"},{"eventFilter":"click","toNearestUpMatch":"xtal-tree","vfe":"path.0","composedPathMatch":"button.expand-all","prop":"expandAllNode"},{"eventFilter":"click","toNearestUpMatch":"xtal-tree","vfe":"path.0","composedPathMatch":"button.collapse-all","prop":"collapseAllNode"}]'
         row-transform='{"divElements":[{},{},{"data-path":"path"}],"fieldClasses":[{},{},{"style":"marginStyle"}],"keyClasses":[{"textContent":"name"},{},{"data-type":"type","for":"path"}],"valueClasses":[{"name":"path","id":"path"},{},{"data-value-type":"type"}],"^":[true,{"lhs":"type","op":"===","rhsVal":"boolean"},[{"readOnly":false,"type":["checkbox"],"checked":"value"}]],"^^":[true,{"lhs":"type","op":"===","rhsVal":"string"},[{"readOnly":false,"type":["text"],"value":"asString"}]],"^3":[true,{"lhs":"type","op":"===","rhsVal":"number"},[{"readOnly":false,"type":["number"],"value":"value"}]],"^4":[true,{"lhs":"type","op":"===","rhsVal":"object"},[{"readOnly":true,"type":["text"],"value":"asString","class":"object-adder"}]],"^5":[true,{"lhs":"type","op":"===","rhsVal":"array"},[{"readOnly":true,"type":["text"],"value":"asString","class":"object-adder"}]],".delete,.copy,.expand-all":[{"name":"path","id":"path"}],"expanderClasses":[true,{"if":"open"},["-"],["+"]],"buttonElements":[{},{},{"data-children":"hasChildren"}],".adder-buttons,.exp-collapse-buttons":[{},{},{"data-children":"hasChildren","data-can-have-children":"canHaveChildren"}],".adder-template,.exp-coll-template":[{".beDecorated.lazy.host":"."}]}'row-intersectional-settings='{"rootClosest":".scroller","options":{"rootMargin":"600px","threshold":0}}'
     >
        <style be-adopted="xtal-editor/list.css" slot=header></style>
@@ -83,7 +84,15 @@ header{
                 <div class=text-editing>
                     <button class="expander" part=expander>.</button>
                     <label part=key class=key></label>
-                    <input arial-label=value class=value part=value>
+                    <input arial-label=value class=value part=value be-composed='{
+                        "dispatch":{
+                            "change": {
+                                "as": "c2b4531e-993d-4109-84fe-b9af0fb45927",
+                                "bubbles": true,
+                                "composed": true
+                            }
+                        }
+                    }'>
                 </div>
                 <div class=buttons>
                     <section class=adder-buttons  part=adder-buttons >
@@ -147,6 +156,7 @@ header{
     <script data-version=0.0.34  id=be-deslotted/be-deslotted.js></script>
     <script data-version=0.0.162 id=xtal-tree/xtal-tree.js></script>
     <script data-version=0.0.73  id=xtal-vlist/xtal-vlist.js></script>
+    <script data-version=0.0.1   id=be-composed/be-composed.js></script>
 </template>
 <style be-loaded='{"path":"xtal-editor/shell.css","version":"0.0.177","removeStyle":true}'>
 header{
@@ -204,7 +214,7 @@ header{
         timestamp-key="timestamp" 
         id="vlist"
         min-item-height=24
-        be-observant='{"list":{"observe":"xtal-tree","vft":"viewableNodes"}}'be-channeling='[{"eventFilter":"click","toNearestUpMatch":"xtal-tree","vfe":"path.0.parentElement.dataset.path","prop":"toggledNodePath","composedPathMatch":"button.expander"},{"eventFilter":"input","toNearestUpMatch":"xtal-tree","vfe":"path.0","prop":"editedNode","composedPathMatch":"input.value"},{"eventFilter":"click","toNearestUpMatch":"xtal-tree","vfe":"path.0","prop":"newNode","composedPathMatch":"button.adder"},{"eventFilter":"click","toNearestUpMatch":"xtal-tree","vfe":"path.0","composedPathMatch":"button.delete","prop":"deleteNode"},{"eventFilter":"click","toNearestUpMatch":"xtal-tree","vfe":"path.0","composedPathMatch":"button.copy","prop":"copyNodeToClipboard"},{"eventFilter":"click","toNearestUpMatch":"xtal-tree","vfe":"path.0","composedPathMatch":"button.expand-all","prop":"expandAllNode"},{"eventFilter":"click","toNearestUpMatch":"xtal-tree","vfe":"path.0","composedPathMatch":"button.collapse-all","prop":"collapseAllNode"}]'
+        be-observant='{"list":{"observe":"xtal-tree","vft":"viewableNodes"}}'be-channeling='[{"eventFilter":"click","toNearestUpMatch":"xtal-tree","vfe":"path.0.parentElement.dataset.path","prop":"toggledNodePath","composedPathMatch":"button.expander"},{"eventFilter":"c2b4531e-993d-4109-84fe-b9af0fb45927","toNearestUpMatch":"xtal-tree","vfe":"path.0","prop":"editedNode","composedPathMatch":"input.value"},{"eventFilter":"click","toNearestUpMatch":"xtal-tree","vfe":"path.0","prop":"newNode","composedPathMatch":"button.adder"},{"eventFilter":"click","toNearestUpMatch":"xtal-tree","vfe":"path.0","composedPathMatch":"button.delete","prop":"deleteNode"},{"eventFilter":"click","toNearestUpMatch":"xtal-tree","vfe":"path.0","composedPathMatch":"button.copy","prop":"copyNodeToClipboard"},{"eventFilter":"click","toNearestUpMatch":"xtal-tree","vfe":"path.0","composedPathMatch":"button.expand-all","prop":"expandAllNode"},{"eventFilter":"click","toNearestUpMatch":"xtal-tree","vfe":"path.0","composedPathMatch":"button.collapse-all","prop":"collapseAllNode"}]'
         row-transform='{"divElements":[{},{},{"data-path":"path"}],"fieldClasses":[{},{},{"style":"marginStyle"}],"keyClasses":[{"textContent":"name"},{},{"data-type":"type","for":"path"}],"valueClasses":[{"name":"path","id":"path"},{},{"data-value-type":"type"}],"^":[true,{"lhs":"type","op":"===","rhsVal":"boolean"},[{"readOnly":false,"type":["checkbox"],"checked":"value"}]],"^^":[true,{"lhs":"type","op":"===","rhsVal":"string"},[{"readOnly":false,"type":["text"],"value":"asString"}]],"^3":[true,{"lhs":"type","op":"===","rhsVal":"number"},[{"readOnly":false,"type":["number"],"value":"value"}]],"^4":[true,{"lhs":"type","op":"===","rhsVal":"object"},[{"readOnly":true,"type":["text"],"value":"asString","class":"object-adder"}]],"^5":[true,{"lhs":"type","op":"===","rhsVal":"array"},[{"readOnly":true,"type":["text"],"value":"asString","class":"object-adder"}]],".delete,.copy,.expand-all":[{"name":"path","id":"path"}],"expanderClasses":[true,{"if":"open"},["-"],["+"]],"buttonElements":[{},{},{"data-children":"hasChildren"}],".adder-buttons,.exp-collapse-buttons":[{},{},{"data-children":"hasChildren","data-can-have-children":"canHaveChildren"}],".adder-template,.exp-coll-template":[{".beDecorated.lazy.host":"."}]}'row-intersectional-settings='{"rootClosest":".scroller","options":{"rootMargin":"600px","threshold":0}}'
     >
        <style be-adopted="xtal-editor/list.css" slot=header></style>
@@ -213,7 +223,15 @@ header{
                 <div class=text-editing>
                     <button class="expander" part=expander>.</button>
                     <label part=key class=key></label>
-                    <input arial-label=value class=value part=value>
+                    <input arial-label=value class=value part=value be-composed='{
+                        "dispatch":{
+                            "change": {
+                                "as": "c2b4531e-993d-4109-84fe-b9af0fb45927",
+                                "bubbles": true,
+                                "composed": true
+                            }
+                        }
+                    }'>
                 </div>
                 <div class=buttons>
                     <section class=adder-buttons  part=adder-buttons >
