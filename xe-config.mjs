@@ -49,7 +49,7 @@ const innerHTML = html `
     <script data-version=0.0.75  id=be-switched/be-switched.js></script>
     <script data-version=0.0.16  id=be-lazy/be-lazy.js></script>
     <script data-version=0.0.87  id=xtal-side-nav/xtal-side-nav.js></script>
-    <script data-version=0.0.44  id=be-transformative/be-transformative.js></script>
+    <script data-version=0.0.45  id=be-transformative/be-transformative.js></script>
     <script data-version=0.0.34  id=be-deslotted/be-deslotted.js></script>
     <script data-version=0.0.162 id=xtal-tree/xtal-tree.js></script>
     <script data-version=0.0.75  id=xtal-vlist/xtal-vlist.js></script>
