@@ -44,7 +44,7 @@
     "xtal-element": "0.0.513",
     "xtal-side-nav": "0.0.87",
     "xtal-tree": "0.0.162",
-    "xtal-vlist": "0.0.73"
+    "xtal-vlist": "0.0.74"
   },
   "devDependencies": {
     "@playwright/test": "1.25.0",
