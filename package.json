@@ -36,7 +36,7 @@
     "be-loaded": "0.0.70",
     "be-noticed": "0.0.67",
     "be-observant": "0.0.132",
-    "be-repeated": "0.0.80",
+    "be-repeated": "0.0.81",
     "be-switched": "0.0.75",
     "be-transformative": "0.0.44",
     "may-it-be": "0.0.164",
@@ -44,7 +44,7 @@
     "xtal-element": "0.0.513",
     "xtal-side-nav": "0.0.87",
     "xtal-tree": "0.0.162",
-    "xtal-vlist": "0.0.74"
+    "xtal-vlist": "0.0.75"
   },
   "devDependencies": {
     "@playwright/test": "1.25.0",
