@@ -256,6 +256,7 @@ header{
         timestamp-key="timestamp" 
         id="vlist"
         min-item-height=24
+        page-size=10
         ${{
             beObservant:{
                 list: {observe: "xtal-tree", vft: "viewableNodes"}
