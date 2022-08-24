@@ -11,7 +11,7 @@ if(!document.body){
     <script data-version=0.0.67  id=be-noticed/be-noticed.js></script>
     <script data-version=0.0.132 id=be-observant/be-observant.js></script>
     <script data-version=0.0.75  id=be-switched/be-switched.js></script>
-    <script data-version=0.0.14  id=be-lazy/be-lazy.js></script>
+    <script data-version=0.0.16  id=be-lazy/be-lazy.js></script>
     <script data-version=0.0.87  id=xtal-side-nav/xtal-side-nav.js></script>
     <script data-version=0.0.44  id=be-transformative/be-transformative.js></script>
     <script data-version=0.0.34  id=be-deslotted/be-deslotted.js></script>
@@ -150,7 +150,7 @@ header{
     <script data-version=0.0.67  id=be-noticed/be-noticed.js></script>
     <script data-version=0.0.132 id=be-observant/be-observant.js></script>
     <script data-version=0.0.75  id=be-switched/be-switched.js></script>
-    <script data-version=0.0.14  id=be-lazy/be-lazy.js></script>
+    <script data-version=0.0.16  id=be-lazy/be-lazy.js></script>
     <script data-version=0.0.87  id=xtal-side-nav/xtal-side-nav.js></script>
     <script data-version=0.0.44  id=be-transformative/be-transformative.js></script>
     <script data-version=0.0.34  id=be-deslotted/be-deslotted.js></script>
