@@ -63,7 +63,7 @@ header{
         
 
     </h1>
-    <label part=search-label class=search-label>Search:&nbsp;&nbsp;<input part=search-input type=search be-noticed='{"input":{"toNearestUpMatch":"xtal-tree","prop":"searchString","vft":"value","debug":true}}'>
+    <label part=search-label class=search-label>Search:&nbsp;&nbsp;<input part=search-input type=search be-noticed='{"input":{"toNearestUpMatch":"xtal-tree","prop":"searchString","vft":"value"}}'>
     </label>
     <div class=exp-coll>
         <button part=expand-all class="action expand-all" aria-label="expand all" title="expand all" be-noticed='{"click":{"toNearestUpMatch":"xtal-tree","prop":"expandAll","val":true}}'>&nbsp;</button>
@@ -86,7 +86,7 @@ header{
     >
        <style be-adopted="xtal-editor/list.css" slot=header></style>
        <template slot=row>
-            <div class=field data-readonly part=field itemscope be-observant='{"data-readonly":{"observeHostProp":"readOnly","vft":"readOnly","as":"bool-attr"}}'>
+            <div class=field data-readonly debug part=field itemscope be-observant='{"data-readonly":{"observeHostProp":"readOnly","vft":"readOnly","as":"bool-attr"}}'>
                 <div class=text-editing>
                     <button class="expander" part=expander>.</button>
                     <label part=key class=key></label>

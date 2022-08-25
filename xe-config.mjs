@@ -202,7 +202,6 @@ header{
             toNearestUpMatch: 'xtal-tree',
             prop: "searchString",
             vft: "value",
-            debug: true
         }
     }
 }}>
@@ -323,7 +322,7 @@ header{
     >
        <style be-adopted="xtal-editor/list.css" slot=header></style>
        <template slot=row>
-            <div class=field data-readonly part=field itemscope ${{
+            <div class=field data-readonly debug part=field itemscope ${{
     beObservant: {
         'data-readonly': {
             observeHostProp: 'readOnly',
