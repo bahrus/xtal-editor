@@ -62,7 +62,7 @@ const innerHTML = html `
         removeStyle: true,
     }
 }}>
-header{
+main{
     display: none;
 }
 </style>

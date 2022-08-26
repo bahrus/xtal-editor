@@ -20,7 +20,7 @@ if(!document.body){
     <script data-version=0.0.1   id=be-composed/be-composed.js></script>
 </template>
 <style be-loaded='{"path":"xtal-editor/shell.css","version":"0.0.177","removeStyle":true}'>
-header{
+main{
     display: none;
 }
 </style>
@@ -160,7 +160,7 @@ header{
     <script data-version=0.0.1   id=be-composed/be-composed.js></script>
 </template>
 <style be-loaded='{"path":"xtal-editor/shell.css","version":"0.0.177","removeStyle":true}'>
-header{
+main{
     display: none;
 }
 </style>

@@ -67,7 +67,7 @@ const innerHTML = html`
         removeStyle: true,
     }
 } as mib}>
-header{
+main{
     display: none;
 }
 </style>
