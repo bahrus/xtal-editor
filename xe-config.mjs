@@ -66,9 +66,9 @@ main{
     display: none;
 }
 </style>
-
-<main part=main>
 <slot name=init-val be-deslotted='["value"]'></slot>
+<main part=main>
+
 <xtal-tree id-path=path ${{
     beObservant: [{
             objectGraph: {

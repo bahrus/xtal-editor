@@ -24,9 +24,9 @@ main{
     display: none;
 }
 </style>
-
-<main part=main>
 <slot name=init-val be-deslotted='["value"]'></slot>
+<main part=main>
+
 <xtal-tree id-path=path be-observant='[{"objectGraph":{"onSet":"value","vft":"value","parseValAs":"object"}},{"objectGraph":{"onSet":"inputObj","vft":"inputObj"}}]'be-noticed='{"updateCount:onSet":{"vft":"objectGraph","prop":"editedValue"}}'></xtal-tree>
 </div>
 <header part=header>
@@ -164,9 +164,9 @@ main{
     display: none;
 }
 </style>
-
-<main part=main>
 <slot name=init-val be-deslotted='["value"]'></slot>
+<main part=main>
+
 <xtal-tree id-path=path be-observant='[{"objectGraph":{"onSet":"value","vft":"value","parseValAs":"object"}},{"objectGraph":{"onSet":"inputObj","vft":"inputObj"}}]'be-noticed='{"updateCount:onSet":{"vft":"objectGraph","prop":"editedValue"}}'></xtal-tree>
 </div>
 <header part=header>
