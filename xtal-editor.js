@@ -7,7 +7,7 @@ if(!document.body){
 <template be-active>
     <script data-version=0.0.4   id=be-adopted/be-adopted.js></script>
     <script data-version=0.0.21  id=be-channeling/be-channeling.js></script>
-    <script data-version=0.0.70  id=be-loaded/be-loaded.js></script>
+    <script data-version=0.0.82  id=be-loaded/be-loaded.js></script>
     <script data-version=0.0.67  id=be-noticed/be-noticed.js></script>
     <script data-version=0.0.132 id=be-observant/be-observant.js></script>
     <script data-version=0.0.75  id=be-switched/be-switched.js></script>
@@ -74,7 +74,7 @@ main{
         style="width:100%;" 
         timestamp-key="timestamp" 
         id="vlist"
-        min-item-height=24
+        min-item-height=23
         page-size=10
         be-observant='{"list":{"observe":"xtal-tree","vft":"viewableNodes"}}'be-channeling='[{"eventFilter":"click","toNearestUpMatch":"xtal-tree","vfe":"path.0.parentElement.dataset.path","prop":"toggledNodePath","composedPathMatch":"button.expander"},{"eventFilter":"c2b4531e-993d-4109-84fe-b9af0fb45927","toNearestUpMatch":"xtal-tree","vfe":"path.0","prop":"editedNode","composedPathMatch":"input.value"},{"eventFilter":"click","toNearestUpMatch":"xtal-tree","vfe":"path.0","prop":"newNode","composedPathMatch":"button.adder"},{"eventFilter":"click","toNearestUpMatch":"xtal-tree","vfe":"path.0","composedPathMatch":"button.delete","prop":"deleteNode"},{"eventFilter":"click","toNearestUpMatch":"xtal-tree","vfe":"path.0","composedPathMatch":"button.copy","prop":"copyNodeToClipboard"},{"eventFilter":"click","toNearestUpMatch":"xtal-tree","vfe":"path.0","composedPathMatch":"button.expand-all","prop":"expandAllNode"},{"eventFilter":"click","toNearestUpMatch":"xtal-tree","vfe":"path.0","composedPathMatch":"button.collapse-all","prop":"collapseAllNode"}]'
         row-transform='{"divElements":[{},{},{"data-path":"path"}],"fieldClasses":[{},{},{"style":"marginStyle"}],"keyClasses":[{"textContent":"name"},{},{"data-type":"type","for":"path"}],"valueClasses":[{"name":"path","id":"path"},{},{"data-value-type":"type"}],"^":[true,{"lhs":"type","op":"===","rhsVal":"boolean"},[{"readOnly":false,"type":["checkbox"],"checked":"value"}]],"^^":[true,{"lhs":"type","op":"===","rhsVal":"string"},[{"readOnly":false,"type":["text"],"value":"asString"}]],"^3":[true,{"lhs":"type","op":"===","rhsVal":"number"},[{"readOnly":false,"type":["number"],"value":"value"}]],"^4":[true,{"lhs":"type","op":"===","rhsVal":"object"},[{"readOnly":true,"type":["text"],"value":"asString","class":"object-adder"}]],"^5":[true,{"lhs":"type","op":"===","rhsVal":"array"},[{"readOnly":true,"type":["text"],"value":"asString","class":"object-adder"}]],".delete,.copy,.expand-all":[{"name":"path","id":"path"}],"expanderClasses":[true,{"if":"open"},["-"],["+"]],"buttonElements":[{},{},{"data-children":"hasChildren"}],".adder-buttons,.exp-collapse-buttons":[{},{},{"data-children":"hasChildren","data-can-have-children":"canHaveChildren"}],".adder-template,.exp-coll-template":[{".beDecorated.lazy.host":"."}]}'row-intersectional-settings='{"rootClosest":".scroller","options":{"rootMargin":"600px","threshold":0}}'
@@ -147,7 +147,7 @@ main{
 <template be-active>
     <script data-version=0.0.4   id=be-adopted/be-adopted.js></script>
     <script data-version=0.0.21  id=be-channeling/be-channeling.js></script>
-    <script data-version=0.0.70  id=be-loaded/be-loaded.js></script>
+    <script data-version=0.0.82  id=be-loaded/be-loaded.js></script>
     <script data-version=0.0.67  id=be-noticed/be-noticed.js></script>
     <script data-version=0.0.132 id=be-observant/be-observant.js></script>
     <script data-version=0.0.75  id=be-switched/be-switched.js></script>
@@ -214,7 +214,7 @@ main{
         style="width:100%;" 
         timestamp-key="timestamp" 
         id="vlist"
-        min-item-height=24
+        min-item-height=23
         page-size=10
         be-observant='{"list":{"observe":"xtal-tree","vft":"viewableNodes"}}'be-channeling='[{"eventFilter":"click","toNearestUpMatch":"xtal-tree","vfe":"path.0.parentElement.dataset.path","prop":"toggledNodePath","composedPathMatch":"button.expander"},{"eventFilter":"c2b4531e-993d-4109-84fe-b9af0fb45927","toNearestUpMatch":"xtal-tree","vfe":"path.0","prop":"editedNode","composedPathMatch":"input.value"},{"eventFilter":"click","toNearestUpMatch":"xtal-tree","vfe":"path.0","prop":"newNode","composedPathMatch":"button.adder"},{"eventFilter":"click","toNearestUpMatch":"xtal-tree","vfe":"path.0","composedPathMatch":"button.delete","prop":"deleteNode"},{"eventFilter":"click","toNearestUpMatch":"xtal-tree","vfe":"path.0","composedPathMatch":"button.copy","prop":"copyNodeToClipboard"},{"eventFilter":"click","toNearestUpMatch":"xtal-tree","vfe":"path.0","composedPathMatch":"button.expand-all","prop":"expandAllNode"},{"eventFilter":"click","toNearestUpMatch":"xtal-tree","vfe":"path.0","composedPathMatch":"button.collapse-all","prop":"collapseAllNode"}]'
         row-transform='{"divElements":[{},{},{"data-path":"path"}],"fieldClasses":[{},{},{"style":"marginStyle"}],"keyClasses":[{"textContent":"name"},{},{"data-type":"type","for":"path"}],"valueClasses":[{"name":"path","id":"path"},{},{"data-value-type":"type"}],"^":[true,{"lhs":"type","op":"===","rhsVal":"boolean"},[{"readOnly":false,"type":["checkbox"],"checked":"value"}]],"^^":[true,{"lhs":"type","op":"===","rhsVal":"string"},[{"readOnly":false,"type":["text"],"value":"asString"}]],"^3":[true,{"lhs":"type","op":"===","rhsVal":"number"},[{"readOnly":false,"type":["number"],"value":"value"}]],"^4":[true,{"lhs":"type","op":"===","rhsVal":"object"},[{"readOnly":true,"type":["text"],"value":"asString","class":"object-adder"}]],"^5":[true,{"lhs":"type","op":"===","rhsVal":"array"},[{"readOnly":true,"type":["text"],"value":"asString","class":"object-adder"}]],".delete,.copy,.expand-all":[{"name":"path","id":"path"}],"expanderClasses":[true,{"if":"open"},["-"],["+"]],"buttonElements":[{},{},{"data-children":"hasChildren"}],".adder-buttons,.exp-collapse-buttons":[{},{},{"data-children":"hasChildren","data-can-have-children":"canHaveChildren"}],".adder-template,.exp-coll-template":[{".beDecorated.lazy.host":"."}]}'row-intersectional-settings='{"rootClosest":".scroller","options":{"rootMargin":"600px","threshold":0}}'
