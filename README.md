@@ -10,7 +10,7 @@
 Re-creation of [flexi-json](http://www.daviddurman.com/flexi-json-editor/jsoneditor.html), taking some liberties, but as a web component.
 
 
-## [Demo](https://codepen.io/bahrus/pen/gOojgoP)
+## [Demo](https://json-editor-pwa.bahrus.workers.dev/)
 
 xtal-editor is able to scale somewhat better for large JSON objects as compared to other alternative editors.
 
