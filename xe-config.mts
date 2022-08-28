@@ -46,8 +46,8 @@ const commonChannel: Partial<IChannel> = {
 const iff = true || false; //conditional head indicator
 const innerHTML = html`
 <template be-active>
-    <script data-version=0.0.4   id=be-adopted/be-adopted.js></script>
-    <script data-version=0.0.21  id=be-channeling/be-channeling.js></script>
+    <script data-version=0.0.5   id=be-adopted/be-adopted.js></script>
+    <script data-version=0.0.23  id=be-channeling/be-channeling.js></script>
     <script data-version=0.0.82  id=be-loaded/be-loaded.js></script>
     <script data-version=0.0.67  id=be-noticed/be-noticed.js></script>
     <script data-version=0.0.132 id=be-observant/be-observant.js></script>

@@ -5,8 +5,8 @@ if(!document.body){
     document.addEventListener('DOMContentLoaded', () => {
         document.body.insertAdjacentHTML('beforeend', `<template be-definitive='{"config":{"tagName":"xtal-editor","propDefaults":{"readOnly":false,"key":"","treeView":true,"textView":false,"downloadHref":"","editedValue":{},"stringFilter":"","transform":{"header":[{},{},{"data-read-only":"readOnly"}]}},"propInfo":{"editedValue":{"notify":{"dispatch":true}},"inputObj":{"type":"Object"},"value":{"type":"String"}},"actions":{"cloneTemplate":{"ifAllOf":["mainTemplate"],"ifKeyIn":["noshadow","waitToInit"]},"doTemplMount":{"ifAllOf":["clonedTemplate","transform"],"ifKeyIn":["waitToInit"],"async":true}}}}'>
 <template be-active>
-    <script data-version=0.0.4   id=be-adopted/be-adopted.js></script>
-    <script data-version=0.0.21  id=be-channeling/be-channeling.js></script>
+    <script data-version=0.0.5   id=be-adopted/be-adopted.js></script>
+    <script data-version=0.0.23  id=be-channeling/be-channeling.js></script>
     <script data-version=0.0.82  id=be-loaded/be-loaded.js></script>
     <script data-version=0.0.67  id=be-noticed/be-noticed.js></script>
     <script data-version=0.0.132 id=be-observant/be-observant.js></script>
@@ -145,8 +145,8 @@ main{
 }else{
     document.body.insertAdjacentHTML('beforeend', `<template be-definitive='{"config":{"tagName":"xtal-editor","propDefaults":{"readOnly":false,"key":"","treeView":true,"textView":false,"downloadHref":"","editedValue":{},"stringFilter":"","transform":{"header":[{},{},{"data-read-only":"readOnly"}]}},"propInfo":{"editedValue":{"notify":{"dispatch":true}},"inputObj":{"type":"Object"},"value":{"type":"String"}},"actions":{"cloneTemplate":{"ifAllOf":["mainTemplate"],"ifKeyIn":["noshadow","waitToInit"]},"doTemplMount":{"ifAllOf":["clonedTemplate","transform"],"ifKeyIn":["waitToInit"],"async":true}}}}'>
 <template be-active>
-    <script data-version=0.0.4   id=be-adopted/be-adopted.js></script>
-    <script data-version=0.0.21  id=be-channeling/be-channeling.js></script>
+    <script data-version=0.0.5   id=be-adopted/be-adopted.js></script>
+    <script data-version=0.0.23  id=be-channeling/be-channeling.js></script>
     <script data-version=0.0.82  id=be-loaded/be-loaded.js></script>
     <script data-version=0.0.67  id=be-noticed/be-noticed.js></script>
     <script data-version=0.0.132 id=be-observant/be-observant.js></script>

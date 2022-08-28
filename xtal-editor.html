@@ -3,15 +3,15 @@
     <!---->
     <template shadowroot="open">
         <template be-active>
-            <script data-version=0.0.30 id="be-importing/be-importing.js"></script>
-            <script data-version=0.0.59 id="be-definitive/be-definitive.js" data-when=be-importing></script>
+            <script data-version=0.0.35 id="be-importing/be-importing.js"></script>
+            <script data-version=0.0.62 id="be-definitive/be-definitive.js" data-when=be-importing></script>
             
             
         </template>
         
 <template be-active>
-    <script data-version=0.0.4   id=be-adopted/be-adopted.js></script>
-    <script data-version=0.0.21  id=be-channeling/be-channeling.js></script>
+    <script data-version=0.0.5   id=be-adopted/be-adopted.js></script>
+    <script data-version=0.0.23  id=be-channeling/be-channeling.js></script>
     <script data-version=0.0.82  id=be-loaded/be-loaded.js></script>
     <script data-version=0.0.67  id=be-noticed/be-noticed.js></script>
     <script data-version=0.0.132 id=be-observant/be-observant.js></script>
@@ -152,7 +152,7 @@ main{
 <script type=module>
     if(customElements.get('be-active') === undefined){
         import('be-active/be-active.js').catch(err => {
-            import('https://esm.run/be-active@0.0.33/be-active.js');
+            import('https://esm.run/be-active@0.0.40/be-active.js');
         });
     }
 </script>
