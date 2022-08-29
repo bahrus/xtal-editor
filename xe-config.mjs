@@ -42,14 +42,14 @@ const iff = true || false; //conditional head indicator
 const innerHTML = html `
 <template be-active>
     
-    <script data-version=0.0.82  id=be-loaded/be-loaded.js></script>
-    <script data-version=0.0.34  id=be-deslotted/be-deslotted.js></script>
+    <script data-version=0.0.83  id=be-loaded/be-loaded.js></script>
+    <script data-version=0.0.36  id=be-deslotted/be-deslotted.js></script>
     
 </template>
 <style ${{
     beLoaded: {
         path: 'xtal-editor/shell.css',
-        version: '0.0.177',
+        version: '0.0.193',
         removeStyle: true,
     }
 }}>
@@ -60,11 +60,11 @@ main{
 <slot name=init-val be-deslotted='["value"]'></slot>
 <main part=main>
     <template be-active>
-        <script data-version=0.0.162 id=xtal-tree/xtal-tree.js></script>
-        <script data-version=0.0.87  id=xtal-side-nav/xtal-side-nav.js></script>
-        <script data-version=0.0.132 id=be-observant/be-observant.js></script>
-        <script data-version=0.0.67  id=be-noticed/be-noticed.js></script>
-        <script data-version=0.0.46  id=be-transformative/be-transformative.js></script>
+        <script data-version=0.0.165 id=xtal-tree/xtal-tree.js></script>
+        <script data-version=0.0.92  id=xtal-side-nav/xtal-side-nav.js></script>
+        <script data-version=0.0.134 id=be-observant/be-observant.js></script>
+        <script data-version=0.0.68  id=be-noticed/be-noticed.js></script>
+        <script data-version=0.0.47  id=be-transformative/be-transformative.js></script>
     </template>
     <xtal-tree id-path=path ${{
     beObservant: [{
@@ -90,6 +90,7 @@ main{
     <header part=header>
         <xtal-side-nav part=side-nav>
             <menu part=menu>
+                <template be-lazy>
                 <button class="selector text-view-selector" part=text-view-selector ${{
     beTransformative: {
         click: {
@@ -176,7 +177,10 @@ main{
         }
     }
 }}>+array</button>
+                </template>
             </menu>
+            
+
         </xtal-side-nav>
         <h1 part=title >
             <span ${{
@@ -243,11 +247,11 @@ main{
     }
 }}>
         <template be-active>
-            <script data-version=0.0.75  id=xtal-vlist/xtal-vlist.js></script>
-            <script data-version=0.0.16  id=be-lazy/be-lazy.js></script>
-            <script data-version=0.0.5   id=be-adopted/be-adopted.js></script>
-            <script data-version=0.0.23  id=be-channeling/be-channeling.js></script>
-            <script data-version=0.0.1   id=be-composed/be-composed.js></script>
+            <script data-version=0.0.77  id=xtal-vlist/xtal-vlist.js></script>
+            <script data-version=0.0.17  id=be-lazy/be-lazy.js></script>
+            <script data-version=0.0.6   id=be-adopted/be-adopted.js></script>
+            <script data-version=0.0.24  id=be-channeling/be-channeling.js></script>
+            <script data-version=0.0.3   id=be-composed/be-composed.js></script>
         </template>
         <xtal-vlist
             part=xtal-vlist

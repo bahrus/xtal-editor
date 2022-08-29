@@ -33,6 +33,10 @@ slot{
     display: none;
 }
 
+xtal-side-nav:not([open]) menu{
+    display:none;
+}
+
 
 header{
     /* color-scheme: dark; */
