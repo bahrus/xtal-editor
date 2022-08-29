@@ -41,15 +41,10 @@ const commonChannel = {
 const iff = true || false; //conditional head indicator
 const innerHTML = html `
 <template be-active>
-    <script data-version=0.0.5   id=be-adopted/be-adopted.js></script>
-    <script data-version=0.0.23  id=be-channeling/be-channeling.js></script>
+    
     <script data-version=0.0.82  id=be-loaded/be-loaded.js></script>
-    <script data-version=0.0.67  id=be-noticed/be-noticed.js></script>
-    <script data-version=0.0.132 id=be-observant/be-observant.js></script>
-    <script data-version=0.0.78  id=be-switched/be-switched.js></script>
-    <script data-version=0.0.46  id=be-transformative/be-transformative.js></script>
     <script data-version=0.0.34  id=be-deslotted/be-deslotted.js></script>
-    <script data-version=0.0.1   id=be-composed/be-composed.js></script>
+    
 </template>
 <style ${{
     beLoaded: {
@@ -66,9 +61,10 @@ main{
 <main part=main>
     <template be-active>
         <script data-version=0.0.162 id=xtal-tree/xtal-tree.js></script>
-        <script data-version=0.0.75  id=xtal-vlist/xtal-vlist.js></script>
-        <script data-version=0.0.16  id=be-lazy/be-lazy.js></script>
         <script data-version=0.0.87  id=xtal-side-nav/xtal-side-nav.js></script>
+        <script data-version=0.0.132 id=be-observant/be-observant.js></script>
+        <script data-version=0.0.67  id=be-noticed/be-noticed.js></script>
+        <script data-version=0.0.46  id=be-transformative/be-transformative.js></script>
     </template>
     <xtal-tree id-path=path ${{
     beObservant: [{
@@ -238,11 +234,21 @@ main{
         </div>
     </header>
     <!-- Tree View -->
+    <template be-active>
+        <script data-version=0.0.78  id=be-switched/be-switched.js></script>
+    </template>
     <template ${{
     beSwitched: {
         if: '.treeView',
     }
 }}>
+        <template be-active>
+            <script data-version=0.0.75  id=xtal-vlist/xtal-vlist.js></script>
+            <script data-version=0.0.16  id=be-lazy/be-lazy.js></script>
+            <script data-version=0.0.5   id=be-adopted/be-adopted.js></script>
+            <script data-version=0.0.23  id=be-channeling/be-channeling.js></script>
+            <script data-version=0.0.1   id=be-composed/be-composed.js></script>
+        </template>
         <xtal-vlist
             part=xtal-vlist
             class=animated 
