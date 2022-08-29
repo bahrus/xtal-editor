@@ -354,38 +354,46 @@ main{
                                 }
                             }
                         }'>
+                        <xtal-side-nav>
+                            <menu>
+                                <template be-lazy>
+                                    <div class=buttons>
+                                        <section class=adder-buttons  part=adder-buttons >
+                                            <template class=adder-template be-lazy='{
+                                                "transform": {
+                                                    "button": [{"name": "path"}, {}, {}]
+                                                }
+                                            }'>
+                                                    <button part=object-adder class="object adder" value=object>+object</button>
+                                                    <button part=string-adder class="string adder" value=string>+string</button>
+                                                    <button part=bool-adder class="bool adder" value=bool>+bool</button>
+                                                    <button part=number-adder class="number adder" value=number>+number</button>
+                                                    <button part=arr-adder class="arr adder" value=arr>+array</button>
+                                            </template>
+                                        </section>
+                                        <section class=exp-collapse-buttons>
+                                            <template class=exp-coll-template be-lazy='{
+                                                    "transform": {
+                                                        "button": [{"name": "path"}, {}, {}]
+                                                    }
+                                                }'>
+                                                    <button class="action expand-all" aria-label="expand all" title="expand all">&nbsp;</button>
+                                                    <button class="action collapse-all" aria-label="collapse all" title="collapse all">&nbsp;</button>
+                                            </template>
+                                        </section>
+                                        <section class=other-buttons>
+                                            <button class="action copy" aria-label="copy" title="copy">&nbsp;</button>
+                                        </section>
+                                        <section class=delete-button>
+                                            <button class="action delete" aria-label="delete" title="delete">&times;</button>
+                                        </section>
+                                    </div>                                
+                                </template>
+                            </menu>
+                        </xtal-side-nav>
                     </div>
-                    <div class=buttons>
-                        <section class=adder-buttons  part=adder-buttons >
-                            <template class=adder-template be-lazy='{
-                                "transform": {
-                                    "button": [{"name": "path"}, {}, {}]
-                                }
-                            }'>
-                                    <button part=object-adder class="object adder" value=object>+object</button>
-                                    <button part=string-adder class="string adder" value=string>+string</button>
-                                    <button part=bool-adder class="bool adder" value=bool>+bool</button>
-                                    <button part=number-adder class="number adder" value=number>+number</button>
-                                    <button part=arr-adder class="arr adder" value=arr>+array</button>
-                            </template>
-                        </section>
-                        <section class=exp-collapse-buttons>
-                            <template class=exp-coll-template be-lazy='{
-                                    "transform": {
-                                        "button": [{"name": "path"}, {}, {}]
-                                    }
-                                }'>
-                                    <button class="action expand-all" aria-label="expand all" title="expand all">&nbsp;</button>
-                                    <button class="action collapse-all" aria-label="collapse all" title="collapse all">&nbsp;</button>
-                            </template>
-                        </section>
-                        <section class=other-buttons>
-                            <button class="action copy" aria-label="copy" title="copy">&nbsp;</button>
-                        </section>
-                        <section class=delete-button>
-                            <button class="action delete" aria-label="delete" title="delete">&times;</button>
-                        </section>
-                    </div>
+
+
                 </div>
             </template>
         </xtal-vlist>

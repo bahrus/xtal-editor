@@ -27,6 +27,7 @@
     --arr-adder-bg: #2d5b89;
     --value-color: #000000;
     --btn-color: #CD138F;
+    --header-height: 24px;
 }
 
 slot{
@@ -42,7 +43,7 @@ header{
     /* color-scheme: dark; */
     color: white;
     background: #121212;
-    height: 24px;
+    height: var(--header-height);
 }
 
 main{
@@ -67,7 +68,7 @@ main{
 xtal-vlist,json-viewer {
     animation-name: fadeIn;
     display:flex;
-    height:calc(100% - 24px);
+    height:calc(100% - var(--header-height));
 }
 xtal-vlist::part(scroller){
     height:100%;

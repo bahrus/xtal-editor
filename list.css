@@ -141,3 +141,6 @@ button{
 .copy{
     background-image: url(https://cdn.jsdelivr.net/npm/xtal-editor@0.0.165/copy.svg);
 }
+xtal-side-nav::part(opener), xtal-side-nav::part(close-btn){
+    font-size:10px;
+}
