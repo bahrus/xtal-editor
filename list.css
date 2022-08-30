@@ -74,8 +74,8 @@ button.expander[data-children]{
 }
 section,div.buttons{
     display:flex;
-    flex-direction: row;
-    justify-content: flex-end;
+    flex-direction: column;
+    justify-content:left;
 }
 section.adder-buttons{
     display:none;
@@ -144,6 +144,9 @@ button{
 xtal-side-nav::part(opener), xtal-side-nav::part(close-btn){
     font-size:10px;
 }
-xtal-side-nav:not([open]) menu:{
+xtal-side-nav:not([open]) menu{
     display: none;
+}
+xtal-side-nav menu{
+    padding-inline-start: 0px;;
 }

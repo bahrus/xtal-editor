@@ -313,20 +313,21 @@ main{
             } as mib}
             ${{
                 rowTransform: {
-                    divElements: [{}, {}, {"data-path": "path"}],
-                    fieldClasses: [{}, {}, {"style": "marginStyle"}],
-                    keyClasses: [{"textContent": "name"},{},{"data-type": "type", "for": "path"}],
-                    valueClasses: [{name: "path", id: "path"},{},{"data-value-type": "type"}],
+                    divEs: [{}, {}, {"data-path": "path"}],
+                    fieldCs: [{}, {}, {"style": "marginStyle"}],
+                    keyCs: [{"textContent": "name"},{},{"data-type": "type", "for": "path"}],
+                    valueCs: [{name: "path", id: "path"},{},{"data-value-type": "type"}],
                     '^' : [iff, {lhs: 'type', op: '===', rhsVal: 'boolean'}, [{readOnly: false, type: ['checkbox'], checked: 'value'}]],
                     '^^': [iff, {lhs: 'type', op: '===', rhsVal: 'string'}, [{readOnly: false, type: ['text'], value: "asString" }]],
                     '^3': [iff, {lhs: 'type', op: '===', rhsVal: 'number'}, [{readOnly: false, type: ['number'], value: 'value' }]],
                     '^4': [iff, {lhs: 'type', op: '===', rhsVal: 'object'}, [{readOnly: true, type: ['text'], value: 'asString', class: 'object-adder'}]],
                     '^5': [iff, {lhs: 'type', op: '===', rhsVal: 'array'}, [{readOnly: true, type: ['text'], value: 'asString', class: 'object-adder'}]],
                     ".delete,.copy,.expand-all": [{name: "path", id: "path"}],
-                    expanderClasses: [iff, {if: "open"}, ["-"], ["+"]],
-                    buttonElements: [{}, {}, {"data-children": "hasChildren"}],
+                    expanderCs: [iff, {if: "open"}, ["-"], ["+"]],
+                    buttonEs: [{"name": "path"}, {}, {"data-children": "hasChildren"}],
                     ".adder-buttons,.exp-collapse-buttons": [{}, {}, {"data-children": "hasChildren", "data-can-have-children": "canHaveChildren"}],
-                    ".adder-template,.exp-coll-template": [{".beDecorated.lazy.host": "."}]
+                    ".adder-template,.exp-coll-template": [{".beDecorated.lazy.host": "."}],
+                    "template[be-lazy],template[is-lazy]": [{".beDecorated.lazy.ctx": ":"}]
                 },
                 rowIntersectionalSettings: {
                     rootClosest: ".scroller",
@@ -361,32 +362,20 @@ main{
                                 }
                             }
                         }'>
-                        <xtal-side-nav>
+                        <xtal-side-nav mode=rtl>
                             <menu>
-                                <template be-lazy>
+                                <template be-lazy class=buttons-template>
                                     <div class=buttons>
                                         <section class=adder-buttons  part=adder-buttons >
-                                            <template class=adder-template be-lazy='{
-                                                "transform": {
-                                                    "button": [{"name": "path"}, {}, {}]
-                                                }
-                                            }'>
-                                                    <button part=object-adder class="object adder" value=object>+object</button>
-                                                    <button part=string-adder class="string adder" value=string>+string</button>
-                                                    <button part=bool-adder class="bool adder" value=bool>+bool</button>
-                                                    <button part=number-adder class="number adder" value=number>+number</button>
-                                                    <button part=arr-adder class="arr adder" value=arr>+array</button>
-                                            </template>
+                                            <button part=object-adder class="object adder" value=object>+object</button>
+                                            <button part=string-adder class="string adder" value=string>+string</button>
+                                            <button part=bool-adder class="bool adder" value=bool>+bool</button>
+                                            <button part=number-adder class="number adder" value=number>+number</button>
+                                            <button part=arr-adder class="arr adder" value=arr>+array</button>
                                         </section>
                                         <section class=exp-collapse-buttons>
-                                            <template class=exp-coll-template be-lazy='{
-                                                    "transform": {
-                                                        "button": [{"name": "path"}, {}, {}]
-                                                    }
-                                                }'>
-                                                    <button class="action expand-all" aria-label="expand all" title="expand all">&nbsp;</button>
-                                                    <button class="action collapse-all" aria-label="collapse all" title="collapse all">&nbsp;</button>
-                                            </template>
+                                            <button class="action expand-all" aria-label="expand all" title="expand all">&nbsp;</button>
+                                            <button class="action collapse-all" aria-label="collapse all" title="collapse all">&nbsp;</button>
                                         </section>
                                         <section class=other-buttons>
                                             <button class="action copy" aria-label="copy" title="copy">&nbsp;</button>
