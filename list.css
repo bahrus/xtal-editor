@@ -80,7 +80,7 @@ section,div.buttons{
 section.adder-buttons{
     display:none;
 }
-section.adder-buttons[data-can-have-children]{
+menu[data-can-have-children] section.adder-buttons{
     display:flex;
     width:240px;
 }
