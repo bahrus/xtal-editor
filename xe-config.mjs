@@ -252,6 +252,7 @@ main{
             <script data-version=0.0.6   id=be-adopted/be-adopted.js></script>
             <script data-version=0.0.24  id=be-channeling/be-channeling.js></script>
             <script data-version=0.0.3   id=be-composed/be-composed.js></script>
+            <script data-version=0.0.1   id=be-open-and-shut/be-open-and-shut.js></script>
         </template>
         <xtal-vlist
             part=xtal-vlist
@@ -355,8 +356,8 @@ main{
                                 }
                             }
                         }'>
-                        <xtal-side-nav mode=rtl>
-                            <menu>
+                        <xtal-side-nav mode=rtl be-open-and-shut>
+                            <aside>
                                 <template be-lazy class=buttons-template>
                                     <div class=buttons>
                                         <section class=adder-buttons  part=adder-buttons >
@@ -378,7 +379,7 @@ main{
                                         </section>
                                     </div>                                
                                 </template>
-                            </menu>
+                            </aside>
                         </xtal-side-nav>
                     </div>
 
