@@ -34,7 +34,7 @@ slot{
     display: none;
 }
 
-xtal-side-nav:not([open]) menu{
+xtal-side-nav:not([open]) aside{
     display:none;
 }
 
@@ -143,7 +143,7 @@ header[data-read-only] .adder {
     display:none;
 }
 
-header menu {
+header aside {
     height: 100%;
     margin: 0;
     padding: 0;

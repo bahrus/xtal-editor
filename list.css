@@ -150,9 +150,9 @@ xtal-side-nav::part(close-btn){
 xtal-side-nav{
     --side-nav-position:absolute;
 }
-xtal-side-nav:not([open]) menu{
+xtal-side-nav:not([open]) aside{
     display: none;
 }
-xtal-side-nav menu{
-    padding-inline-start: 0px;;
-}
+/* xtal-side-nav menu{
+    padding-inline-start: 0px;
+} */

@@ -95,7 +95,7 @@ main{
     </div>
     <header part=header>
         <xtal-side-nav part=side-nav>
-            <menu part=menu>
+            <aside part=aside>
                 <template be-lazy>
                 <button class="selector text-view-selector" part=text-view-selector ${{
                     beTransformative:{
