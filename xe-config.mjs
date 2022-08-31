@@ -368,8 +368,8 @@ main{
                                             <button part=arr-adder class="arr adder" value=arr>+array</button>
                                         </section>
                                         <section class=exp-collapse-buttons>
-                                            <button class="action expand-all" aria-label="expand all" title="expand all">&nbsp;</button>
-                                            <button class="action collapse-all" aria-label="collapse all" title="collapse all">&nbsp;</button>
+                                            <button class="action expand-all" aria-label="expand all" title="expand all">Expand All</button>
+                                            <button class="action collapse-all" aria-label="collapse all" title="collapse all">Collapse All</button>
                                         </section>
                                         <section class=other-buttons>
                                             <button class="action copy" aria-label="copy" title="copy">Copy to clipboard</button>

@@ -82,7 +82,7 @@ section.adder-buttons{
 }
 aside[data-can-have-children] section.adder-buttons{
     display:flex;
-    width:240px;
+    /* width:240px; */
 }
 div.field[data-readonly] aside[data-can-have-children] section.adder-buttons{
     display:none;
@@ -95,7 +95,6 @@ section.exp-collapse-buttons{
 }
 aside[data-can-have-children] section.exp-collapse-buttons{
     display:flex;
-    width:40px;
 }
 /* section{
     align-items: center;
@@ -132,11 +131,9 @@ button{
 
 .expand-all{
     background-image: url(https://cdn.jsdelivr.net/npm/xtal-editor@0.0.165/arrows-expand.svg);
-    width: 20px;
 }
 .collapse-all{
     background-image: url(https://cdn.jsdelivr.net/npm/xtal-editor@0.0.165/arrows-collapse.svg);
-    width: 20px;
 }
 .copy{
     background-image: url(https://cdn.jsdelivr.net/npm/xtal-editor@0.0.165/copy.svg);
