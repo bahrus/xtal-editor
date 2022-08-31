@@ -144,6 +144,9 @@ button{
 xtal-side-nav::part(opener), xtal-side-nav::part(close-btn){
     font-size:10px;
 }
+xtal-side-nav{
+    --side-nav-position:absolute;
+}
 xtal-side-nav:not([open]) menu{
     display: none;
 }
