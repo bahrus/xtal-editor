@@ -84,7 +84,7 @@ aside[data-can-have-children] section.adder-buttons{
     display:flex;
     width:240px;
 }
-div.field[data-readonly] section.adder-buttons[data-can-have-children]{
+div.field[data-readonly] aside[data-can-have-children] section.adder-buttons{
     display:none;
 }
 div.field[data-readonly] .delete-button{
@@ -97,9 +97,9 @@ aside[data-can-have-children] section.exp-collapse-buttons{
     display:flex;
     width:40px;
 }
-section{
+/* section{
     align-items: center;
-}
+} */
 button{
     background-repeat:no-repeat;
     background-position-y:center;
@@ -143,6 +143,12 @@ button{
 }
 xtal-side-nav::part(opener), xtal-side-nav::part(close-btn){
     font-size:10px;
+}
+xtal-side-nav::part(side-nav){
+    padding-top:5px;
+}
+xtal-side-nav::part(close-btn){
+    display:none;
 }
 xtal-side-nav{
     --side-nav-position:absolute;
