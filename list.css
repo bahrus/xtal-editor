@@ -80,7 +80,7 @@ section,div.buttons{
 section.adder-buttons{
     display:none;
 }
-menu[data-can-have-children] section.adder-buttons{
+aside[data-can-have-children] section.adder-buttons{
     display:flex;
     width:240px;
 }
@@ -93,7 +93,7 @@ div.field[data-readonly] .delete-button{
 section.exp-collapse-buttons{
     display:none;
 }
-section.exp-collapse-buttons[data-children]{
+aside[data-can-have-children] section.exp-collapse-buttons{
     display:flex;
     width:40px;
 }

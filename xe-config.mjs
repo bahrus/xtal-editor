@@ -320,8 +320,8 @@ main{
         ".delete,.copy,.expand-all": [{ name: "path", id: "path" }],
         expanderCs: [iff, { if: "open" }, ["-"], ["+"]],
         buttonEs: [{ "name": "path" }, {}, { "data-children": "hasChildren" }],
-        menu: [{}, {}, { "data-children": "hasChildren", "data-can-have-children": "canHaveChildren" }],
-        ".adder-template,.exp-coll-template": [{ ".beDecorated.lazy.host": "." }],
+        aside: [{}, {}, { "data-children": "hasChildren", "data-can-have-children": "canHaveChildren" }],
+        //".adder-template,.exp-coll-template": [{".beDecorated.lazy.host": "."}],
         "template[be-lazy],template[is-lazy]": [{ ".beDecorated.lazy.ctx": ":" }]
     },
     rowIntersectionalSettings: {
