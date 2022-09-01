@@ -253,8 +253,8 @@ main{
         }
     } as mib}>
         <template be-active>
-            <script data-version=0.0.77  id=xtal-vlist/xtal-vlist.js></script>
-            <script data-version=0.0.17  id=be-lazy/be-lazy.js></script>
+            <script data-version=0.0.78  id=xtal-vlist/xtal-vlist.js></script>
+            <script data-version=0.0.19  id=be-lazy/be-lazy.js></script>
             <script data-version=0.0.6   id=be-adopted/be-adopted.js></script>
             <script data-version=0.0.24  id=be-channeling/be-channeling.js></script>
             <script data-version=0.0.3   id=be-composed/be-composed.js></script>
