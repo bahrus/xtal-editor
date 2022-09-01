@@ -178,7 +178,7 @@ main{
     }
 }}>+array</button>
                 </template>
-            </menu>
+            </aside>
             
 
         </xtal-side-nav>
