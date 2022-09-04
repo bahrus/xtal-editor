@@ -28,7 +28,11 @@ label.key {
     margin: 1px;
     padding: 3px;
     height: fit-content;
-    width:175px;
+    width:200px;
+    display:inline-block;
+    overflow: hidden;
+    white-space: nowrap;
+    text-overflow: ellipsis;
 }
 label.key::after{
     content: ": ";

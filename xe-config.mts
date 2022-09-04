@@ -316,7 +316,7 @@ main{
                 rowTransform: {
                     divEs: [{}, {}, {"data-path": "path"}],
                     fieldCs: [{}, {}, {"style": "marginStyle"}],
-                    keyCs: [{"textContent": "name"},{},{"data-type": "type", "for": "path"}],
+                    keyCs: [{"textContent": "name", "title": "name"},{},{"data-type": "type", "for": "path"}],
                     valueCs: [{name: "path", id: "path"},{},{"data-value-type": "type"}],
                     '^' : [iff, {lhs: 'type', op: '===', rhsVal: 'boolean'}, [{readOnly: false, type: ['checkbox'], checked: 'value'}]],
                     '^^': [iff, {lhs: 'type', op: '===', rhsVal: 'string'}, [{readOnly: false, type: ['text'], value: "asString" }]],
