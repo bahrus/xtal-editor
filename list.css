@@ -150,7 +150,7 @@ xtal-side-nav::part(close-btn){
 xtal-side-nav{
     --side-nav-position:absolute;
 }
-xtal-side-nav:not([open]) aside{
+xtal-side-nav:has(template):not([open]) aside{
     display: none;
 }
 /* xtal-side-nav menu{
