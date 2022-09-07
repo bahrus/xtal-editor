@@ -45,8 +45,8 @@
     "trans-render": "0.0.585",
     "xtal-element": "0.0.517",
     "xtal-side-nav": "0.0.93",
-    "xtal-tree": "0.0.165",
-    "xtal-vlist": "0.0.86"
+    "xtal-tree": "0.0.166",
+    "xtal-vlist": "0.0.87"
   },
   "devDependencies": {
     "@playwright/test": "1.25.1",

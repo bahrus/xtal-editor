@@ -42,8 +42,8 @@ const iff = true || false; //conditional head indicator
 const innerHTML = html `
 <template be-active>
     
-    <script data-version=0.0.83  id=be-loaded/be-loaded.js></script>
-    <script data-version=0.0.36  id=be-deslotted/be-deslotted.js></script>
+    <script data-version=0.0.85  id=be-loaded/be-loaded.js></script>
+    <script data-version=0.0.38  id=be-deslotted/be-deslotted.js></script>
     
 </template>
 <style ${{
@@ -60,11 +60,11 @@ main{
 <slot name=init-val be-deslotted='["value"]'></slot>
 <main part=main>
     <template be-active>
-        <script data-version=0.0.165 id=xtal-tree/xtal-tree.js></script>
-        <script data-version=0.0.92  id=xtal-side-nav/xtal-side-nav.js></script>
-        <script data-version=0.0.134 id=be-observant/be-observant.js></script>
-        <script data-version=0.0.68  id=be-noticed/be-noticed.js></script>
-        <script data-version=0.0.47  id=be-transformative/be-transformative.js></script>
+        <script data-version=0.0.166 id=xtal-tree/xtal-tree.js></script>
+        <script data-version=0.0.93  id=xtal-side-nav/xtal-side-nav.js></script>
+        <script data-version=0.0.136 id=be-observant/be-observant.js></script>
+        <script data-version=0.0.69  id=be-noticed/be-noticed.js></script>
+        <script data-version=0.0.48  id=be-transformative/be-transformative.js></script>
     </template>
     <xtal-tree id-path=path ${{
     beObservant: [{
@@ -239,7 +239,7 @@ main{
     </header>
     <!-- Tree View -->
     <template be-active>
-        <script data-version=0.0.78  id=be-switched/be-switched.js></script>
+        <script data-version=0.0.79  id=be-switched/be-switched.js></script>
     </template>
     <template ${{
     beSwitched: {
@@ -247,12 +247,12 @@ main{
     }
 }}>
         <template be-active>
-            <script data-version=0.0.79  id=xtal-vlist/xtal-vlist.js></script>
-            <script data-version=0.0.19  id=be-lazy/be-lazy.js></script>
-            <script data-version=0.0.6   id=be-adopted/be-adopted.js></script>
-            <script data-version=0.0.24  id=be-channeling/be-channeling.js></script>
-            <script data-version=0.0.3   id=be-composed/be-composed.js></script>
-            <script data-version=0.0.1   id=be-open-and-shut/be-open-and-shut.js></script>
+            <script data-version=0.0.87  id=xtal-vlist/xtal-vlist.js></script>
+            <script data-version=0.0.21  id=be-lazy/be-lazy.js></script>
+            <script data-version=0.0.8   id=be-adopted/be-adopted.js></script>
+            <script data-version=0.0.26  id=be-channeling/be-channeling.js></script>
+            <script data-version=0.0.5   id=be-composed/be-composed.js></script>
+            <script data-version=0.0.2   id=be-open-and-shut/be-open-and-shut.js></script>
         </template>
         <xtal-vlist
             part=xtal-vlist
