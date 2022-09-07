@@ -3,8 +3,8 @@
     <!---->
     <template shadowroot="open">
         <template be-active>
-            <script data-version=0.0.35 id="be-importing/be-importing.js"></script>
-            <script data-version=0.0.62 id="be-definitive/be-definitive.js" data-when=be-importing></script>
+            <script data-version=0.0.37 id="be-importing/be-importing.js"></script>
+            <script data-version=0.0.65 id="be-definitive/be-definitive.js" data-when=be-importing></script>
             
             
         </template>
@@ -160,7 +160,7 @@ main{
 <script type=module>
     if(customElements.get('be-active') === undefined){
         import('be-active/be-active.js').catch(err => {
-            import('https://esm.run/be-active@0.0.40/be-active.js');
+            import('https://esm.run/be-active@0.0.41/be-active.js');
         });
     }
 </script>
