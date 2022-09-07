@@ -66,7 +66,7 @@ main{
 <main part=main>
     <template be-active>
         <script data-version=0.0.166 id=xtal-tree/xtal-tree.js></script>
-        <script data-version=0.0.93  id=xtal-side-nav/xtal-side-nav.js></script>
+        <script data-version=0.0.94  id=xtal-side-nav/xtal-side-nav.js></script>
         <script data-version=0.0.136 id=be-observant/be-observant.js></script>
         <script data-version=0.0.69  id=be-noticed/be-noticed.js></script>
         <script data-version=0.0.48  id=be-transformative/be-transformative.js></script>
