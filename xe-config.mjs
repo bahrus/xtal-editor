@@ -247,7 +247,7 @@ main{
     }
 }}>
         <template be-active>
-            <script data-version=0.0.170  id=xtal-vlist/xtal-vlist.js></script>
+            <script data-version=0.0.89  id=xtal-vlist/xtal-vlist.js></script>
             <script data-version=0.0.25  id=be-lazy/be-lazy.js></script>
             <script data-version=0.0.10   id=be-adopted/be-adopted.js></script>
             <script data-version=0.0.30  id=be-channeling/be-channeling.js></script>

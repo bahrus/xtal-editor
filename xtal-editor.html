@@ -3,8 +3,8 @@
     <!---->
     <template shadowroot="open">
         <template be-active>
-            <script data-version=0.0.38 id="be-importing/be-importing.js"></script>
-            <script data-version=0.0.68 id="be-definitive/be-definitive.js" data-when=be-importing></script>
+            <script data-version=0.0.39 id="be-importing/be-importing.js"></script>
+            <script data-version=0.0.69 id="be-definitive/be-definitive.js" data-when=be-importing></script>
             
             
         </template>
@@ -78,7 +78,7 @@ main{
     </template>
     <template be-switched='{"if":".treeView"}'>
         <template be-active>
-            <script data-version=0.0.170  id=xtal-vlist/xtal-vlist.js></script>
+            <script data-version=0.0.89  id=xtal-vlist/xtal-vlist.js></script>
             <script data-version=0.0.25  id=be-lazy/be-lazy.js></script>
             <script data-version=0.0.10   id=be-adopted/be-adopted.js></script>
             <script data-version=0.0.30  id=be-channeling/be-channeling.js></script>
@@ -160,7 +160,7 @@ main{
 <script type=module>
     if(customElements.get('be-active') === undefined){
         import('be-active/be-active.js').catch(err => {
-            import('https://esm.run/be-active@0.0.43/be-active.js');
+            import('https://esm.run/be-active@0.0.44/be-active.js');
         });
     }
 </script>
