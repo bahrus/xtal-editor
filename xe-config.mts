@@ -1,10 +1,10 @@
 import {DefineArgs} from 'xtal-element/src/types';
 import {html, beTransformed, define} from 'may-it-be/index.js';
-import {MayItBe as mib, BeDefinitiveVirtualProps} from 'may-it-be/types';
+import {MayItBe as mib, BeDefinitive} from 'may-it-be/types';
 import { IChannel } from '../be-channeling/types';
 
 const mode = process.argv[2] as '-js' | '-html';
-const beDefinitiveProps: BeDefinitiveVirtualProps = {
+const beDefinitiveProps: BeDefinitive = {
     config:{
         tagName: 'xtal-editor',
         propDefaults: {
@@ -267,7 +267,7 @@ main{
             timestamp-key="timestamp" 
             id="vlist"
             min-item-height=23
-            page-size=100
+            page-size=40
             ${{
                 beObservant:{
                     list: {observe: "xtal-tree", vft: "viewableNodes"}
@@ -327,10 +327,10 @@ main{
                     expanderCs: [iff, {if: "open"}, ["-"], ["+"]],
                     buttonEs: [{"name": "path"}, {}, {"data-children": "hasChildren"}],
                     aside: [{}, {}, {"data-children": "hasChildren", "data-can-have-children": "canHaveChildren"}],
-                    //".adder-template,.exp-coll-template": [{".beDecorated.lazy.host": "."}],
                     "template[be-lazy],template[is-lazy]": [{".beDecorated.lazy.ctx": ":"}]
                 },
                 rowIntersectionalSettings: {
+                    enterDelay: 100,
                     rootClosest: ".scroller",
                     options: {
                         "rootMargin": "600px",

@@ -261,7 +261,7 @@ main{
             timestamp-key="timestamp" 
             id="vlist"
             min-item-height=23
-            page-size=100
+            page-size=40
             ${{
     beObservant: {
         list: { observe: "xtal-tree", vft: "viewableNodes" }
@@ -321,10 +321,10 @@ main{
         expanderCs: [iff, { if: "open" }, ["-"], ["+"]],
         buttonEs: [{ "name": "path" }, {}, { "data-children": "hasChildren" }],
         aside: [{}, {}, { "data-children": "hasChildren", "data-can-have-children": "canHaveChildren" }],
-        //".adder-template,.exp-coll-template": [{".beDecorated.lazy.host": "."}],
         "template[be-lazy],template[is-lazy]": [{ ".beDecorated.lazy.ctx": ":" }]
     },
     rowIntersectionalSettings: {
+        enterDelay: 100,
         rootClosest: ".scroller",
         options: {
             "rootMargin": "600px",
