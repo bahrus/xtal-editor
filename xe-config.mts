@@ -47,8 +47,8 @@ const iff = true || false; //conditional head indicator
 const innerHTML = html`
 <template be-active>
     
-    <script data-version=0.0.90  id=be-loaded/be-loaded.js></script>
-    <script data-version=0.0.41  id=be-deslotted/be-deslotted.js></script>
+    <script data-version=0.0.91  id=be-loaded/be-loaded.js></script>
+    <script data-version=0.0.42  id=be-deslotted/be-deslotted.js></script>
     
 </template>
 <style ${{
@@ -66,9 +66,9 @@ main{
 <main part=main>
     <template be-active>
         <script data-version=0.0.169 id=xtal-tree/xtal-tree.js></script>
-        <script data-version=0.0.97  id=xtal-side-nav/xtal-side-nav.js></script>
-        <script data-version=0.0.155 id=be-observant/be-observant.js></script>
-        <script data-version=0.0.72  id=be-noticed/be-noticed.js></script>
+        <script data-version=0.0.98  id=xtal-side-nav/xtal-side-nav.js></script>
+        <script data-version=0.0.157 id=be-observant/be-observant.js></script>
+        <script data-version=0.0.73  id=be-noticed/be-noticed.js></script>
         <script data-version=0.0.51  id=be-transformative/be-transformative.js></script>
     </template>
     <xtal-tree id-path=path ${{
@@ -253,15 +253,15 @@ main{
         }
     } as mib}>
         <template be-active>
-            <script data-version=0.0.89  id=xtal-vlist/xtal-vlist.js></script>
-            <script data-version=0.0.25  id=be-lazy/be-lazy.js></script>
-            <script data-version=0.0.10   id=be-adopted/be-adopted.js></script>
+            <script data-version=0.0.2  id=laissez-list/laissez-list.js></script>
+            <script data-version=0.0.27  id=be-lazy/be-lazy.js></script>
+            <script data-version=0.0.11   id=be-adopted/be-adopted.js></script>
             <script data-version=0.0.30  id=be-channeling/be-channeling.js></script>
             <script data-version=0.0.8   id=be-composed/be-composed.js></script>
             <script data-version=0.0.5   id=be-open-and-shut/be-open-and-shut.js></script>
         </template>
-        <xtal-vlist
-            part=xtal-vlist
+        <laissez-list
+            part=laissez-list
             class=animated 
             style="width:100%;" 
             timestamp-key="timestamp" 
@@ -393,7 +393,7 @@ main{
 
                 </div>
             </template>
-        </xtal-vlist>
+        </laissez-list>
 
     </template>
     <!-- Text View -->
