@@ -65,12 +65,12 @@ main{
     animation-duration: 1s;
     animation-fill-mode: both;
 }
-xtal-vlist,json-viewer {
+laissez-list,json-viewer {
     animation-name: fadeIn;
     display:flex;
     height:calc(100% - var(--header-height));
 }
-xtal-vlist::part(scroller){
+laissez-list::part(scroller){
     height:100%;
 }
 json-viewer{
