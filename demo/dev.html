@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+
+</head>
+
+<body>
+    <div>
+        <xtal-editor enh-by-be-importing=xtal-editor/root.html>
+        </xtal-editor>
+        
+
+        <script type=importmap>
+            {
+                "imports": {
+                    "be-active/": "../node_modules/be-active/",
+                    "be-based/": "../node_modules/be-based/",
+                    "be-bound/": "../node_modules/be-bound/",
+                    "be-enhanced/": "../node_modules/be-enhanced/",
+                    "be-definitive/": "../node_modules/be-definitive/",
+                    "be-exportable/": "../node_modules/be-exportable/",
+                    "be-hive/": "../node_modules/be-hive/",
+                    "be-importing/": "../node_modules/be-importing/",
+                    "be-it/": "../node_modules/be-it/",
+                    "be-linked/": "../node_modules/be-linked/",
+                    "be-propagating/": "../node_modules/be-propagating/",
+                    "be-written/": "../node_modules/be-written/",
+                    "stream-orator/": "../node_modules/stream-orator/",
+                    "trans-render/": "../node_modules/trans-render/",
+                    "xtal-element/": "../node_modules/xtal-element/",
+                    "xtal-editor/": "../"
+                }
+            }
+        </script>
+
+        <script type=module>
+            import 'be-importing/be-importing.js';
+        </script>
+    </div>
+</body>
+
+</html>

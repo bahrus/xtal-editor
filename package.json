@@ -22,7 +22,10 @@
   ],
   "types": "types.d.ts",
   "dependencies": {
-    
+    "be-definitive": "0.0.105",
+    "be-importing": "0.0.64",
+    "trans-render": "0.0.693",
+    "xtal-element": "0.0.571"
   },
   "devDependencies": {
     "@playwright/test": "1.35.1",
