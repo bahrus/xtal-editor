@@ -23,6 +23,7 @@
   "types": "types.d.ts",
   "dependencies": {
     "be-definitive": "0.0.105",
+    "be-deslotted": "0.0.43",
     "be-importing": "0.0.64",
     "trans-render": "0.0.693",
     "xtal-element": "0.0.571"

@@ -1,5 +1,23 @@
 <xtal-editor>
     <template shadowrootmode=open><!--begin--><!--begin-->
-        <div>i am here</div>
+        <style adopt src="./shell.css"></style>
+        <slot name=init-val be-deslotted='value'></slot>
+        <template be-active>
+            <script data-version="0.0.105" id="be-definitive/be-definitive.js"></script>
+            <script data-version="0.0.43"  id="be-deslotted/be-deslotted.js"></script>
+        </template>
+        <be-hive enh-by-be-definitive='{
+            "config": {
+                "propDefaults": {
+
+                },
+                "propInfo": {
+                    "value": {
+                        "type": "String"
+                    }
+                }
+            }
+
+        }'></be-hive>
     <!--end--><!--end--></template>
 </xtal-editor>
