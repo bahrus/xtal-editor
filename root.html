@@ -2,13 +2,21 @@
     <template shadowrootmode=open><!--begin--><!--begin-->
         <style adopt src="./shell.css"></style>
         <slot name=init-val be-deslotted='value'></slot>
-        <xtal-tree enh-by-be-linked='
-            Link value property of host as object to object graph property of $0.
-        '></xtal-tree>
+        <main itemscope part=main>
+            <xtal-tree enh-by-be-linked='
+                Link value property of host as object to object graph property of $0.
+                Link input obj property of host to object graph property of $0.
+            '></xtal-tree>
+            <header part=header>
+
+            </header>
+        </main>
+
         <template be-active>
             <script data-version="0.0.105" id="be-definitive/be-definitive.js"></script>
             <script data-version="0.0.43"  id="be-deslotted/be-deslotted.js"></script>
             <script data-version="0.0.32"  id="be-linked/be-linked.js"></script>
+            <script data-version="0.0.171" id="xtal-tree/xtal-tree.js"></script>
         </template>
         <be-hive enh-by-be-definitive='{
             "config": {
@@ -18,6 +26,9 @@
                 "propInfo": {
                     "value": {
                         "type": "String"
+                    },
+                    "inputObj": {
+                        "type": "Object"
                     }
                 }
             }

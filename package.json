@@ -27,7 +27,8 @@
     "be-importing": "0.0.64",
     "be-linked": "0.0.32",
     "trans-render": "0.0.693",
-    "xtal-element": "0.0.571"
+    "xtal-element": "0.0.571",
+    "xtal-tree": "0.0.171"
   },
   "devDependencies": {
     "@playwright/test": "1.35.1",
