@@ -18,63 +18,19 @@
     "./xtal-editor-field.js": "./xtal-editor-field.js"
   },
   "files": [
-    "*.*"
+    "*.html"
   ],
   "types": "types.d.ts",
   "dependencies": {
-    "@power-elements/json-viewer": "2.1.1",
-    "be-active": "0.0.46",
-    "be-adopted": "0.0.11",
-    "be-channeling": "0.0.30",
-    "be-composed": "0.0.8",
-    "be-decorated": "0.0.190",
-    "be-definitive": "0.0.70",
-    "be-deslotted": "0.0.42",
-    "be-importing": "0.0.40",
-    "be-hive": "0.0.77",
-    "be-lazy": "0.0.27",
-    "be-loaded": "0.0.91",
-    "be-noticed": "0.0.73",
-    "be-observant": "0.0.157",
-    "be-oosoom": "0.0.11",
-    "be-open-and-shut": "0.0.6",
-    "be-repeated": "0.0.99",
-    "be-switched": "0.0.87",
-    "be-transformative": "0.0.51",
-    "laissez-list": "0.0.2",
-    "may-it-be": "0.0.171",
-    "trans-render": "0.0.632",
-    "xtal-element": "0.0.532",
-    "xtal-side-nav": "0.0.98",
-    "xtal-tree": "0.0.169"
+    
   },
   "devDependencies": {
-    "@playwright/test": "1.27.1",
-    "may-it-serve": "0.0.3",
-    "@custom-elements-manifest/analyzer": "0.6.4",
-    "@skypack/package-check": "0.2.2",
-    "be-persistent": "0.0.29",
-    "npm-watch": "0.11.0",
-    "xtal-shell": "0.0.27",
-    "typescript": "4.6.3"
-  },
-  "watch": {
-    "build-xe-html": "*-config.mjs",
-    "build-xe-js": "*-config.mjs",
-    "build-manifest": "types.d.ts"
+    "@playwright/test": "1.35.1",
+    "may-it-serve": "0.0.5"
   },
   "scripts": {
     "serve": "node node_modules/may-it-serve",
-    "test": "playwright test",
-    "start": "web-dev-server --node-resolve --app-index demo/dev.html  --watch --open",
-    "bundle": "rollup --config",
-    "compress": "node minify",
-    "package-check": "package-check",
-    "doc": "custom-elements-manifest analyze",
-    "build-xe-html": "node xe-config.mjs -html > xtal-editor.html",
-    "build-xe-js": "node xe-config.mjs -js > xtal-editor.js",
-    "build-manifest": "node doc.mjs > custom-elements.json",
-    "watch": "npm-watch"
+    "test": "playwright test"
   },
   "repository": {
     "type": "git",

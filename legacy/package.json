@@ -1,0 +1,90 @@
+{
+  "name": "xtal-editor",
+  "version": "0.0.199",
+  "keywords": [
+    "web-components",
+    "web-component",
+    "custom-element",
+    "custom-elements",
+    "JSON",
+    "Editor"
+  ],
+  "description": "Edit JSON",
+  "main": "xtal-editor.js",
+  "module": "xtal-editor.js",
+  "exports": {
+    ".": "./xtal-editor.js",
+    "./xtal-editor.js": "./xtal-editor.js",
+    "./xtal-editor-field.js": "./xtal-editor-field.js"
+  },
+  "files": [
+    "*.*"
+  ],
+  "types": "types.d.ts",
+  "dependencies": {
+    "@power-elements/json-viewer": "2.1.1",
+    "be-active": "0.0.52",
+    "be-adopted": "0.0.11",
+    "be-channeling": "0.0.31",
+    "be-composed": "0.0.8",
+    "be-enhanced": "0.0.33",
+    "be-definitive": "0.0.105",
+    "be-deslotted": "0.0.42",
+    "be-importing": "0.0.40",
+    "be-hive": "0.0.108",
+    "be-lazy": "0.0.27",
+    "be-loaded": "0.0.91",
+    "be-noticed": "0.0.73",
+    "be-observant": "0.0.157",
+    "be-oosoom": "0.0.11",
+    "be-open-and-shut": "0.0.6",
+    "be-repeated": "0.0.109",
+    "be-switched": "0.0.87",
+    "be-transformative": "0.0.51",
+    "laissez-list": "0.0.2",
+    "may-it-be": "0.0.171",
+    "trans-render": "0.0.692",
+    "xtal-element": "0.0.570",
+    "xtal-side-nav": "0.0.98",
+    "xtal-tree": "0.0.169"
+  },
+  "devDependencies": {
+    "@playwright/test": "1.27.1",
+    "may-it-serve": "0.0.3",
+    "@custom-elements-manifest/analyzer": "0.6.4",
+    "@skypack/package-check": "0.2.2",
+    "be-persistent": "0.0.29",
+    "npm-watch": "0.11.0",
+    "xtal-shell": "0.0.27",
+    "typescript": "4.6.3"
+  },
+  "watch": {
+    "build-xe-html": "*-config.mjs",
+    "build-xe-js": "*-config.mjs",
+    "build-manifest": "types.d.ts"
+  },
+  "scripts": {
+    "serve": "node node_modules/may-it-serve",
+    "test": "playwright test",
+    "start": "web-dev-server --node-resolve --app-index demo/dev.html  --watch --open",
+    "bundle": "rollup --config",
+    "compress": "node minify",
+    "package-check": "package-check",
+    "doc": "custom-elements-manifest analyze",
+    "build-xe-html": "node xe-config.mjs -html > xtal-editor.html",
+    "build-xe-js": "node xe-config.mjs -js > xtal-editor.js",
+    "build-manifest": "node doc.mjs > custom-elements.json",
+    "watch": "npm-watch"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/bahrus/xtal-editor.git"
+  },
+  "author": "anderson.bruce.b@gmail.com",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/bahrus/xtal-editor/issues"
+  },
+  "homepage": "https://github.com/bahrus/xtal-editor#readme",
+  "customElements": "custom-elements.json"
+}

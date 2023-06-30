@@ -5,7 +5,6 @@
 		"sourceMap": false,
 		"experimentalDecorators": false,
 		"newLine": "LF",
-		"watch": true
 	},
 	"files":[
 		"xe-config.mts",
