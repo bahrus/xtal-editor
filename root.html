@@ -1,6 +1,9 @@
 <xtal-editor>
     <template shadowrootmode=open><!--begin--><!--begin-->
-        <style adopt src="./shell.css"></style>
+        <link rel=stylesheet href="../shell.css">
+        <link rel=stylesheet href="../theme.css">
+        <!-- <style adopt src="./shell.css"></style>
+        <style adopt src="./theme.css"></style> -->
         <slot name=init-val be-deslotted='value'></slot>
         <main itemscope part=main>
             <xtal-tree enh-by-be-linked='
@@ -10,19 +13,11 @@
             <header part=header>
                 <xtal-side-nav part=side-nav enh-by-be-importing=xtal-side-nav/root.html>
                     <aside part=aside>
-                        <template be-lazy>
-                            <button class="selector text-view-selector" part=text-view-selector ${{
-                                beTransformative:{
-                                    click: {
-                                        transform:{
-                                            ":host": [{treeView: false, textView: true}],
-                                            treeViewSelectorClasses:[{},{},{".inactive": false}],
-                                            textViewSelectorClasses: [{}, {}, {".inactive": true}]                            
-                                        }
-                                    }
-                                }
-                            } as mib}>Text View</button>
-                        </template>
+                        <!-- <template be-lazy> -->
+                            <button class="selector text-view-selector" part=text-view-selector be-linked='
+                                Toggle tree view property.
+                            '><span itemprop=altView></span></button>
+                        <!-- </template> -->
                     </aside>
                 </xtal-side-nav>
             </header>
@@ -31,25 +26,13 @@
         <template be-active>
             <script data-version="0.0.105" id="be-definitive/be-definitive.js"></script>
             <script data-version="0.0.43"  id="be-deslotted/be-deslotted.js"></script>
-            <script data-version=
+            <script data-version=0.0.29    id=be-lazy/be-lazy.js></script>
             <script data-version="0.0.32"  id="be-linked/be-linked.js"></script>
             <script data-version="0.0.171" id="xtal-tree/xtal-tree.js"></script>
         </template>
-        <be-hive enh-by-be-definitive='{
-            "config": {
-                "propDefaults": {
-
-                },
-                "propInfo": {
-                    "value": {
-                        "type": "String"
-                    },
-                    "inputObj": {
-                        "type": "Object"
-                    }
-                }
-            }
-
-        }'></be-hive>
+        <be-hive></be-hive>
+        <script src="config.js" be-definitive='{
+            "complexConfig": "config"
+        }'></script>
     <!--end--><!--end--></template>
 </xtal-editor>
