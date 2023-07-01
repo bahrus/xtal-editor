@@ -2,14 +2,26 @@ export const config = {
     propDefaults: {
         treeView: true,
         textView: false,
+        readOnly: false,
     },
-    derivedProps: ['altView'],
+    derivedProps: ['altView', 'title'],
     propInfo: {
         value: {
             type: "String"
         },
         inputObj: {
             "type": "Object"
+        },
+        readOnly: {
+            notify: {
+                mapTo: {
+                    key: 'title',
+                    map: [
+                        [true, 'JSON Viewer'],
+                        [false, 'JSON Editor']
+                    ]
+                }
+            }
         },
         treeView: {
             notify: {
@@ -22,7 +34,7 @@ export const config = {
                         [true, "Text View"],
                         [false, "Tree View"]
                     ]
-                }
+                },
             }
         }
     }

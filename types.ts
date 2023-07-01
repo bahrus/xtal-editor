@@ -3,9 +3,12 @@ export interface EndUserProps{
     textView: boolean;
     value: string;
     inputObj: object;
-    altView: string;
+    readOnly: boolean;
 }
 
 export interface Props extends EndUserProps{
     downloadHref: string;
+    altView: string;
+    title: string;
+    //currentView: string;
 }

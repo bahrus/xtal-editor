@@ -12,7 +12,7 @@
                 Share downloadHref from $0.
             '></xtal-tree>
             <header itemscope part=header be-linked='
-                Share altView from $1.
+                Share altView, title from $1.
             '>
                 <xtal-side-nav part=side-nav enh-by-be-importing=xtal-side-nav/root.html>
                     <aside part=aside>
@@ -48,6 +48,9 @@
                         <!-- </template> -->
                     </aside>
                 </xtal-side-nav>
+                <h1 part=title>
+                    <span itemprop=title></span>
+                </h1>
             </header>
         </main>
 
