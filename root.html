@@ -6,7 +6,7 @@
         <style adopt src="./theme.css"></style> -->
         <slot name=init-val be-deslotted='value'></slot>
         <main part=main>
-            <xtal-tree itemscope itemref="download-link" enh-by-be-linked='
+            <xtal-tree itemscope itemref="download-link" -new-node enh-by-be-linked='
                 Link value property of host as object to object graph property of $0.
                 Link input obj property of host to object graph property of $0.
                 Share downloadHref from $0.
@@ -30,6 +30,9 @@
                                 </svg>
                                 Download
                             </a>
+                            <button part=object-adder class="object adder" value=object be-linked='
+                                Pass value to new node marker.
+                            '>+object</button>
                         <!-- </template> -->
                     </aside>
                 </xtal-side-nav>
