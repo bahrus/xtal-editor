@@ -7,5 +7,5 @@ export interface EndUserProps{
 }
 
 export interface Props extends EndUserProps{
-
+    downloadHref: string;
 }
