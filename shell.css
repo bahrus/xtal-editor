@@ -207,7 +207,7 @@ xtal-side-nav{
 }
 
 
-template[be-lazy], template[is-lazy]{
+template[be-lazy]{
     display: block;
     height: 24px;
 }

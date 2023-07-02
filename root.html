@@ -6,7 +6,10 @@
         <style adopt src="./theme.css"></style> -->
         <slot name=init-val be-deslotted='value'></slot>
         <main part=main>
-            <xtal-tree itemscope itemref="download-link" -new-node -expand-all -collapse-all -copy-node-to-clipboard enh-by-be-linked='
+            <xtal-tree 
+                itemscope itemref="download-link" 
+                -new-node -expand-all -collapse-all -copy-node-to-clipboard -search-string
+                enh-by-be-linked='
                 Link value property of host as object to object graph property of $0.
                 Link input obj property of host to object graph property of $0.
                 Share downloadHref from $0.
@@ -16,7 +19,7 @@
             '>
                 <xtal-side-nav part=side-nav enh-by-be-importing=xtal-side-nav/root.html>
                     <aside part=aside>
-                        <!-- <template be-lazy> -->
+                        <template be-lazy>
                             <button class="selector text-view-selector" part=text-view-selector be-linked='
                                 Toggle tree view property.
                             '><span itemprop=altView></span></button>
@@ -42,34 +45,41 @@
                             <button part=number-adder class="number adder" value=number be-linked='
                                 Elevate value to new-node marker.
                             '>+number</button>
-                            <button part=arr-adder class="arr adder" value=arr be-linked='
+                            <button be-a-beacon part=arr-adder class="arr adder" value=arr be-linked='
                                 Elevate value to new-node marker.
                             '>+array</button>
-                        <!-- </template> -->
+                        </template>
                     </aside>
                 </xtal-side-nav>
                 <h1 part=title>
                     <span itemprop=title></span>
                 </h1>
+                <label part=search-label class=search-label>Search:&nbsp;&nbsp;
+                    <input part=search-input type=search be-linked='
+                        Elevate value to search-string marker.
+                    '>
+                </label>
+                <div class=exp-coll>
+                    <button part=expand-all class="action expand-all" aria-label="expand all" title="expand all" be-linked='
+                        Elevate is connected to expand-all marker.
+                    '>&nbsp;</button>
+                    <button part=collapse-all class="action collapse-all" aria-label="collapse all" title="collapse all" be-linked='
+                        Elevate is connected to collapse-all marker.
+                    '>&nbsp;</button>
+                    <button part=copy class="action copy" aria-label="copy" title="copy" name="" be-linked='
+                        Elevate $0 to copy-node-to-clipboard marker.
+                    '>&nbsp;</button>
+                </div>
             </header>
         </main>
-        <div class=exp-coll>
-            <button part=expand-all class="action expand-all" aria-label="expand all" title="expand all" be-linked='
-                Elevate is connected to expand-all marker.
-            '>&nbsp;</button>
-            <button part=collapse-all class="action collapse-all" aria-label="collapse all" title="collapse all" be-linked='
-                Elevate is connected to collapse-all marker.
-            '>&nbsp;</button>
-            <button part=copy class="action copy" aria-label="copy" title="copy" name="" be-linked='
-                Elevate : to copy-node-to-clipboard marker.
-            '>&nbsp;</button>
-        </div>
+
         <template be-active>
-            <script data-version="0.0.105" id="be-definitive/be-definitive.js"></script>
-            <script data-version="0.0.43"  id="be-deslotted/be-deslotted.js"></script>
+            <script data-version=0.0.38    id=be-a-beacon/be-a-beacon.js></script>
+            <script data-version=0.0.105   id=be-definitive/be-definitive.js></script>
+            <script data-version=0.0.43    id=be-deslotted/be-deslotted.js></script>
             <script data-version=0.0.29    id=be-lazy/be-lazy.js></script>
-            <script data-version="0.0.32"  id="be-linked/be-linked.js"></script>
-            <script data-version="0.0.171" id="xtal-tree/xtal-tree.js"></script>
+            <script data-version=0.0.32    id=be-linked/be-linked.js></script>
+            <script data-version=0.0.171   id=xtal-tree/xtal-tree.js></script>
         </template>
         <be-hive></be-hive>
         <script src="config.js" be-definitive='{
