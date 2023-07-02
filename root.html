@@ -6,7 +6,7 @@
         <style adopt src="./theme.css"></style> -->
         <slot name=init-val be-deslotted='value'></slot>
         <main part=main>
-            <xtal-tree itemscope itemref="download-link" -new-node enh-by-be-linked='
+            <xtal-tree itemscope itemref="download-link" -new-node -expand-all -collapse-all -copy-node-to-clipboard enh-by-be-linked='
                 Link value property of host as object to object graph property of $0.
                 Link input obj property of host to object graph property of $0.
                 Share downloadHref from $0.
@@ -31,19 +31,19 @@
                                 Download
                             </a>
                             <button part=object-adder class="object adder" value=object be-linked='
-                                Elevate value to new node marker.
+                                Elevate value to new-node marker.
                             '>+object</button>
                             <button part=string-adder class="string adder" value=string be-linked='
-                                Elevate value to new node marker.
+                                Elevate value to new-node marker.
                             '>+string</button>
                             <button part=bool-adder class="bool adder" value=bool be-linked='
-                                Elevate value to new node marker.
+                                Elevate value to new-node marker.
                             '>+bool</button>
                             <button part=number-adder class="number adder" value=number be-linked='
-                                Elevate value to new node marker.
+                                Elevate value to new-node marker.
                             '>+number</button>
                             <button part=arr-adder class="arr adder" value=arr be-linked='
-                                Elevate value to new node marker.
+                                Elevate value to new-node marker.
                             '>+array</button>
                         <!-- </template> -->
                     </aside>
@@ -53,7 +53,17 @@
                 </h1>
             </header>
         </main>
-
+        <div class=exp-coll>
+            <button part=expand-all class="action expand-all" aria-label="expand all" title="expand all" be-linked='
+                Elevate is connected to expand-all marker.
+            '>&nbsp;</button>
+            <button part=collapse-all class="action collapse-all" aria-label="collapse all" title="collapse all" be-linked='
+                Elevate is connected to collapse-all marker.
+            '>&nbsp;</button>
+            <button part=copy class="action copy" aria-label="copy" title="copy" name="" be-linked='
+                Elevate : to copy-node-to-clipboard marker.
+            '>&nbsp;</button>
+        </div>
         <template be-active>
             <script data-version="0.0.105" id="be-definitive/be-definitive.js"></script>
             <script data-version="0.0.43"  id="be-deslotted/be-deslotted.js"></script>
