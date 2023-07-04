@@ -71,17 +71,20 @@
                     '>&nbsp;</button>
                 </div>
             </header>
-            <section part=views itemscope>
-                <!-- Text View -->
-                <link itemprop=textView be-it=content-display>
-                <template>
-                    <template be-active>
-                        <script version=2.1.1 id=@power-elements/json-viewer/json-viewer.js></script>
+            <section part=views>
+                <!-- Tree Views -->
+                <div part=text-view itemscope>
+                    <!-- Text View -->
+                    <link itemprop=textView be-it=content-display>
+                    <template>
+                        <template be-active>
+                            <script version=2.1.1 id=@power-elements/json-viewer/json-viewer.js></script>
+                        </template>
+                        <json-viewer part=json-viewer class=animated enh-by-be-linked='
+                            Link value property of host as object to object property of $0.
+                        '></json-viewer>
                     </template>
-                    <json-viewer class=animated enh-by-be-linked='
-                        Link value property of host as object to object property of $0.
-                    '></json-viewer>
-                </template>
+                </div>
             </section>
 
         </main>
