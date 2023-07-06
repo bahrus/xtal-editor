@@ -14,7 +14,7 @@
                 Link input obj property of host to object graph property of $0.
                 Share downloadHref, viewableNodes from $0.
             '></xtal-tree>
-            <!--
+            
             <header itemscope part=header be-linked='
                 Share altView, title from $1.
             '>
@@ -71,7 +71,7 @@
                     '>&nbsp;</button>
                 </div>
             </header>
-            -->
+           
             <section part=views>
                 
                 <div part=tree-view itemscope be-linked='
@@ -85,15 +85,14 @@
                                 Share * from scope.
                             '>
                                 <div itemprop=name></div>
-                                <div>i am here</div>
                             </div>
                             <template be-a-beacon></template>
                         </div>
                     </template>
                 </div>
-                <!-- <div part=text-view itemscope> -->
+                <div part=text-view itemscope>
                     <!-- Text View -->
-                    <!-- <link itemprop=textView be-it=content-display>
+                    <link itemprop=textView be-it=content-display>
                     <template>
                         <template be-active>
                             <script version=2.1.1 id=@power-elements/json-viewer/json-viewer.js></script>
@@ -101,8 +100,8 @@
                         <json-viewer part=json-viewer class=animated enh-by-be-linked='
                             Link value property of host as object to object property of $0.
                         '></json-viewer>
-                    </template> -->
-                <!-- </div>  -->
+                    </template>
+                </div> 
             </section>
 
         </main>
