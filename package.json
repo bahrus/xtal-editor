@@ -30,6 +30,7 @@
     "be-it": "0.0.14",
     "be-lazy": "0.0.29",
     "be-linked": "0.0.32",
+    "be-scoped": "0.0.15",
     "be-switched": "0.0.90",
     "json-viewer": "2.2.0",
     "trans-render": "0.0.694",

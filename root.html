@@ -7,13 +7,14 @@
         <slot name=init-val be-deslotted='value'></slot>
         <main part=main>
             <xtal-tree 
-                itemscope itemref="download-link" 
+                itemscope itemref="download-link tree-view-list" 
                 -new-node -expand-all -collapse-all -copy-node-to-clipboard -search-string
                 enh-by-be-linked='
                 Link value property of host as object to object graph property of $0.
                 Link input obj property of host to object graph property of $0.
-                Share downloadHref from $0.
+                Share downloadHref, viewableNodes from $0.
             '></xtal-tree>
+            <!--
             <header itemscope part=header be-linked='
                 Share altView, title from $1.
             '>
@@ -23,7 +24,6 @@
                             <button class="selector text-view-selector" part=text-view-selector be-linked='
                                 Toggle tree view property.
                             '><span itemprop=altView></span></button>
-                            <!-- TODO:  set download property dynamically -->
                             <a id=download-link class=download part=download download="file.json" itemprop=downloadHref>
                                 <svg viewBox="0 0 24 24" style="width:16.25px;height:16.25px">
                                     <g color="rgb(29, 155, 240)">
@@ -71,6 +71,7 @@
                     '>&nbsp;</button>
                 </div>
             </header>
+            -->
             <section part=views>
                 
                 <div part=tree-view itemscope be-linked='
@@ -79,12 +80,20 @@
                     <!-- Tree View -->
                     <link itemprop=treeView be-it=content-display>
                     <template>
-                        <div>i am here</div>
+                        <div id=tree-view-list  itemscope itemprop="viewableNodes">
+                            <div aria-rowindex=0 itemscope itemprop=itemListElement be-linked='
+                                Share * from scope.
+                            '>
+                                <div itemprop=name></div>
+                                <div>i am here</div>
+                            </div>
+                            <template be-a-beacon></template>
+                        </div>
                     </template>
                 </div>
-                <div part=text-view itemscope>
+                <!-- <div part=text-view itemscope> -->
                     <!-- Text View -->
-                    <link itemprop=textView be-it=content-display>
+                    <!-- <link itemprop=textView be-it=content-display>
                     <template>
                         <template be-active>
                             <script version=2.1.1 id=@power-elements/json-viewer/json-viewer.js></script>
@@ -92,8 +101,8 @@
                         <json-viewer part=json-viewer class=animated enh-by-be-linked='
                             Link value property of host as object to object property of $0.
                         '></json-viewer>
-                    </template>
-                </div>
+                    </template> -->
+                <!-- </div>  -->
             </section>
 
         </main>
