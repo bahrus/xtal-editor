@@ -40,10 +40,24 @@ label.key::after{
 button.expander{
     display:none;
 }
-button.expander[data-children]{
+
+
+.text-editing:has(link[itemprop="hasChildren"][href$="True"]) > button.expander{
     display:inline;
     margin: 1px;
 }
+
+.text-editing:has(link[itemprop="open"][href$="True"]) > button.expander::before {
+    content: '-'
+}
+
+.text-editing:has(link[itemprop="open"]) > button.expander::before {
+    content: '+'
+}
+/* button.expander[data-children]{
+    display:inline;
+    margin: 1px;
+} */
 .value{
     background-color: #ECF3C3;
     /* width: 100%; */
