@@ -2,6 +2,7 @@
     <template shadowrootmode=open><!--begin--><!--begin-->
         <link rel=stylesheet href="../shell.css">
         <link rel=stylesheet href="../theme.css">
+        <link rel=stylesheet href="../list.css">
         <!-- <style adopt src="./shell.css"></style>
         <style adopt src="./theme.css"></style> -->
         <slot name=init-val be-deslotted='value'></slot>
@@ -81,16 +82,23 @@
                     <link itemprop=treeView be-it=content-display>
                     <template>
                         <div id=tree-view-list  itemscope itemprop="viewableNodes">
-                            <div aria-rowindex=0 itemscope itemprop=itemListElement be-linked='
+                            
+                            <div class=text-editing aria-rowindex=0 itemscope itemprop=itemListElement be-linked='
                                 Share * from scope.
                             '>
+                                <meta itemprop=marginStyle be-it='{
+                                    "prop": "style",
+                                    "domNav": "parentElement"
+                                }'>
                                 <meta itemprop=level be-it='{
                                     "prop": "ariaLevel",
-                                    "translateBy": 1
+                                    "translateBy": 1,
+                                    "domNav": "parentElement"
                                 }'>
-                                <div>
-                                    <div itemprop=name></div>
-                                </div>
+                                <button class="expander" part=expander>.</button>
+                                <label part=key class=key itemprop=name></label>
+                                <meta itemprop=type>
+                                <div aria-label=value class=value part=value itemprop=value></div>
                                 
                             </div>
                             <template be-a-beacon></template>
