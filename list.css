@@ -54,10 +54,7 @@ button.expander{
 .text-editing:has(link[itemprop="open"]) > button.expander::before {
     content: '+'
 }
-/* button.expander[data-children]{
-    display:inline;
-    margin: 1px;
-} */
+
 .value{
     background-color: #ECF3C3;
     /* width: 100%; */

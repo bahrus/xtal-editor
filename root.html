@@ -9,7 +9,7 @@
         <main part=main>
             <xtal-tree 
                 itemscope itemref="download-link tree-view-list" 
-                -new-node -expand-all -collapse-all -copy-node-to-clipboard -search-string
+                -new-node -expand-all -collapse-all -copy-node-to-clipboard -search-string -toggled-node-path
                 enh-by-be-linked='
                 Link value property of host as object to object graph property of $0.
                 Link input obj property of host to object graph property of $0.
@@ -97,7 +97,10 @@
                                 }'>
                                 <link itemprop=hasChildren>
                                 <link itemprop=open>
-                                <button class="expander" part=expander></button>
+                                <meta itemprop=path be-it=value>
+                                <button class="expander" part=expander be-linked='
+                                    Elevate value to \toggled-node-path marker.
+                                '></button>
                                 <label part=key class=key itemprop=name></label>
                                 <meta itemprop=type>
                                 <div aria-label=value class=value part=value itemprop=value></div>
