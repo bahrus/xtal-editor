@@ -10,6 +10,7 @@
             <xtal-tree 
                 itemscope itemref="download-link tree-view-list" 
                 -new-node -expand-all -collapse-all -copy-node-to-clipboard -search-string -toggled-node-path
+                -edited-node
                 enh-by-be-linked='
                 Link value property of host as object to object graph property of $0.
                 Link input obj property of host to object graph property of $0.
@@ -105,7 +106,9 @@
 
                                 <meta itemprop=type>
                                 <meta itemprop=value be-it=value>
-                                <input -name -id class=value part=value>
+                                <input -name -id class=value part=value be-linked='
+                                    Elevate $0 property to edited-node marker.
+                                '>
                                 
                             </div>
                             <template be-a-beacon></template>
