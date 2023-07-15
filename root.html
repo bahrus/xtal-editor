@@ -97,13 +97,16 @@
                                 }'>
                                 <link itemprop=hasChildren>
                                 <link itemprop=open>
-                                <meta itemprop=path be-it=value>
+                                <meta itemprop=path be-it=-name;-id;-html-for;value>
                                 <button class="expander" part=expander be-linked='
                                     Elevate value property to toggled-node-path marker.
                                 '></button>
-                                <label part=key class=key itemprop=name></label>
+                                <label -html-for part=key class=key itemprop=name></label>
+
                                 <meta itemprop=type>
-                                <div aria-label=value class=value part=value itemprop=value></div>
+                                <meta itemprop=value be-it=value>
+                                <input -name -id aria-label=value class=value part=value>
+                                <!-- <div aria-label=value class=value part=value itemprop=value></div> -->
                                 
                             </div>
                             <template be-a-beacon></template>
