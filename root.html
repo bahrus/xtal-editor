@@ -74,11 +74,12 @@
                 </div>
             </header>
            
-            <section part=views>
+            <section part=views debug itemscope  be-linked='
+            Share textView, treeView from host.
+            
+        '>
                 
-                <div part=tree-view itemscope be-linked='
-                    Share treeView from host.
-                '>
+                <div part=tree-view >
                     <!-- Tree View -->
                     <link itemprop=treeView be-it=content-display>
                     <template>
@@ -115,7 +116,7 @@
                         </div>
                     </template>
                 </div>
-                <div part=text-view itemscope>
+                <div part=text-view >
                     <!-- Text View -->
                     <link itemprop=textView be-it=content-display>
                     <template>

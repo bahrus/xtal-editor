@@ -159,9 +159,9 @@ xtal-side-nav::part(opener), xtal-side-nav::part(close-btn){
 xtal-side-nav::part(side-nav){
     padding-top:5px;
 }
-xtal-side-nav::part(close-btn){
+/* xtal-side-nav::part(close-btn){
     display:none;
-}
+} */
 xtal-side-nav{
     --side-nav-position:absolute;
 }
