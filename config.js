@@ -36,6 +36,13 @@ export const config = {
                     ]
                 },
             }
+        },
+        textView: {
+            notify: {
+                negateTo: {
+                    key: 'treeView'
+                }
+            }
         }
     }
 };

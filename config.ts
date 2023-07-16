@@ -40,6 +40,13 @@ export const config: Config<Props> = {
                 },
                     
             }
+        },
+        textView:{
+            notify:{
+                negateTo:{
+                    key: 'treeView'
+                }
+            }
         }
 
     }
