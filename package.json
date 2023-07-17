@@ -23,23 +23,23 @@
   "types": "types.d.ts",
   "dependencies": {
     "@power-elements/json-viewer": "2.1.1",
-    "be-a-beacon": "0.0.38",
-    "be-definitive": "0.0.105",
-    "be-deslotted": "0.0.43",
-    "be-enhanced": "0.0.35",
-    "be-hive": "0.0.114",
-    "be-importing": "0.0.65",
-    "be-it": "0.0.21",
-    "be-lazy": "0.0.29",
-    "be-linked": "0.0.39",
-    "be-repeated": "0.0.113",
-    "be-scoped": "0.0.16",
-    "be-switched": "0.0.91",
+    "be-a-beacon": "0.0.39",
+    "be-definitive": "0.0.106",
+    "be-deslotted": "0.0.44",
+    "be-enhanced": "0.0.36",
+    "be-hive": "0.0.115",
+    "be-importing": "0.0.66",
+    "be-it": "0.0.22",
+    "be-lazy": "0.0.30",
+    "be-linked": "0.0.40",
+    "be-repeated": "0.0.114",
+    "be-scoped": "0.0.17",
+    "be-switched": "0.0.92",
     "json-viewer": "2.2.0",
-    "trans-render": "0.0.696",
-    "xtal-element": "0.0.573",
-    "xtal-side-nav": "0.0.113",
-    "xtal-tree": "0.0.172"
+    "trans-render": "0.0.699",
+    "xtal-element": "0.0.574",
+    "xtal-side-nav": "0.0.114",
+    "xtal-tree": "0.0.173"
   },
   "devDependencies": {
     "@playwright/test": "1.36.1",
@@ -48,6 +48,7 @@
   "scripts": {
     "serve": "node node_modules/may-it-serve",
     "test": "playwright test",
+    "safari": "npx playwright wk http://localhost:3030",
     "update": "ncu -u && npm install"
   },
   "repository": {
